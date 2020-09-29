@@ -125,7 +125,7 @@ regionalAndWorld <- rbind(regional, world)
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ljobsvdifz .gt_table {
+#qzqudaigbb .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -150,7 +150,7 @@ regionalAndWorld <- rbind(regional, world)
   border-left-color: #D3D3D3;
 }
 
-#ljobsvdifz .gt_heading {
+#qzqudaigbb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -162,7 +162,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#ljobsvdifz .gt_title {
+#qzqudaigbb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -172,7 +172,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-width: 0;
 }
 
-#ljobsvdifz .gt_subtitle {
+#qzqudaigbb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -182,13 +182,13 @@ regionalAndWorld <- rbind(regional, world)
   border-top-width: 0;
 }
 
-#ljobsvdifz .gt_bottom_border {
+#qzqudaigbb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ljobsvdifz .gt_col_headings {
+#qzqudaigbb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -203,7 +203,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#ljobsvdifz .gt_col_heading {
+#qzqudaigbb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -223,7 +223,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#ljobsvdifz .gt_column_spanner_outer {
+#qzqudaigbb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -235,15 +235,15 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 4px;
 }
 
-#ljobsvdifz .gt_column_spanner_outer:first-child {
+#qzqudaigbb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ljobsvdifz .gt_column_spanner_outer:last-child {
+#qzqudaigbb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ljobsvdifz .gt_column_spanner {
+#qzqudaigbb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -255,7 +255,7 @@ regionalAndWorld <- rbind(regional, world)
   width: 100%;
 }
 
-#ljobsvdifz .gt_group_heading {
+#qzqudaigbb .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -277,7 +277,7 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#ljobsvdifz .gt_empty_group_heading {
+#qzqudaigbb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -292,15 +292,15 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#ljobsvdifz .gt_from_md > :first-child {
+#qzqudaigbb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ljobsvdifz .gt_from_md > :last-child {
+#qzqudaigbb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ljobsvdifz .gt_row {
+#qzqudaigbb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -319,7 +319,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#ljobsvdifz .gt_stub {
+#qzqudaigbb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -331,7 +331,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-left: 12px;
 }
 
-#ljobsvdifz .gt_summary_row {
+#qzqudaigbb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -341,7 +341,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#ljobsvdifz .gt_first_summary_row {
+#qzqudaigbb .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -351,7 +351,7 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#ljobsvdifz .gt_grand_summary_row {
+#qzqudaigbb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -361,7 +361,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#ljobsvdifz .gt_first_grand_summary_row {
+#qzqudaigbb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -371,11 +371,11 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#ljobsvdifz .gt_striped {
+#qzqudaigbb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ljobsvdifz .gt_table_body {
+#qzqudaigbb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -384,7 +384,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-color: #D3D3D3;
 }
 
-#ljobsvdifz .gt_footnotes {
+#qzqudaigbb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -398,13 +398,13 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#ljobsvdifz .gt_footnote {
+#qzqudaigbb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ljobsvdifz .gt_sourcenotes {
+#qzqudaigbb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -418,46 +418,46 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#ljobsvdifz .gt_sourcenote {
+#qzqudaigbb .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ljobsvdifz .gt_left {
+#qzqudaigbb .gt_left {
   text-align: left;
 }
 
-#ljobsvdifz .gt_center {
+#qzqudaigbb .gt_center {
   text-align: center;
 }
 
-#ljobsvdifz .gt_right {
+#qzqudaigbb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ljobsvdifz .gt_font_normal {
+#qzqudaigbb .gt_font_normal {
   font-weight: normal;
 }
 
-#ljobsvdifz .gt_font_bold {
+#qzqudaigbb .gt_font_bold {
   font-weight: bold;
 }
 
-#ljobsvdifz .gt_font_italic {
+#qzqudaigbb .gt_font_italic {
   font-style: italic;
 }
 
-#ljobsvdifz .gt_super {
+#qzqudaigbb .gt_super {
   font-size: 65%;
 }
 
-#ljobsvdifz .gt_footnote_marks {
+#qzqudaigbb .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="ljobsvdifz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="qzqudaigbb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style><strong>Women rule</strong> (%)</th>
