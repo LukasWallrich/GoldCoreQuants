@@ -1,9 +1,0 @@
-# Test (pls ignore)
-
-```{r}
-library(dplyr)
-mtcars %>% group_by(cyl) %>% summarise(mean(mpg))
-
-sessionInfo()
-```
-
