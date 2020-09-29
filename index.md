@@ -1,5 +1,5 @@
 --- 
-title: "PSY4013 - Intro to Social Psychology"
+title: "Getting started with Quantitative Research Methods and R"
 author: "Lukas Wallrich"
 date: "Last updated: 2020-09-29"
 site: bookdown::bookdown_site
@@ -7,7 +7,7 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "These are some of the course materials for the Social Psychology component of the St Mary's PSY4013 course. It is a living document that will be added to regularly."
+description: "These are some of the course materials for the Goldsmiths' Core Quantitative Research Methods course. It is a living document that will be updated regularly."
 favicon: "favicon.ico"
 ---
 
@@ -16,45 +16,34 @@ favicon: "favicon.ico"
 
 
 
+
+
+
 # Overview {-}
 
-This page shares the materials for  the Social Psychology part of the PSY4003 module and contains some further notes. I am keeping it here rather than on Moodle so that I can keep it open (see [Open Teaching Materials](#open-materials)). **It is a living document and will grow over time - [feel free to raise any issues and suggestions here](https://github.com/LukasWallrich/StMarysSocPsy/issues){target="_blank"} and bring questions to the live sessions.**
-
-## Live sessions
-
-We will meet on Zoom every Thursday morning from October 1 to December 10, with the exception of November 5. Check [**MyModules here**](https://mymodules.stmarys.ac.uk/course/view.php?id=28580#section-6){target="_blank"} for the exact times and Zoom links.
-
-## Collaborative group summary
-
-I highly encourage you to contribute to a collaborative group summary of the module. This will give you a good resource for revision, make note taking more effective and allow you to easily ask questions to me and to your peers. [Click here](https://docs.google.com/document/d/1H19traHUwsqs914vgLHV_nkzBWHEIjAKgB8oR6IYmo0/edit?usp=sharing){target="_blank"} to see the document and to contribute. 
+This guide supports the Core Quantitative Methods Course offered by the Goldsmiths' Graduate School. **It is a living document and currently not more than a rough draft, but will grow over time - [please raise any issues and suggestions here](https://github.com/LukasWallrich/GoldCoreQuants/issues)** It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps  to look things up more easily.
 
 ## Further sources
 
-This guide does not aim to be comprehensive, but just to provide sufficient orientation. To succeed, you will need to use a range of other resources as well.
+This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online resources that go further.
 
-### MyModules (Moodle)
+### Free online books
 
-Some copyrighted materials are only available on [MyModules](https://mymodules.stmarys.ac.uk/){target="_blank"}. You can also find all **submissions links** for the assignments there.
+* Hadley Wickham, the leading brain behind the tidyverse packages, has co-authored [*R for Data Science*](https://r4ds.had.co.nz/index.html){target="_blank"} (with Garrett Grolemund). This book does not cover inferential statistics, but explains how to use R to process, describe and visualise data in line with the aproach taken in this course.
+* The [*Learning statistics with R*](https://learningstatisticswithr.com/book/){target="_blank"} book by Danielle Navarro focuses on explaining the different statistical tests and their application in quite a lot of detail, including the underlying maths. It is written by a psychologist, and might therefore be particularly helpful for people from that discipline. 
 
-### Textbooks {#textbooks}
+### Paper/library books
 
-* Given the current situation, I will mostly refer to a good recent textbook that is freely available online: [*Principles of Social Psychology*](https://open.lib.umn.edu/socialpsychology/){target="_blank"}. You can also download it as a [PDF file](https://open.lib.umn.edu/socialpsychology/open/download?type=pdf) if you prefer that. There will be one or two chapters that are required reading for each week. 
-* Other textbooks for Social Psychology will cover most of the content as well, so you are welcome to use those for *additional* reading. *An Introduction to Social Psychology*, edited by Wolfgang Stroebe and Miles Hewstone, is good, and used copies of earlier editions can be found quite cheaply on [Amazon](https://smile.amazon.co.uk/Introduction-Social-Psychology-BPS-Textbooks-ebook/dp/B00DWG5UDG/ref=sr_1_3?dchild=1&keywords=An+Introduction+to+Social+Psychology&qid=1599817715&sr=8-3){target="_blank"} at the moment
-* The book "Social Psychology: Revisiting the classic studies" offers a very helpful look at the most famous and influential studies that you might have encountered already. There are two copies in the [library](http://stmarys.summon.serialssolutions.com/#!/search?bookMark=eNrjYmDJy89LZWbgMrAwNTcwMjc1M2Vl4DIyMDSyNDY1MDLkYOAtLs4yMDAwNDY2N7Iw5mQQDM5PzkzMUSgorkzOyM_JT6_kYWBNS8wpTuWF0twMMm6uIc4eusW5pcnxyYkliUBV8YbxhiYmBhYmRgSkARbUJmw){target="_blank"}. At the moment, you can also find an online copy  [here](https://eclass.uowm.gr/modules/document/file.php/NURED262/Smith%20%26%20Haslam%20Social%20Psychology_%20Revisiting%20the%20Classical%20Studies%20%282012%29%20book.pdf#page=173){target="_blank"}
-   
+* Charles Wheelan's *Naked Statistics: Stripping the Dread from the Data* is an easy-to-read and entertaining New York Times bestseller that introduces statistical thinking and some key concepts without distracting details. 
+* Neil Burdess' *Starting Statistics: A short clear guide* covers the basic ground with more practical and technical detail.
+* Also have a look at the **Module Guide** on the [learn.gold](https://learn.gold.ac.uk/){target="_blank"} Module Page that contains further recommendations, especially with regard to research methods.
 
-### Reading list
+### Other key resources
 
-Each weekly section in this guide will start with a set of recommended readings. You do not need to read every word of them, but make sure to read the key parts (e.g., abstracts, summaries, discussion sections), so that you can choose where to go further and remember where to find information when it comes to the assignments.
+* The RStudio team created and collected a very helpful set of Cheatsheets that cover the key elements of various R packages - have a look [here.](https://rstudio.com/resources/cheatsheets/){target="_blank"} For this course, the sheets on `dplyr` and `ggplot2` are the most important.
+* [Stackoverflow](https://stackoverflow.com/questions/tagged/r){target="_blank"} is an online forum with a great and welcoming support community. However, make sure to use Google and their search function first to check that your question hasn't already been answered and show what you already understand - if the same questions keep on getting asked or if the questions are very unclear, people volunteering their time to help can get a bit testy.
 
-### Independent reading {#read}
+## Why R?
 
-When it comes to the assignment, you will have to show that you read independently - however, even earlier, it can be fun to explore interesting things further. To find readings, you can use
-
-* the [St Mary's library catalogue](http://simmslib.smuc.ac.uk/){target="_blank"} should be your first point of call and links to many online resources
-* [Google Scholar](https://scholar.google.com/){target="_blank"} is a great search engine to find academic articles. If you want to use it regularly, link it to your St Mary's account as that will make it much easier to get access to articles behind paywalls. Go to [Google Scholar Library Links](https://scholar.google.com/scholar_settings#2){target="_blank"} and search for St Mary's - the correct result is called "St Mary's University - Full-text @ St Mary's" 
-
-
-## A note on open teaching materials {#open-materials}
-
-Why keep materials here rather than on Moodle? Basically, because I like transparency and dislike any kinds of paywalls in science. Open Access to journal articles without having to pay for an expensive subscription has been one of the key demands of the Open Science movement, and we are slowly getting there. Open access to teaching materials is a next step, and this is one of my small contributions to that movement.
+R is not the easiest statistical software to learn, but we are confident that it is the most useful. This [article](https://lindeloev.net/spss-is-dying/){target="_blank"} on why SPSS is dying provides some of the arguments for why that is the case.
+  
