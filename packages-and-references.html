@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lecture 2 Test (pls ignore) | Getting started with Quantitative Research Methods and R</title>
+  <title>Lecture 3 Packages and references | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lecture 2 Test (pls ignore) | Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="Lecture 3 Packages and references | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lecture 2 Test (pls ignore) | Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="Lecture 3 Packages and references | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
   
@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="prev" href="test-pls-ignore-cq.html"/>
-
+<link rel="next" href="two-more-pipes.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -142,8 +142,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>0.2</b> Why R?</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="test-pls-ignore-cq.html"><a href="test-pls-ignore-cq.html"><i class="fa fa-check"></i><b>1</b> Test (pls ignore - CQ)</a></li>
-<li class="chapter" data-level="2" data-path="test-pls-ignore.html"><a href="test-pls-ignore.html"><i class="fa fa-check"></i><b>2</b> Test (pls ignore)</a></li>
+<li class="chapter" data-level="1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html"><i class="fa fa-check"></i><b>1</b> Chi-squared tests for associations between categorical variables</a><ul>
+<li class="chapter" data-level="1.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#tables-of-frequencies-and-proportions"><i class="fa fa-check"></i><b>1.1</b> Tables of frequencies and proportions</a></li>
+<li class="chapter" data-level="1.2" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-null-hypothesis-and-the-chi2-statistic"><i class="fa fa-check"></i><b>1.2</b> The null hypothesis and the <span class="math inline">\(\chi^2\)</span> statistic</a></li>
+<li class="chapter" data-level="1.3" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-chisq.test-function"><i class="fa fa-check"></i><b>1.3</b> The chisq.test() function</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#dealing-with-small-samples"><i class="fa fa-check"></i><b>1.3.1</b> Dealing with small samples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#post-hoc-tests"><i class="fa fa-check"></i><b>1.4</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="1.5" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#effect-sizes"><i class="fa fa-check"></i><b>1.5</b> Effect sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="test-pls-ignore-cq.html"><a href="test-pls-ignore-cq.html"><i class="fa fa-check"></i><b>2</b> Test (pls ignore - CQ)</a></li>
+<li class="chapter" data-level="3" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>3</b> Packages and references</a></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a><ul>
+<li class="chapter" data-level="A.1" data-path="two-more-pipes.html"><a href="two-more-pipes.html#expanding-the-tidyverse-the-exposition-pipe"><i class="fa fa-check"></i><b>A.1</b> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</a></li>
+<li class="chapter" data-level="A.2" data-path="two-more-pipes.html"><a href="two-more-pipes.html#a-somewhat-risky-time-saver-the-assignment-pipe"><i class="fa fa-check"></i><b>A.2</b> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -168,63 +182,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="test-pls-ignore" class="section level1">
-<h1><span class="header-section-number">Lecture 2</span> Test (pls ignore)</h1>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="test-pls-ignore.html#cb9-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✔ tibble  3.0.3     ✔ dplyr   1.0.2
-## ✔ tidyr   1.1.2     ✔ stringr 1.4.0
-## ✔ readr   1.3.1     ✔ forcats 0.5.0
-## ✔ purrr   0.3.4</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="test-pls-ignore.html#cb13-1"></a><span class="kw">library</span>(webex)</span>
-<span id="cb13-2"><a href="test-pls-ignore.html#cb13-2"></a>mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cyl) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(mpg))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="test-pls-ignore.html#cb15-1"></a><span class="kw">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 3 x 2
-##     cyl `mean(mpg)`
-##   &lt;dbl&gt;       &lt;dbl&gt;
-## 1     4        26.7
-## 2     6        19.7
-## 3     8        15.1
-## R version 4.0.2 (2020-06-22)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 18.04.5 LTS
-## 
-## Matrix products: default
-## BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
-## LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.2.20.so
-## 
-## locale:
-##  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
-##  [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
-##  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-## [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] forcats_0.5.0   stringr_1.4.0   dplyr_1.0.2     purrr_0.3.4    
-##  [5] readr_1.3.1     tidyr_1.1.2     tibble_3.0.3    tidyverse_1.3.0
-##  [9] webex_0.9.1     ggplot2_3.3.2  
-## 
-## loaded via a namespace (and not attached):
-##  [1] tidyselect_1.1.0 xfun_0.18        haven_2.3.1      colorspace_1.4-1
-##  [5] vctrs_0.3.4      generics_0.0.2   htmltools_0.5.0  yaml_2.2.1      
-##  [9] utf8_1.1.4       blob_1.2.1       rlang_0.4.7      pillar_1.4.6    
-## [13] glue_1.4.2       withr_2.3.0      DBI_1.1.0        dbplyr_1.4.4    
-## [17] modelr_0.1.8     readxl_1.3.1     lifecycle_0.2.0  munsell_0.5.0   
-## [21] gtable_0.3.0     cellranger_1.1.0 rvest_0.3.6      evaluate_0.14   
-## [25] knitr_1.30       fansi_0.4.1      broom_0.7.0      Rcpp_1.0.5      
-## [29] backports_1.1.10 scales_1.1.1     jsonlite_1.7.1   fs_1.5.0        
-## [33] hms_0.5.3        digest_0.6.25    stringi_1.5.3    bookdown_0.20   
-## [37] grid_4.0.2       cli_2.0.2        tools_4.0.2      magrittr_1.5    
-## [41] crayon_1.3.4     pkgconfig_2.0.3  ellipsis_0.3.1   xml2_1.3.2      
-## [45] reprex_0.3.0     lubridate_1.7.9  assertthat_0.2.1 rmarkdown_2.3   
-## [49] httr_1.4.2       rstudioapi_0.11  R6_2.4.1         compiler_4.0.2</code></pre>
+<div id="packages-and-references" class="section level1">
+<h1><span class="header-section-number">Lecture 3</span> Packages and references</h1>
+<div id="refs">
+<div id="ref-rmarkdown">
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
+</div>
+<div id="ref-R-webex">
+<p>Barr, Dale, and Lisa DeBruine. 2019. <em>Webex: Create Interactive Web Exercises in R Markdown</em>. <a href="https://github.com/psyteachr/webex">https://github.com/psyteachr/webex</a>.</p>
+</div>
+<div id="ref-bem2011feeling">
+<p>Bem, Daryl J. 2011. “Feeling the Future: Experimental Evidence for Anomalous Retroactive Influences on Cognition and Affect.” <em>Journal of Personality and Social Psychology</em> 100 (3): 407.</p>
+</div>
+<div id="ref-bregman2020humankind">
+<p>Bregman, Rutger. 2020. <em>Humankind: A Hopeful History</em>. Bloomsbury Publishing PLC.</p>
+</div>
+<div id="ref-cialdini2003crafting">
+<p>Cialdini, Robert B. 2003. “Crafting Normative Messages to Protect the Environment.” <em>Current Directions in Psychological Science</em> 12 (4): 105–9.</p>
+</div>
+<div id="ref-crocker2017social">
+<p>Crocker, Jennifer, Amy Canevello, and Ashley A Brown. 2017. “Social Motivation: Costs and Benefits of Selfishness and Otherishness.” <em>Annual Review of Psychology</em> 68: 299–325.</p>
+</div>
+<div id="ref-girme2020step">
+<p>Girme, Yuthika U. 2020. “Step Out of Line: Modeling Nonlinear Effects and Dynamics in Close-Relationships Research.” <em>Current Directions in Psychological Science</em> 29 (4): 351–57.</p>
+</div>
+<div id="ref-nosek2020replication">
+<p>Nosek, Brian A, and Timothy M Errington. 2020. “What Is Replication?” <em>PLoS Biology</em> 18 (3): e3000691.</p>
+</div>
+<div id="ref-open2015psychology">
+<p>Open, Science Collaboration. 2015. “Psychology. Estimating the Reproducibility of Psychological Science.” <em>Science</em> 349 (6251): aac4716.</p>
+</div>
+<div id="ref-R-base">
+<p>R Core Team. 2020. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div id="ref-sand2020gentle">
+<p>Sand, Anders. 2020. “A Gentle Reminder That Mean Does Not Imply Modal Behavior: Few Are in-Group Biased in Minimal Groups.” <em>Scandinavian Journal of Psychology</em>.</p>
+</div>
+<div id="ref-ggplot22016">
+<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
+</div>
+<div id="ref-R-tidyverse">
+<p>———. 2019. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-tidyverse2019">
+<p>Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.</p>
+</div>
+<div id="ref-R-ggplot2">
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2020. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div id="ref-xie2015">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+</div>
+<div id="ref-bookdown2016">
+<p>———. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.</p>
+</div>
+<div id="ref-R-bookdown">
+<p>———. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.</p>
+</div>
+</div>
+
+</div>
+
+
 
 </div>
 <div class="psyteachr_footer">
@@ -337,8 +356,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="test-pls-ignore-cq.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="test-pls-ignore-cq.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="two-more-pipes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -390,6 +409,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

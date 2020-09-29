@@ -59,7 +59,7 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] dplyr_1.0.2   webex_0.9.1   ggplot2_3.3.2
+## [1] dplyr_1.0.2   pacman_0.5.1  webex_0.9.1   ggplot2_3.3.2
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] knitr_1.30       magrittr_1.5     tidyselect_1.1.0 munsell_0.5.0   
@@ -68,8 +68,8 @@ sessionInfo()
 ## [13] xfun_0.18        utf8_1.1.4       cli_2.0.2        withr_2.3.0     
 ## [17] htmltools_0.5.0  ellipsis_0.3.1   assertthat_0.2.1 yaml_2.2.1      
 ## [21] digest_0.6.25    tibble_3.0.3     lifecycle_0.2.0  crayon_1.3.4    
-## [25] bookdown_0.20    purrr_0.3.4      vctrs_0.3.4      glue_1.4.2      
-## [29] evaluate_0.14    rmarkdown_2.3    stringi_1.5.3    compiler_4.0.2  
+## [25] bookdown_0.20    purrr_0.3.4      vctrs_0.3.4      evaluate_0.14   
+## [29] glue_1.4.2       rmarkdown_2.3    stringi_1.5.3    compiler_4.0.2  
 ## [33] pillar_1.4.6     generics_0.0.2   scales_1.1.1     pkgconfig_2.0.3
 ```
 
