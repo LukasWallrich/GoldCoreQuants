@@ -35,12 +35,12 @@ sessionInfo()
 ```
 
 ```
-## [90m# A tibble: 3 x 2[39m
+## # A tibble: 3 x 2
 ##     cyl `mean(mpg)`
-##   [3m[90m<dbl>[39m[23m       [3m[90m<dbl>[39m[23m
-## [90m1[39m     4        26.7
-## [90m2[39m     6        19.7
-## [90m3[39m     8        15.1
+##   <dbl>       <dbl>
+## 1     4        26.7
+## 2     6        19.7
+## 3     8        15.1
 ## R version 4.0.2 (2020-06-22)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 18.04.5 LTS
