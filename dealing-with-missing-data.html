@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Getting started with Quantitative Research Methods and R</title>
+  <title>Lecture 11 Dealing with missing data | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="Lecture 11 Dealing with missing data | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="Lecture 11 Dealing with missing data | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="getting-started-with-r.html"/>
+<link rel="prev" href="accessing-online-data-sources.html"/>
+<link rel="next" href="probability-in-statistics-and-real-life.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -264,43 +264,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Getting started with Quantitative Research Methods and R</h1>
-<p class="author"><em>Lukas Wallrich</em></p>
-<p class="date"><em>Last updated: 2020-09-29</em></p>
+<div id="dealing-with-missing-data" class="section level1">
+<h1><span class="header-section-number">Lecture 11</span> Dealing with missing data</h1>
+<p>Missing data can pose serious problems for any data analysis.</p>
+<iframe src=" https://www.youtube.com/embed/FT6oYGyWTGY?rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=FT6oYGyWTGY " allowfullscreen width="80%" height="350">
+</iframe>
+<div id="example" class="section level2">
+<h2><span class="header-section-number">11.1</span> Example</h2>
+<p>Let’s imagine that we want to analyse the effect of a mentoring programme on boys and girls. For that, they take a test (score1), then experience the mentoring, and then take another test (score2). Let’s load the required packages.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="dealing-with-missing-data.html#cb144-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse) <span class="co">#As always</span></span>
+<span id="cb144-2"><a href="dealing-with-missing-data.html#cb144-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(naniar) <span class="co">#To summarise and visualise missing data</span></span>
+<span id="cb144-3"><a href="dealing-with-missing-data.html#cb144-3"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(simputation) <span class="co">#For imputation of missing data</span></span></code></pre></div>
+<p>I will simulate the data from our experiment as follows.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="dealing-with-missing-data.html#cb145-1"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb145-2"><a href="dealing-with-missing-data.html#cb145-2"></a>results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">gender =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;M&quot;</span>, <span class="dv">250</span>), <span class="kw">rep</span>(<span class="st">&quot;F&quot;</span>, <span class="dv">250</span>)), </span>
+<span id="cb145-3"><a href="dealing-with-missing-data.html#cb145-3"></a>                      <span class="dt">score1 =</span> <span class="kw">round</span>(<span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">45</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">250</span>,<span class="dv">60</span>,<span class="dv">10</span>))), </span>
+<span id="cb145-4"><a href="dealing-with-missing-data.html#cb145-4"></a>                      <span class="dt">score2 =</span> <span class="kw">round</span>(<span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">55</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">250</span>,<span class="dv">70</span>,<span class="dv">10</span>))))</span>
+<span id="cb145-5"><a href="dealing-with-missing-data.html#cb145-5"></a></span>
+<span id="cb145-6"><a href="dealing-with-missing-data.html#cb145-6"></a>results<span class="op">$</span>score2[results<span class="op">$</span>score1<span class="op">&lt;</span><span class="dv">40</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
+<p>Note that I have assumed that only students who pass the first test (i.e. get at least 40) return to the second test. For all others, that data is missing. What pattern of missingness is that? <select class='solveme' data-answer='["MAR"]'> <option></option> <option>MCAR</option> <option>MAR</option> <option>MNAR</option></select></p>
+<p><code>hide("Explanation")</code></p>
+<p>The data is <strong>missing at random (MAR)</strong> - whether score2 is missing depends on the value of score1, so that it is <em>not</em> missing completely at random (MCAR). Whether score2 is missing does not depend on the value of score2 (beyond any association it might have with score1) - therefore it is also <em>not</em> missing not at random (MNAR).</p>
+<p><code>unhide()</code></p>
+<p>Let’s see how much missing data that results in.</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="dealing-with-missing-data.html#cb146-1"></a><span class="kw">miss_var_summary</span>(results)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   variable n_miss pct_miss
+##   &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;
+## 1 score2       77     15.4
+## 2 gender        0      0  
+## 3 score1        0      0</code></pre>
+<div id="case-deletion" class="section level3">
+<h3><span class="header-section-number">11.1.1</span> Case deletion</h3>
+<p>15% missing data is quite a lot, but still within the range where scientists might choose to use case deletion and move on.</p>
+<p>Given that the data is MAR, do you think that case deletion can bias the results? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select></p>
+<p>Let’s try case deletion, and test whether the effects on boys and girls are different.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="dealing-with-missing-data.html#cb148-1"></a>resultsDel &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Deletes all rows with missing values</span></span>
+<span id="cb148-2"><a href="dealing-with-missing-data.html#cb148-2"></a><span class="st">                    </span><span class="kw">mutate</span>(<span class="dt">change =</span> score2 <span class="op">-</span><span class="st"> </span>score1)</span>
+<span id="cb148-3"><a href="dealing-with-missing-data.html#cb148-3"></a></span>
+<span id="cb148-4"><a href="dealing-with-missing-data.html#cb148-4"></a><span class="kw">t.test</span>(change <span class="op">~</span><span class="st"> </span>gender, resultsDel)</span></code></pre></div>
+<pre><code>## 
+## 	Welch Two Sample t-test
+## 
+## data:  change by gender
+## t = 3.3375, df = 401.71, p-value = 0.000924
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  1.665645 6.440134
+## sample estimates:
+## mean in group F mean in group M 
+##        9.008197        4.955307</code></pre>
+<p>Here we would conclude with great confidence (<em>p</em> &lt; .001) that the intervention is more effective for girls than for boys. But given that we simulated the data ourselves, we know that the conclusion is false. It just arises because among the boys, the participants with the lowest scores who were most likely to improve (<em>regression to the mean</em>) did not show up for the second test. This shows that in such a case, imputation is critical.</p>
 </div>
-<div id="overview" class="section level1 unnumbered">
-<h1>Overview</h1>
-<p>This guide supports the Core Quantitative Methods Course offered by the Goldsmiths’ Graduate School. <strong>It is a living document and currently not more than a rough draft, but will grow over time - <a href="https://github.com/LukasWallrich/GoldCoreQuants/issues">please raise any issues and suggestions here</a></strong> It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps to look things up more easily.</p>
-<div id="further-sources" class="section level2">
-<h2><span class="header-section-number">0.1</span> Further sources</h2>
-<p>This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online resources that go further.</p>
-<div id="free-online-books" class="section level3">
-<h3><span class="header-section-number">0.1.1</span> Free online books</h3>
+<div id="imputation" class="section level3">
+<h3><span class="header-section-number">11.1.2</span> Imputation</h3>
+<p>For imputation, we need to decide how the missing data should be predicted based on the observed data. Here, it would seem to make most sense to use linear regression to predict score2 from score1. However, before we do that, we need to make sure that we can identify imputed values later on by saving which values were missing to begin with. We use two functions from the <code>naniar</code> package for that.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="dealing-with-missing-data.html#cb150-1"></a>resultsImp &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_shadow</span>(<span class="dt">only_miss =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_label_missings</span>()</span>
+<span id="cb150-2"><a href="dealing-with-missing-data.html#cb150-2"></a></span>
+<span id="cb150-3"><a href="dealing-with-missing-data.html#cb150-3"></a><span class="kw">head</span>(resultsImp)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   gender score1 score2 score2_NA any_missing
+##   &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;     &lt;chr&gt;      
+## 1 M          33     NA NA        Missing    
+## 2 M          48     43 !NA       Not Missing
+## 3 M          56     62 !NA       Not Missing
+## 4 M          22     NA NA        Missing    
+## 5 M          49     73 !NA       Not Missing
+## 6 M          50     53 !NA       Not Missing</code></pre>
+<p><code>bind_shadow()</code> has added a new column for each column that had missing values - in this case, <code>score2_NA</code> was added, with two values showing whether the value was missing (NA) or not missing (!NA). Without the <code>only_miss =  TRUE</code> argument, it would add one ‘shadow’ column for each column. <code>any_missing()</code> added just one new column indicating whether there were any missing values in that row.</p>
+<p>Now we can impute the missing data. Functions from the <code>simputation</code> package help with that.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="dealing-with-missing-data.html#cb152-1"></a>resultsImp &lt;-<span class="st"> </span>resultsImp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(gender) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb152-2"><a href="dealing-with-missing-data.html#cb152-2"></a><span class="st">  </span><span class="kw">impute_lm</span>(score2 <span class="op">~</span><span class="st"> </span>score1, <span class="dt">add_residual =</span> <span class="st">&quot;observed&quot;</span>) </span></code></pre></div>
+<p>This tells <code>simputation</code> to split the data by gender, calculate a regression to predict score2 from score1 for each gender, use that to impute score2 values and then <em>add a residual</em> to each score2 value. The last part is crucial - if we don’t do that, then all imputed values will be right on the regression line, which will artificially increase the correlation between score1 and score2 and the fit of any regression model we want to calculate later. <code>add_residual</code> can either be <code>"observed"</code> or <code>"normal"</code>. In the first case, one of the observed residuals is randomly sampled, in the second case, the added residuals follow a normal distribution. I would always recommend <code>"observed"</code> as that makes one fewer assumption about the distribution of our data.</p>
+<p>Let’s see whether the imputed values look reasonable and whether they are different from the observed values in a way that they are likely to influence our results.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="dealing-with-missing-data.html#cb153-1"></a>resultsImp &lt;-<span class="st"> </span>resultsImp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">change =</span> score2 <span class="op">-</span><span class="st"> </span>score1)</span>
+<span id="cb153-2"><a href="dealing-with-missing-data.html#cb153-2"></a><span class="kw">ggplot</span>(resultsImp, <span class="kw">aes</span>(<span class="dt">x=</span>gender, <span class="dt">y=</span>change)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> any_missing))</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
+<img src="12-dealing-with-missing-data_files/figure-html/unnamed-chunk-7-1.png" alt="Visualisation shows that imputed data matters" width="100%" />
+<p class="caption">
+Figure 11.1: Visualisation shows that imputed data matters
+</p>
+</div>
+<p>Note that the colour aesthetic is only assigned inside <code>geom_jitter()</code>. If it was assigned within <code>ggplot()</code>, we would get separate boxplots for observed and imputed values, which is not the aim here.</p>
+<p>Looking at the distribution of values that were originally missing and have now been imputed, we can see that the values are generally plausible, in that they fall within the observed range. However, particularly for boys, they are higher than the observed values and are therefore likely to influence our conclusion.</p>
+<p>Let’s test again whether there is a difference between boys and girls.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="dealing-with-missing-data.html#cb154-1"></a><span class="kw">t.test</span>(change <span class="op">~</span><span class="st"> </span>gender, resultsImp)</span></code></pre></div>
+<pre><code>## 
+## 	Welch Two Sample t-test
+## 
+## data:  change by gender
+## t = -0.13676, df = 497.8, p-value = 0.8913
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -2.459884  2.139711
+## sample estimates:
+## mean in group F mean in group M 
+##        9.062020        9.222106</code></pre>
+<p>This time, we get the correct result - there is no difference between boys and girls. This shows that when data is MAR (i.e. when missingness depends on other variables we are interested in) we have to consider imputation.</p>
+</div>
+</div>
+<div id="further-resources" class="section level2">
+<h2><span class="header-section-number">11.2</span> Further resources</h2>
 <ul>
-<li>Hadley Wickham, the leading brain behind the tidyverse packages, has co-authored <a href="https://r4ds.had.co.nz/index.html" target="_blank"><em>R for Data Science</em></a> (with Garrett Grolemund). This book does not cover inferential statistics, but explains how to use R to process, describe and visualise data in line with the aproach taken in this course.</li>
-<li>The <a href="https://learningstatisticswithr.com/book/" target="_blank"><em>Learning statistics with R</em></a> book by Danielle Navarro focuses on explaining the different statistical tests and their application in quite a lot of detail, including the underlying maths. It is written by a psychologist, and might therefore be particularly helpful for people from that discipline.</li>
+<li>The <a href="https://cran.r-project.org/web/packages/naniar/vignettes/getting-started-w-naniar.html">official vignette</a> for <code>naniar</code> provides provides good step-by-step instructions for exploring and visualising missing data</li>
+<li>Similarly, the <a href="https://cran.r-project.org/web/packages/simputation/vignettes/intro.html">official vignette</a> for <code>simputation</code> contains details on how to use different imputation models and how to impute several variables at once</li>
 </ul>
-</div>
-<div id="paperlibrary-books" class="section level3">
-<h3><span class="header-section-number">0.1.2</span> Paper/library books</h3>
-<ul>
-<li>Charles Wheelan’s <em>Naked Statistics: Stripping the Dread from the Data</em> is an easy-to-read and entertaining New York Times bestseller that introduces statistical thinking and some key concepts without distracting details.</li>
-<li>Neil Burdess’ <em>Starting Statistics: A short clear guide</em> covers the basic ground with more practical and technical detail.</li>
-<li>Also have a look at the <strong>Module Guide</strong> on the <a href="https://learn.gold.ac.uk/" target="_blank">learn.gold</a> Module Page that contains further recommendations, especially with regard to research methods.</li>
-</ul>
-</div>
-<div id="other-key-resources" class="section level3">
-<h3><span class="header-section-number">0.1.3</span> Other key resources</h3>
-<ul>
-<li>The RStudio team created and collected a very helpful set of Cheatsheets that cover the key elements of various R packages - have a look <a href="https://rstudio.com/resources/cheatsheets/" target="_blank">here.</a> For this course, the sheets on <code>dplyr</code> and <code>ggplot2</code> are the most important.</li>
-<li><a href="https://stackoverflow.com/questions/tagged/r" target="_blank">Stackoverflow</a> is an online forum with a great and welcoming support community. However, make sure to use Google and their search function first to check that your question hasn’t already been answered and show what you already understand - if the same questions keep on getting asked or if the questions are very unclear, people volunteering their time to help can get a bit testy.</li>
-</ul>
-</div>
-</div>
-<div id="why-r" class="section level2">
-<h2><span class="header-section-number">0.2</span> Why R?</h2>
-<p>R is not the easiest statistical software to learn, but we are confident that it is the most useful. This <a href="https://lindeloev.net/spss-is-dying/" target="_blank">article</a> on why SPSS is dying provides some of the arguments for why that is the case.</p>
 
 </div>
 </div>
@@ -414,8 +482,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-<a href="getting-started-with-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="accessing-online-data-sources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probability-in-statistics-and-real-life.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

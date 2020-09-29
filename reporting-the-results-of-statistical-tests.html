@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Getting started with Quantitative Research Methods and R</title>
+  <title>Lecture 8 Reporting the results of statistical tests | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="Lecture 8 Reporting the results of statistical tests | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="Lecture 8 Reporting the results of statistical tests | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="getting-started-with-r.html"/>
+<link rel="prev" href="chi-squared-tests-for-associations-between-categorical-variables.html"/>
+<link rel="next" href="survey-research-testing-scales.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -264,44 +264,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Getting started with Quantitative Research Methods and R</h1>
-<p class="author"><em>Lukas Wallrich</em></p>
-<p class="date"><em>Last updated: 2020-09-29</em></p>
-</div>
-<div id="overview" class="section level1 unnumbered">
-<h1>Overview</h1>
-<p>This guide supports the Core Quantitative Methods Course offered by the Goldsmiths’ Graduate School. <strong>It is a living document and currently not more than a rough draft, but will grow over time - <a href="https://github.com/LukasWallrich/GoldCoreQuants/issues">please raise any issues and suggestions here</a></strong> It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps to look things up more easily.</p>
-<div id="further-sources" class="section level2">
-<h2><span class="header-section-number">0.1</span> Further sources</h2>
-<p>This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online resources that go further.</p>
-<div id="free-online-books" class="section level3">
-<h3><span class="header-section-number">0.1.1</span> Free online books</h3>
+<div id="reporting-the-results-of-statistical-tests" class="section level1">
+<h1><span class="header-section-number">Lecture 8</span> Reporting the results of statistical tests</h1>
+<p>Statistical test can often result in a lot of different numbers, but should also result in clear decisions and messages. To facilitate communication, there are sets of guidelines regarding what to report. In this course, we are using the APA guidelines, which are also commonly used in journals in psychology and beyond.</p>
+<div id="essential-pieces-of-information" class="section level2">
+<h2><span class="header-section-number">8.1</span> Essential pieces of information</h2>
+<p>When reporting inferential statistical tests, always make sure to:</p>
 <ul>
-<li>Hadley Wickham, the leading brain behind the tidyverse packages, has co-authored <a href="https://r4ds.had.co.nz/index.html" target="_blank"><em>R for Data Science</em></a> (with Garrett Grolemund). This book does not cover inferential statistics, but explains how to use R to process, describe and visualise data in line with the aproach taken in this course.</li>
-<li>The <a href="https://learningstatisticswithr.com/book/" target="_blank"><em>Learning statistics with R</em></a> book by Danielle Navarro focuses on explaining the different statistical tests and their application in quite a lot of detail, including the underlying maths. It is written by a psychologist, and might therefore be particularly helpful for people from that discipline.</li>
+<li>State whether the results were <strong>significant</strong> (or which results were), and what the exact <em>p</em>-values were (typically rounded to three decimal places; if smaller than .001 then reported as &lt; .001). Results with <em>p</em>-values between .05 and .1 can be reported as a trend, or as marginally significant, but that should at the very least only be done if the estimated effect size is substantial.</li>
+<li>Report <strong>which test</strong> you carried out, and how it was carried out, if you did anything non-standard (e.g., if <em>p</em>-values were simulated). For each test, relevant degrees of freedom and test statistics should be reported, see below.</li>
+<li>Include relevant <strong>descriptive statistics</strong>. If a difference is significant, the reader will want to know how large it was.</li>
+<li>Consider including <strong>effect sizes</strong>, ideally with confidence intervals, so that readers can judge how important the effect is. In reality, there will often be some statistically significant differences between groups, but not all are of a size that makes them interesting or practically significant.</li>
+</ul>
+<div id="what-to-include-for-specific-tests" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> What to include for specific tests</h3>
+<ul>
+<li><strong><em>t</em>-tests:</strong> <em>t</em>(df) = 1.23, <em>p</em> = .012. df stands for degrees of freedom and is shown in the <code>t.test()</code>-output. If equal variances are assumed, it is the sample size - 1; otherwise, a bit less. In any case, it describes which <em>t</em>-distribution was used to find the <em>p</em>-value.</li>
+<li><strong><em>F</em>-tests</strong> (for ANOVAs and model evaluation): <em>F</em>(df1, df2) = 1.23, <em>p</em> = .012. Here you have two degrees of freedom, df1 for the model and df2 for the error term. Both are provided in the output of various functions; a simple heuristic for checking whether you got them the right way round is that df2 should be the larger one in the vast majority of cases.</li>
+<li><strong>Correlations:</strong> <em>r</em> = .12, <em>p</em> = .012. Given that correlations are bounded by -1 and 1, the leading 0 is always ommitted. If you use Spearman’s rank order correlation, it is reported as <em>rho</em> = .12; the Greek letter <span class="math inline">\(\rho\)</span> is not typically used.</li>
+<li><strong><span class="math inline">\(\chi^2\)</span>-tests:</strong> <span class="math inline">\(\chi^2\)</span>(df) = 1.23, <em>p</em> = .012. Here the degrees of freedom are the number of frequency table rows - 1 * the number of columns - 1. When you <code>simulate.p.values</code>, R does not report it because it does not use a fixed <span class="math inline">\(\chi^2\)</span>-distribution to look up the <em>p</em>-values; you should report it nonetheless as it also gives an indication for the complexity of your table.</li>
+</ul>
+<p><strong>Examples</strong> can be found all over the internet; <a href="https://my.ilstu.edu/~jhkahn/apastats.html">this</a> might be a good place to start</p>
+</div>
+<div id="formatting" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> Formatting</h3>
+<ul>
+<li>Any <strong>Roman letters</strong> (<em>p, r, F, t, R</em>) that stand for specific statistics are printed in <em>italics</em></li>
+<li>If a statistic cannot have a value higher than 1 (i.e. for <em>p, r, rho, R^2</em>) the <strong>leading 0</strong> should be omitted, i.e. <em>p</em> = .04 rather than <em>p</em> = 0.04</li>
+<li>If you want to use <strong>Greek letters</strong> (e.g., <span class="math inline">\(\alpha, \beta, \chi, \Delta\)</span>) in RMarkdown, the easiest way to get them is to create an inline formula (an expression wrapped into dollar signs) and then type the name of the letter after a , for instance <code>\$\\alpha\$</code> You can use the same approach to show sums, fractions etc., though you would generally not need that in this course. The easiest way to get special characters like Greek letters into Word documents is to Google and copy-paste them.</li>
+<li>To insert a <strong>superscript</strong>, most often ^2, into RMarkdown, type ^2. In Word, there is a superscript button close to the font size selection box.</li>
+<li>When it comes to <strong>descriptive statistics</strong>, <em>N</em> typically denotes the number of cases/participants, <em>M</em> the mean, and <em>SD</em> the standard deviation</li>
 </ul>
 </div>
-<div id="paperlibrary-books" class="section level3">
-<h3><span class="header-section-number">0.1.2</span> Paper/library books</h3>
+<div id="rounding" class="section level3">
+<h3><span class="header-section-number">8.1.3</span> Rounding</h3>
+<p>It is important to round numbers consistently, partly because too many decimal places might convey a false impression of accuracy (does it help if I report that I spend 2.978536776 hours working on this book today), but also because numbers that do not convey relevant information can quicky clutter up papers and presentations.</p>
+<p>In general, test statistics and most descriptive statistics should be rounded to two decimal places (i.e. places after the decimal point) and <em>p</em>-values to three decimal places. If that leads to descriptive statistics or regression coefficients to be rounded down to 0.00, that is a strong indication that you should consider changing the scale of the variables (e.g., from hours to minutes). <em>p</em>-values by definition can never be equal to 0, so here you need to pay attention to report small <em>p</em>-values as &lt; .001 rather than = .000</p>
+<p><strong>How to round? (With one change to what you learned in school)</strong> Cross out all numbers after the last decimal place you want to keep. If the first number you crossed out is less than 5, then you are done. If it more than 5, then increase the last number you keep by 1. If it is 5 and any later number if more than 0, then also increase the last number you keep by one. If it is exactly 5 with only 0s following, then keep the last number unchanged if it is even, and increase it by 1 if it is odd. Some examples:</p>
 <ul>
-<li>Charles Wheelan’s <em>Naked Statistics: Stripping the Dread from the Data</em> is an easy-to-read and entertaining New York Times bestseller that introduces statistical thinking and some key concepts without distracting details.</li>
-<li>Neil Burdess’ <em>Starting Statistics: A short clear guide</em> covers the basic ground with more practical and technical detail.</li>
-<li>Also have a look at the <strong>Module Guide</strong> on the <a href="https://learn.gold.ac.uk/" target="_blank">learn.gold</a> Module Page that contains further recommendations, especially with regard to research methods.</li>
+<li>1.2349 –&gt; 1.23</li>
+<li>1.2351 –&gt; 1.24</li>
+<li>1.2350 –&gt; 1.24</li>
+<li>1.2250 –&gt; 1.22 (!)</li>
 </ul>
-</div>
-<div id="other-key-resources" class="section level3">
-<h3><span class="header-section-number">0.1.3</span> Other key resources</h3>
-<ul>
-<li>The RStudio team created and collected a very helpful set of Cheatsheets that cover the key elements of various R packages - have a look <a href="https://rstudio.com/resources/cheatsheets/" target="_blank">here.</a> For this course, the sheets on <code>dplyr</code> and <code>ggplot2</code> are the most important.</li>
-<li><a href="https://stackoverflow.com/questions/tagged/r" target="_blank">Stackoverflow</a> is an online forum with a great and welcoming support community. However, make sure to use Google and their search function first to check that your question hasn’t already been answered and show what you already understand - if the same questions keep on getting asked or if the questions are very unclear, people volunteering their time to help can get a bit testy.</li>
-</ul>
-</div>
-</div>
-<div id="why-r" class="section level2">
-<h2><span class="header-section-number">0.2</span> Why R?</h2>
-<p>R is not the easiest statistical software to learn, but we are confident that it is the most useful. This <a href="https://lindeloev.net/spss-is-dying/" target="_blank">article</a> on why SPSS is dying provides some of the arguments for why that is the case.</p>
+<p><em>Why not just round up 5</em> like we all learned in school? If we always did that, we would introduce a small but consistent bias into our numbers. Therefore, this would better be randomised. The rule set out here goes towards randomisation without being too complicated, and is therefore what the APA guidelines recommend.</p>
 
+</div>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -414,8 +422,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-<a href="getting-started-with-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chi-squared-tests-for-associations-between-categorical-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="survey-research-testing-scales.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

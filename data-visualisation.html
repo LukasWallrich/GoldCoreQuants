@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Getting started with Quantitative Research Methods and R</title>
+  <title>Lecture 3 Data visualisation | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="Lecture 3 Data visualisation | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="Lecture 3 Data visualisation | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="getting-started-with-r.html"/>
+<link rel="prev" href="importing-and-describing-data.html"/>
+<link rel="next" href="simple-and-multiple-linear-regression.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -264,43 +264,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Getting started with Quantitative Research Methods and R</h1>
-<p class="author"><em>Lukas Wallrich</em></p>
-<p class="date"><em>Last updated: 2020-09-29</em></p>
-</div>
-<div id="overview" class="section level1 unnumbered">
-<h1>Overview</h1>
-<p>This guide supports the Core Quantitative Methods Course offered by the Goldsmiths’ Graduate School. <strong>It is a living document and currently not more than a rough draft, but will grow over time - <a href="https://github.com/LukasWallrich/GoldCoreQuants/issues">please raise any issues and suggestions here</a></strong> It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps to look things up more easily.</p>
-<div id="further-sources" class="section level2">
-<h2><span class="header-section-number">0.1</span> Further sources</h2>
-<p>This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online resources that go further.</p>
-<div id="free-online-books" class="section level3">
-<h3><span class="header-section-number">0.1.1</span> Free online books</h3>
+<div id="data-visualisation" class="section level1">
+<h1><span class="header-section-number">Lecture 3</span> Data visualisation</h1>
+<p>Being able to look at the data is a key step in data exploration, during the analysis and in the communication of results. R has a range of powerful tools to create graphs quickly, and then to develop them into a publication-ready format where helpful.</p>
+<p>For an introduction to the Grammar of Graphics and ggplot2, watch this video:</p>
+<iframe src=" https://www.youtube.com/embed/sk7TT5qM5Hw?rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=sk7TT5qM5Hw " allowfullscreen width="80%" height="350">
+</iframe>
+<p><a href="https://drive.google.com/open?id=1UGp7own42PkPv-TLbX29sQUu2DfeaMUp">Click here</a> for the code used in the video</p>
+<div id="ggplot2" class="section level2">
+<h2><span class="header-section-number">3.1</span> ggplot2</h2>
+<p>We use the <code>ggplot2</code>-package because it offers a consistent way to create anything from simple exploratory plots to complex data visualisation. Each graph command needs certain parts:</p>
 <ul>
-<li>Hadley Wickham, the leading brain behind the tidyverse packages, has co-authored <a href="https://r4ds.had.co.nz/index.html" target="_blank"><em>R for Data Science</em></a> (with Garrett Grolemund). This book does not cover inferential statistics, but explains how to use R to process, describe and visualise data in line with the aproach taken in this course.</li>
-<li>The <a href="https://learningstatisticswithr.com/book/" target="_blank"><em>Learning statistics with R</em></a> book by Danielle Navarro focuses on explaining the different statistical tests and their application in quite a lot of detail, including the underlying maths. It is written by a psychologist, and might therefore be particularly helpful for people from that discipline.</li>
+<li>a call to the <code>ggplot</code>-function and the <strong>data</strong> as the first argument: <code>ggplot(gapminder,</code></li>
+<li>a mapping of the <strong>aesthetics</strong>, i.e. of variables to visual elements. This uses the <code>aes</code>-function that is given to <code>ggplot</code> as the second argument: <code>aes(x=infant_mortality, y=fertility, col=continent))</code> (Note that two closing brackets are needed as this also completes the ggplot function call)</li>
+<li>a <strong>geometry</strong>, i.e. a type of chart, that is added with a plus-symbol and the function call, e.g., <code>geom_point()</code></li>
+<li>optional elements such as labels that are included again with plus-symbols and function calls, e.g., <code>ggtitle("Association of infant mortality and fertility", subtitle="2010 data from gapminder.org")</code></li>
 </ul>
+<p>Multiple geometries can be layered on top of each other, for example to add trend lines to scatterplots. In that case, <code>aes()</code> functions can be included into the <code>geom_()</code>-functions to make some of the mappings specific to certain geometries. This is done in the example below to color the points by continent without applying that aestethic to the line - if it was included in the main aes() function, the plot would contain a separate coloured line for each continent.</p>
+<p><em>Note:</em> Line breaks are completely up to you and can be used to make the code readable as long as the command does not appear complete too early - to keep it simple, there should always be an open bracket, a comma or a + before a line break within the command to create a ggplot-chart</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-visualisation.html#cb21-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dslabs, dplyr, ggplot2)</span>
+<span id="cb21-2"><a href="data-visualisation.html#cb21-2"></a>gapminder2010 &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2010</span>)</span>
+<span id="cb21-3"><a href="data-visualisation.html#cb21-3"></a></span>
+<span id="cb21-4"><a href="data-visualisation.html#cb21-4"></a><span class="kw">ggplot</span>(gapminder2010, <span class="kw">aes</span>(<span class="dt">x=</span>infant_mortality, <span class="dt">y=</span>fertility)) <span class="op">+</span></span>
+<span id="cb21-5"><a href="data-visualisation.html#cb21-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col=</span>continent)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>() <span class="op">+</span></span>
+<span id="cb21-6"><a href="data-visualisation.html#cb21-6"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Association of infant mortality and fertility&quot;</span>, </span>
+<span id="cb21-7"><a href="data-visualisation.html#cb21-7"></a>            <span class="dt">subtitle=</span><span class="st">&quot;2010 data from gapminder.org&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 7 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<img src="03-data-visualisation_files/figure-html/unnamed-chunk-1-1.png" alt="A simple ggplot example" width="100%" />
+<p class="caption">
+Figure 3.1: A simple ggplot example
+</p>
 </div>
-<div id="paperlibrary-books" class="section level3">
-<h3><span class="header-section-number">0.1.2</span> Paper/library books</h3>
+</div>
+<div id="further-resources" class="section level2">
+<h2><span class="header-section-number">3.2</span> Further resources</h2>
 <ul>
-<li>Charles Wheelan’s <em>Naked Statistics: Stripping the Dread from the Data</em> is an easy-to-read and entertaining New York Times bestseller that introduces statistical thinking and some key concepts without distracting details.</li>
-<li>Neil Burdess’ <em>Starting Statistics: A short clear guide</em> covers the basic ground with more practical and technical detail.</li>
-<li>Also have a look at the <strong>Module Guide</strong> on the <a href="https://learn.gold.ac.uk/" target="_blank">learn.gold</a> Module Page that contains further recommendations, especially with regard to research methods.</li>
+<li>The <a href="https://r-graphics.org/" target="_blank">R Graphics Cookbook</a> by Winston Chang is available online with 150 “recipes” that cover everything from basic exploratory charts to colour-coded maps.</li>
+<li>The BBC graphics team has published their own <a href="https://bbc.github.io/rcookbook/" target="_blank">R Cookbook</a> with clear tips for making publishable charts that convey a clear message</li>
 </ul>
-</div>
-<div id="other-key-resources" class="section level3">
-<h3><span class="header-section-number">0.1.3</span> Other key resources</h3>
-<ul>
-<li>The RStudio team created and collected a very helpful set of Cheatsheets that cover the key elements of various R packages - have a look <a href="https://rstudio.com/resources/cheatsheets/" target="_blank">here.</a> For this course, the sheets on <code>dplyr</code> and <code>ggplot2</code> are the most important.</li>
-<li><a href="https://stackoverflow.com/questions/tagged/r" target="_blank">Stackoverflow</a> is an online forum with a great and welcoming support community. However, make sure to use Google and their search function first to check that your question hasn’t already been answered and show what you already understand - if the same questions keep on getting asked or if the questions are very unclear, people volunteering their time to help can get a bit testy.</li>
-</ul>
-</div>
-</div>
-<div id="why-r" class="section level2">
-<h2><span class="header-section-number">0.2</span> Why R?</h2>
-<p>R is not the easiest statistical software to learn, but we are confident that it is the most useful. This <a href="https://lindeloev.net/spss-is-dying/" target="_blank">article</a> on why SPSS is dying provides some of the arguments for why that is the case.</p>
 
 </div>
 </div>
@@ -414,8 +418,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-<a href="getting-started-with-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="importing-and-describing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simple-and-multiple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

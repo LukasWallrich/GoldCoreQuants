@@ -98,23 +98,6 @@ Next we consider a third condition - chess positions that are neither quite real
 mod <- lm(errors ~ player + type + player:type, obs2)
 summary(mod)
 pacman::p_load(car)
-```
-
-```
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'matrixStats', 'RcppArmadillo', 'zip', 'SparseM', 'MatrixModels', 'conquer', 'sp', 'data.table', 'openxlsx', 'minqa', 'nloptr', 'statmod', 'RcppEigen', 'carData', 'abind', 'pbkrtest', 'quantreg', 'maptools', 'rio', 'lme4'
-```
-
-```
-## 
-## car installed
-```
-
-```r
 car::Anova(mod, type=3)
 ```
 
