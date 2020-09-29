@@ -54,6 +54,7 @@ When you start with a new dataset, there are some helpful functions to get a fir
 
 ```{r}
 pacman::p_load(dslabs) #Load the gapminder teaching dataset
+pacman::p_load(dplyr) #Load the dplyr package that offers glimpse()
 glimpse(gapminder)
 head(gapminder, n=5) #n defines number of rows shown
 tail(gapminder, n=5)
