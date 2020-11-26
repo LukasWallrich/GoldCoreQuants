@@ -1,3 +1,6 @@
+# (PART\*) Inferential statistics {-}
+
+
 # Simple and multiple linear regression
 
 This document recaps how we assess relationships between variables when at least the outcome variable is continuous.

@@ -45,4 +45,6 @@ knitr::include_graphics("./images/iraq-bloody-toll.png")
 ## Further resources
 
 * The [R Graphics Cookbook](https://r-graphics.org/){target="_blank"} by Winston Chang is available online with 150 "recipes" that cover everything from basic exploratory charts to colour-coded maps.
-* The BBC graphics team has published their own [R Cookbook](https://bbc.github.io/rcookbook/){target="_blank"} with clear tips for making publishable charts that convey a clear message
+* The BBC graphics team has published their own [R Cookbook](https://bbc.github.io/rcookbook/){target="_blank"} with clear tips for making charts that convey a clear message, as well as some custom functions for making clean publication-ready charts.
+* Irizarry's *Introduction to Data Science* has a good chapter on [data visualisation principles](https://rafalab.github.io/dsbook/data-visualization-principles.html){target="_blank"}
+  
