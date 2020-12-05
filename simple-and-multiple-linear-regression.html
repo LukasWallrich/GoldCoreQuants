@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Topic 4 Simple and multiple linear regression | Getting started with Quantitative Research Methods and R</title>
+  <title>Topic 5 Simple and multiple linear regression | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Topic 4 Simple and multiple linear regression | Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="Topic 5 Simple and multiple linear regression | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topic 4 Simple and multiple linear regression | Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="Topic 5 Simple and multiple linear regression | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="data-visualisation.html"/>
+<link rel="prev" href="introduction.html"/>
 <link rel="next" href="comparing-means-between-conditions-or-groups.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -142,6 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>0.2</b> Why R?</a></li>
 </ul></li>
+<li class="part"><span><b>Using R and describing data</b></span></li>
 <li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a><ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#install-r-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Install R on your computer</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#some-key-concepts"><i class="fa fa-check"></i><b>1.2</b> Some key concepts</a><ul>
@@ -161,83 +164,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data visualisation</a><ul>
 <li class="chapter" data-level="3.1" data-path="data-visualisation.html"><a href="data-visualisation.html#ggplot2"><i class="fa fa-check"></i><b>3.1</b> ggplot2</a></li>
-<li class="chapter" data-level="3.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>3.2</b> Further resources</a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualisation.html"><a href="data-visualisation.html#opinionated-visualisation"><i class="fa fa-check"></i><b>3.2</b> Opinionated visualisation</a></li>
+<li class="chapter" data-level="3.3" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>3.3</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Simple and multiple linear regression</a><ul>
-<li class="chapter" data-level="4.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>4.1</b> Simple linear regression</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#plotting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.1.1</b> Plotting a simple linear regression model</a></li>
-<li class="chapter" data-level="4.1.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-representation-of-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.1.2</b> Mathematical representation of a simple linear regression model</a></li>
-<li class="chapter" data-level="4.1.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#fitting-a-simple-linear-regression-model-in-r"><i class="fa fa-check"></i><b>4.1.3</b> Fitting a simple linear regression model in R</a></li>
+<li class="part"><span><b>Quantitative Research</b></span></li>
+<li class="chapter" data-level="4" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>4</b> Introduction</a><ul>
+<li class="chapter" data-level="4.1" data-path="introduction.html"><a href="introduction.html#key-concepts"><i class="fa fa-check"></i><b>4.1</b> Key concepts</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#bivariate-correlation"><i class="fa fa-check"></i><b>4.2</b> Bivariate correlation</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#calculating-the-correlation-coefficient"><i class="fa fa-check"></i><b>4.2.1</b> Calculating the correlation coefficient</a></li>
-<li class="chapter" data-level="4.2.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#equivalence-to-linear-regression"><i class="fa fa-check"></i><b>4.2.2</b> Equivalence to linear regression</a></li>
+<li class="part"><span><b>Inferential statistics</b></span></li>
+<li class="chapter" data-level="5" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html"><i class="fa fa-check"></i><b>5</b> Simple and multiple linear regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>5.1</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#plotting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>5.1.1</b> Plotting a simple linear regression model</a></li>
+<li class="chapter" data-level="5.1.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-representation-of-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>5.1.2</b> Mathematical representation of a simple linear regression model</a></li>
+<li class="chapter" data-level="5.1.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#fitting-a-simple-linear-regression-model-in-r"><i class="fa fa-check"></i><b>5.1.3</b> Fitting a simple linear regression model in R</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>4.3</b> Multiple linear regression</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#dummy-coding-revisited"><i class="fa fa-check"></i><b>4.3.1</b> Dummy coding revisited</a></li>
-<li class="chapter" data-level="4.3.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-structure-of-multiple-linear-models"><i class="fa fa-check"></i><b>4.3.2</b> Mathematical structure of multiple linear models</a></li>
-<li class="chapter" data-level="4.3.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#running-multiple-linear-regression-models-in-r"><i class="fa fa-check"></i><b>4.3.3</b> Running multiple linear regression models in R</a></li>
+<li class="chapter" data-level="5.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#bivariate-correlation"><i class="fa fa-check"></i><b>5.2</b> Bivariate correlation</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#calculating-the-correlation-coefficient"><i class="fa fa-check"></i><b>5.2.1</b> Calculating the correlation coefficient</a></li>
+<li class="chapter" data-level="5.2.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#equivalence-to-linear-regression"><i class="fa fa-check"></i><b>5.2.2</b> Equivalence to linear regression</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html"><i class="fa fa-check"></i><b>5</b> Comparing means between conditions or groups</a><ul>
-<li class="chapter" data-level="5.0.1" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#repeated-measures-or-independent-samples"><i class="fa fa-check"></i><b>5.0.1</b> Repeated measures or independent samples</a></li>
-<li class="chapter" data-level="5.0.2" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#two-independent-means"><i class="fa fa-check"></i><b>5.0.2</b> Two independent means</a></li>
-<li class="chapter" data-level="5.0.3" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#two-dependent-means"><i class="fa fa-check"></i><b>5.0.3</b> Two dependent means</a></li>
-<li class="chapter" data-level="5.0.4" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-independent-means"><i class="fa fa-check"></i><b>5.0.4</b> More than two independent means</a></li>
-<li class="chapter" data-level="5.0.5" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-means-from-repeated-measures"><i class="fa fa-check"></i><b>5.0.5</b> More than two means from repeated measures</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html"><i class="fa fa-check"></i><b>6</b> Interaction terms in linear models</a><ul>
-<li class="chapter" data-level="6.1" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-1-memory-and-chess"><i class="fa fa-check"></i><b>6.1</b> Example 1: Memory and chess</a></li>
-<li class="chapter" data-level="6.2" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-2-link-between-obesity-and-negative-emotions-in-the-european-social-survey"><i class="fa fa-check"></i><b>6.2</b> Example 2: link between obesity and negative emotions in the European Social Survey</a></li>
-<li class="chapter" data-level="6.3" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-3-link-between-working-hours-income-and-life-satisfaction"><i class="fa fa-check"></i><b>6.3</b> Example 3: link between working hours, income and life satisfaction</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html"><i class="fa fa-check"></i><b>7</b> Chi-squared tests for associations between categorical variables</a><ul>
-<li class="chapter" data-level="7.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#tables-of-frequencies-and-proportions"><i class="fa fa-check"></i><b>7.1</b> Tables of frequencies and proportions</a></li>
-<li class="chapter" data-level="7.2" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-null-hypothesis-and-the-chi2-statistic"><i class="fa fa-check"></i><b>7.2</b> The null hypothesis and the <span class="math inline">\(\chi^2\)</span> statistic</a></li>
-<li class="chapter" data-level="7.3" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-chisq.test-function"><i class="fa fa-check"></i><b>7.3</b> The chisq.test() function</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#dealing-with-small-samples"><i class="fa fa-check"></i><b>7.3.1</b> Dealing with small samples</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#post-hoc-tests"><i class="fa fa-check"></i><b>7.4</b> Post-hoc tests</a></li>
-<li class="chapter" data-level="7.5" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#effect-sizes"><i class="fa fa-check"></i><b>7.5</b> Effect sizes</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html"><i class="fa fa-check"></i><b>8</b> Reporting the results of statistical tests</a><ul>
-<li class="chapter" data-level="8.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#essential-pieces-of-information"><i class="fa fa-check"></i><b>8.1</b> Essential pieces of information</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#what-to-include-for-specific-tests"><i class="fa fa-check"></i><b>8.1.1</b> What to include for specific tests</a></li>
-<li class="chapter" data-level="8.1.2" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#formatting"><i class="fa fa-check"></i><b>8.1.2</b> Formatting</a></li>
-<li class="chapter" data-level="8.1.3" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#rounding"><i class="fa fa-check"></i><b>8.1.3</b> Rounding</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>5.3</b> Multiple linear regression</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#dummy-coding-revisited"><i class="fa fa-check"></i><b>5.3.1</b> Dummy coding revisited</a></li>
+<li class="chapter" data-level="5.3.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-structure-of-multiple-linear-models"><i class="fa fa-check"></i><b>5.3.2</b> Mathematical structure of multiple linear models</a></li>
+<li class="chapter" data-level="5.3.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#running-multiple-linear-regression-models-in-r"><i class="fa fa-check"></i><b>5.3.3</b> Running multiple linear regression models in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html"><i class="fa fa-check"></i><b>9</b> Survey research - testing scales</a><ul>
-<li class="chapter" data-level="9.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#creating-scales"><i class="fa fa-check"></i><b>9.1</b> Creating scales</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#testing-internal-consistency"><i class="fa fa-check"></i><b>9.1.1</b> Testing internal consistency</a></li>
-<li class="chapter" data-level="9.1.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#calculating-scale-scores"><i class="fa fa-check"></i><b>9.1.2</b> Calculating scale scores</a></li>
+<li class="chapter" data-level="6" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html"><i class="fa fa-check"></i><b>6</b> Comparing means between conditions or groups</a><ul>
+<li class="chapter" data-level="6.0.1" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#repeated-measures-or-independent-samples"><i class="fa fa-check"></i><b>6.0.1</b> Repeated measures or independent samples</a></li>
+<li class="chapter" data-level="6.0.2" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#two-independent-means"><i class="fa fa-check"></i><b>6.0.2</b> Two independent means</a></li>
+<li class="chapter" data-level="6.0.3" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#two-dependent-means"><i class="fa fa-check"></i><b>6.0.3</b> Two dependent means</a></li>
+<li class="chapter" data-level="6.0.4" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-independent-means"><i class="fa fa-check"></i><b>6.0.4</b> More than two independent means</a></li>
+<li class="chapter" data-level="6.0.5" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-means-from-repeated-measures"><i class="fa fa-check"></i><b>6.0.5</b> More than two means from repeated measures</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>9.2</b> Further resources</a></li>
+<li class="chapter" data-level="7" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html"><i class="fa fa-check"></i><b>7</b> Interaction terms in linear models</a><ul>
+<li class="chapter" data-level="7.1" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-1-memory-and-chess"><i class="fa fa-check"></i><b>7.1</b> Example 1: Memory and chess</a></li>
+<li class="chapter" data-level="7.2" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-2-link-between-obesity-and-negative-emotions-in-the-european-social-survey"><i class="fa fa-check"></i><b>7.2</b> Example 2: link between obesity and negative emotions in the European Social Survey</a></li>
+<li class="chapter" data-level="7.3" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-3-link-between-working-hours-income-and-life-satisfaction"><i class="fa fa-check"></i><b>7.3</b> Example 3: link between working hours, income and life satisfaction</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html"><i class="fa fa-check"></i><b>10</b> Accessing online data sources</a><ul>
-<li class="chapter" data-level="10.1" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#world-bank-data"><i class="fa fa-check"></i><b>10.1</b> World Bank data</a></li>
-<li class="chapter" data-level="10.2" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#wikidata"><i class="fa fa-check"></i><b>10.2</b> Wikidata</a></li>
-<li class="chapter" data-level="10.3" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#other-data-sources"><i class="fa fa-check"></i><b>10.3</b> Other data sources</a></li>
+<li class="chapter" data-level="8" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html"><i class="fa fa-check"></i><b>8</b> Chi-squared tests for associations between categorical variables</a><ul>
+<li class="chapter" data-level="8.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#tables-of-frequencies-and-proportions"><i class="fa fa-check"></i><b>8.1</b> Tables of frequencies and proportions</a></li>
+<li class="chapter" data-level="8.2" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-null-hypothesis-and-the-chi2-statistic"><i class="fa fa-check"></i><b>8.2</b> The null hypothesis and the <span class="math inline">\(\chi^2\)</span> statistic</a></li>
+<li class="chapter" data-level="8.3" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-chisq.test-function"><i class="fa fa-check"></i><b>8.3</b> The chisq.test() function</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#dealing-with-small-samples"><i class="fa fa-check"></i><b>8.3.1</b> Dealing with small samples</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a><ul>
-<li class="chapter" data-level="11.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#example"><i class="fa fa-check"></i><b>11.1</b> Example</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#case-deletion"><i class="fa fa-check"></i><b>11.1.1</b> Case deletion</a></li>
-<li class="chapter" data-level="11.1.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation"><i class="fa fa-check"></i><b>11.1.2</b> Imputation</a></li>
+<li class="chapter" data-level="8.4" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#post-hoc-tests"><i class="fa fa-check"></i><b>8.4</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="8.5" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#effect-sizes"><i class="fa fa-check"></i><b>8.5</b> Effect sizes</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>11.2</b> Further resources</a></li>
+<li class="chapter" data-level="9" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html"><i class="fa fa-check"></i><b>9</b> Reporting the results of statistical tests</a><ul>
+<li class="chapter" data-level="9.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#essential-pieces-of-information"><i class="fa fa-check"></i><b>9.1</b> Essential pieces of information</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#what-to-include-for-specific-tests"><i class="fa fa-check"></i><b>9.1.1</b> What to include for specific tests</a></li>
+<li class="chapter" data-level="9.1.2" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#formatting"><i class="fa fa-check"></i><b>9.1.2</b> Formatting</a></li>
+<li class="chapter" data-level="9.1.3" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#rounding"><i class="fa fa-check"></i><b>9.1.3</b> Rounding</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html"><i class="fa fa-check"></i><b>12</b> Probability in statistics and real life</a><ul>
-<li class="chapter" data-level="12.1" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#what-are-probabilities"><i class="fa fa-check"></i><b>12.1</b> What are probabilities?</a></li>
-<li class="chapter" data-level="12.2" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#combining-multiple-events-together"><i class="fa fa-check"></i><b>12.2</b> Combining multiple events together</a></li>
-<li class="chapter" data-level="12.3" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#looking-at-independent-events"><i class="fa fa-check"></i><b>12.3</b> Looking at independent events</a></li>
-<li class="chapter" data-level="12.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>12.4</b> Updating our beliefs - Bayes’ theorem</a></li>
-<li class="chapter" data-level="12.5" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>12.5</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>13</b> Packages and references</a></li>
+<li class="chapter" data-level="10" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html"><i class="fa fa-check"></i><b>10</b> Survey research - testing scales</a><ul>
+<li class="chapter" data-level="10.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#creating-scales"><i class="fa fa-check"></i><b>10.1</b> Creating scales</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#testing-internal-consistency"><i class="fa fa-check"></i><b>10.1.1</b> Testing internal consistency</a></li>
+<li class="chapter" data-level="10.1.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#calculating-scale-scores"><i class="fa fa-check"></i><b>10.1.2</b> Calculating scale scores</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>10.2</b> Further resources</a></li>
+</ul></li>
+<li class="part"><span><b>Supplementary topics</b></span></li>
+<li class="chapter" data-level="11" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html"><i class="fa fa-check"></i><b>11</b> Accessing online data sources</a><ul>
+<li class="chapter" data-level="11.1" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#world-bank-data"><i class="fa fa-check"></i><b>11.1</b> World Bank data</a></li>
+<li class="chapter" data-level="11.2" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#wikidata"><i class="fa fa-check"></i><b>11.2</b> Wikidata</a></li>
+<li class="chapter" data-level="11.3" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#other-data-sources"><i class="fa fa-check"></i><b>11.3</b> Other data sources</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>12</b> Dealing with missing data</a><ul>
+<li class="chapter" data-level="12.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#example"><i class="fa fa-check"></i><b>12.1</b> Example</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#case-deletion"><i class="fa fa-check"></i><b>12.1.1</b> Case deletion</a></li>
+<li class="chapter" data-level="12.1.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation"><i class="fa fa-check"></i><b>12.1.2</b> Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>12.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html"><i class="fa fa-check"></i><b>13</b> Probability in statistics and real life</a><ul>
+<li class="chapter" data-level="13.1" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#what-are-probabilities"><i class="fa fa-check"></i><b>13.1</b> What are probabilities?</a></li>
+<li class="chapter" data-level="13.2" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#combining-multiple-events-together"><i class="fa fa-check"></i><b>13.2</b> Combining multiple events together</a></li>
+<li class="chapter" data-level="13.3" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#looking-at-independent-events"><i class="fa fa-check"></i><b>13.3</b> Looking at independent events</a></li>
+<li class="chapter" data-level="13.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>13.4</b> Updating our beliefs - Bayes’ theorem</a></li>
+<li class="chapter" data-level="13.5" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>13.5</b> Further resources</a></li>
+</ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a><ul>
-<li class="chapter" data-level="A.1" data-path="two-more-pipes.html"><a href="two-more-pipes.html#expanding-the-tidyverse-the-exposition-pipe"><i class="fa fa-check"></i><b>A.1</b> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</a></li>
-<li class="chapter" data-level="A.2" data-path="two-more-pipes.html"><a href="two-more-pipes.html#a-somewhat-risky-time-saver-the-assignment-pipe"><i class="fa fa-check"></i><b>A.2</b> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</a></li>
+<li class="chapter" data-level="A" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>A</b> Packages and references</a></li>
+<li class="chapter" data-level="B" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>B</b> Two more pipes</a><ul>
+<li class="chapter" data-level="B.1" data-path="two-more-pipes.html"><a href="two-more-pipes.html#expanding-the-tidyverse-the-exposition-pipe"><i class="fa fa-check"></i><b>B.1</b> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</a></li>
+<li class="chapter" data-level="B.2" data-path="two-more-pipes.html"><a href="two-more-pipes.html#a-somewhat-risky-time-saver-the-assignment-pipe"><i class="fa fa-check"></i><b>B.2</b> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
@@ -264,11 +274,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="simple-and-multiple-linear-regression" class="section level1">
-<h1><span class="header-section-number">Topic 4</span> Simple and multiple linear regression</h1>
+<h1><span class="header-section-number">Topic 5</span> Simple and multiple linear regression</h1>
 <p>This document recaps how we assess relationships between variables when at least the outcome variable is continuous.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="simple-and-multiple-linear-regression.html#cb25-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse)</span></code></pre></div>
 <div id="simple-linear-regression" class="section level2">
-<h2><span class="header-section-number">4.1</span> Simple linear regression</h2>
+<h2><span class="header-section-number">5.1</span> Simple linear regression</h2>
 <p>For an introduction to simple linear regression and correlation, watch this video:
 <iframe src=" https://www.youtube.com/embed/uoMjSFApBTY?rel=0&modestbranding=1&loop=1&playlist=uoMjSFApBTY " allowfullscreen width=80% height=350></iframe></p>
 <p>When considering the relationship between two continuous variables, we should always start with a scatterplot - for example, of the relationship between social trust and life satisfaction at the national level in European countries (data from the European Social Survey 2014).</p>
@@ -283,12 +293,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
 <img src="05-linear-regression_files/figure-html/unnamed-chunk-2-1.png" alt="Scatterplot relating social trust to life satisfaction" width="100%" />
 <p class="caption">
-Figure 4.1: Scatterplot relating social trust to life satisfaction
+Figure 5.1: Scatterplot relating social trust to life satisfaction
 </p>
 </div>
 <p>The scatterplot can now help us to think about what kind of model would help us to explain or predict one variable based on the other. If a straight-line relationship seems reasonable, we can use a linear model.</p>
 <div id="plotting-a-simple-linear-regression-model" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Plotting a simple linear regression model</h3>
+<h3><span class="header-section-number">5.1.1</span> Plotting a simple linear regression model</h3>
 <p>Geometrically, a simple linear regression model is just a straight line through the scatterplot, fitted in a way that minimises the distances from the points to the line. It can be fitted with the <code>geom_smooth(method="lm")</code> function.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="simple-and-multiple-linear-regression.html#cb29-1"></a><span class="kw">ggplot</span>(nat_avgs, <span class="kw">aes</span>(<span class="dt">x=</span>nat_soctrust, <span class="dt">y=</span>nat_stflife)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb29-2"><a href="simple-and-multiple-linear-regression.html#cb29-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) </span></code></pre></div>
@@ -296,20 +306,20 @@ Figure 4.1: Scatterplot relating social trust to life satisfaction
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
 <img src="05-linear-regression_files/figure-html/unnamed-chunk-3-1.png" alt="Scatterplot with added regression line (&quot;line of best fit&quot;)" width="100%" />
 <p class="caption">
-Figure 4.2: Scatterplot with added regression line (“line of best fit”)
+Figure 5.2: Scatterplot with added regression line (“line of best fit”)
 </p>
 </div>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="simple-and-multiple-linear-regression.html#cb31-1"></a>    <span class="co">#se=FALSE hides confidence bands that are often just visual clutter</span></span></code></pre></div>
 <p>For each value of one variable, this line now allows us to find the corresponding expected value of the other variable.</p>
 </div>
 <div id="mathematical-representation-of-a-simple-linear-regression-model" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> Mathematical representation of a simple linear regression model</h3>
+<h3><span class="header-section-number">5.1.2</span> Mathematical representation of a simple linear regression model</h3>
 <p>The idea of a simple linear regression model is to link one predictor variable, <span class="math inline">\(x\)</span>, to an outcome variable, <span class="math inline">\(y\)</span>. Their relationship can be expressed in a simple formula:
 <span class="math display">\[y=\beta_{0} +  \beta_{1}*x\]</span>
 Here, <strong><span class="math inline">\(\beta_{1}\)</span> is the most important parameter</strong> - it tells us, how much a change of 1 in the <span class="math inline">\(x\)</span>-variable affects the <span class="math inline">\(y\)</span>-variable. Geometrically, it is the slope of the regression line. <span class="math inline">\(\beta_{0}\)</span> is the intercept of that line, i.e. the value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is 0 - since <span class="math inline">\(x\)</span> can often not be zero, that parameter tends to be of little interest on its own.</p>
 </div>
 <div id="fitting-a-simple-linear-regression-model-in-r" class="section level3">
-<h3><span class="header-section-number">4.1.3</span> Fitting a simple linear regression model in R</h3>
+<h3><span class="header-section-number">5.1.3</span> Fitting a simple linear regression model in R</h3>
 <p>Linear models are fitted in R using the <code>lm()</code> function. The model itself is specified as a formula with the notation <code>y ~ x</code> where the <code>~</code> means ‘is predicted by’ and the intercept is added automatically.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="simple-and-multiple-linear-regression.html#cb32-1"></a><span class="kw">lm</span>(nat_stflife <span class="op">~</span><span class="st"> </span>nat_soctrust, <span class="dt">data =</span> nat_avgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
 <pre><code>## 
@@ -335,25 +345,25 @@ Here, <strong><span class="math inline">\(\beta_{1}\)</span> is the most importa
 <p><span class="math display">\[LifeSatisfaction = 2.76 +  0.80 * SocialTrust\]</span>
 Clearly this formula does not allow us to perfectly predict one variable from the other; we have already seen in the graph that not all points fall exactly on the line. The distances between each point and the line are the <strong>residuals</strong> - their distribution is described at the top of the <code>summary()</code>-function output.</p>
 <div id="interpreting-r2" class="section level4">
-<h4><span class="header-section-number">4.1.3.1</span> Interpreting <span class="math inline">\(R^2\)</span></h4>
+<h4><span class="header-section-number">5.1.3.1</span> Interpreting <span class="math inline">\(R^2\)</span></h4>
 <p>The model output allows us to say how well the line fits by considering the <span class="math inline">\(R^2\)</span> value. It is based on the sum of the squares of the deviations of each data point from either the mean (<span class="math inline">\(SS_{total}\)</span>) or the model(<span class="math inline">\(SS_{residual}\)</span>).</p>
 <p>If I was considering a model that predicted people’s height, I might have a person who is 1.6m tall. If the mean of the data was 1.8m, their squared total deviation would be <span class="math inline">\(0.2*0.2 = 0.04\)</span>. If the model then predicted their height at 1.55m, their squared residual deviation would be <span class="math inline">\(-0.05*-0.05 = 0.025\)</span>. Once this is summed up for all data points, <span class="math inline">\(R^2\)</span> is calculated with the following formula:
 <span class="math display">\[R^2 = 1 - \frac{SS_{residual}}{SS_{total}}\]</span></p>
 <p>Given that the sum of squared residuals can never be less than 0 or more than the sum of the total residuals, <span class="math inline">\(R^2\)</span> can only take up values between 0 and 1. It can be understood as the share of total variance explained by the model (or to link it to the formula: as the total variance minus the share <em>not</em> explained by the model).</p>
 </div>
 <div id="interpreting-prt-the-p-value" class="section level4">
-<h4><span class="header-section-number">4.1.3.2</span> Interpreting Pr(&gt;|t|), the <em>p</em>-value</h4>
+<h4><span class="header-section-number">5.1.3.2</span> Interpreting Pr(&gt;|t|), the <em>p</em>-value</h4>
 <p>Each coefficient comes with an associated <em>p</em>-value in the summary that is shown at the end of the row. As indicated by the column title, it indicates the probability that the test statistic would be this large or larger <em>if</em> the null hypothesis was true and there was no association in the underlying population.</p>
 <p>As per usual, we would typically report coefficients with a <em>p</em>-value below .05 as statistically significant. The significance level for the intercept is almost never relevant and thus not reported (it simply tests whether the value of y would be different from 0 when x is zero, which is rarely of particular interest).</p>
 </div>
 </div>
 </div>
 <div id="bivariate-correlation" class="section level2">
-<h2><span class="header-section-number">4.2</span> Bivariate correlation</h2>
+<h2><span class="header-section-number">5.2</span> Bivariate correlation</h2>
 <p>Simple linear regression can tell us whether two variables are linearly related to each other, whether this finding is statistically significant (i.e. unlikely to have arisen due to change), and how strong the relationship is <em>in terms of the units of the two variables.</em> Quite often, however, we would prefer a standardised measure of the strength of a relationship, and a quicker test. That is where correlation comes in.</p>
 <p>The <strong>Pearson’s correlation coefficient</strong> is the slope of the regression line when both variables are standardised, i.e. expressed in units of their standard deviations (as so-called Z-scores). It is again bounded, between -1 and 1, and as it is unit-free, it can give quick information as to which relationships matter more and which matter less.</p>
 <div id="calculating-the-correlation-coefficient" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> Calculating the correlation coefficient</h3>
+<h3><span class="header-section-number">5.2.1</span> Calculating the correlation coefficient</h3>
 <p>Before calculating a correlation coefficient, <strong>you need to look at the scatterplot and make sure that a straight-line relationship looks reasonable.</strong> If that is the case, you can use the <code>cor.test()</code> function to calculate the correlation coefficient.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="simple-and-multiple-linear-regression.html#cb34-1"></a><span class="kw">cor.test</span>(nat_avgs<span class="op">$</span>nat_soctrust, nat_avgs<span class="op">$</span>nat_stflife) </span>
 <span id="cb34-2"><a href="simple-and-multiple-linear-regression.html#cb34-2"></a><span class="co">#If you have missing data, use the na.rm = TRUE argument to have it excluded before the calculation</span></span></code></pre></div>
@@ -371,7 +381,7 @@ Clearly this formula does not allow us to perfectly predict one variable from th
 <p>The estimated cor at the very bottom is the correlation coefficient, usually reported as <em>r</em> = .81. This shows that there is a strong positive relationship between the two variables. Check the <em>p</em>-value to see whether the relationship is statistically significant and the 95%-confidence interval to see how precise the estimate is likely to be.</p>
 </div>
 <div id="equivalence-to-linear-regression" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> Equivalence to linear regression</h3>
+<h3><span class="header-section-number">5.2.2</span> Equivalence to linear regression</h3>
 <p>Just to show that this is indeed equivalent to simple linear regression on the standardised variables, which can be calculated using the <code>scale()</code>-function.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="simple-and-multiple-linear-regression.html#cb36-1"></a><span class="kw">ggplot</span>(nat_avgs, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">scale</span>(nat_soctrust), <span class="dt">y=</span><span class="kw">scale</span>(nat_stflife))) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb36-2"><a href="simple-and-multiple-linear-regression.html#cb36-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)</span></code></pre></div>
@@ -379,7 +389,7 @@ Clearly this formula does not allow us to perfectly predict one variable from th
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
 <img src="05-linear-regression_files/figure-html/unnamed-chunk-6-1.png" alt="Scatterplot with scales variables (Z-scores)" width="100%" />
 <p class="caption">
-Figure 4.3: Scatterplot with scales variables (Z-scores)
+Figure 5.3: Scatterplot with scales variables (Z-scores)
 </p>
 </div>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="simple-and-multiple-linear-regression.html#cb38-1"></a><span class="kw">lm</span>(<span class="kw">scale</span>(nat_stflife) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(nat_soctrust), <span class="dt">data =</span> nat_avgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
@@ -405,33 +415,33 @@ Figure 4.3: Scatterplot with scales variables (Z-scores)
 </div>
 </div>
 <div id="multiple-linear-regression" class="section level2">
-<h2><span class="header-section-number">4.3</span> Multiple linear regression</h2>
+<h2><span class="header-section-number">5.3</span> Multiple linear regression</h2>
 <p>Linear models can easily be extended to multiple predictor variables. Here I will focus on a few key points that particularly focus on linear models that include categorical predictor variables.</p>
 <p>You can watch this video to take you through the process of extending simple linear regression to include multiple variables step-by-step:</p>
 <iframe src=" https://www.youtube.com/embed/6lcDzTlsGVE?rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=6lcDzTlsGVE " allowfullscreen width="80%" height="350">
 </iframe>
 <div id="dummy-coding-revisited" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> Dummy coding revisited</h3>
+<h3><span class="header-section-number">5.3.1</span> Dummy coding revisited</h3>
 <p>Multiple linear regression models often use categorical predictors. However, they need to be turned into numbers. This is done through automatic dummy coding, which creates variables coded as 0 and 1.</p>
 <p>Note that dummy coding always results in <strong>one fewer dummy variable than the number of levels of the categorical variable</strong>. For example, a gender variable with two levels (male/female) would be recoded into a single dummy variable <em>female</em> (0=no, 1=yes). Note that there is no equivalent variable <em>male</em> as that would be redundant. Given that the hypothetical gender variable here is defined as either male or female, not female necessarily implies male.</p>
 <p>The same applies to larger number of levels - see below how three possible values for the department variabel can be recoded into two dummy variables.</p>
 <div class="figure" style="text-align: center"><span id="fig:img-dummy-coding"></span>
 <img src="images/W10Dummy.png" alt="Example for dummy-coding" width="100%" />
 <p class="caption">
-Figure 4.4: Example for dummy-coding
+Figure 3.2: Example for dummy-coding
 </p>
 </div>
 <p>The level that is not explicitly mentioned anymore is the <strong>reference level</strong> - in the case above, that is Special Education. In a linear model, that is what all other effects are compared to, so it is important to keep in mind which that is.</p>
 </div>
 <div id="mathematical-structure-of-multiple-linear-models" class="section level3">
-<h3><span class="header-section-number">4.3.2</span> Mathematical structure of multiple linear models</h3>
+<h3><span class="header-section-number">5.3.2</span> Mathematical structure of multiple linear models</h3>
 <p>Linear models are characterised by intercepts and slopes. Geometrically, intercepts shift a line or plane along an axis, while a slope changes its orientation in space. Conceptually, intercepts are like on/off switches, while slopes indicate what happens when variables are dialed up or down.</p>
 <p>For example, we might want to predict life expectancy based on a person’s gender and their level of physical activity. Then the model would be</p>
 <p><span class="math display">\[LifeExpectancy=\beta_{0} +  \beta_{1}*female + \beta_{2}*activity\]</span>
 <span class="math inline">\(\beta_{0}\)</span> here would describe the notional life expectancy of males without any activity, <span class="math inline">\(\beta_{0}+\beta_{1}\)</span> would describe that of females without any exercise - so both of these are intercepts, the <span class="math inline">\(female\)</span> variable simply determines which intercept we choose. <span class="math inline">\(\beta_{2}\)</span> is now the effect of each unit of activity, i.e. the slope of the regression line.</p>
 </div>
 <div id="running-multiple-linear-regression-models-in-r" class="section level3">
-<h3><span class="header-section-number">4.3.3</span> Running multiple linear regression models in R</h3>
+<h3><span class="header-section-number">5.3.3</span> Running multiple linear regression models in R</h3>
 <p>In the <code>lm()</code>-function, it is very easy to keep on adding predictors to the formula by just using the <code>+</code>-symbol. For example, we can consider the UK General Election Results in 2019 and see what helps explain the vote share of the Conservatives.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="simple-and-multiple-linear-regression.html#cb40-1"></a><span class="co">#Load and prep data</span></span>
 <span id="cb40-2"><a href="simple-and-multiple-linear-regression.html#cb40-2"></a>constituencies &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/ConstituencyData2019.csv&quot;</span>), <span class="dt">col_types =</span> <span class="st">&quot;_cfddddfffddddfffdfdddd&quot;</span>)</span></code></pre></div>
@@ -498,7 +508,7 @@ Figure 4.4: Example for dummy-coding
 <span class="math display">\[VoteShare=-0.27 +  0.018*age + -0.25*Scotland + -0.15*Wales\]</span>
 The figures for Scotland and Wales need to be compared to the unnamed reference level, i.e. to England - so we would expect a Scottish constituency to have a 25 percentage points lower Conservative vote share <em>when keeping median age constant.</em> Likewise, we now would expect an increase of the median age by 1 year to increase the Conservative vote share by 1.8 percentage points, <em>keeping the effect of nation constant.</em></p>
 <div id="significance-testing-and-reporting-in-multiple-regression-models" class="section level4">
-<h4><span class="header-section-number">4.3.3.1</span> Significance testing and reporting in multiple regression models</h4>
+<h4><span class="header-section-number">5.3.3.1</span> Significance testing and reporting in multiple regression models</h4>
 <p>With more than one predictor, we have two questions:</p>
 <ul>
 <li>is the <strong>overall model</strong> significant, i.e. can we confidently believe that its estimates are better than if we just took the overall mean as our estimate for each constituency? That is shown in the last line of the summary. Here we would report that the regression model predicting the conservative vote share per constituency based on its median age and the nation it was located in was significant, with <em>F</em>(3, 627) = 244.6, <em>p</em> &lt; .001, and explained a substantial share of the variance, <span class="math inline">\(R^2\)</span> = .54.</li>
@@ -619,7 +629,7 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="data-visualisation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="comparing-means-between-conditions-or-groups.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

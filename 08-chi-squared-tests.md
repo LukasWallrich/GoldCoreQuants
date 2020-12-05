@@ -255,7 +255,7 @@ chisq_to_cramers_v(chisq = 48.5, n = 626, nrow=4, ncol=2)
 ```
 
 ```
-## Cramer's V |    1e+02% CI
+## Cramer's V |       95% CI
 ## -------------------------
 ##       0.28 | [0.19, 0.35]
 ```

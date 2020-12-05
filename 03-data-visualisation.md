@@ -50,7 +50,18 @@ ggplot(gapminder2010, aes(x=infant_mortality, y=fertility)) +
 <p class="caption">(\#fig:unnamed-chunk-1)A simple ggplot example</p>
 </div>
 
+## Opinionated visualisation
+
+It is easy to find examples of misleading charts that should never have been published. However, even when all the elements of a chart are legitimately presented, the same data can still be used to suggest radically different conclusions. See the following example and follow the source link to read more about "opinionated" data visualisations.
+
+<div class="figure" style="text-align: center">
+<img src="./images/iraq-bloody-toll.png" alt="Same data, two messages (Source: &lt;a href=&quot;https://www.infoworld.com/article/3088166/why-how-to-lie-with-statistics-did-us-a-disservice.html&quot;&gt;infoworld.com&lt;/a&gt;)" width="100%" />
+<p class="caption">(\#fig:img-dummy-coding)Same data, two messages (Source: <a href="https://www.infoworld.com/article/3088166/why-how-to-lie-with-statistics-did-us-a-disservice.html">infoworld.com</a>)</p>
+</div>
+
 ## Further resources
 
 * The [R Graphics Cookbook](https://r-graphics.org/){target="_blank"} by Winston Chang is available online with 150 "recipes" that cover everything from basic exploratory charts to colour-coded maps.
-* The BBC graphics team has published their own [R Cookbook](https://bbc.github.io/rcookbook/){target="_blank"} with clear tips for making publishable charts that convey a clear message
+* The BBC graphics team has published their own [R Cookbook](https://bbc.github.io/rcookbook/){target="_blank"} with clear tips for making charts that convey a clear message, as well as some custom functions for making clean publication-ready charts.
+* Irizarry's *Introduction to Data Science* has a good chapter on [data visualisation principles](https://rafalab.github.io/dsbook/data-visualization-principles.html){target="_blank"}
+  

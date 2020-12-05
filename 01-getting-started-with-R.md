@@ -1,3 +1,5 @@
+# (PART\*) Using R and describing data {-}
+
 # Getting started with R
 
 ## Install R on your computer
@@ -102,7 +104,7 @@ variableName <- mean(c(1,2,3, NA), na.rm = TRUE)
 ```
 
 ```
-## ##------ Tue Sep 29 21:02:26 2020 ------##
+## ##------ Sat Dec  5 11:27:25 2020 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2

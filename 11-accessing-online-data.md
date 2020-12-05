@@ -1,3 +1,6 @@
+# (PART\*) Supplementary topics {-}
+
+
 # Accessing online data sources
 
 This section introduces some examples of R packages that allow you to access large secondary datasets. They are often a good way to understand wider trends, and thereby provide a high-level justification for doing research into a specific question. However, they can also be data sources for research projects in their own right.
@@ -67,11 +70,11 @@ ggplot(wb_datF, aes(x=as.numeric(date), y=value, col=country)) +
 ```
 
 ```
-## Warning: Removed 64 rows containing missing values (geom_point).
+## Warning: Removed 66 rows containing missing values (geom_point).
 ```
 
 ```
-## Warning: Removed 13 row(s) containing missing values (geom_path).
+## Warning: Removed 15 row(s) containing missing values (geom_path).
 ```
 
 <div class="figure" style="text-align: center">
@@ -125,7 +128,7 @@ regionalAndWorld <- rbind(regional, world)
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qzqudaigbb .gt_table {
+#iskyecugjy .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -150,7 +153,7 @@ regionalAndWorld <- rbind(regional, world)
   border-left-color: #D3D3D3;
 }
 
-#qzqudaigbb .gt_heading {
+#iskyecugjy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -162,7 +165,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#qzqudaigbb .gt_title {
+#iskyecugjy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -172,7 +175,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-width: 0;
 }
 
-#qzqudaigbb .gt_subtitle {
+#iskyecugjy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -182,13 +185,13 @@ regionalAndWorld <- rbind(regional, world)
   border-top-width: 0;
 }
 
-#qzqudaigbb .gt_bottom_border {
+#iskyecugjy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qzqudaigbb .gt_col_headings {
+#iskyecugjy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -203,7 +206,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#qzqudaigbb .gt_col_heading {
+#iskyecugjy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -223,7 +226,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#qzqudaigbb .gt_column_spanner_outer {
+#iskyecugjy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -235,15 +238,15 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 4px;
 }
 
-#qzqudaigbb .gt_column_spanner_outer:first-child {
+#iskyecugjy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qzqudaigbb .gt_column_spanner_outer:last-child {
+#iskyecugjy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qzqudaigbb .gt_column_spanner {
+#iskyecugjy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -255,7 +258,7 @@ regionalAndWorld <- rbind(regional, world)
   width: 100%;
 }
 
-#qzqudaigbb .gt_group_heading {
+#iskyecugjy .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -277,7 +280,7 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#qzqudaigbb .gt_empty_group_heading {
+#iskyecugjy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -292,15 +295,15 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#qzqudaigbb .gt_from_md > :first-child {
+#iskyecugjy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qzqudaigbb .gt_from_md > :last-child {
+#iskyecugjy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qzqudaigbb .gt_row {
+#iskyecugjy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -319,7 +322,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#qzqudaigbb .gt_stub {
+#iskyecugjy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -331,7 +334,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-left: 12px;
 }
 
-#qzqudaigbb .gt_summary_row {
+#iskyecugjy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -341,7 +344,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#qzqudaigbb .gt_first_summary_row {
+#iskyecugjy .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -351,7 +354,7 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#qzqudaigbb .gt_grand_summary_row {
+#iskyecugjy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -361,7 +364,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#qzqudaigbb .gt_first_grand_summary_row {
+#iskyecugjy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -371,11 +374,11 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#qzqudaigbb .gt_striped {
+#iskyecugjy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qzqudaigbb .gt_table_body {
+#iskyecugjy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -384,7 +387,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-color: #D3D3D3;
 }
 
-#qzqudaigbb .gt_footnotes {
+#iskyecugjy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -398,13 +401,13 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#qzqudaigbb .gt_footnote {
+#iskyecugjy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#qzqudaigbb .gt_sourcenotes {
+#iskyecugjy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -418,46 +421,46 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#qzqudaigbb .gt_sourcenote {
+#iskyecugjy .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#qzqudaigbb .gt_left {
+#iskyecugjy .gt_left {
   text-align: left;
 }
 
-#qzqudaigbb .gt_center {
+#iskyecugjy .gt_center {
   text-align: center;
 }
 
-#qzqudaigbb .gt_right {
+#iskyecugjy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qzqudaigbb .gt_font_normal {
+#iskyecugjy .gt_font_normal {
   font-weight: normal;
 }
 
-#qzqudaigbb .gt_font_bold {
+#iskyecugjy .gt_font_bold {
   font-weight: bold;
 }
 
-#qzqudaigbb .gt_font_italic {
+#iskyecugjy .gt_font_italic {
   font-style: italic;
 }
 
-#qzqudaigbb .gt_super {
+#iskyecugjy .gt_super {
   font-size: 65%;
 }
 
-#qzqudaigbb .gt_footnote_marks {
+#iskyecugjy .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="qzqudaigbb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="iskyecugjy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style><strong>Women rule</strong> (%)</th>
@@ -474,8 +477,8 @@ regionalAndWorld <- rbind(regional, world)
   </thead>
   <tbody class="gt_table_body">
     <tr>
-      <td class="gt_row gt_right">8.4</td>
-      <td class="gt_row gt_right">4.4</td>
+      <td class="gt_row gt_right">9.1</td>
+      <td class="gt_row gt_right">4.5</td>
     </tr>
   </tbody>
   

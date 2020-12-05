@@ -27,6 +27,10 @@ ess %>% select(imtcjob, imbleco, imwbcrm) %>% psych::alpha()
 ```
 
 ```
+## Number of categories should be increased  in order to count frequencies.
+```
+
+```
 ## 
 ## Reliability analysis   
 ## Call: psych::alpha(x = .)
@@ -69,6 +73,13 @@ The `alpha()` function from the `psych` package automatically calculates scores 
 
 ```r
 scale_info <- ess %>% select(imtcjob, imbleco, imwbcrm) %>% psych::alpha()
+```
+
+```
+## Number of categories should be increased  in order to count frequencies.
+```
+
+```r
 #To print the details as above, just type 'scale info'
 
 ess$immigrant_attitudes <- scale_info$scores
