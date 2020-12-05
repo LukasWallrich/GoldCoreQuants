@@ -36,7 +36,7 @@ ggplot(gapminder2010, aes(x=infant_mortality, y=fertility)) +
 
 It is easy to find examples of misleading charts that should never have been published. However, even when all the elements of a chart are legitimately presented, the same data can still be used to suggest radically different conclusions. See the following example and follow the source link to read more about "opinionated" data visualisations.
 
-```{r img-dummy-coding, echo=FALSE, fig.cap='Same data, two messages (Source: <a href="https://www.infoworld.com/article/3088166/why-how-to-lie-with-statistics-did-us-a-disservice.html">infoworld.com</a>)}
+```{r img-dummy-coding, echo=FALSE, fig.cap='Same data, two messages (Source: <a href="https://www.infoworld.com/article/3088166/why-how-to-lie-with-statistics-did-us-a-disservice.html">infoworld.com</a>)'}
 
 knitr::include_graphics("./images/iraq-bloody-toll.png")
 
