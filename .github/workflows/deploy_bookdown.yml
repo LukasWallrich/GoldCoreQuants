@@ -19,14 +19,14 @@ jobs:
       - name: prep for tidyverse
         run: sudo apt-get install xml2 libxml2-dev libssl-dev libcurl4-openssl-dev unixodbc-dev
       - name: Install rmarkdown
-        run: Rscript -e 'options(repos = list(CRAN="http://cran.rstudio.com/")); install.packages(c("rmarkdown","bookdown", "webex", "tidyverse", "magrittr", "xml2"))'
+        run: Rscript -e 'options(repos = list(CRAN="http://cran.rstudio.com/")); install.packages(c("rmarkdown","webex", "tidyverse", "magrittr", "xml2", remotes)); remotes::install_version(package = "bookdown", version = "0.20")'
       - name: Build book
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
       - name: Copy attachments
         run: Rscript -e 'file.copy("files", "_book", recursive=TRUE)'
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.5.9
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           BRANCH: gh-pages # The branch the action should deploy to.
