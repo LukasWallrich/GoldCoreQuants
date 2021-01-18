@@ -112,7 +112,8 @@ div.color-theme-2 .book-body .page-wrapper .page-inner section.normal strong cod
 
 /* styles for solveme */
 .solveme { border: 2px dotted var(--pink); }
-.solveme.correct { border: 2px solid var(--green); }
+.solveme.correct { border: 2px solid var(--green); background: #cef7ce;}
+.solveme.incorrect { border: 2px solid blue; background: pink;}
 /* styles for hidden solutions */
 .solution {
     height: 2.2em;
@@ -150,7 +151,7 @@ div.verbatim pre.sourceCode.r {
 }
 
 div.verbatim {
-  background-color: rgb(247, 247, 247) !important;
+  background-color: #D8EDFD;
 }
 
 .color-theme-1 div.verbatim {
@@ -172,6 +173,7 @@ div.verbatim div.sourceCode {
 div.verbatim pre.sourceCode { 
   margin: 0 !important; 
   padding: 0 1em !important;
+  background-color: rgb(247, 247, 247) !important;
 }
 
 

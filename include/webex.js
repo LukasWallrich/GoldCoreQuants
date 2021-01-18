@@ -33,6 +33,9 @@ solveme_func = function(e) {
   
   if (my_answer !== "" & real_answers.includes(my_answer)) {
     cl.add("correct");
+    cl.remove("incorrect");
+  } else if (my_answer !== "") {
+    cl.add("incorrect");
   } else {
     cl.remove("correct");
   }
@@ -43,6 +46,7 @@ solveme_func = function(e) {
     var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
     if (matches.reduce((a, b) => a + b, 0) > 0) {
       cl.add("correct");
+      cl.remove("incorrect");
     } else {
       cl.remove("correct");
     }  
@@ -53,6 +57,8 @@ solveme_func = function(e) {
     answer_regex = RegExp(real_answers.join("|"))
     if (answer_regex.test(my_answer)) {
       cl.add("correct");
+      cl.remove("incorrect");
+
     }  
   }
   
@@ -92,7 +98,7 @@ window.onload = function() {
     solveme[i].dataset.answer = real_answer;
     
     /* attach checking function */
-    solveme[i].onkeyup = solveme_func;
+    /* solveme[i].onkeyup = solveme_func; */
     solveme[i].onchange = solveme_func;
   }
   
