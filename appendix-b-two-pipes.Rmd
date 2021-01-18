@@ -14,7 +14,7 @@ constituencies <- read_csv(url("http://empower-training.de/Gold/ConstituencyData
 
 Inside dplyr pipes, you do not need to use the `$` to access variables within the dataframe. However, that does not work in some base-R functions such as `cor.test()`. For them, `%$%` can expose the variables in a dataframe temporarily (until the end of that command) so that they can be accessed as if they were separate variables in your environment.
 
-```{r}
+```{r results='markup'}
 #Normal code
 cor.test(constituencies$MedianAge, constituencies$ElectionConShare)
 

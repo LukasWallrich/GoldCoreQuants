@@ -26,7 +26,7 @@ pacman::p_load(haven)
 gapminder <- read_sav("./data/gapminder.sav") #SPSS files contain information on the class of each variable, so that col_types do not need to be defined
 ```
 
-There are shortcuts to quickly get some data into R, which can be helpful if you just want to try something out - all of them only make sense in the Console, not in a .Rmd script. Using the `edit()` function, you can open up a simple spreadsheet to edit and input data, using the `read.table(file="clipboard", sep="\t")`, you can get data you copied in Excel. As with all ways of importing data, remember to assign the result to a variable.
+There are shortcuts to quickly get some data into R, which can be helpful if you just want to try something out - all of them only make sense in the Console, not in a .Rmd script. Using the `edit()` function, you can open up a simple spreadsheet to edit and input data, using `read.table(file="clipboard", sep="\t")`, you can get data you copied in Excel. As with all ways of importing data, remember to assign the result to a variable.
 
 
 ```{r, eval=FALSE}
@@ -50,27 +50,29 @@ pasted <- read.table(file="clipboard", sep="\t", header = TRUE)
 
 ## View data
 
-When you start with a new dataset, there are some helpful functions to get a first look at the data: `glimpse()`gives a good overview of the variables contained in the dataset, while `head()` and `tail()` print the first and last lines. In the **Console** (but not really within scripts such as .Rmd files), you can also use `View()` to open up the whole dataset. Finally, you can have a look at data in the **Environment** pane in RStudio.
+When you start with a new dataset, there are some helpful functions to get a first look at the data: `glimpse()`gives a good overview of the variables contained in the dataset, while `head()` and `tail()` print the first and last lines. In the **Console** (but not really within scripts such as *.Rmd* files), you can also use `View()` to open up the whole dataset. Finally, you can have a look at data in the **Environment** pane in RStudio.
 
-```{r}
+```{r message=FALSE, results='markup'}
 pacman::p_load(dslabs) #Load the gapminder teaching dataset
 pacman::p_load(dplyr) #Load the dplyr package that offers glimpse()
 glimpse(gapminder)
+
 head(gapminder, n=5) #n defines number of rows shown
+
 tail(gapminder, n=5)
 ```
 
 
 ## Manipulating data and using dplyr
 
-Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summaries. The `dplyr` package (part of the `tidyverse`) is designed to make all these steps easier, so we use it extensively during this course. `dplyr` is based on two main ideas: 
+Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summary statistics. The `dplyr` package (part of the `tidyverse`) is designed to make all these steps easier, so we use it extensively during this course. `dplyr` is based on two main ideas: 
 
 * Develop a chain of data manipulation steps that get you towards the desired data, with the steps connected by the `%>%` operator ("pipe"). That removes the need for nested functions or for saving lots of intermediate results.
 * Use functions names after natural language verbs to develop code that can be easily understood.
 
 `%>%` takes the argument on the left and places it as the first argument into the function on the right. For example:
 
-```{r}
+```{r echo=FALSE}
 x <- c(1,2,3, NA)
 
 #The following two commands are equivalent
@@ -94,7 +96,7 @@ If we want to calculate the average income per capita in 2010 on each continent 
 
 *One thing to note:* you can split R code into multiple lines as long as each line is incomplete. Since the lines here end with `%>%`, R includes the next line into the same command. If that operator was moved to the start of the next line, the code would no longer work.
 
-```{r}
+```{r message=FALSE}
 pacman::p_load(dplyr)
 gapminder %>% 
   filter(year == 2010) %>%
@@ -120,9 +122,9 @@ For an introduction to `dplyr`, you can watch this video:
 
 ## Summarise data (descriptive statistics)
 
-Next you might want to use summary functions - either in a dplyr `summarise()` function or on their own. For most of them, you can use the `na.rm = TRUE` argument to tell R to ignore missing values (only do that when you have reason to expect that missing values can safely be ignored).
+Next you might want to use summary functions - either in a dplyr `summarise()` function or on their own. For most of them, you can use the `na.rm = TRUE` argument to tell R to ignore missing values (only do that when you have reason to assume that missing values can safely be ignored).
 
-```{r}
+```{r results='markup'}
 gapminder2010 <- gapminder %>% filter(year==2010)
 
 #Global population
@@ -131,7 +133,7 @@ sum(gapminder2010$population, na.rm = TRUE)
 #Number of countries included
 nrow(gapminder2010)
 #To get the number inside dplyr's summarise function, it would have to be
-gapminder2010 %>% summarise(countries = n())
+gapminder2010 %>% summarise(n_rows = n())
 
 #Average (mean) number of children per woman
 mean(gapminder2010$fertility, na.rm = TRUE)
@@ -144,8 +146,10 @@ max(gapminder2010$fertility)
 min(gapminder2010$fertility)
 
 #Countries with highest and lowest fertility.
-#There are many ways to look this up - here is a simple dplyr pipe (Note that | means 'or' in the context of logical comparisons and == is needed to test for equality because = just assigns a value)
-pacman::p_load(dplyr) #Needs to be run only once per R session!
+#There are many ways to look this up - here is a simple dplyr pipe 
+## Note that | means 'or' in the context of logical comparisons 
+## and == is needed to test for equality because = just assigns a value.
+
 gapminder2010 %>% 
   filter(fertility == max(fertility) | fertility == min(fertility)) %>% 
     select(country, fertility)

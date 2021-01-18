@@ -1,5 +1,7 @@
 # Packages and references
 
+This guide is created in RStudio, using the `bookdown` package [@R-bookdown]. Its documentation, as well as the other relevant packages, are included in the references below.
+
 ---
 nocite: '@*'
 ---

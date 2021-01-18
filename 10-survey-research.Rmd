@@ -10,16 +10,12 @@ Often, surveys use multiple items to measure the same construct. This is particu
 
 Once you have data on your items, the most common way of creating a scale is just to calculate the mean of the items. If some of them were worded in the opposite direction (known as reverse-coding, and often recommended to increase data quality), those items need to be reversed first, most easily by subtracting their value from 1 + the scale maximum. ^[The `alpha()` function from the `psych` package can support reverse-coding - or even automate it. To learn more, look at `?psych::alpha`]
 
-```{r message=FALSE, warning=FALSE}
-pacman::p_load(psych, tidyverse)
-```
-
-
 ### Testing internal consistency
 
 We might expect that our items all measure the same construct (e.g., prejudice against foreigners). However, we should test whether that is the case. The most common measure to use is **Cronbach's $\alpha$**. It ranges from 0 to 1, and can be roughly understood as the intercorrelation of all items. Here is how to calculate it in R, using some data from the European Social Survey 2014.
 
 ```{r}
+pacman::p_load(psych, tidyverse)
 ess <- read_rds(url("http://empower-training.de/Gold/round7b.RDS"))
 ess %>% select(imtcjob, imbleco, imwbcrm) %>% psych::alpha()
 ```
@@ -32,7 +28,7 @@ The key part of the output is the standardised alpha value (*std.alpha*). This i
 * 0.8 &le; $\alpha$ &le; .9:  good,
 * 0.9 &le; $\alpha$:  excellent.
 
-However, it should be noted that $\alpha$ increases with the length of the scale, so that a a short scale (e.g., 3 items) might well be acceptable with $\alpha$ = .65, while 'excellent' levels of fit might require long scales that are costly or tiresome to administer.
+However, it should be noted that $\alpha$ increases with the length of the scale, so that a a short scale (e.g., 3 items) might well be of sufficient quality with $\alpha$ = .65, while 'excellent' levels of fit might require long scales that are costly or tiresome to administer.
 
 The section on *Reliability if an item is dropped* can be helpful when you find low internal consistency; in those cases it might be necessary to exclude items from the scale that reduce its consistency. Decisions about droppping items should not be made just on these numbers as that would risk overfitting your scale to the particular sample at hand. Instead, always also consider the content of the items.
 
@@ -40,18 +36,18 @@ The section on *Reliability if an item is dropped* can be helpful when you find 
 
 The `alpha()` function from the `psych` package automatically calculates scores for each participant on the scale. To use them, you need to save the object that the function returns and then access the `scores` element.
 
-```{r}
-scale_info <- ess %>% select(imtcjob, imbleco, imwbcrm) %>% psych::alpha()
-#To print the details as above, just type 'scale info'
+```{r message=FALSE}
+scale_data <- ess %>% select(imtcjob, imbleco, imwbcrm) %>% psych::alpha()
+#To print the details as above, just type scale_data
 
-ess$immigrant_attitudes <- scale_info$scores
+ess$immigrant_attitudes <- scale_data$scores
 
 ```
 
-This calulcates the mean of the items, automatically ignoring any missing values. If you prefer that participants who omitted one of the scale items have a missing value for the scale, you need to calculate the mean manually:
+This calculates the mean of the items, automatically ignoring any missing values. If you prefer that participants who omitted one of the scale items have a missing value for the scale, it will be easiest to calculate the mean manually:
 
 ```{r}
-ess$immigrant_attitudes <- (ess$imbleco + ess$imtcjob + ess$imwbcrm)/3
+ess <- ess %>% mutate(immigrant_attitudes = (imbleco + imtcjob + imwbcrm)/3)
 ```
 
 
