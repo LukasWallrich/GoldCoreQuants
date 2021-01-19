@@ -13,8 +13,9 @@ knitr::opts_chunk$set(
   fig.width  = 8, 
   fig.height = 5, 
   fig.align = 'center',
-  fig.cap='**CAPTION THIS FIGURE!!**'
-)
+  fig.cap='**CAPTION THIS FIGURE!!**',
+  class.output  = "bg-none"
+  )
 
 # make docs directory and include .nojekyll file for github
 if (!dir.exists('_book')) dir.create('_book')
