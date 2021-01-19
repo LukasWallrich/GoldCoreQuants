@@ -50,8 +50,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -276,7 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-visualisation" class="section level1">
 <h1><span class="header-section-number">Topic 3</span> Data visualisation</h1>
 <p>Being able to look at the data is a key step in data exploration, during the analysis and in the communication of results. R has a range of powerful tools to create graphs quickly, and then to develop them into a publication-ready format where helpful.</p>
-<p>For an introduction to the Grammar of Graphics and ggplot2, watch this video:</p>
+<p>For an introduction to the Grammar of Graphics and ggplot2, the package that we will be using for visualisation, watch this video:</p>
 <iframe src=" https://www.youtube.com/embed/sk7TT5qM5Hw?rel=0&amp;modestbranding=1&amp;loop=1&amp;playlist=sk7TT5qM5Hw " allowfullscreen width="80%" height="350">
 </iframe>
 <p><a href="https://drive.google.com/open?id=1UGp7own42PkPv-TLbX29sQUu2DfeaMUp">Click here</a> for the code used in the video</p>
@@ -286,19 +284,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>a call to the <code>ggplot</code>-function and the <strong>data</strong> as the first argument: <code>ggplot(gapminder,</code></li>
 <li>a mapping of the <strong>aesthetics</strong>, i.e. of variables to visual elements. This uses the <code>aes</code>-function that is given to <code>ggplot</code> as the second argument: <code>aes(x=infant_mortality, y=fertility, col=continent))</code> (Note that two closing brackets are needed as this also completes the ggplot function call)</li>
-<li>a <strong>geometry</strong>, i.e. a type of chart, that is added with a plus-symbol and the function call, e.g., <code>geom_point()</code></li>
-<li>optional elements such as labels that are included again with plus-symbols and function calls, e.g., <code>ggtitle("Association of infant mortality and fertility", subtitle="2010 data from gapminder.org")</code></li>
+<li>a <strong>geometry</strong>, i.e. a type of chart, that is added with a plus-symbol and the function call, e.g., <code>+ geom_point()</code></li>
+<li>optional elements such as labels that are included again with plus-symbols and function calls, e.g., <code>+ labs(title = "Association of infant mortality and fertility", subtitle="2010 data from gapminder.org")</code></li>
 </ul>
-<p>Multiple geometries can be layered on top of each other, for example to add trend lines to scatterplots. In that case, <code>aes()</code> functions can be included into the <code>geom_()</code>-functions to make some of the mappings specific to certain geometries. This is done in the example below to color the points by continent without applying that aestethic to the line - if it was included in the main aes() function, the plot would contain a separate coloured line for each continent.</p>
+<p>Multiple geometries can be layered on top of each other, for example to add trend lines to scatterplots. In that case, <code>aes()</code> functions can be included into the <code>geom_x()</code>-functions to make some of the mappings specific to certain geometries. This is done in the example below to color the points by continent without applying that aestethic to the line - if it was included in the main <code>aes()</code>-function, the plot would contain a separate coloured line for each continent.</p>
 <p><em>Note:</em> Line breaks are completely up to you and can be used to make the code readable as long as the command does not appear complete too early - to keep it simple, there should always be an open bracket, a comma or a + before a line break within the command to create a ggplot-chart</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-visualisation.html#cb21-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dslabs, dplyr, ggplot2)</span>
-<span id="cb21-2"><a href="data-visualisation.html#cb21-2"></a>gapminder2010 &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2010</span>)</span>
-<span id="cb21-3"><a href="data-visualisation.html#cb21-3"></a></span>
-<span id="cb21-4"><a href="data-visualisation.html#cb21-4"></a><span class="kw">ggplot</span>(gapminder2010, <span class="kw">aes</span>(<span class="dt">x=</span>infant_mortality, <span class="dt">y=</span>fertility)) <span class="op">+</span></span>
-<span id="cb21-5"><a href="data-visualisation.html#cb21-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col=</span>continent)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>() <span class="op">+</span></span>
-<span id="cb21-6"><a href="data-visualisation.html#cb21-6"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Association of infant mortality and fertility&quot;</span>, </span>
-<span id="cb21-7"><a href="data-visualisation.html#cb21-7"></a>            <span class="dt">subtitle=</span><span class="st">&quot;2010 data from gapminder.org&quot;</span>)</span></code></pre></div>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-visualisation.html#cb34-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dslabs, dplyr, ggplot2)</span>
+<span id="cb34-2"><a href="data-visualisation.html#cb34-2"></a>gapminder2010 &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2010</span>)</span>
+<span id="cb34-3"><a href="data-visualisation.html#cb34-3"></a></span>
+<span id="cb34-4"><a href="data-visualisation.html#cb34-4"></a><span class="kw">ggplot</span>(gapminder2010, <span class="kw">aes</span>(<span class="dt">x=</span>infant_mortality, <span class="dt">y=</span>fertility)) <span class="op">+</span></span>
+<span id="cb34-5"><a href="data-visualisation.html#cb34-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col=</span>continent)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>() <span class="op">+</span></span>
+<span id="cb34-6"><a href="data-visualisation.html#cb34-6"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Association of infant mortality and fertility&quot;</span>, </span>
+<span id="cb34-7"><a href="data-visualisation.html#cb34-7"></a>            <span class="dt">subtitle=</span><span class="st">&quot;2010 data from gapminder.org&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Removed 7 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
@@ -310,7 +307,7 @@ Figure 3.1: A simple ggplot example
 </div>
 <div id="opinionated-visualisation" class="section level2">
 <h2><span class="header-section-number">3.2</span> Opinionated visualisation</h2>
-<p>It is easy to find examples of misleading charts that should never have been published. However, even when all the elements of a chart are legitimately presented, the same data can still be used to suggest radically different conclusions. See the following example and follow the source link to read more about “opinionated” data visualisations.</p>
+<p>It is easy to find examples of misleading charts that should never have been published. However, even when all the elements of a chart are legitimately presented, the same data can still be used to suggest radically different conclusions. See the following example and follow the source link to read more about “opinionated” data visualisations. Apart from being critical when seeing charts, the take-away message from this is to be conscious of the power of small design choices - that is a power you should wield consciously when creating charts.</p>
 <div class="figure" style="text-align: center"><span id="fig:img-dummy-coding"></span>
 <img src="images/iraq-bloody-toll.png" alt="Same data, two messages (Source: &lt;a href=&quot;https://www.infoworld.com/article/3088166/why-how-to-lie-with-statistics-did-us-a-disservice.html&quot;&gt;infoworld.com&lt;/a&gt;)" width="100%" />
 <p class="caption">
@@ -322,7 +319,7 @@ Figure 3.2: Same data, two messages (Source: <a href="https://www.infoworld.com/
 <h2><span class="header-section-number">3.3</span> Further resources</h2>
 <ul>
 <li>The <a href="https://r-graphics.org/" target="_blank">R Graphics Cookbook</a> by Winston Chang is available online with 150 “recipes” that cover everything from basic exploratory charts to colour-coded maps.</li>
-<li>The BBC graphics team has published their own <a href="https://bbc.github.io/rcookbook/" target="_blank">R Cookbook</a> with clear tips for making charts that convey a clear message, as well as some custom functions for making clean publication-ready charts.</li>
+<li>The BBC graphics team has published their own <a href="https://bbc.github.io/rcookbook/" target="_blank">R Cookbook</a> with many tips for making charts that convey a clear message, as well as some custom functions for making clean publication-ready charts.</li>
 <li>Irizarry’s <em>Introduction to Data Science</em> has a good chapter on <a href="https://rafalab.github.io/dsbook/data-visualization-principles.html" target="_blank">data visualisation principles</a></li>
 </ul>
 
@@ -369,6 +366,9 @@ solveme_func = function(e) {
   
   if (my_answer !== "" & real_answers.includes(my_answer)) {
     cl.add("correct");
+    cl.remove("incorrect");
+  } else if (my_answer !== "") {
+    cl.add("incorrect");
   } else {
     cl.remove("correct");
   }
@@ -379,6 +379,7 @@ solveme_func = function(e) {
     var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
     if (matches.reduce((a, b) => a + b, 0) > 0) {
       cl.add("correct");
+      cl.remove("incorrect");
     } else {
       cl.remove("correct");
     }  
@@ -389,6 +390,8 @@ solveme_func = function(e) {
     answer_regex = RegExp(real_answers.join("|"))
     if (answer_regex.test(my_answer)) {
       cl.add("correct");
+      cl.remove("incorrect");
+
     }  
   }
   
@@ -428,7 +431,7 @@ window.onload = function() {
     solveme[i].dataset.answer = real_answer;
     
     /* attach checking function */
-    solveme[i].onkeyup = solveme_func;
+    /* solveme[i].onkeyup = solveme_func; */
     solveme[i].onchange = solveme_func;
   }
   

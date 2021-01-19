@@ -31,11 +31,15 @@ results$score2[results$score1<40] <- NA
 
 Note that I have assumed that only students who pass the first test (i.e. get at least 40) return to the second test. For all others, that data is missing. What pattern of missingness is that? <select class='solveme' data-answer='["MAR"]'> <option></option> <option>MCAR</option> <option>MAR</option> <option>MNAR</option></select>
 
-`hide("Explanation")`
+
+<div class='solution'><button>Explanation</button>
+
 
 The data is **missing at random (MAR)** - whether score2 is missing depends on the value of score1, so that it is *not* missing completely at random (MCAR). Whether score2 is missing does not depend on the value of score2 (beyond any association it might have with score1) - therefore it is also *not* missing not at random (MNAR).
 
-`unhide()`
+
+</div>
+
 
 Let's see how much missing data that results in.
 
@@ -55,7 +59,7 @@ miss_var_summary(results)
 
 ### Case deletion
 
-15% missing data is quite a lot, but still within the range where scientists might choose to use case deletion and move on.
+15% missing data is quite a lot, but still within the range where analysts might choose to use case deletion and move on.
 
 Given that the data is MAR, do you think that case deletion can bias the results? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select>
 
@@ -83,9 +87,11 @@ t.test(change ~ gender, resultsDel)
 ##        9.008197        4.955307
 ```
 
-Here we would conclude with great confidence (*p* < .001) that the intervention is more effective for girls than for boys. But given that we simulated the data ourselves, we know that the conclusion is false. It just arises because among the boys, the participants with the lowest scores who were most likely to improve (*regression to the mean*) did not show up for the second test. This shows that in such a case, imputation is critical.
+Here we would conclude with great confidence (*p* < .001) that the intervention is more effective for girls than for boys. But given that we simulated the data ourselves, we know that the conclusion is false. It just arises because among the boys, the participants with the lowest scores who were most likely to score higher the next time round (*regression to the mean*) did not show up for the second test. This shows that in such a case, imputation is critical.
 
 ### Imputation
+
+Imputation means filling in the gaps, to try to ensure that the dataset we use for our analysis looks as similar as possible to the complete dataset, without missing data.
 
 For imputation, we need to decide how the missing data should be predicted based on the observed data. Here, it would seem to make most sense to use linear regression to predict score2 from score1. However, before we do that, we need to make sure that we can identify imputed values later on by saving which values were missing to begin with. We use two functions from the `naniar` package for that.
 
@@ -108,7 +114,7 @@ head(resultsImp)
 ## 6 M          50     53 !NA       Not Missing
 ```
 
-`bind_shadow()` has added a new column for each column that had missing values - in this case, `score2_NA` was added, with two values showing whether the value was missing (NA) or not missing (!NA). Without the `only_miss =  TRUE` argument, it would add one 'shadow' column for each column. `any_missing()` added just one new column indicating whether there were any missing values in that row.
+`bind_shadow()` has added a new column for each column that had missing values - in this case, `score2_NA` was added, with two values showing whether the value was missing (NA) or not missing (!NA). Without the `only_miss =  TRUE` argument, it would add one 'shadow' column for each column. `add_label_missings()` added just one new column (`any_missing`) indicating whether there were any missing values in that row.
 
 Now we can impute the missing data. Functions from the `simputation` package help with that.
 
@@ -125,7 +131,7 @@ Let's see whether the imputed values look reasonable and whether they are differ
 
 ```r
 resultsImp <- resultsImp %>% mutate(change = score2 - score1)
-ggplot(resultsImp, aes(x=gender, y=change)) + geom_boxplot() + geom_jitter(aes(color = any_missing))
+ggplot(resultsImp, aes(x=gender, y=change)) + geom_boxplot() + geom_jitter(aes(color = score2_NA))
 ```
 
 <div class="figure" style="text-align: center">
@@ -133,9 +139,9 @@ ggplot(resultsImp, aes(x=gender, y=change)) + geom_boxplot() + geom_jitter(aes(c
 <p class="caption">(\#fig:unnamed-chunk-7)Visualisation shows that imputed data matters</p>
 </div>
 
-Note that the colour aesthetic is only assigned inside `geom_jitter()`. If it was assigned within `ggplot()`, we would get separate boxplots for observed and imputed values, which is not the aim here.
+Note that the colour aesthetic is only assigned inside `geom_jitter()` (which is the same as geom_point() but adds some random noise to the points to reduce overlap). If it was assigned within `ggplot()`, we would get separate boxplots for observed and imputed values, which is not the aim here.
 
-Looking at the distribution of values that were originally missing and have now been imputed, we can see that the values are generally plausible, in that they fall within the observed range. However, particularly for boys, they are higher than the observed values and are therefore likely to influence our conclusion. 
+Looking at the distribution of values that were missing and have now been imputed, we can see that the values are generally plausible, in that they fall within the observed range. However, particularly for boys, they are higher than the observed values and are therefore likely to influence our conclusion. 
 
 Let's test again whether there is a difference between boys and girls.
 

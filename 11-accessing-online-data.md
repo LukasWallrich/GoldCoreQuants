@@ -6,11 +6,6 @@
 This section introduces some examples of R packages that allow you to access large secondary datasets. They are often a good way to understand wider trends, and thereby provide a high-level justification for doing research into a specific question. However, they can also be data sources for research projects in their own right.
 
 
-```r
-pacman::p_load(tidyverse)
-```
-
-
 ## World Bank data
 
 The World Bank offers a rich dataset with a particular focus on indicators relevant for the study of poverty, inequality and global development (in fact, much of gapminder is based on World Bank data). You can explore their data online on [data.worldbank.com](https://data.worldbank.com), or access it directly from R using the `wbstats` package.
@@ -19,6 +14,7 @@ Here, I will explore the question whether life expectancy and literacy have incr
 
 
 ```r
+pacman::p_load(tidyverse)
 pacman::p_load(wbstats)
 
 #Download current list of indicators
@@ -69,17 +65,9 @@ ggplot(wb_datF, aes(x=as.numeric(date), y=value, col=country)) +
        x = "Year", y="", col = "Country")
 ```
 
-```
-## Warning: Removed 66 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 15 row(s) containing missing values (geom_path).
-```
-
 <div class="figure" style="text-align: center">
-<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-4-1.png" alt="Example plot from World Bank data" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-4)Example plot from World Bank data</p>
+<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-3-1.png" alt="Example plot from World Bank data" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-3)Example plot from World Bank data</p>
 </div>
 
 You can find a similar but slightly more detailed example for how to use the package [here](https://cengel.github.io/gearup2016/worldbank.html) and very clear instructions in the the full [README file of the package](https://github.com/nset-ornl/wbstats/blob/master/README.md).
@@ -124,11 +112,12 @@ world %>% mutate(ShareOfCountries = n/sum(n)*100, ShareOfPopulation = pop/sum(po
 regionalAndWorld <- rbind(regional, world)
 ```
 
-<!--html_preserve--><style>html {
+```{=html}
+<style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#iskyecugjy .gt_table {
+#fmjlhjsihx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -153,7 +142,7 @@ regionalAndWorld <- rbind(regional, world)
   border-left-color: #D3D3D3;
 }
 
-#iskyecugjy .gt_heading {
+#fmjlhjsihx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -165,7 +154,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#iskyecugjy .gt_title {
+#fmjlhjsihx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -175,7 +164,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-width: 0;
 }
 
-#iskyecugjy .gt_subtitle {
+#fmjlhjsihx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -185,13 +174,13 @@ regionalAndWorld <- rbind(regional, world)
   border-top-width: 0;
 }
 
-#iskyecugjy .gt_bottom_border {
+#fmjlhjsihx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iskyecugjy .gt_col_headings {
+#fmjlhjsihx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -206,7 +195,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#iskyecugjy .gt_col_heading {
+#fmjlhjsihx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -226,7 +215,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#iskyecugjy .gt_column_spanner_outer {
+#fmjlhjsihx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -238,15 +227,15 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 4px;
 }
 
-#iskyecugjy .gt_column_spanner_outer:first-child {
+#fmjlhjsihx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iskyecugjy .gt_column_spanner_outer:last-child {
+#fmjlhjsihx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iskyecugjy .gt_column_spanner {
+#fmjlhjsihx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -258,7 +247,7 @@ regionalAndWorld <- rbind(regional, world)
   width: 100%;
 }
 
-#iskyecugjy .gt_group_heading {
+#fmjlhjsihx .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -280,7 +269,7 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#iskyecugjy .gt_empty_group_heading {
+#fmjlhjsihx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -295,15 +284,15 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#iskyecugjy .gt_from_md > :first-child {
+#fmjlhjsihx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iskyecugjy .gt_from_md > :last-child {
+#fmjlhjsihx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iskyecugjy .gt_row {
+#fmjlhjsihx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -322,7 +311,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#iskyecugjy .gt_stub {
+#fmjlhjsihx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -334,7 +323,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-left: 12px;
 }
 
-#iskyecugjy .gt_summary_row {
+#fmjlhjsihx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -344,7 +333,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#iskyecugjy .gt_first_summary_row {
+#fmjlhjsihx .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -354,7 +343,7 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#iskyecugjy .gt_grand_summary_row {
+#fmjlhjsihx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -364,7 +353,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#iskyecugjy .gt_first_grand_summary_row {
+#fmjlhjsihx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -374,11 +363,11 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#iskyecugjy .gt_striped {
+#fmjlhjsihx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iskyecugjy .gt_table_body {
+#fmjlhjsihx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -387,7 +376,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-color: #D3D3D3;
 }
 
-#iskyecugjy .gt_footnotes {
+#fmjlhjsihx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -401,13 +390,13 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#iskyecugjy .gt_footnote {
+#fmjlhjsihx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#iskyecugjy .gt_sourcenotes {
+#fmjlhjsihx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -421,46 +410,46 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#iskyecugjy .gt_sourcenote {
+#fmjlhjsihx .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#iskyecugjy .gt_left {
+#fmjlhjsihx .gt_left {
   text-align: left;
 }
 
-#iskyecugjy .gt_center {
+#fmjlhjsihx .gt_center {
   text-align: center;
 }
 
-#iskyecugjy .gt_right {
+#fmjlhjsihx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iskyecugjy .gt_font_normal {
+#fmjlhjsihx .gt_font_normal {
   font-weight: normal;
 }
 
-#iskyecugjy .gt_font_bold {
+#fmjlhjsihx .gt_font_bold {
   font-weight: bold;
 }
 
-#iskyecugjy .gt_font_italic {
+#fmjlhjsihx .gt_font_italic {
   font-style: italic;
 }
 
-#iskyecugjy .gt_super {
+#fmjlhjsihx .gt_super {
   font-size: 65%;
 }
 
-#iskyecugjy .gt_footnote_marks {
+#fmjlhjsihx .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="iskyecugjy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="fmjlhjsihx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style><strong>Women rule</strong> (%)</th>
@@ -477,13 +466,14 @@ regionalAndWorld <- rbind(regional, world)
   </thead>
   <tbody class="gt_table_body">
     <tr>
-      <td class="gt_row gt_right">9.1</td>
+      <td class="gt_row gt_right">8.8</td>
       <td class="gt_row gt_right">4.5</td>
     </tr>
   </tbody>
   
   
-</table></div><!--/html_preserve-->
+</table></div>
+```
 
 ```r
 ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_col(position="fill") + 
@@ -495,8 +485,8 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
 ```
 
 <div class="figure" style="text-align: center">
-<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-6-1.png" alt="Example plot from Wikidata" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-6)Example plot from Wikidata</p>
+<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-5-1.png" alt="Example plot from Wikidata" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-5)Example plot from Wikidata</p>
 </div>
 
 ## Other data sources
@@ -505,7 +495,7 @@ Beyond the examples here, there are many other datasets to access. You might wan
 
 * The extensive [list of political datasets](https://github.com/erikgahner/PolData) compiled by Erik Gahner, with lots of current and historical data on anything from terrorism to government revenues and gender in politics. At the bottom, it also has a list of links to other lists of datasets.
 * Eurostat offers a lot of statistics on all countries in Europe. In R, it can be accesses with the `eurostat` package; there is a  good [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/eurostat.pdf) to help you get started
-* The webpage [asdfree.com/](http://asdfree.com/), with (sparse) instructions of how to access a wide range of online data sources, from very focused surveys such as the US *National Longitudinal Study of Adolescent to Adult Health* to international and very widely used datasets such as the *World Values Survey.*
+* The webpage [asdfree.com](http://asdfree.com/), with (sparse) instructions of how to access a wide range of online data sources, from very focused surveys such as the US *National Longitudinal Study of Adolescent to Adult Health* to international and very widely used datasets such as the *World Values Survey.*
 * You can also use R to scrape data from pretty much any public webpage. [This tutorial](https://www.analyticsvidhya.com/blog/2017/03/beginners-guide-on-web-scraping-in-r-using-rvest-with-hands-on-knowledge/) shows how to get data from IMDB, for instance.
 * Finally, the `essurvey` package is the easiest way to get data from the European Social Survey into R. There is a good example for how to use it [here](https://ropensci.org/blog/2018/06/14/essurvey/)
 

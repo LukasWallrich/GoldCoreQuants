@@ -18,9 +18,6 @@ Inside dplyr pipes, you do not need to use the `$` to access variables within th
 ```r
 #Normal code
 cor.test(constituencies$MedianAge, constituencies$ElectionConShare)
-
-#With the exposition pipe
-constituencies %$% cor.test(MedianAge, ElectionConShare)
 ```
 
 ```
@@ -34,8 +31,15 @@ constituencies %$% cor.test(MedianAge, ElectionConShare)
 ##  0.4862318 0.5949037
 ## sample estimates:
 ##      cor 
-## 0.542836 
-## 
+## 0.542836
+```
+
+```r
+#With the exposition pipe
+constituencies %$% cor.test(MedianAge, ElectionConShare)
+```
+
+```
 ## 
 ## 	Pearson's product-moment correlation
 ## 

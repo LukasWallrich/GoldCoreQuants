@@ -4,9 +4,9 @@
 
 ## Install R on your computer
 
-R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, follow these detailed instructions in [Section 1.4 of the R for Data Science book](https://r4ds.had.co.nz/introduction.html){target="_blank"} 
+R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, follow the detailed instructions in [Section 1.4 of the R for Data Science book](https://r4ds.had.co.nz/introduction.html){target="_blank"} 
 
-Then **start exploring** - using R is a skill that comes with practice, not with reading about it. Most example from these notes can be copy-pasted or typed into R. Do that whenever possible to see what you are able to do and where you still have questions.
+Then **start exploring** - using R is a skill that comes with practice, not with reading about it. The examples from these notes can be copy-pasted or typed into R (when you move the mouse pointer over a code box you should see a copy-button in the top-right corner).
 
 ## Some key concepts
 
@@ -16,13 +16,13 @@ If you understand the following concepts, using R will make a lot more sense.
 
 You can think about the different parts of R in terms of a computer or smartphone. In that analogy:
 
-* **R is the processor and operating system** that carries out everything under the hood. It also contains many basic capabilities for everyday tasks
+* **R is the processor and operating system** that carries out everything under the hood. It also contains many basic functions (i.e. commands) for everyday tasks
 
 * **RStudio is the user interface.** The following parts are most relevant:
   + **Console** to type and run commands (usually to try things out or do things that need to be done once only)
-  + **File editor** to develop production code (i.e. code needed to reproduce your analyses and create reports). Here you edit .Rmd files (or plain .R scripts, not used in this course)
+  + **File editor** to develop production code (i.e. code needed to reproduce your analyses and create reports). Here you edit .Rmd files (or plain .R scripts, which are not used in this course)
   + **Environment** shows a list of all variables you have created. For dataframes, it shows the number of observations (rows) and variables (columns). Clicking on the name opens the data, clicking on the arrow shows some details
-  + **History** is a searchable list of all commands you have run - helpful if you want to resuse something done a while back.
+  + **History** is a searchable list of all commands you have run - helpful if you want to reuse something you have done a while back.
 
 * **R packages are the apps**
   + Installed once, using `install.packages("name")`
@@ -39,18 +39,19 @@ Lines starting with a # are comments that are ignored by R. I use them below to 
 
 
 ```r
-# <- saves the text "value" into the variable variableName
-month <- "January" 
+# <- saves a value (on the right) into an object (on the left)
+score <- 10
+month <- "January" # "" need to be used around text that is not an object name
 
-# c() combines several values into one vector that can then be saved as a variable
+# c() combines several values into one vector that can then be saved as a single object
 weekend <- c("Saturday", "Sunday") 
-sleepHrs <- c(4, 9)
+sleep_hours <- c(4, 9)
 
-#Variables can then be combined into dataframes (sth like tables)
-sleepData <- data.frame(day = weekend, hours = sleepHrs)
+#Variables can then be combined into dataframes (R's version of tables)
+sleep_data <- data.frame(day = weekend, hours = sleep_hours)
 
 #Variables within dataframes are accessed using the $ operator
-sum(sleepData$hours)
+sum(sleep_data$hours)
 ```
 
 ```
@@ -66,12 +67,12 @@ sum(sleepData$hours)
 
 The `class()` function shows the class of a single variable, the `str()` and `glimpse()` functions include the classes of all variables in a dataframe.
 
-Usually, R gets the classes right by itself and converts as required. If you need to change variable classes, you can use the `as.numeric()`, `as.character()`, `as.logical()`, `as.factor()` etc. functions. One thing to note: the `data.frame()` function and many functions that import data automatically change text to factors, which is often what we want (for instance, it correctly did this for weekdays above). To prevent this conversion, add `stringsAsFactors = FALSE` as an argument to the function, or convert the columns later using the `as.character()` function.
+Usually, R gets the classes right by itself and converts as required. If you need to change variable classes, you can use the `as.numeric()`, `as.character()`, `as.logical()`, `as.factor()` etc. functions.
 
 
 ```r
-class(sleepData$hours)
-str(sleepData)
+class(sleep_data$hours)
+str(sleep_data)
 ```
 
 ```
@@ -88,10 +89,9 @@ All work in R is based on calling functions that do something. A function is cal
 
 ```r
 #Some functions work without any additional arguments
-timestamp()
-#This shows the time this code segment was run - might be helpful if you create multiple reports
+timestamp() #This shows the time this code segment was run
 
-#Functions that work with given data are more helpful - that data is given as an 'argument'
+#Functions that work with given data are more helpful - that data is given as an 'argument' in brackets
 print("Hello")
 mean(c(1,2,3))
 
@@ -104,7 +104,7 @@ variableName <- mean(c(1,2,3, NA), na.rm = TRUE)
 ```
 
 ```
-## ##------ Sat Dec  5 11:27:25 2020 ------##
+## ##------ Mon Jan 18 23:50:01 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2

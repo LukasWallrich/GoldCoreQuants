@@ -2,10 +2,10 @@
 
 
 
-Much of statistics (namely *inferential* statistics) is about probability. Based on the data we have, is it likely that our hypothesis is true? But much of our other work as scientists, and much of everyday life, is also about probabilities. To be able to evaluate scientific claims, as well as news reporting and a range of other situations in life, it helps to have a basic understanding of probability. By the end of this, you should be able to find an answer to questions like the following:
+Much of statistics (namely *inferential* statistics) is about probability. Based on the data we have, is it likely that our hypothesis is true? But much of our other work as scientists, and much of everyday life, is also about probabilities. To be able to evaluate scientific claims, as well as news reporting and various situations in life, it helps to have a basic understanding of probability. By the end of this, you should be able to find an answer to questions like the following:
 
 * How big does a group need to be until it is 95% likely that two of them share a birthday?
-* Should it be news that a village in Poland has not seen a single boy being born in a decade?
+* Should it be news that there is a village in Poland where not a single boy has been born in more than a decade?
 * How likely is it that someone has breast cancer when they receive a positive mammogram result?
 
 ## What are probabilities?
@@ -26,7 +26,7 @@ Finally, probabilities can range from 0 (0 %) to 1 (100 %) - an event with a pro
 
 ## Combining multiple events together
 
-Often we are interested in more than one possible outcome. So what is the probability of rolling an even number *or* a 3 with a die? We already know that it is $\frac{3}{6}$ for an even number and $\frac{1}{6}$ for a 3. So the probability for either of them to occur is $\frac{4}{6}$ - we can add them up. 
+Often we are interested in more than one possible outcome, for instance when there are several paths to a desired outcome. So what is the probability of rolling an even number *or* a 3 with a die? We already know that it is $\frac{3}{6}$ for an even number and $\frac{1}{6}$ for a 3. So the probability for either of them to occur is $\frac{4}{6}$ - we can add them up. 
 
 However, what is the probability of rolling a 3 *or* an odd number? The probability for rolling an odd number is $\frac{3}{6}$, and the probability for rolling a 3 is $\frac{1}{6}$. Can we add them up? Remember that probabilities are the ways in which the event we are interested in can occur, divided by the total number of outcomes. Here, those are three ways (1, 3 and 5) of the possible six outcomes of rolling a die. Since rolling a 3 satisfies both sides of our *or* statement, we must not double count it.
 
@@ -93,7 +93,7 @@ The probability for the first child to be a girl is 50% ($\frac{1}{2}$). For the
 </div>
 
 
-Quite often we are interested in the **likelihood of something occurring at least once,** rather than on every attempt. So we might want to know how likely it is that a family with three children has at least one boy among them. Assuming that gender is binary, that is the same as saying that they do not have three girls. Given that they either have 3 girls or at least one boy, we know that these probabilities add up to 1 (certainty) - such events are known as *complementary* events. Therefore, the probability of having at least one boy is 1 - 12.5% = 77.5%
+Quite often we are interested in the **likelihood of something occurring at least once,** rather than on every attempt. So we might want to know how likely it is that a family with three children has at least one boy among them. Assuming that gender is binary, that is the same as saying that they do not have three girls. Given that they either have 3 girls or at least one boy, we know that these probabilities add up to 1 (certainty) - such events are known as *complementary* events. Therefore, the probability of having at least one boy is 1 - 12.5% = 87.5%
 
 Remembering that **something happening at least once is the *complement* of it never happening** is very helpful, because it is much easier to calculate the chance of something never happening across a given number (n) of procedures. It is $P(notA)^n$. We have already discussed this in the context of multiple comparisons. 
 
@@ -128,7 +128,7 @@ $P(Rained|StreetWet) = \frac{P(StreetWet|Rained)*P(Rained)}{P(StreetWet)}$
 
 So, my belief whether is has rained given that the street is wet should be based on the probability that the street is wet *if* it has rained, but also on the probability I could assign to rain before I got that information, and the probability that the street is wet regardless of rain. If I saw beautiful sunshine through the window all day long, my belief for $P(Rained)$ might be very low, so that I would probably not give a high value to $P(Rained|StreetWet)$. Similarly, if the street in front of my house is wet all the time due to a broken pipe (high ${P(StreetWet)}$), I would not give a high value to $P(Rained|StreetWet)$.
 
-Thinking in this way can help to interpret probabilistic results. A frequently used example (Gigerenzer and Hoffrage, 1995) goes as follows:
+Thinking in this way can help to interpret probabilistic results. A frequently used example [@gigerenzer1995improve] goes as follows:
 
 >The probability of breast cancer is 1% for women aged forty who participate in routine screening. If a woman has breast cancer, the probability is 80% that she will get a positive mammogram. If a woman does not have breast cancer, the probability is 9.6% that she will also get a positive mammogram. A woman in this age group has a positive mammogram in a routine screening. What is the probability that she actually has breast cancer?
 
@@ -154,4 +154,4 @@ The key message for evaluating the results of statistical tests, as well as any 
 ## Further resources
 
 * This [presentation](http://faculty.washington.edu/kenrice/BayesIntroClassEpi2018.pdf){target="_blank"} provides a fairly brief introduction to Bayesian statistics
-* Examples like the one regarding the breast cancer screening have led to lots of discussion about how to communicate the reliability of medical tests in a way that patients (and policy makers) understand. This article by [Navarette et al. (2015)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4585185/){target="_blank"} goes through some further interesting examples and ways of presenting information and highlights why mass screenings are often not helpful.
+* Examples like the one regarding the breast cancer screening have led to lots of discussion about how to communicate the reliability of medical tests in a way that patients (and policy makers) understand. This article by [Navarette et al. (2015)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4585185/){target="_blank"} goes through some further interesting examples and ways of presenting information and highlights why mass screenings are often not as helpful as they appear at first glance.

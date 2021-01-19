@@ -1,10 +1,5 @@
 # Comparing means between conditions or groups
 
-
-```r
-pacman::p_load(tidyverse)
-```
-
 Watch this video for an introduction to testing for differences between two means and the differences between repeated measures and independent samples:
 
 <iframe src=" https://www.youtube.com/embed/L69HyBnvQRQ?rel=0&modestbranding=1&loop=1&playlist=L69HyBnvQRQ " allowfullscreen width=80% height=350></iframe>
@@ -24,20 +19,17 @@ Going back to the European Social Survey 2014 data, we might be curious whether 
 
 
 ```r
+pacman::p_load(tidyverse)
 ess <- read_rds(url("http://empower-training.de/Gold/round7.RDS"))
 ess <- ess %>% mutate(soctrust = (ppltrst + pplfair + pplhlp)/3)
 essUK <- ess %>% filter(cntry=="GB")
 essUK %>% group_by(gndr) %>% summarise(mean(soctrust, na.rm = TRUE))
 ```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
+```{.bg-none}
 ## # A tibble: 2 x 2
 ##   gndr   `mean(soctrust, na.rm = TRUE)`
-##   <fct>                           <dbl>
+## * <fct>                           <dbl>
 ## 1 Male                             5.70
 ## 2 Female                           5.72
 ```
@@ -92,7 +84,7 @@ lm(soctrust ~ gndr, data=essUK) %>% summary()
 ## F-statistic: 0.04478 on 1 and 2248 DF,  p-value: 0.8324
 ```
 
-Both show, as expected, that the difference we observed could easily have been due to chance. If this is the only test you conduct, you would conventionally usually report the result of the t-test, saying: there was no significant difference in social trust between men and women, *t*(2248) = -0.21, *p* = .83.
+Both show, as expected, that the difference we observed could easily have been due to chance, and show the same *p* and *t*-values. You might report this by saying: there was no significant difference in social trust between men and women, *t*(2248) = -0.21, *p* = .83.
 
 ### Two dependent means
 
@@ -100,7 +92,9 @@ In the ESS data, participants were asked how much they drank when they last dran
 
 
 ```r
-essUK %>% summarise(weekday = mean(alcwkdy, na.rm=T), weekend=mean(alcwknd, na.rm = T)) %>% mutate(diff = weekend - weekday)
+essUK %>% 
+  summarise(weekday = mean(alcwkdy, na.rm=T), weekend=mean(alcwknd, na.rm = T)) %>%
+  mutate(diff = weekend - weekday)
 ```
 
 ```
@@ -131,7 +125,7 @@ t.test(essUK$alcwknd, essUK$alcwkdy, paired = TRUE)
 ##                26.14159
 ```
 
-The paired t-test - as it says in the output - tests whether the mean of the differences between the two variables is significantly different from 0. We could also specify that condition directly:
+The paired t-test - as it says in the output - tests whether the mean of the differences between the two variables is significantly different from 0. We could also specify that condition directly to receive identical results :
 
 
 ```r
@@ -159,22 +153,18 @@ We might be interested whether levels of life satisfaction differ between the Eu
 
 ```r
 essF <- ess %>% filter(cntry %in% c("FR", "ES", "IE", "BE", "NL"))
-essF %>% group_by(cntry) %>% summarise(mean(stflife, na.rm = T))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
+essF %>% group_by(cntry) %>% summarise(life_satisfaction = mean(stflife, na.rm = T))
 ```
 
 ```
 ## # A tibble: 5 x 2
-##   cntry `mean(stflife, na.rm = T)`
-##   <fct>                      <dbl>
-## 1 BE                          7.45
-## 2 ES                          6.96
-## 3 FR                          6.39
-## 4 IE                          6.94
-## 5 NL                          7.60
+##   cntry life_satisfaction
+## * <fct>             <dbl>
+## 1 BE                 7.45
+## 2 ES                 6.96
+## 3 FR                 6.39
+## 4 IE                 6.94
+## 5 NL                 7.60
 ```
 
 There seem to be some differences - but are they statistically significant? Here we actually have two questions:
@@ -231,7 +221,7 @@ pacman::p_load(car)
 ```
 
 ```
-## also installing the dependencies 'matrixStats', 'RcppArmadillo', 'zip', 'SparseM', 'MatrixModels', 'conquer', 'sp', 'data.table', 'openxlsx', 'minqa', 'nloptr', 'statmod', 'RcppEigen', 'carData', 'abind', 'pbkrtest', 'quantreg', 'maptools', 'rio', 'lme4'
+## also installing the dependencies 'matrixStats', 'RcppArmadillo', 'zip', 'numDeriv', 'SparseM', 'MatrixModels', 'conquer', 'sp', 'data.table', 'openxlsx', 'minqa', 'nloptr', 'statmod', 'RcppEigen', 'carData', 'abind', 'pbkrtest', 'quantreg', 'maptools', 'rio', 'lme4'
 ```
 
 ```
@@ -278,17 +268,17 @@ pairwise.t.test(essF$stflife, essF$cntry, p.adjust.method = "bonferroni")
 ## P value adjustment method: bonferroni
 ```
 
-This gives us *p*-values for all tests, that are adjusted for the fact that we are doing many (i.e. 10) comparisons and thus running a greater risk of getting a false positive. The bonferroni adjustment, selected here, multiplies each *p*-value by the number of comparisons, unless the resulting value would exceed 1 and thus be an impossible probability.
+This gives us *p*-values for all tests, that are adjusted for the fact that we are doing many (i.e. 10) comparisons and thus running a greater risk of getting a false positive. The Bonferroni adjustment, selected here, multiplies each *p*-value by the number of comparisons, unless the resulting value would exceed 1 and thus be an impossible probability.
 
 Combining this with the descriptive statistics, we can say, for instance, that the people in the Netherlands and Belgium are more satisfied with life than those in any of the other countries, but that their satisfaction levels do not differ significantly from each other.
 
 ### More than two means from repeated measures
 
-Here I will revert to the simulated example from the video linked above. In that, the effect of four conditions during studying on test score was tested, namely whether participants were exposed to instrumental music, vocal music, white noise or silence.
+Here I will revert to the simulated example from the video linked above. In that, the effect of four conditions during studying on participants' test scores was assessed, namely whether participants were exposed to instrumental music, vocal music, white noise or silence.
 
 
 
-Note that the data for repeated measures analaysis in R generally needs to be formatted in a way that each row shows one observation rather than multiple observations from one participant ("long" format). If you have data in a "wide" format, you can reshape it with the `gather()` function.
+Note that the data for repeated measures analysis in R generally needs to be formatted in a way that each row shows one observation rather than multiple observations from one participant ("long" format). If you have data in a "wide" format, you can reshape it with the `gather()` or `pivot_longer()` functions.
 
 To analyse whether there are differences between the conditions, as always, we start with descriptive statistics.
 
@@ -297,13 +287,9 @@ noiseData %>% group_by(condition) %>% summarise(mean(score))
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 4 x 2
 ##   condition    `mean(score)`
-##   <chr>                <dbl>
+## * <chr>                <dbl>
 ## 1 instrumental          11.6
 ## 2 silence               13.0
 ## 3 vocals                10.8
@@ -316,7 +302,7 @@ It looks like there are some differences, but to be able to judge statistical si
 
 Testing whether the conditions make a difference is a little bit harder with repeated measures because the observations are not independent. Therefore, we need to run a model that takes into account the relationships between the observations taken from a single participant. This does not work with `lm()`; instead we need to use an additional package that allows for multi-level modeling where some observations are clustered together, `lme4` is the most frequently used such package for this purpose.
 
-In the case of repeated measures, we were comparing our model with the group variable as a predictor implicitly to the model that only has the overall mean as a predictor (that is what the `lm()` F-test is doing). Here, the null model uses each participant's own overall mean as the prediction for their performance in any one condition. We need to set up that null model explicitly and then compare it to the model that considers groups. 
+In the case of independent samples, we were comparing our model with the group variable as a predictor implicitly to the model that predicts the overall mean for everyone (that is what the `lm()` F-test is doing). Here, the null model uses each participant's own overall mean as the prediction for their performance in any one condition. We need to set up that null model explicitly and then compare it to the model that considers groups. 
 
 
 ```r
@@ -351,7 +337,7 @@ anova(model0, model1)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-Here we can see that the hypothesised model showed a significantly better fit. This is tested with a $\chi^2$-test, which we will look at further later in the course.
+Here we can see that the hypothesised model showed a significantly better fit. This is tested with a $\chi^2$-test, which we will look at further later in the course, but the key criterion again is that *p* (here Pr(>Chisq)) is smaller than .05.
 
 #### Pairwise comparisons
 
@@ -376,7 +362,6 @@ pairwise.t.test(noiseData$score, noiseData$condition,	p.adj = "bonferroni", pair
 ## P value adjustment method: bonferroni
 ```
 
-This indicates that the scores of participants in the white noise and silence conditions were not significantly different from each other, while the other comparisons were significant.
-
+This indicates that the scores of participants in the white noise and silence conditions were not significantly different from each other, nor were those between vocals and instrumental music. Only the four comparisons between 'music' and 'non-music' conditions were significant.
 
 

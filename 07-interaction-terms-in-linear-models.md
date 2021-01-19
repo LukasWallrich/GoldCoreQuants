@@ -12,9 +12,6 @@ The section below essentially contains the code needed for the examples in the v
 ## Example 1: Memory and chess
 
 
-```r
-pacman::p_load(tidyverse)
-```
 
 
 
@@ -22,52 +19,51 @@ pacman::p_load(tidyverse)
 The first example draws on research by Gobet & Simon (1996) but uses simulated data.
 
 
+<div class='solution'><button>Show the code to simulate the data</button>
+
+
+
 ```r
 library(tidyverse)
 
 #Generate data (errors committed) - *roughly* based on Gobet & Simon 1996
 set.seed(300688) #for reproducible results
-ER <- rnorm(50,4.9,3.5) + rnorm(50, 0, 2)
+ER <- rnorm(50, 4.9,3.5) + rnorm(50, 0, 2)
 NR <- rnorm(50, 15.7, 4.0) + rnorm(50, 0, 2)
 EF <- rnorm(50, 21.4, 5) + rnorm(50, 0, 2)
 NF <- rnorm(50, 21.8, 5) + rnorm(50, 0, 2)
 
-obs <- data.frame(player = "expert", type = "real", errors = ER, stringsAsFactors = F) %>% 
-  rbind(data.frame(player = "novice", type = "real", errors = NR, stringsAsFactors = F)) %>%
-  rbind(data.frame(player = "expert", type = "fake", errors = EF, stringsAsFactors = F)) %>%
-  rbind(data.frame(player = "novice", type = "fake", errors = NF, stringsAsFactors = F)) %>% 
+obs <- data.frame(player = "expert", type = "real", errors = ER) %>% 
+  rbind(data.frame(player = "novice", type = "real", errors = NR)) %>%
+  rbind(data.frame(player = "expert", type = "fake", errors = EF)) %>%
+  rbind(data.frame(player = "novice", type = "fake", errors = NF)) %>% 
   mutate(type=factor(type), player = factor(player, levels = c("novice", "expert")))
-
 
 #Adding the centrally mirrored condition
 EM <- rnorm(50, 7.8, 3.5) + rnorm(50, 0, 2)
 NM <- rnorm(50, 18, 3.5) + rnorm(50, 0, 2)
 
-
-obs2 <- data.frame(player = "expert", type = "real", errors = ER, stringsAsFactors = F) %>% 
-  rbind(data.frame(player = "novice", type = "real", errors = NR, stringsAsFactors = F)) %>%
-  rbind(data.frame(player = "expert", type = "fake", errors = EF, stringsAsFactors = F)) %>%
-  rbind(data.frame(player = "novice", type = "fake", errors = NF, stringsAsFactors = F)) %>% 
-  rbind(data.frame(player = "expert", type = "mirrored", errors = EM, stringsAsFactors = F)) %>% 
-  rbind(data.frame(player = "novice", type = "mirrored", errors = NM, stringsAsFactors = F)) %>% 
+obs2 <- data.frame(player = "expert", type = "real", errors = ER) %>% 
+  rbind(data.frame(player = "novice", type = "real", errors = NR)) %>%
+  rbind(data.frame(player = "expert", type = "fake", errors = EF)) %>%
+  rbind(data.frame(player = "novice", type = "fake", errors = NF)) %>% 
+  rbind(data.frame(player = "expert", type = "mirrored", errors = EM)) %>% 
+  rbind(data.frame(player = "novice", type = "mirrored", errors = NM)) %>% 
   mutate(type=factor(type), player = factor(player, levels = c("novice", "expert")))
 ```
+
+</div>
+
+
 
 The first model tests whether player level and position type interact. That is the case, based on the very small *p*-value of the interaction term. Then we use a plot to understand the nature of that interaction further - because the predictor is categorical, we use the `cat_plot()` function.
 
 
 ```r
+pacman::p_load(tidyverse)
 mod <- lm(errors ~ player + type + player:type, obs)
 summary(mod)
-
-pacman::p_load(interactions)
-cat_plot(mod, pred="player", modx = "type", geom="line")
 ```
-
-<div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-4-1.png" alt="Simple interaction plot - lines are not parallel" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-4)Simple interaction plot - lines are not parallel</p>
-</div>
 
 ```
 ## 
@@ -91,14 +87,22 @@ cat_plot(mod, pred="player", modx = "type", geom="line")
 ## Multiple R-squared:  0.5892,	Adjusted R-squared:  0.5829 
 ## F-statistic: 93.69 on 3 and 196 DF,  p-value: < 2.2e-16
 ```
+
+```r
+pacman::p_load(interactions)
+cat_plot(mod, pred="player", modx = "type", geom="line")
+```
+
+<div class="figure" style="text-align: center">
+<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-4-1.png" alt="Simple interaction plot - note that lines are not parallel" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-4)Simple interaction plot - note that lines are not parallel</p>
+</div>
 Next we consider a third condition - chess positions that are neither quite real nor entirely fake, but positions that are mirrored. With that, we get multiple dummy interaction terms. To test whether they are collectively significant, we need to use the `Anova()` function from the `car` package.
 
 
 ```r
 mod <- lm(errors ~ player + type + player:type, obs2)
 summary(mod)
-pacman::p_load(car)
-car::Anova(mod, type=3)
 ```
 
 ```
@@ -124,7 +128,14 @@ car::Anova(mod, type=3)
 ## Residual standard error: 4.866 on 294 degrees of freedom
 ## Multiple R-squared:  0.6085,	Adjusted R-squared:  0.6018 
 ## F-statistic: 91.38 on 5 and 294 DF,  p-value: < 2.2e-16
-## 
+```
+
+```r
+pacman::p_load(car)
+car::Anova(mod, type=3)
+```
+
+```
 ## Anova Table (Type III tests)
 ## 
 ## Response: errors
@@ -151,13 +162,17 @@ cat_plot(mod, pred="player", modx = "type", geom="line")
 
 ## Example 2: link between obesity and negative emotions in the European Social Survey
 
-In this example, I considered the link between obesity and negative emotions in Germany in the European Social Survey 2014. Note that this relationship does not appear in the UK, which indicates that it should probably be treated as an interesting observation rather than a likely general relationship for now.
+In this example, I considered the link between obesity and negative emotions in Germany in the European Social Survey 2014. (Note that this relationship does not appear in the UK, which indicates that it should probably be treated as an interesting observation rather than a likely general relationship for now.)
+
+
+<div class='solution'><button>Click here to see the code that loads and prepares the data</button>
+
 
 
 ```r
 ess <- read_rds(url("http://empower-training.de/Gold/round7.RDS"))
 
-install.packages("psych") #Unless you have used that package before
+pacman::p_load(psych) #Used to create a scale
 ```
 
 ```
@@ -167,6 +182,11 @@ install.packages("psych") #Unless you have used that package before
 
 ```
 ## also installing the dependencies 'tmvnsim', 'mnormt'
+```
+
+```
+## 
+## psych installed
 ```
 
 ```r
@@ -185,20 +205,17 @@ essDE <- ess %>% filter(bmi < 60, bmi>=19, gndr != "No answer", cntry=="DE")
 ess$stflife <- haven::zap_labels(ess$stflife)
 ```
 
-The `lm()` output shows that there is a significant interaction between gender and BMI, with women having a stronger relationship between BMI and the frequency of experiencing negative emotions. This is again shown in an interaction plot - as the predictor variable is continuous, we now use the `interact_plot()` function.
+</div>
+
+
+The `lm()` output below shows that there is a significant interaction between gender and BMI, with women having a stronger relationship between BMI and the frequency of experiencing negative emotions. This is again shown in an interaction plot - as the predictor variable is continuous, we now use the `interact_plot()` function.
 
 
 ```r
 pacman::p_load(interactions)
 mod <- lm(depr ~ bmi + gndr + bmi:gndr, essDE)
 summary(mod)
-interact_plot(mod, pred="bmi", modx = "gndr")
 ```
-
-<div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-8-1.png" alt="interact_plot shows different slope for men and women" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-8)interact_plot shows different slope for men and women</p>
-</div>
 
 ```
 ## 
@@ -224,7 +241,16 @@ interact_plot(mod, pred="bmi", modx = "gndr")
 ## F-statistic: 36.63 on 3 and 2860 DF,  p-value: < 2.2e-16
 ```
 
-Note that `ggplot2` automatically includes an interaction when fitting regression lines when a categorical variable is mappes to the `colour` (or `linetype`) aesthetic.
+```r
+interact_plot(mod, pred="bmi", modx = "gndr")
+```
+
+<div class="figure" style="text-align: center">
+<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-8-1.png" alt="interact_plot shows different slope for men and women" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-8)interact_plot shows different slope for men and women</p>
+</div>
+
+Note that `ggplot2` automatically includes an interaction when fitting regression lines as soon as a categorical variable is mapped to the `colour` (or `linetype`) aesthetic - so in simple cases, `geom_smooth(method = "lm")` can be used as an alternative to `interact_plot()`
 
 
 ```r
@@ -242,7 +268,7 @@ ggplot(essDE, aes(x=bmi, y=depr, colour=gndr)) + geom_smooth(method="lm", se=FAL
 
 ## Example 3: link between working hours, income and life satisfaction
 
-This example considers whether working hours affect the link between income and life satisfaction - i.e. does working very long hours make income less valuable? This time, the effect appeared in the UK data in the 2014 European Social Survey - again, the question might be whether that is just an incident of spurious data mining, or whether it reveals a broader relationship.
+This example considers whether working hours (`wkhtot`) affect the link between income (`hinctnta`) and life satisfaction - i.e. does working very long hours make income less valuable? This time, the effect appeared in the UK data in the 2014 European Social Survey - again, the question might be whether that is just an incident of spurious data mining, or whether it reveals a broader relationship.
 
 In any case, let's have a look at the interaction. Note that `*` in the `lm()` formula is an abbreviation for `+` and `:`, so that the command below could also be written as `lm(stflife ~ wkhtot + hinctnta + wkhtot:hinctnta)`
 
@@ -277,7 +303,7 @@ summary(mod)
 ## F-statistic: 32.79 on 3 and 1810 DF,  p-value: < 2.2e-16
 ```
 
-We can see that while income positively predicts life satisfaction, this effects appears to be weaker when both income andd working hours are high. However, we need to be careful with interpretation here - technically, the coefficients for income and working hours now reflect the impact of that variable when the other variable is 0, and are thus unlikely to be meaningful. Therefore, it is better to look at the interaction plot and at simple slopes analyses. Both can now be done in two ways, depending on which variable we see as the primary predictor/variable of interest.
+We can see that while income positively predicts life satisfaction, this effects appears to be weaker when both income and working hours are high. However, we need to be careful with interpretation here - technically, the coefficients for income and working hours now reflect the impact of that variable when the other variable is 0, and are thus unlikely to be meaningful. Therefore, it is better to look at the interaction plot and at simple slopes analyses. Both can now be done in two ways, depending on which variable we see as the primary predictor/variable of interest.
 
 
 ```r
@@ -299,13 +325,12 @@ interact_plot(mod, pred="wkhtot", modx = "hinctnta")
 <p class="caption">(\#fig:unnamed-chunk-12)Option B: very different effects of working hours, depending on income</p>
 </div>
 
-Simple slopes analyses (`sim_slopes()`) offer similar information together with significance tests and thus help to decide which of the slopes should really be interpreted. They contain the Johnson-Neyman interval, which is the range of values of the moderator for which the predictor has a significant effect on the outcome.
+Simple slopes analyses (`sim_slopes()`) offer similar information together with significance tests and thus help to decide which of the slopes should be interpreted. They contain the Johnson-Neyman interval, which is the range of values of the moderator for which the predictor has a significant effect on the outcome.
 
 
 ```r
 pacman::p_load(interactions)
 sim_slopes(mod, pred="hinctnta", modx = "wkhtot")
-sim_slopes(mod, pred="wkhtot", modx = "hinctnta")
 ```
 
 ```
@@ -335,7 +360,13 @@ sim_slopes(mod, pred="wkhtot", modx = "hinctnta")
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
 ##   0.13   0.02     5.71   0.00
-## 
+```
+
+```r
+sim_slopes(mod, pred="wkhtot", modx = "hinctnta")
+```
+
+```
 ## JOHNSON-NEYMAN INTERVAL 
 ## 
 ## When hinctnta is OUTSIDE the interval [-43.03, 7.73], the slope of wkhtot
@@ -371,11 +402,6 @@ Finally, the `johnson_neyman()` function creates a plot showing the slope of one
 johnson_neyman(mod, pred="wkhtot", modx = "hinctnta")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-14-1.png" alt="Johnson-Neyman plot shows regions of significance" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-14)Johnson-Neyman plot shows regions of significance</p>
-</div>
-
 ```
 ## JOHNSON-NEYMAN INTERVAL 
 ## 
@@ -384,4 +410,9 @@ johnson_neyman(mod, pred="wkhtot", modx = "hinctnta")
 ## 
 ## Note: The range of observed values of hinctnta is [1.00, 10.00]
 ```
+
+<div class="figure" style="text-align: center">
+<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-14-1.png" alt="Johnson-Neyman plot shows regions of significance" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-14)Johnson-Neyman plot shows regions of significance</p>
+</div>
 

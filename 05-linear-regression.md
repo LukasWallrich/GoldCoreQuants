@@ -5,11 +5,6 @@
 
 This document recaps how we assess relationships between variables when at least the outcome variable is continuous.
 
-
-```r
-pacman::p_load(tidyverse)
-```
-
 ## Simple linear regression
 
 For an introduction to simple linear regression and correlation, watch this video:
@@ -19,37 +14,32 @@ When considering the relationship between two continuous variables, we should al
 
 
 ```r
+pacman::p_load(tidyverse)
 #Data preparation
 ess <- read_rds(url("http://empower-training.de/Gold/round7.RDS"))
 ess <- ess %>% mutate(soctrust = (ppltrst + pplfair + pplhlp)/3)
 nat_avgs <- ess %>% group_by(cntry) %>% 
   summarize(nat_soctrust = mean(soctrust, na.rm=T), 
             nat_stflife = mean(stflife, na.rm=T))
-```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```r
 ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) + geom_point()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-2-1.png" alt="Scatterplot relating social trust to life satisfaction" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-2)Scatterplot relating social trust to life satisfaction</p>
+<img src="05-linear-regression_files/figure-html/unnamed-chunk-1-1.png" alt="Scatterplot relating social trust to life satisfaction" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-1)Scatterplot relating social trust to life satisfaction</p>
 </div>
 
 The scatterplot can now help us to think about what kind of model would help us to explain or predict one variable based on the other. If a straight-line relationship seems reasonable, we can use a linear model.
 
 ### Plotting a simple linear regression model
 
-Geometrically, a simple linear regression model is just a straight line through the scatterplot, fitted in a way that minimises the distances from the points to the line. It can be fitted with the `geom_smooth(method="lm")` function.
+Geometrically, a simple linear regression model is just a straight line through the scatterplot, fitted in a way that minimises the distances from the points to the line. It can be plotted with the `geom_smooth(method="lm")` function.
 
 
 ```r
 ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) + 
-  geom_point() + geom_smooth(method="lm", se=FALSE) 
+  geom_point() + geom_smooth(method="lm", se = FALSE) #se=FALSE hides confidence bands that are often just visual clutter
 ```
 
 ```
@@ -57,13 +47,9 @@ ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-3-1.png" alt="Scatterplot with added regression line (&quot;line of best fit&quot;)" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Scatterplot with added regression line ("line of best fit")</p>
+<img src="05-linear-regression_files/figure-html/unnamed-chunk-2-1.png" alt="Scatterplot with added regression line (&quot;line of best fit&quot;)" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-2)Scatterplot with added regression line ("line of best fit")</p>
 </div>
-
-```r
-    #se=FALSE hides confidence bands that are often just visual clutter
-```
 
 For each value of one variable, this line now allows us to find the corresponding expected value of the other variable.
 
@@ -71,7 +57,7 @@ For each value of one variable, this line now allows us to find the correspondin
 
 The idea of a simple linear regression model is to link one predictor variable, $x$, to an outcome variable, $y$. Their relationship can be expressed in a simple formula:
 $$y=\beta_{0} +  \beta_{1}*x$$
-Here, **$\beta_{1}$ is the most important parameter** - it tells us, how much a change of 1 in the $x$-variable affects the $y$-variable. Geometrically, it is the slope of the regression line. $\beta_{0}$ is the intercept of that line, i.e. the value of $y$ when $x$ is 0 - since $x$ can often not be zero, that parameter tends to be of little interest on its own.
+Here, **$\beta_{1}$ is the most important parameter** - it tells us, how much a change of 1 in the $x$-variable affects the $y$-variable. Geometrically, it is the slope of the regression line. $\beta_{0}$ is the intercept of that line, i.e. the value of $y$ when $x$ is 0 - since $x$ can often not actually be zero, that parameter tends to be of little interest on its own.
 
 ### Fitting a simple linear regression model in R
 
@@ -111,7 +97,7 @@ Clearly this formula does not allow us to perfectly predict one variable from th
 
 #### Interpreting $R^2$
 
-The model output allows us to say how well the line fits by considering the $R^2$ value. It is based on the sum of the squares of the deviations of each data point from either the mean ($SS_{total}$) or the model($SS_{residual}$).
+The model output allows us to say how well the line fits by considering the $R^2$ value. It is based on the sum of the squares of the deviations of each data point from either the mean ($SS_{total}$) or the model ($SS_{residual}$).
 
 If I was considering a model that predicted people's height, I might have a person who is 1.6m tall. If the mean of the data was 1.8m, their squared total deviation would be $0.2*0.2 = 0.04$. If the model then predicted their height at 1.55m, their squared residual deviation would be $-0.05*-0.05 = 0.025$. Once this is summed up for all data points, $R^2$ is calculated with the following formula: 
 $$R^2 = 1 - \frac{SS_{residual}}{SS_{total}}$$
@@ -122,13 +108,15 @@ Given that the sum of squared residuals can never be less than 0 or more than th
 
 Each coefficient comes with an associated *p*-value in the summary that is shown at the end of the row. As indicated by the column title, it indicates the probability that the test statistic would be this large or larger *if* the null hypothesis was true and there was no association in the underlying population.
 
-As per usual, we would typically report coefficients with a *p*-value below .05 as statistically significant. The significance level for the intercept is almost never relevant and thus not reported (it simply tests whether the value of y would be different from 0 when x is zero, which is rarely of particular interest).
+As per usual, we would typically report coefficients with a *p*-value below .05 as statistically significant. The significance level for the intercept is often not of interest - it simply indicates whether the value of y is significantly different from 0 when x is 0.
+
+There is also a *p*-value for the overall model that essentially tests whether $R^2$ is significantly greater than 0. This is reported at the very bottom of the `summary()`-output. If there is only one predictor variable, this will the same as the *p*-value for $\beta_{1}$, but it will be of greater interest when there are several predictors.
 
 ## Bivariate correlation
 
-Simple linear regression can tell us whether two variables are linearly related to each other, whether this finding is statistically significant (i.e. unlikely to have arisen due to change), and how strong the relationship is *in terms of the units of the two variables.* Quite often, however, we would prefer a standardised measure of the strength of a relationship, and a quicker test. That is where correlation comes in.
+Simple linear regression can tell us whether two variables are linearly related to each other, whether this finding is statistically significant (i.e. clearer than what we might expect due to chance), and how strong the relationship is *in terms of the units of the two variables.* Quite often, however, we would prefer a standardised measure of the strength of a relationship, and a quicker test. That is where correlation comes in.
 
-The **Pearson's correlation coefficient** is the slope of the regression line when both variables are standardised, i.e. expressed in units of their standard deviations (as so-called Z-scores). It is again bounded, between -1 and 1, and as it is unit-free, it can give quick information as to which relationships matter more and which matter less.
+The **Pearson's correlation coefficient** is the slope of the regression line when both variables are standardised, i.e. expressed in units of their standard deviations (as so-called z-scores). It is again bounded, between -1 and 1. As it is unit-free, it can give quick information as to which relationships matter more and which matter less.
 
 ### Calculating the correlation coefficient
 
@@ -154,7 +142,7 @@ cor.test(nat_avgs$nat_soctrust, nat_avgs$nat_stflife)
 ## 0.8070221
 ```
 
-The estimated cor at the very bottom is the correlation coefficient, usually reported as *r* = .81. This shows that there is a strong positive relationship between the two variables. Check the *p*-value to see whether the relationship is statistically significant and the 95%-confidence interval to see how precise the estimate is likely to be.
+The estimated `cor` at the very bottom of the output is the correlation coefficient, usually reported as *r* = .81. This shows that there is a strong positive relationship between the two variables. Check the *p*-value to see whether the relationship is statistically significant and the 95%-confidence interval to see how precise the estimate is likely to be.
 
 ### Equivalence to linear regression
 
@@ -163,16 +151,12 @@ Just to show that this is indeed equivalent to simple linear regression on the s
 
 ```r
 ggplot(nat_avgs, aes(x=scale(nat_soctrust), y=scale(nat_stflife))) + 
-  geom_point() + geom_smooth(method="lm", se=FALSE)
-```
-
-```
-## `geom_smooth()` using formula 'y ~ x'
+  geom_point() + geom_smooth(method="lm", se=FALSE) + labs(x="National Social Trust (standardised)", y = "National life satisfaction (standardised)")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-6-1.png" alt="Scatterplot with scales variables (Z-scores)" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-6)Scatterplot with scales variables (Z-scores)</p>
+<img src="05-linear-regression_files/figure-html/unnamed-chunk-5-1.png" alt="Scatterplot with scaled variables (z-scores)" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-5)Scatterplot with scaled variables (z-scores)</p>
 </div>
 
 ```r
@@ -200,11 +184,11 @@ lm(scale(nat_stflife) ~ scale(nat_soctrust), data = nat_avgs) %>% summary()
 ## F-statistic: 35.49 on 1 and 19 DF,  p-value: 9.839e-06
 ```
 
-Note that the regression coefficient for the scaled variable is now exactly identical to the correlation coefficient shown above.
+Note that the regression coefficient for the scaled variable is identical to the correlation coefficient shown above.
 
 ## Multiple linear regression
 
-Linear models can easily be extended to multiple predictor variables. Here I will focus on a few key points that particularly focus on linear models that include categorical predictor variables.
+Linear models can easily be extended to multiple predictor variables. Here I will primarily focus on linear models that include categorical predictor variables.
 
 You can watch this video to take you through the process of extending simple linear regression to include multiple variables step-by-step:
 
@@ -213,11 +197,11 @@ You can watch this video to take you through the process of extending simple lin
 
 ### Dummy coding revisited
 
-Multiple linear regression models often use categorical predictors. However, they need to be turned into numbers. This is done through automatic dummy coding, which creates variables coded as 0 and 1. 
+Multiple linear regression models often use categorical predictors. However, they need to be turned into numbers. This is done through automatic dummy coding, which creates variables coded as 0 and 1 (so-called dummy variables). 
 
-Note that dummy coding always results in **one fewer dummy variable than the number of levels of the categorical variable**. For example, a gender variable with two levels (male/female) would be recoded into a single dummy variable *female* (0=no, 1=yes). Note that there is no equivalent variable *male* as that would be redundant. Given that the hypothetical gender variable here is defined as either male or female, not female necessarily implies male.
+Note that dummy coding always results in **one fewer dummy variable than the number of levels of the categorical variable**. For example, a *gender* variable with two levels (male/female) would be recoded into a single dummy variable *female* (0=no, 1=yes). Note that there is no equivalent variable *male* as that would be redundant. Given that the hypothetical gender variable here is defined as either male or female, not female necessarily implies male.
 
-The same applies to larger number of levels - see below how three possible values for the department variabel can be recoded into two dummy variables.
+The same applies to larger number of levels - see below how three possible values for the department variable would be recoded into two dummy variables.
 
 <div class="figure" style="text-align: center">
 <img src="./images/W10Dummy.png" alt="Example for dummy-coding" width="100%" />
@@ -244,21 +228,6 @@ In the `lm()`-function, it is very easy to keep on adding predictors to the form
 ```r
 #Load and prep data
 constituencies <- read_csv(url("http://empower-training.de/Gold/ConstituencyData2019.csv"), col_types = "_cfddddfffddddfffdfdddd")
-```
-
-```
-## Warning: 168 parsing failures.
-## row                    col expected actual         file
-##  47 ConShare2017           a double   #N/A <connection>
-## 534 ConShare2017           a double   #N/A <connection>
-## 534 ShareReligious         a double   #N/A <connection>
-## 534 ShareChristian         a double   #N/A <connection>
-## 534 DeprivationRankEngland a double   #N/A <connection>
-## ... ...................... ........ ...... ............
-## See problems(...) for more details.
-```
-
-```r
 constituencies <- constituencies %>% filter(RegionName != "Northern Ireland") %>%
           mutate(nation = case_when(RegionName == "Scotland" ~ "Scotland",
                                     RegionName == "Wales" ~ "Wales",
@@ -326,10 +295,26 @@ Now we have a more complex model. Based on the coefficient estimates, we would n
 $$VoteShare=-0.27 +  0.018*age + -0.25*Scotland + -0.15*Wales$$
 The figures for Scotland and Wales need to be compared to the unnamed reference level, i.e. to England - so we would expect a Scottish constituency to have a 25 percentage points lower Conservative vote share *when keeping median age constant.* Likewise, we now would expect an increase of the median age by 1 year to increase the Conservative vote share by 1.8 percentage points, *keeping the effect of nation constant.*
 
+
+```r
+#The moderndive is needed to plot parallel regression lines
+pacman::p_load("moderndive")
+
+ggplot(constituencies, aes(x=MedianAge, y=ElectionConShare, color = nation)) + geom_point() + moderndive::geom_parallel_slopes(se = FALSE)
+```
+
+<div class="figure" style="text-align: center">
+<img src="05-linear-regression_files/figure-html/unnamed-chunk-8-1.png" alt="Multiple regression model to predict Tory 2019 vote share" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-8)Multiple regression model to predict Tory 2019 vote share</p>
+</div>
+
+
+
+
 #### Significance testing and reporting in multiple regression models
 
 With more than one predictor, we have two questions: 
 
 * is the **overall model** significant, i.e. can we confidently believe that its estimates are better than if we just took the overall mean as our estimate for each constituency? That is shown in the last line of the summary. Here we would report that the regression model predicting the conservative vote share per constituency based on its median age and the nation it was located in was significant, with *F*(3, 627) = 244.6, *p* < .001, and explained a substantial share of the variance, $R^2$ = .54.
-* does **each predictor** explain a significant share of unique variance? That is shown at the end of each line in the coefficients table, with many predictors it would usually be reported in a table.
+* does **each predictor** explain a significant share of unique variance? That is shown at the end of each line in the coefficients table. With many predictors, coefficients and significance levels would usually be reported in a table.
 

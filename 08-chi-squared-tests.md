@@ -8,11 +8,6 @@ When we want to see whether two categorical variables are associated with each o
 
 ## Tables of frequencies and proportions
 
-
-```r
-pacman::p_load(tidyverse)
-```
-
 With two categorical variables, the data we observe can best be shown in a frequency table - i.e. a table that shows how many observations fall into each combination of categories of the two variables. This is created with the ` table()` function. Let's look an example of the association between political parties and their winning candidates' gender in the 2019 UK general election. (Note that this is based on the official statistics published by the election authorities, who registered candidate gender as a binary variable.)
 
 
@@ -56,7 +51,7 @@ prop.table(x, margin = 1) %>% #Share of each cell as part of the row
 
 To be able to test whether any differences between the rows or between the columns that we observe in a frequency table are statistically significant, we need to be clear on what the null hypothesis is. If two variables are statistically independent, then their distribution needs to be the same across each row and along each column. This does not mean that all cells need to have the same value, In our case, given that there are many more male than female election winners and many more Conservative MPs than MPs of any other party, we would expect the male Conservatives cell to have the highest number of observations if there was no relationship between party and winning candidates' gender, i.e. if the null hypothesis was true. 
 
-The expected number of observations in each cell under the null hypothesis can be calculated as the share of its row entire row of the total observations (e.g., the total share of female candidates) * the share of its column of the total (e.g., the total share of Labour candidates) * the total number of observations. Based on that logic, the expected number of observations per cell would be the following.
+The expected number of observations in each cell under the null hypothesis can be calculated as the share of its entire row of the total observations (e.g., the total share of female candidates) * the share of its entire column of the total (e.g., the total share of Labour candidates) * the total number of observations. Based on that logic, the expected number of observations per cell would be the following.
 
 
 ```
@@ -72,7 +67,7 @@ Once we know what to expect under the null-hypothesis, we need a way to see how 
 
 $$\chi^2=\sum\frac{(O-E)^2}E$$
 
-In R, easiest way to calculate it and test whether the distance of the observed distribution from the null distribution is statistically significant is to use the chisq.test() function.
+In R, easiest way to calculate it and test whether the distance of the observed distribution from the null distribution is statistically significant is to use the `chisq.test()` function.
 
 ## The chisq.test() function
 
@@ -96,7 +91,7 @@ To calculate the distance from distribution expected if there was no association
 
 
 ```r
-chisq.test(prefData$nationality, prefData$preference, correct = F)
+chisq.test(prefData$nationality, prefData$preference, correct = FALSE)
 ```
 
 ```
@@ -120,7 +115,6 @@ If we were to rerun the example above with a smaller sample but more extreme dif
 
 ```r
 table(prefDataSmall$nationality, prefDataSmall$preference)
-chisq.test(prefDataSmall$nationality, prefDataSmall$preference, correct = F)
 ```
 
 ```
@@ -128,6 +122,13 @@ chisq.test(prefDataSmall$nationality, prefDataSmall$preference, correct = F)
 ##            Coffee Tea
 ##   English      12  30
 ##   Scottish     10   8
+```
+
+```r
+chisq.test(prefDataSmall$nationality, prefDataSmall$preference, correct = FALSE)
+```
+
+```
 ## 
 ## 	Pearson's Chi-squared test
 ## 
@@ -154,8 +155,8 @@ With fewer than 7 expected cases of Scottish coffee drinkers, the standard $\chi
 
 ```r
 set.seed(300688)
-chisq.test(prefDataSmall$nationality, prefDataSmall$preference, correct = T)
-chisq.test(prefDataSmall$nationality, prefDataSmall$preference, simulate.p.value = T)
+chisq.test(prefDataSmall$nationality, prefDataSmall$preference, correct = TRUE)
+chisq.test(prefDataSmall$nationality, prefDataSmall$preference, simulate.p.value = TRUE)
 ```
 
 ```
@@ -183,9 +184,6 @@ $\chi^2$-tests can be used to test for an association between variables with man
 ```r
 prop.table(x, margin = 1) %>% #Share of each cell as part of the row
    round(2) #Round to 2 decimal places
-
-chisq.test(constituencies$ElectionWon, constituencies$WinnerGender,
-           simulate.p.value = TRUE)
 ```
 
 ```
@@ -195,6 +193,14 @@ chisq.test(constituencies$ElectionWon, constituencies$WinnerGender,
 ##   Lab   0.51 0.49
 ##   LD    0.64 0.36
 ##   SNP   0.33 0.67
+```
+
+```r
+chisq.test(constituencies$ElectionWon, constituencies$WinnerGender,
+           simulate.p.value = TRUE)
+```
+
+```
 ## 
 ## 	Pearson's Chi-squared test with simulated p-value (based on 2000
 ## 	replicates)
@@ -210,19 +216,6 @@ To compare each cell to the expected value, we can use the `chisq.posthoc.test` 
 
 ```r
 pacman::p_load(chisq.posthoc.test)
-```
-
-```
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-```
-
-```
-## 
-## chisq.posthoc.test installed
-```
-
-```r
 table(constituencies$ElectionWon, constituencies$WinnerGender) %>% chisq.posthoc.test(simulate.p.value = TRUE, method = "bonferroni")
 ```
 
@@ -257,7 +250,7 @@ chisq_to_cramers_v(chisq = 48.5, n = 626, nrow=4, ncol=2)
 ```
 ## Cramer's V |       95% CI
 ## -------------------------
-##       0.28 | [0.19, 0.35]
+## 0.28       | [0.19, 0.35]
 ```
 
 While this is a helpful statistic to compare effect strengths across multiple tests, it does not have an intuitive interpretation. Here, Odds Ratios might help. They can only be calculated for 2x2 tables, for instance for the fictional example regarding tea and coffee preferences. 

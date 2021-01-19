@@ -50,8 +50,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -277,8 +275,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Topic 1</span> Getting started with R</h1>
 <div id="install-r-on-your-computer" class="section level2">
 <h2><span class="header-section-number">1.1</span> Install R on your computer</h2>
-<p>R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, follow these detailed instructions in <a href="https://r4ds.had.co.nz/introduction.html" target="_blank">Section 1.4 of the R for Data Science book</a></p>
-<p>Then <strong>start exploring</strong> - using R is a skill that comes with practice, not with reading about it. Most example from these notes can be copy-pasted or typed into R. Do that whenever possible to see what you are able to do and where you still have questions.</p>
+<p>R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, follow the detailed instructions in <a href="https://r4ds.had.co.nz/introduction.html" target="_blank">Section 1.4 of the R for Data Science book</a></p>
+<p>Then <strong>start exploring</strong> - using R is a skill that comes with practice, not with reading about it. The examples from these notes can be copy-pasted or typed into R (when you move the mouse pointer over a code box you should see a copy-button in the top-right corner).</p>
 </div>
 <div id="some-key-concepts" class="section level2">
 <h2><span class="header-section-number">1.2</span> Some key concepts</h2>
@@ -287,13 +285,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">1.2.1</span> R, RStudio and R packages</h3>
 <p>You can think about the different parts of R in terms of a computer or smartphone. In that analogy:</p>
 <ul>
-<li><p><strong>R is the processor and operating system</strong> that carries out everything under the hood. It also contains many basic capabilities for everyday tasks</p></li>
+<li><p><strong>R is the processor and operating system</strong> that carries out everything under the hood. It also contains many basic functions (i.e. commands) for everyday tasks</p></li>
 <li><p><strong>RStudio is the user interface.</strong> The following parts are most relevant:</p>
 <ul>
 <li><strong>Console</strong> to type and run commands (usually to try things out or do things that need to be done once only)</li>
-<li><strong>File editor</strong> to develop production code (i.e. code needed to reproduce your analyses and create reports). Here you edit .Rmd files (or plain .R scripts, not used in this course)</li>
+<li><strong>File editor</strong> to develop production code (i.e. code needed to reproduce your analyses and create reports). Here you edit .Rmd files (or plain .R scripts, which are not used in this course)</li>
 <li><strong>Environment</strong> shows a list of all variables you have created. For dataframes, it shows the number of observations (rows) and variables (columns). Clicking on the name opens the data, clicking on the arrow shows some details</li>
-<li><strong>History</strong> is a searchable list of all commands you have run - helpful if you want to resuse something done a while back.</li>
+<li><strong>History</strong> is a searchable list of all commands you have run - helpful if you want to reuse something you have done a while back.</li>
 </ul></li>
 <li><p><strong>R packages are the apps</strong></p>
 <ul>
@@ -308,18 +306,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-and-variables-in-r" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> Data and variables in R</h3>
 <p>Lines starting with a # are comments that are ignored by R. I use them below to explain parts of the code further.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started-with-r.html#cb1-1"></a><span class="co"># &lt;- saves the text &quot;value&quot; into the variable variableName</span></span>
-<span id="cb1-2"><a href="getting-started-with-r.html#cb1-2"></a>month &lt;-<span class="st"> &quot;January&quot;</span> </span>
-<span id="cb1-3"><a href="getting-started-with-r.html#cb1-3"></a></span>
-<span id="cb1-4"><a href="getting-started-with-r.html#cb1-4"></a><span class="co"># c() combines several values into one vector that can then be saved as a variable</span></span>
-<span id="cb1-5"><a href="getting-started-with-r.html#cb1-5"></a>weekend &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>) </span>
-<span id="cb1-6"><a href="getting-started-with-r.html#cb1-6"></a>sleepHrs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">9</span>)</span>
-<span id="cb1-7"><a href="getting-started-with-r.html#cb1-7"></a></span>
-<span id="cb1-8"><a href="getting-started-with-r.html#cb1-8"></a><span class="co">#Variables can then be combined into dataframes (sth like tables)</span></span>
-<span id="cb1-9"><a href="getting-started-with-r.html#cb1-9"></a>sleepData &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">day =</span> weekend, <span class="dt">hours =</span> sleepHrs)</span>
-<span id="cb1-10"><a href="getting-started-with-r.html#cb1-10"></a></span>
-<span id="cb1-11"><a href="getting-started-with-r.html#cb1-11"></a><span class="co">#Variables within dataframes are accessed using the $ operator</span></span>
-<span id="cb1-12"><a href="getting-started-with-r.html#cb1-12"></a><span class="kw">sum</span>(sleepData<span class="op">$</span>hours)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started-with-r.html#cb1-1"></a><span class="co"># &lt;- saves a value (on the right) into an object (on the left)</span></span>
+<span id="cb1-2"><a href="getting-started-with-r.html#cb1-2"></a>score &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb1-3"><a href="getting-started-with-r.html#cb1-3"></a>month &lt;-<span class="st"> &quot;January&quot;</span> <span class="co"># &quot;&quot; need to be used around text that is not an object name</span></span>
+<span id="cb1-4"><a href="getting-started-with-r.html#cb1-4"></a></span>
+<span id="cb1-5"><a href="getting-started-with-r.html#cb1-5"></a><span class="co"># c() combines several values into one vector that can then be saved as a single object</span></span>
+<span id="cb1-6"><a href="getting-started-with-r.html#cb1-6"></a>weekend &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>) </span>
+<span id="cb1-7"><a href="getting-started-with-r.html#cb1-7"></a>sleep_hours &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">9</span>)</span>
+<span id="cb1-8"><a href="getting-started-with-r.html#cb1-8"></a></span>
+<span id="cb1-9"><a href="getting-started-with-r.html#cb1-9"></a><span class="co">#Variables can then be combined into dataframes (R&#39;s version of tables)</span></span>
+<span id="cb1-10"><a href="getting-started-with-r.html#cb1-10"></a>sleep_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">day =</span> weekend, <span class="dt">hours =</span> sleep_hours)</span>
+<span id="cb1-11"><a href="getting-started-with-r.html#cb1-11"></a></span>
+<span id="cb1-12"><a href="getting-started-with-r.html#cb1-12"></a><span class="co">#Variables within dataframes are accessed using the $ operator</span></span>
+<span id="cb1-13"><a href="getting-started-with-r.html#cb1-13"></a><span class="kw">sum</span>(sleep_data<span class="op">$</span>hours)</span></code></pre></div>
 <pre><code>## [1] 13</code></pre>
 <p><strong>Variable classes</strong> indicate what kind of data a variable contains. There are four main types</p>
 <ul>
@@ -329,9 +328,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>and factors, i.e. categorical variables, for example weekdays.</li>
 </ul>
 <p>The <code>class()</code> function shows the class of a single variable, the <code>str()</code> and <code>glimpse()</code> functions include the classes of all variables in a dataframe.</p>
-<p>Usually, R gets the classes right by itself and converts as required. If you need to change variable classes, you can use the <code>as.numeric()</code>, <code>as.character()</code>, <code>as.logical()</code>, <code>as.factor()</code> etc. functions. One thing to note: the <code>data.frame()</code> function and many functions that import data automatically change text to factors, which is often what we want (for instance, it correctly did this for weekdays above). To prevent this conversion, add <code>stringsAsFactors = FALSE</code> as an argument to the function, or convert the columns later using the <code>as.character()</code> function.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="getting-started-with-r.html#cb3-1"></a><span class="kw">class</span>(sleepData<span class="op">$</span>hours)</span>
-<span id="cb3-2"><a href="getting-started-with-r.html#cb3-2"></a><span class="kw">str</span>(sleepData)</span></code></pre></div>
+<p>Usually, R gets the classes right by itself and converts as required. If you need to change variable classes, you can use the <code>as.numeric()</code>, <code>as.character()</code>, <code>as.logical()</code>, <code>as.factor()</code> etc. functions.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="getting-started-with-r.html#cb3-1"></a><span class="kw">class</span>(sleep_data<span class="op">$</span>hours)</span>
+<span id="cb3-2"><a href="getting-started-with-r.html#cb3-2"></a><span class="kw">str</span>(sleep_data)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;
 ## &#39;data.frame&#39;:	2 obs. of  2 variables:
 ##  $ day  : chr  &quot;Saturday&quot; &quot;Sunday&quot;
@@ -341,20 +340,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">1.2.3</span> Functions in R</h3>
 <p>All work in R is based on calling functions that do something. A function is called by its name with () behind. If you just type the name, the function is printed out - you usually don’t want this.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="getting-started-with-r.html#cb5-1"></a><span class="co">#Some functions work without any additional arguments</span></span>
-<span id="cb5-2"><a href="getting-started-with-r.html#cb5-2"></a><span class="kw">timestamp</span>()</span>
-<span id="cb5-3"><a href="getting-started-with-r.html#cb5-3"></a><span class="co">#This shows the time this code segment was run - might be helpful if you create multiple reports</span></span>
-<span id="cb5-4"><a href="getting-started-with-r.html#cb5-4"></a></span>
-<span id="cb5-5"><a href="getting-started-with-r.html#cb5-5"></a><span class="co">#Functions that work with given data are more helpful - that data is given as an &#39;argument&#39;</span></span>
-<span id="cb5-6"><a href="getting-started-with-r.html#cb5-6"></a><span class="kw">print</span>(<span class="st">&quot;Hello&quot;</span>)</span>
-<span id="cb5-7"><a href="getting-started-with-r.html#cb5-7"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb5-8"><a href="getting-started-with-r.html#cb5-8"></a></span>
-<span id="cb5-9"><a href="getting-started-with-r.html#cb5-9"></a><span class="co">#Additionally, arguments can contain instructions to the function</span></span>
-<span id="cb5-10"><a href="getting-started-with-r.html#cb5-10"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb5-11"><a href="getting-started-with-r.html#cb5-11"></a><span class="co">#NA is a missing value, na.rm tells the mean function to remove it before calculating the mean</span></span>
-<span id="cb5-12"><a href="getting-started-with-r.html#cb5-12"></a></span>
-<span id="cb5-13"><a href="getting-started-with-r.html#cb5-13"></a><span class="co">#To save the results of a function into a variable, use the &lt;- operator again</span></span>
-<span id="cb5-14"><a href="getting-started-with-r.html#cb5-14"></a>variableName &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## ##------ Sat Dec  5 11:27:25 2020 ------##
+<span id="cb5-2"><a href="getting-started-with-r.html#cb5-2"></a><span class="kw">timestamp</span>() <span class="co">#This shows the time this code segment was run</span></span>
+<span id="cb5-3"><a href="getting-started-with-r.html#cb5-3"></a></span>
+<span id="cb5-4"><a href="getting-started-with-r.html#cb5-4"></a><span class="co">#Functions that work with given data are more helpful - that data is given as an &#39;argument&#39; in brackets</span></span>
+<span id="cb5-5"><a href="getting-started-with-r.html#cb5-5"></a><span class="kw">print</span>(<span class="st">&quot;Hello&quot;</span>)</span>
+<span id="cb5-6"><a href="getting-started-with-r.html#cb5-6"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb5-7"><a href="getting-started-with-r.html#cb5-7"></a></span>
+<span id="cb5-8"><a href="getting-started-with-r.html#cb5-8"></a><span class="co">#Additionally, arguments can contain instructions to the function</span></span>
+<span id="cb5-9"><a href="getting-started-with-r.html#cb5-9"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb5-10"><a href="getting-started-with-r.html#cb5-10"></a><span class="co">#NA is a missing value, na.rm tells the mean function to remove it before calculating the mean</span></span>
+<span id="cb5-11"><a href="getting-started-with-r.html#cb5-11"></a></span>
+<span id="cb5-12"><a href="getting-started-with-r.html#cb5-12"></a><span class="co">#To save the results of a function into a variable, use the &lt;- operator again</span></span>
+<span id="cb5-13"><a href="getting-started-with-r.html#cb5-13"></a>variableName &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## ##------ Mon Jan 18 23:50:01 2021 ------##
 ## [1] &quot;Hello&quot;
 ## [1] 2
 ## [1] 2</code></pre>
@@ -448,6 +446,9 @@ solveme_func = function(e) {
   
   if (my_answer !== "" & real_answers.includes(my_answer)) {
     cl.add("correct");
+    cl.remove("incorrect");
+  } else if (my_answer !== "") {
+    cl.add("incorrect");
   } else {
     cl.remove("correct");
   }
@@ -458,6 +459,7 @@ solveme_func = function(e) {
     var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
     if (matches.reduce((a, b) => a + b, 0) > 0) {
       cl.add("correct");
+      cl.remove("incorrect");
     } else {
       cl.remove("correct");
     }  
@@ -468,6 +470,8 @@ solveme_func = function(e) {
     answer_regex = RegExp(real_answers.join("|"))
     if (answer_regex.test(my_answer)) {
       cl.add("correct");
+      cl.remove("incorrect");
+
     }  
   }
   
@@ -507,7 +511,7 @@ window.onload = function() {
     solveme[i].dataset.answer = real_answer;
     
     /* attach checking function */
-    solveme[i].onkeyup = solveme_func;
+    /* solveme[i].onkeyup = solveme_func; */
     solveme[i].onchange = solveme_func;
   }
   

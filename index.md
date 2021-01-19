@@ -1,7 +1,7 @@
 --- 
 title: "Getting started with Quantitative Research Methods and R"
 author: "Lukas Wallrich"
-date: "Last updated: 2020-12-05"
+date: "Last updated: 2021-01-18"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -21,7 +21,7 @@ favicon: "favicon.ico"
 
 # Overview {-}
 
-This guide supports the Core Quantitative Methods Course offered by the Goldsmiths' Graduate School. **It is a living document and currently focuses on R at the expense of broader considerations of quantitative research, but will grow over time - [please raise any issues and suggestions here](https://github.com/LukasWallrich/GoldCoreQuants/issues)** It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps  to look things up more easily.
+This guide supports the Core Quantitative Methods Course offered by the Goldsmiths' Graduate School. **It is a living document and currently focuses on R at the expense of broader considerations of quantitative research, but will grow over time - [please raise any issues and suggestions here](https://github.com/LukasWallrich/GoldCoreQuants/issues).** It does not follow the order of sessions in the course; instead, it is ordered in a way that might allow you to see connections and hopefully helps  to look things up more easily.
 
 ## Further sources
 
@@ -29,9 +29,9 @@ This guide does not aim to be comprehensive, but just to provide sufficient orie
 
 ### Free online books
 
-* Hadley Wickham, the leading brain behind the tidyverse packages, has co-authored [*R for Data Science*](https://r4ds.had.co.nz/index.html){target="_blank"} (with Garrett Grolemund). This book does not cover inferential statistics, but explains how to use R to process, describe and visualise data in line with the aproach taken in this course.
+* Hadley Wickham, the leading brain behind the `tidyverse` packages, has co-authored [*R for Data Science*](https://r4ds.had.co.nz/index.html){target="_blank"} (with Garrett Grolemund). This book does not cover inferential statistics, but explains how to use R to process, describe and visualise data in line with the aproach taken in this course.
 * The [*Learning statistics with R*](https://learningstatisticswithr.com/book/){target="_blank"} book by Danielle Navarro focuses on explaining the different statistical tests and their application in quite a lot of detail, including the underlying maths. It is written by a psychologist, and might therefore be particularly helpful for people from that discipline. 
-*  [Statistical thinking for the 21st century](https://statsthinking21.github.io/statsthinking21-core-site/){target="_blank"} is a great modern book on statistics, which also offers this handy [R companion](https://statsthinking21.github.io/statsthinking21-R-site/index.html){target="_blank"} that covers most of what is needed for this course (though it is still a work-in-progress document)
+*  [Statistical thinking for the 21st century](https://statsthinking21.github.io/statsthinking21-core-site/){target="_blank"} is a great modern book on statistics, which also offers this handy [R companion](https://statsthinking21.github.io/statsthinking21-R-site/index.html){target="_blank"} that covers most of what is needed for this course (though it is still a work-in-progress document).
   
 
 ### Paper/library books
@@ -42,8 +42,8 @@ This guide does not aim to be comprehensive, but just to provide sufficient orie
 
 ### Other key resources
 
-* The RStudio team created and collected a very helpful set of Cheatsheets that cover the key elements of various R packages - have a look [here.](https://rstudio.com/resources/cheatsheets/){target="_blank"} For this course, the sheets on `dplyr` and `ggplot2` are the most important.
-* [Stackoverflow](https://stackoverflow.com/questions/tagged/r){target="_blank"} is an online forum with a great and welcoming support community. However, make sure to use Google and their search function first to check that your question hasn't already been answered and show what you already understand - if the same questions keep on getting asked or if the questions are very unclear, people volunteering their time to help can get a bit testy.
+* The RStudio team created and collected a very helpful set of Cheat Sheets that cover the key elements of various R packages - have a look [here.](https://rstudio.com/resources/cheatsheets/){target="_blank"} For this course, the sheets on `dplyr` and `ggplot2` are the most important.
+* [Stackoverflow](https://stackoverflow.com/questions/tagged/r){target="_blank"} is an online forum with a knewledgeable and welcoming support community. However, make sure to use Google and their search function first to check that your question hasn't already been answered and show what you already understand - if the same questions keep on getting asked or if the questions are very unclear, people volunteering their time to help can get a bit testy.
 
 ## Why R?
 

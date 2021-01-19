@@ -27,7 +27,7 @@ pacman::p_load(haven)
 gapminder <- read_sav("./data/gapminder.sav") #SPSS files contain information on the class of each variable, so that col_types do not need to be defined
 ```
 
-There are shortcuts to quickly get some data into R, which can be helpful if you just want to try something out - all of them only make sense in the Console, not in a .Rmd script. Using the `edit()` function, you can open up a simple spreadsheet to edit and input data, using the `read.table(file="clipboard", sep="\t")`, you can get data you copied in Excel. As with all ways of importing data, remember to assign the result to a variable.
+There are shortcuts to quickly get some data into R, which can be helpful if you just want to try something out - all of them only make sense in the Console, not in a .Rmd script. Using the `edit()` function, you can open up a simple spreadsheet to edit and input data, using `read.table(file="clipboard", sep="\t")`, you can get data you copied in Excel. As with all ways of importing data, remember to assign the result to a variable.
 
 
 
@@ -51,28 +51,13 @@ pasted <- read.table(file="clipboard", sep="\t", header = TRUE)
 
 ## View data
 
-When you start with a new dataset, there are some helpful functions to get a first look at the data: `glimpse()`gives a good overview of the variables contained in the dataset, while `head()` and `tail()` print the first and last lines. In the **Console** (but not really within scripts such as .Rmd files), you can also use `View()` to open up the whole dataset. Finally, you can have a look at data in the **Environment** pane in RStudio.
+When you start with a new dataset, there are some helpful functions to get a first look at the data: `glimpse()`gives a good overview of the variables contained in the dataset, while `head()` and `tail()` print the first and last lines. In the **Console** (but not really within scripts such as *.Rmd* files), you can also use `View()` to open up the whole dataset. Finally, you can have a look at data in the **Environment** pane in RStudio.
 
 
 ```r
 pacman::p_load(dslabs) #Load the gapminder teaching dataset
-```
-
-```
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-```
-
-```
-## 
-## dslabs installed
-```
-
-```r
 pacman::p_load(dplyr) #Load the dplyr package that offers glimpse()
 glimpse(gapminder)
-head(gapminder, n=5) #n defines number of rows shown
-tail(gapminder, n=5)
 ```
 
 ```
@@ -87,6 +72,13 @@ tail(gapminder, n=5)
 ## $ gdp              <dbl> NA, 13828152297, NA, NA, 108322326649, NA, NA, 96677…
 ## $ continent        <fct> Europe, Africa, Africa, Americas, Americas, Asia, Am…
 ## $ region           <fct> Southern Europe, Northern Africa, Middle Africa, Car…
+```
+
+```r
+head(gapminder, n=5) #n defines number of rows shown
+```
+
+```
 ##               country year infant_mortality life_expectancy fertility
 ## 1             Albania 1960           115.40           62.87      6.19
 ## 2             Algeria 1960           148.20           47.50      7.65
@@ -99,6 +91,13 @@ tail(gapminder, n=5)
 ## 3    5270844           NA    Africa   Middle Africa
 ## 4      54681           NA  Americas       Caribbean
 ## 5   20619075 108322326649  Americas   South America
+```
+
+```r
+tail(gapminder, n=5)
+```
+
+```
 ##                  country year infant_mortality life_expectancy fertility
 ## 10541 West Bank and Gaza 2016               NA           74.70        NA
 ## 10542            Vietnam 2016               NA           75.60        NA
@@ -116,21 +115,13 @@ tail(gapminder, n=5)
 
 ## Manipulating data and using dplyr
 
-Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summaries. The `dplyr` package (part of the `tidyverse`) is designed to make all these steps easier, so we use it extensively during this course. `dplyr` is based on two main ideas: 
+Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summary statistics. The `dplyr` package (part of the `tidyverse`) is designed to make all these steps easier, so we use it extensively during this course. `dplyr` is based on two main ideas: 
 
 * Develop a chain of data manipulation steps that get you towards the desired data, with the steps connected by the `%>%` operator ("pipe"). That removes the need for nested functions or for saving lots of intermediate results.
 * Use functions names after natural language verbs to develop code that can be easily understood.
 
 `%>%` takes the argument on the left and places it as the first argument into the function on the right. For example:
 
-
-```r
-x <- c(1,2,3, NA)
-
-#The following two commands are equivalent
-mean(x, na.rm = TRUE)
-x %>% mean(na.rm = TRUE)
-```
 
 ```
 ## [1] 2
@@ -171,10 +162,6 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 5 x 3
 ##   continent AvgGdpPerCap_Nations AvgGdpPerCap_People
 ##   <fct>                    <dbl>               <dbl>
@@ -193,7 +180,7 @@ For an introduction to `dplyr`, you can watch this video:
 
 ## Summarise data (descriptive statistics)
 
-Next you might want to use summary functions - either in a dplyr `summarise()` function or on their own. For most of them, you can use the `na.rm = TRUE` argument to tell R to ignore missing values (only do that when you have reason to expect that missing values can safely be ignored).
+Next you might want to use summary functions - either in a dplyr `summarise()` function or on their own. For most of them, you can use the `na.rm = TRUE` argument to tell R to ignore missing values (only do that when you have reason to assume that missing values can safely be ignored).
 
 
 ```r
@@ -201,39 +188,78 @@ gapminder2010 <- gapminder %>% filter(year==2010)
 
 #Global population
 sum(gapminder2010$population, na.rm = TRUE)
+```
 
+```
+## [1] 6778331427
+```
+
+```r
 #Number of countries included
 nrow(gapminder2010)
-#To get the number inside dplyr's summarise function, it would have to be
-gapminder2010 %>% summarise(countries = n())
+```
 
+```
+## [1] 185
+```
+
+```r
+#To get the number inside dplyr's summarise function, it would have to be
+gapminder2010 %>% summarise(n_rows = n())
+```
+
+```
+##   n_rows
+## 1    185
+```
+
+```r
 #Average (mean) number of children per woman
 mean(gapminder2010$fertility, na.rm = TRUE)
+```
 
+```
+## [1] 2.885297
+```
+
+```r
 #Average (median) number of children per woman
 median(gapminder2010$fertility, na.rm = TRUE)
+```
 
+```
+## [1] 2.38
+```
+
+```r
 #Highest and lowest fertility rates
 max(gapminder2010$fertility)
-min(gapminder2010$fertility)
+```
 
+```
+## [1] 7.58
+```
+
+```r
+min(gapminder2010$fertility)
+```
+
+```
+## [1] 1
+```
+
+```r
 #Countries with highest and lowest fertility.
-#There are many ways to look this up - here is a simple dplyr pipe (Note that | means 'or' in the context of logical comparisons and == is needed to test for equality because = just assigns a value)
-pacman::p_load(dplyr) #Needs to be run only once per R session!
+#There are many ways to look this up - here is a simple dplyr pipe 
+## Note that | means 'or' in the context of logical comparisons 
+## and == is needed to test for equality because = just assigns a value.
+
 gapminder2010 %>% 
   filter(fertility == max(fertility) | fertility == min(fertility)) %>% 
     select(country, fertility)
 ```
 
 ```
-## [1] 6778331427
-## [1] 185
-##   countries
-## 1       185
-## [1] 2.885297
-## [1] 2.38
-## [1] 7.58
-## [1] 1
 ##        country fertility
 ## 1 Macao, China      1.00
 ## 2        Niger      7.58

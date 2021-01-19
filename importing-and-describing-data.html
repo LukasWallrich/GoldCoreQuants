@@ -50,8 +50,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -295,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-7"><a href="importing-and-describing-data.html#cb7-7"></a></span>
 <span id="cb7-8"><a href="importing-and-describing-data.html#cb7-8"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(haven)</span>
 <span id="cb7-9"><a href="importing-and-describing-data.html#cb7-9"></a>gapminder &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;./data/gapminder.sav&quot;</span>) <span class="co">#SPSS files contain information on the class of each variable, so that col_types do not need to be defined</span></span></code></pre></div>
-<p>There are shortcuts to quickly get some data into R, which can be helpful if you just want to try something out - all of them only make sense in the Console, not in a .Rmd script. Using the <code>edit()</code> function, you can open up a simple spreadsheet to edit and input data, using the <code>read.table(file="clipboard", sep="\t")</code>, you can get data you copied in Excel. As with all ways of importing data, remember to assign the result to a variable.</p>
+<p>There are shortcuts to quickly get some data into R, which can be helpful if you just want to try something out - all of them only make sense in the Console, not in a .Rmd script. Using the <code>edit()</code> function, you can open up a simple spreadsheet to edit and input data, using <code>read.table(file="clipboard", sep="\t")</code>, you can get data you copied in Excel. As with all ways of importing data, remember to assign the result to a variable.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="importing-and-describing-data.html#cb8-1"></a><span class="co">#If you want to edit an existing dataset</span></span>
 <span id="cb8-2"><a href="importing-and-describing-data.html#cb8-2"></a>gapminder_corrected &lt;-<span class="st"> </span><span class="kw">edit</span>(gapminder)</span>
 <span id="cb8-3"><a href="importing-and-describing-data.html#cb8-3"></a></span>
@@ -314,16 +312,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="view-data" class="section level2">
 <h2><span class="header-section-number">2.2</span> View data</h2>
-<p>When you start with a new dataset, there are some helpful functions to get a first look at the data: <code>glimpse()</code>gives a good overview of the variables contained in the dataset, while <code>head()</code> and <code>tail()</code> print the first and last lines. In the <strong>Console</strong> (but not really within scripts such as .Rmd files), you can also use <code>View()</code> to open up the whole dataset. Finally, you can have a look at data in the <strong>Environment</strong> pane in RStudio.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="importing-and-describing-data.html#cb9-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dslabs) <span class="co">#Load the gapminder teaching dataset</span></span></code></pre></div>
-<pre><code>## Installing package into &#39;/home/runner/work/_temp/Library&#39;
-## (as &#39;lib&#39; is unspecified)</code></pre>
-<pre><code>## 
-## dslabs installed</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="importing-and-describing-data.html#cb12-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr) <span class="co">#Load the dplyr package that offers glimpse()</span></span>
-<span id="cb12-2"><a href="importing-and-describing-data.html#cb12-2"></a><span class="kw">glimpse</span>(gapminder)</span>
-<span id="cb12-3"><a href="importing-and-describing-data.html#cb12-3"></a><span class="kw">head</span>(gapminder, <span class="dt">n=</span><span class="dv">5</span>) <span class="co">#n defines number of rows shown</span></span>
-<span id="cb12-4"><a href="importing-and-describing-data.html#cb12-4"></a><span class="kw">tail</span>(gapminder, <span class="dt">n=</span><span class="dv">5</span>)</span></code></pre></div>
+<p>When you start with a new dataset, there are some helpful functions to get a first look at the data: <code>glimpse()</code>gives a good overview of the variables contained in the dataset, while <code>head()</code> and <code>tail()</code> print the first and last lines. In the <strong>Console</strong> (but not really within scripts such as <em>.Rmd</em> files), you can also use <code>View()</code> to open up the whole dataset. Finally, you can have a look at data in the <strong>Environment</strong> pane in RStudio.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="importing-and-describing-data.html#cb9-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dslabs) <span class="co">#Load the gapminder teaching dataset</span></span>
+<span id="cb9-2"><a href="importing-and-describing-data.html#cb9-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr) <span class="co">#Load the dplyr package that offers glimpse()</span></span>
+<span id="cb9-3"><a href="importing-and-describing-data.html#cb9-3"></a><span class="kw">glimpse</span>(gapminder)</span></code></pre></div>
 <pre><code>## Rows: 10,545
 ## Columns: 9
 ## $ country          &lt;fct&gt; Albania, Algeria, Angola, Antigua and Barbuda, Argen…
@@ -334,8 +326,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ population       &lt;dbl&gt; 1636054, 11124892, 5270844, 54681, 20619075, 1867396…
 ## $ gdp              &lt;dbl&gt; NA, 13828152297, NA, NA, 108322326649, NA, NA, 96677…
 ## $ continent        &lt;fct&gt; Europe, Africa, Africa, Americas, Americas, Asia, Am…
-## $ region           &lt;fct&gt; Southern Europe, Northern Africa, Middle Africa, Car…
-##               country year infant_mortality life_expectancy fertility
+## $ region           &lt;fct&gt; Southern Europe, Northern Africa, Middle Africa, Car…</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="importing-and-describing-data.html#cb11-1"></a><span class="kw">head</span>(gapminder, <span class="dt">n=</span><span class="dv">5</span>) <span class="co">#n defines number of rows shown</span></span></code></pre></div>
+<pre><code>##               country year infant_mortality life_expectancy fertility
 ## 1             Albania 1960           115.40           62.87      6.19
 ## 2             Algeria 1960           148.20           47.50      7.65
 ## 3              Angola 1960           208.00           35.98      7.32
@@ -346,8 +339,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2   11124892  13828152297    Africa Northern Africa
 ## 3    5270844           NA    Africa   Middle Africa
 ## 4      54681           NA  Americas       Caribbean
-## 5   20619075 108322326649  Americas   South America
-##                  country year infant_mortality life_expectancy fertility
+## 5   20619075 108322326649  Americas   South America</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="importing-and-describing-data.html#cb13-1"></a><span class="kw">tail</span>(gapminder, <span class="dt">n=</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>##                  country year infant_mortality life_expectancy fertility
 ## 10541 West Bank and Gaza 2016               NA           74.70        NA
 ## 10542            Vietnam 2016               NA           75.60        NA
 ## 10543              Yemen 2016               NA           64.92        NA
@@ -362,17 +356,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="manipulating-data-and-using-dplyr" class="section level2">
 <h2><span class="header-section-number">2.3</span> Manipulating data and using dplyr</h2>
-<p>Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summaries. The <code>dplyr</code> package (part of the <code>tidyverse</code>) is designed to make all these steps easier, so we use it extensively during this course. <code>dplyr</code> is based on two main ideas:</p>
+<p>Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summary statistics. The <code>dplyr</code> package (part of the <code>tidyverse</code>) is designed to make all these steps easier, so we use it extensively during this course. <code>dplyr</code> is based on two main ideas:</p>
 <ul>
 <li>Develop a chain of data manipulation steps that get you towards the desired data, with the steps connected by the <code>%&gt;%</code> operator (“pipe”). That removes the need for nested functions or for saving lots of intermediate results.</li>
 <li>Use functions names after natural language verbs to develop code that can be easily understood.</li>
 </ul>
 <p><code>%&gt;%</code> takes the argument on the left and places it as the first argument into the function on the right. For example:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="importing-and-describing-data.html#cb14-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>)</span>
-<span id="cb14-2"><a href="importing-and-describing-data.html#cb14-2"></a></span>
-<span id="cb14-3"><a href="importing-and-describing-data.html#cb14-3"></a><span class="co">#The following two commands are equivalent</span></span>
-<span id="cb14-4"><a href="importing-and-describing-data.html#cb14-4"></a><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb14-5"><a href="importing-and-describing-data.html#cb14-5"></a>x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mean</span>(<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 2
 ## [1] 2</code></pre>
 <p>The most important <code>dplyr</code> functions are:</p>
@@ -401,7 +390,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-12"><a href="importing-and-describing-data.html#cb16-12"></a><span class="st">              </span><span class="co">#This rounds all numeric variables to 0 decimal places </span></span>
 <span id="cb16-13"><a href="importing-and-describing-data.html#cb16-13"></a><span class="st">              </span><span class="co">#(beyond expectations for this course)    </span></span>
 <span id="cb16-14"><a href="importing-and-describing-data.html#cb16-14"></a><span class="st">                </span><span class="kw">arrange</span>(<span class="kw">desc</span>(AvgGdpPerCap_Nations))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 5 x 3
 ##   continent AvgGdpPerCap_Nations AvgGdpPerCap_People
 ##   &lt;fct&gt;                    &lt;dbl&gt;               &lt;dbl&gt;
@@ -417,42 +405,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="summarise-data-descriptive-statistics" class="section level2">
 <h2><span class="header-section-number">2.4</span> Summarise data (descriptive statistics)</h2>
-<p>Next you might want to use summary functions - either in a dplyr <code>summarise()</code> function or on their own. For most of them, you can use the <code>na.rm = TRUE</code> argument to tell R to ignore missing values (only do that when you have reason to expect that missing values can safely be ignored).</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="importing-and-describing-data.html#cb19-1"></a>gapminder2010 &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2010</span>)</span>
-<span id="cb19-2"><a href="importing-and-describing-data.html#cb19-2"></a></span>
-<span id="cb19-3"><a href="importing-and-describing-data.html#cb19-3"></a><span class="co">#Global population</span></span>
-<span id="cb19-4"><a href="importing-and-describing-data.html#cb19-4"></a><span class="kw">sum</span>(gapminder2010<span class="op">$</span>population, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb19-5"><a href="importing-and-describing-data.html#cb19-5"></a></span>
-<span id="cb19-6"><a href="importing-and-describing-data.html#cb19-6"></a><span class="co">#Number of countries included</span></span>
-<span id="cb19-7"><a href="importing-and-describing-data.html#cb19-7"></a><span class="kw">nrow</span>(gapminder2010)</span>
-<span id="cb19-8"><a href="importing-and-describing-data.html#cb19-8"></a><span class="co">#To get the number inside dplyr&#39;s summarise function, it would have to be</span></span>
-<span id="cb19-9"><a href="importing-and-describing-data.html#cb19-9"></a>gapminder2010 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">countries =</span> <span class="kw">n</span>())</span>
-<span id="cb19-10"><a href="importing-and-describing-data.html#cb19-10"></a></span>
-<span id="cb19-11"><a href="importing-and-describing-data.html#cb19-11"></a><span class="co">#Average (mean) number of children per woman</span></span>
-<span id="cb19-12"><a href="importing-and-describing-data.html#cb19-12"></a><span class="kw">mean</span>(gapminder2010<span class="op">$</span>fertility, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb19-13"><a href="importing-and-describing-data.html#cb19-13"></a></span>
-<span id="cb19-14"><a href="importing-and-describing-data.html#cb19-14"></a><span class="co">#Average (median) number of children per woman</span></span>
-<span id="cb19-15"><a href="importing-and-describing-data.html#cb19-15"></a><span class="kw">median</span>(gapminder2010<span class="op">$</span>fertility, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb19-16"><a href="importing-and-describing-data.html#cb19-16"></a></span>
-<span id="cb19-17"><a href="importing-and-describing-data.html#cb19-17"></a><span class="co">#Highest and lowest fertility rates</span></span>
-<span id="cb19-18"><a href="importing-and-describing-data.html#cb19-18"></a><span class="kw">max</span>(gapminder2010<span class="op">$</span>fertility)</span>
-<span id="cb19-19"><a href="importing-and-describing-data.html#cb19-19"></a><span class="kw">min</span>(gapminder2010<span class="op">$</span>fertility)</span>
-<span id="cb19-20"><a href="importing-and-describing-data.html#cb19-20"></a></span>
-<span id="cb19-21"><a href="importing-and-describing-data.html#cb19-21"></a><span class="co">#Countries with highest and lowest fertility.</span></span>
-<span id="cb19-22"><a href="importing-and-describing-data.html#cb19-22"></a><span class="co">#There are many ways to look this up - here is a simple dplyr pipe (Note that | means &#39;or&#39; in the context of logical comparisons and == is needed to test for equality because = just assigns a value)</span></span>
-<span id="cb19-23"><a href="importing-and-describing-data.html#cb19-23"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr) <span class="co">#Needs to be run only once per R session!</span></span>
-<span id="cb19-24"><a href="importing-and-describing-data.html#cb19-24"></a>gapminder2010 <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb19-25"><a href="importing-and-describing-data.html#cb19-25"></a><span class="st">  </span><span class="kw">filter</span>(fertility <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(fertility) <span class="op">|</span><span class="st"> </span>fertility <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(fertility)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb19-26"><a href="importing-and-describing-data.html#cb19-26"></a><span class="st">    </span><span class="kw">select</span>(country, fertility)</span></code></pre></div>
-<pre><code>## [1] 6778331427
-## [1] 185
-##   countries
-## 1       185
-## [1] 2.885297
-## [1] 2.38
-## [1] 7.58
-## [1] 1
-##        country fertility
+<p>Next you might want to use summary functions - either in a dplyr <code>summarise()</code> function or on their own. For most of them, you can use the <code>na.rm = TRUE</code> argument to tell R to ignore missing values (only do that when you have reason to assume that missing values can safely be ignored).</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="importing-and-describing-data.html#cb18-1"></a>gapminder2010 &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2010</span>)</span>
+<span id="cb18-2"><a href="importing-and-describing-data.html#cb18-2"></a></span>
+<span id="cb18-3"><a href="importing-and-describing-data.html#cb18-3"></a><span class="co">#Global population</span></span>
+<span id="cb18-4"><a href="importing-and-describing-data.html#cb18-4"></a><span class="kw">sum</span>(gapminder2010<span class="op">$</span>population, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 6778331427</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="importing-and-describing-data.html#cb20-1"></a><span class="co">#Number of countries included</span></span>
+<span id="cb20-2"><a href="importing-and-describing-data.html#cb20-2"></a><span class="kw">nrow</span>(gapminder2010)</span></code></pre></div>
+<pre><code>## [1] 185</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="importing-and-describing-data.html#cb22-1"></a><span class="co">#To get the number inside dplyr&#39;s summarise function, it would have to be</span></span>
+<span id="cb22-2"><a href="importing-and-describing-data.html#cb22-2"></a>gapminder2010 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">n_rows =</span> <span class="kw">n</span>())</span></code></pre></div>
+<pre><code>##   n_rows
+## 1    185</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="importing-and-describing-data.html#cb24-1"></a><span class="co">#Average (mean) number of children per woman</span></span>
+<span id="cb24-2"><a href="importing-and-describing-data.html#cb24-2"></a><span class="kw">mean</span>(gapminder2010<span class="op">$</span>fertility, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 2.885297</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="importing-and-describing-data.html#cb26-1"></a><span class="co">#Average (median) number of children per woman</span></span>
+<span id="cb26-2"><a href="importing-and-describing-data.html#cb26-2"></a><span class="kw">median</span>(gapminder2010<span class="op">$</span>fertility, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 2.38</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="importing-and-describing-data.html#cb28-1"></a><span class="co">#Highest and lowest fertility rates</span></span>
+<span id="cb28-2"><a href="importing-and-describing-data.html#cb28-2"></a><span class="kw">max</span>(gapminder2010<span class="op">$</span>fertility)</span></code></pre></div>
+<pre><code>## [1] 7.58</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="importing-and-describing-data.html#cb30-1"></a><span class="kw">min</span>(gapminder2010<span class="op">$</span>fertility)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="importing-and-describing-data.html#cb32-1"></a><span class="co">#Countries with highest and lowest fertility.</span></span>
+<span id="cb32-2"><a href="importing-and-describing-data.html#cb32-2"></a><span class="co">#There are many ways to look this up - here is a simple dplyr pipe </span></span>
+<span id="cb32-3"><a href="importing-and-describing-data.html#cb32-3"></a><span class="co">## Note that | means &#39;or&#39; in the context of logical comparisons </span></span>
+<span id="cb32-4"><a href="importing-and-describing-data.html#cb32-4"></a><span class="co">## and == is needed to test for equality because = just assigns a value.</span></span>
+<span id="cb32-5"><a href="importing-and-describing-data.html#cb32-5"></a></span>
+<span id="cb32-6"><a href="importing-and-describing-data.html#cb32-6"></a>gapminder2010 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb32-7"><a href="importing-and-describing-data.html#cb32-7"></a><span class="st">  </span><span class="kw">filter</span>(fertility <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(fertility) <span class="op">|</span><span class="st"> </span>fertility <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(fertility)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb32-8"><a href="importing-and-describing-data.html#cb32-8"></a><span class="st">    </span><span class="kw">select</span>(country, fertility)</span></code></pre></div>
+<pre><code>##        country fertility
 ## 1 Macao, China      1.00
 ## 2        Niger      7.58</code></pre>
 
@@ -496,6 +481,9 @@ solveme_func = function(e) {
   
   if (my_answer !== "" & real_answers.includes(my_answer)) {
     cl.add("correct");
+    cl.remove("incorrect");
+  } else if (my_answer !== "") {
+    cl.add("incorrect");
   } else {
     cl.remove("correct");
   }
@@ -506,6 +494,7 @@ solveme_func = function(e) {
     var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
     if (matches.reduce((a, b) => a + b, 0) > 0) {
       cl.add("correct");
+      cl.remove("incorrect");
     } else {
       cl.remove("correct");
     }  
@@ -516,6 +505,8 @@ solveme_func = function(e) {
     answer_regex = RegExp(real_answers.join("|"))
     if (answer_regex.test(my_answer)) {
       cl.add("correct");
+      cl.remove("incorrect");
+
     }  
   }
   
@@ -555,7 +546,7 @@ window.onload = function() {
     solveme[i].dataset.answer = real_answer;
     
     /* attach checking function */
-    solveme[i].onkeyup = solveme_func;
+    /* solveme[i].onkeyup = solveme_func; */
     solveme[i].onchange = solveme_func;
   }
   

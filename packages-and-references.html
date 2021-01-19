@@ -50,8 +50,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -275,6 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="packages-and-references" class="section level1">
 <h1><span class="header-section-number">Appendix A</span> Packages and references</h1>
+<p>This guide is created in RStudio, using the <code>bookdown</code> package <span class="citation">(Xie <a href="packages-and-references.html#ref-R-bookdown" role="doc-biblioref">2020</a>)</span>. Its documentation, as well as the other relevant packages, are included in the references below.</p>
 <div id="refs">
 <div id="ref-rmarkdown">
 <p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
@@ -285,29 +284,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ref-bem2011feeling">
 <p>Bem, Daryl J. 2011. “Feeling the Future: Experimental Evidence for Anomalous Retroactive Influences on Cognition and Affect.” <em>Journal of Personality and Social Psychology</em> 100 (3): 407.</p>
 </div>
-<div id="ref-bregman2020humankind">
-<p>Bregman, Rutger. 2020. <em>Humankind: A Hopeful History</em>. Bloomsbury Publishing PLC.</p>
+<div id="ref-devellis2016scale">
+<p>DeVellis, Robert F. 2016. <em>Scale Development: Theory and Applications</em>. Vol. 26. Sage publications.</p>
 </div>
-<div id="ref-cialdini2003crafting">
-<p>Cialdini, Robert B. 2003. “Crafting Normative Messages to Protect the Environment.” <em>Current Directions in Psychological Science</em> 12 (4): 105–9.</p>
-</div>
-<div id="ref-crocker2017social">
-<p>Crocker, Jennifer, Amy Canevello, and Ashley A Brown. 2017. “Social Motivation: Costs and Benefits of Selfishness and Otherishness.” <em>Annual Review of Psychology</em> 68: 299–325.</p>
-</div>
-<div id="ref-girme2020step">
-<p>Girme, Yuthika U. 2020. “Step Out of Line: Modeling Nonlinear Effects and Dynamics in Close-Relationships Research.” <em>Current Directions in Psychological Science</em> 29 (4): 351–57.</p>
-</div>
-<div id="ref-nosek2020replication">
-<p>Nosek, Brian A, and Timothy M Errington. 2020. “What Is Replication?” <em>PLoS Biology</em> 18 (3): e3000691.</p>
+<div id="ref-gigerenzer1995improve">
+<p>Gigerenzer, Gerd, and Ulrich Hoffrage. 1995. “How to Improve Bayesian Reasoning Without Instruction: Frequency Formats.” <em>Psychological Review</em> 102 (4): 684.</p>
 </div>
 <div id="ref-open2015psychology">
 <p>Open, Science Collaboration. 2015. “Psychology. Estimating the Reproducibility of Psychological Science.” <em>Science</em> 349 (6251): aac4716.</p>
 </div>
 <div id="ref-R-base">
 <p>R Core Team. 2020. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
-</div>
-<div id="ref-sand2020gentle">
-<p>Sand, Anders. 2020. “A Gentle Reminder That Mean Does Not Imply Modal Behavior: Few Are in-Group Biased in Minimal Groups.” <em>Scandinavian Journal of Psychology</em>.</p>
 </div>
 <div id="ref-ggplot22016">
 <p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
@@ -371,6 +358,9 @@ solveme_func = function(e) {
   
   if (my_answer !== "" & real_answers.includes(my_answer)) {
     cl.add("correct");
+    cl.remove("incorrect");
+  } else if (my_answer !== "") {
+    cl.add("incorrect");
   } else {
     cl.remove("correct");
   }
@@ -381,6 +371,7 @@ solveme_func = function(e) {
     var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
     if (matches.reduce((a, b) => a + b, 0) > 0) {
       cl.add("correct");
+      cl.remove("incorrect");
     } else {
       cl.remove("correct");
     }  
@@ -391,6 +382,8 @@ solveme_func = function(e) {
     answer_regex = RegExp(real_answers.join("|"))
     if (answer_regex.test(my_answer)) {
       cl.add("correct");
+      cl.remove("incorrect");
+
     }  
   }
   
@@ -430,7 +423,7 @@ window.onload = function() {
     solveme[i].dataset.answer = real_answer;
     
     /* attach checking function */
-    solveme[i].onkeyup = solveme_func;
+    /* solveme[i].onkeyup = solveme_func; */
     solveme[i].onchange = solveme_func;
   }
   
