@@ -17,7 +17,6 @@ favicon: "favicon.ico"
 
 ```{r cite-packages, include = FALSE}
 
-knitr::opts_chunk$set(class.output  = "bg-none")
 # automatically create a bib database for R packages
 # add any packages you want to cite here
 knitr::write_bib(c(
