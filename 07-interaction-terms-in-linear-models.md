@@ -65,7 +65,7 @@ mod <- lm(errors ~ player + type + player:type, obs)
 summary(mod)
 ```
 
-```
+```{.bg-none}
 ## 
 ## Call:
 ## lm(formula = errors ~ player + type + player:type, data = obs)
@@ -105,7 +105,7 @@ mod <- lm(errors ~ player + type + player:type, obs2)
 summary(mod)
 ```
 
-```
+```{.bg-none}
 ## 
 ## Call:
 ## lm(formula = errors ~ player + type + player:type, data = obs2)
@@ -135,7 +135,7 @@ pacman::p_load(car)
 car::Anova(mod, type=3)
 ```
 
-```
+```{.bg-none}
 ## Anova Table (Type III tests)
 ## 
 ## Response: errors
@@ -217,7 +217,7 @@ mod <- lm(depr ~ bmi + gndr + bmi:gndr, essDE)
 summary(mod)
 ```
 
-```
+```{.bg-none}
 ## 
 ## Call:
 ## lm(formula = depr ~ bmi + gndr + bmi:gndr, data = essDE)
@@ -279,7 +279,7 @@ mod <- lm(stflife ~ wkhtot*hinctnta, essUK)
 summary(mod)
 ```
 
-```
+```{.bg-none}
 ## 
 ## Call:
 ## lm(formula = stflife ~ wkhtot * hinctnta, data = essUK)
@@ -333,7 +333,7 @@ pacman::p_load(interactions)
 sim_slopes(mod, pred="hinctnta", modx = "wkhtot")
 ```
 
-```
+```{.bg-none}
 ## JOHNSON-NEYMAN INTERVAL 
 ## 
 ## When wkhtot is OUTSIDE the interval [74.17, 2622.20], the slope of hinctnta
@@ -366,7 +366,7 @@ sim_slopes(mod, pred="hinctnta", modx = "wkhtot")
 sim_slopes(mod, pred="wkhtot", modx = "hinctnta")
 ```
 
-```
+```{.bg-none}
 ## JOHNSON-NEYMAN INTERVAL 
 ## 
 ## When hinctnta is OUTSIDE the interval [-43.03, 7.73], the slope of wkhtot
@@ -402,7 +402,7 @@ Finally, the `johnson_neyman()` function creates a plot showing the slope of one
 johnson_neyman(mod, pred="wkhtot", modx = "hinctnta")
 ```
 
-```
+```{.bg-none}
 ## JOHNSON-NEYMAN INTERVAL 
 ## 
 ## When hinctnta is OUTSIDE the interval [-43.03, 7.73], the slope of wkhtot

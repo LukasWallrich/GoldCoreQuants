@@ -319,7 +319,7 @@ Here, <strong><span class="math inline">\(\beta_{1}\)</span> is the most importa
 <h3><span class="header-section-number">5.1.3</span> Fitting a simple linear regression model in R</h3>
 <p>Linear models are fitted in R using the <code>lm()</code> function. The model itself is specified as a formula with the notation <code>y ~ x</code> where the <code>~</code> means ‘is predicted by’ and the intercept is added automatically.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="simple-and-multiple-linear-regression.html#cb40-1"></a><span class="kw">lm</span>(nat_stflife <span class="op">~</span><span class="st"> </span>nat_soctrust, <span class="dt">data =</span> nat_avgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## Call:
 ## lm(formula = nat_stflife ~ nat_soctrust, data = nat_avgs)
 ## 
@@ -365,7 +365,7 @@ Clearly this formula does not allow us to perfectly predict one variable from th
 <p>Before calculating a correlation coefficient, <strong>you need to look at the scatterplot and make sure that a straight-line relationship looks reasonable.</strong> If that is the case, you can use the <code>cor.test()</code> function to calculate the correlation coefficient.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="simple-and-multiple-linear-regression.html#cb42-1"></a><span class="kw">cor.test</span>(nat_avgs<span class="op">$</span>nat_soctrust, nat_avgs<span class="op">$</span>nat_stflife) </span>
 <span id="cb42-2"><a href="simple-and-multiple-linear-regression.html#cb42-2"></a><span class="co">#If you have missing data, use the na.rm = TRUE argument to have it excluded before the calculation</span></span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## 	Pearson&#39;s product-moment correlation
 ## 
 ## data:  nat_avgs$nat_soctrust and nat_avgs$nat_stflife
@@ -390,7 +390,7 @@ Figure 5.2: Scatterplot with scaled variables (z-scores)
 </p>
 </div>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="simple-and-multiple-linear-regression.html#cb45-1"></a><span class="kw">lm</span>(<span class="kw">scale</span>(nat_stflife) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(nat_soctrust), <span class="dt">data =</span> nat_avgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## Call:
 ## lm(formula = scale(nat_stflife) ~ scale(nat_soctrust), data = nat_avgs)
 ## 
@@ -450,7 +450,7 @@ Figure 3.2: Example for dummy-coding
 <span id="cb47-8"><a href="simple-and-multiple-linear-regression.html#cb47-8"></a></span>
 <span id="cb47-9"><a href="simple-and-multiple-linear-regression.html#cb47-9"></a><span class="co">#Simple linear regression model:</span></span>
 <span id="cb47-10"><a href="simple-and-multiple-linear-regression.html#cb47-10"></a><span class="kw">lm</span>(ElectionConShare <span class="op">~</span><span class="st"> </span>MedianAge, <span class="dt">data =</span> constituencies) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## Call:
 ## lm(formula = ElectionConShare ~ MedianAge, data = constituencies)
 ## 
@@ -472,7 +472,7 @@ Figure 3.2: Example for dummy-coding
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="simple-and-multiple-linear-regression.html#cb49-1"></a><span class="co">#Declare nation as factor and then set the reference level for categorical predictors</span></span>
 <span id="cb49-2"><a href="simple-and-multiple-linear-regression.html#cb49-2"></a>constituencies<span class="op">$</span>nation &lt;-<span class="st"> </span><span class="kw">factor</span>(constituencies<span class="op">$</span>nation) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref =</span> <span class="st">&quot;England&quot;</span>)</span>
 <span id="cb49-3"><a href="simple-and-multiple-linear-regression.html#cb49-3"></a><span class="kw">lm</span>(ElectionConShare <span class="op">~</span><span class="st"> </span>MedianAge <span class="op">+</span><span class="st"> </span>nation, <span class="dt">data =</span> constituencies) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## Call:
 ## lm(formula = ElectionConShare ~ MedianAge + nation, data = constituencies)
 ## 

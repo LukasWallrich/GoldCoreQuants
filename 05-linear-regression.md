@@ -68,7 +68,7 @@ Linear models are fitted in R using the `lm()` function. The model itself is spe
 lm(nat_stflife ~ nat_soctrust, data = nat_avgs) %>% summary()
 ```
 
-```
+```{.bg-none}
 ## 
 ## Call:
 ## lm(formula = nat_stflife ~ nat_soctrust, data = nat_avgs)
@@ -128,7 +128,7 @@ cor.test(nat_avgs$nat_soctrust, nat_avgs$nat_stflife)
 #If you have missing data, use the na.rm = TRUE argument to have it excluded before the calculation
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Pearson's product-moment correlation
 ## 
@@ -163,7 +163,7 @@ ggplot(nat_avgs, aes(x=scale(nat_soctrust), y=scale(nat_stflife))) +
 lm(scale(nat_stflife) ~ scale(nat_soctrust), data = nat_avgs) %>% summary()
 ```
 
-```
+```{.bg-none}
 ## 
 ## Call:
 ## lm(formula = scale(nat_stflife) ~ scale(nat_soctrust), data = nat_avgs)
@@ -238,7 +238,7 @@ constituencies <- constituencies %>% filter(RegionName != "Northern Ireland") %>
 lm(ElectionConShare ~ MedianAge, data = constituencies) %>% summary()
 ```
 
-```
+```{.bg-none}
 ## 
 ## Call:
 ## lm(formula = ElectionConShare ~ MedianAge, data = constituencies)
@@ -268,7 +268,7 @@ constituencies$nation <- factor(constituencies$nation) %>% relevel(ref = "Englan
 lm(ElectionConShare ~ MedianAge + nation, data = constituencies) %>% summary()
 ```
 
-```
+```{.bg-none}
 ## 
 ## Call:
 ## lm(formula = ElectionConShare ~ MedianAge + nation, data = constituencies)

@@ -18,7 +18,7 @@ With two categorical variables, the data we observe can best be shown in a frequ
 table(constituencies$ElectionWon, constituencies$WinnerGender)
 ```
 
-```
+```{.bg-none}
 ##      
 ##       Female Male
 ##   Con     87  278
@@ -38,7 +38,7 @@ prop.table(x, margin = 1) %>% #Share of each cell as part of the row
    round(2) #Round to 2 decimal places
 ```
 
-```
+```{.bg-none}
 ##      
 ##       Female Male
 ##   Con   0.24 0.76
@@ -54,7 +54,7 @@ To be able to test whether any differences between the rows or between the colum
 The expected number of observations in each cell under the null hypothesis can be calculated as the share of its entire row of the total observations (e.g., the total share of female candidates) * the share of its entire column of the total (e.g., the total share of Labour candidates) * the total number of observations. Based on that logic, the expected number of observations per cell would be the following.
 
 
-```
+```{.bg-none}
 ##                           constituencies$WinnerGender
 ## constituencies$ElectionWon Female Male
 ##                        Con    125  240
@@ -80,7 +80,7 @@ As a simple fictional example, we might be interested in whether Scottish and Br
 table(prefData$nationality, prefData$preference)
 ```
 
-```
+```{.bg-none}
 ##           
 ##            Coffee Tea
 ##   English      45  95
@@ -94,7 +94,7 @@ To calculate the distance from distribution expected if there was no association
 chisq.test(prefData$nationality, prefData$preference, correct = FALSE)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Pearson's Chi-squared test
 ## 
@@ -117,7 +117,7 @@ If we were to rerun the example above with a smaller sample but more extreme dif
 table(prefDataSmall$nationality, prefDataSmall$preference)
 ```
 
-```
+```{.bg-none}
 ##           
 ##            Coffee Tea
 ##   English      12  30
@@ -128,7 +128,7 @@ table(prefDataSmall$nationality, prefDataSmall$preference)
 chisq.test(prefDataSmall$nationality, prefDataSmall$preference, correct = FALSE)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Pearson's Chi-squared test
 ## 
@@ -143,7 +143,7 @@ It looks like the difference is significant. However, we should consider how sma
 chisq.test(prefDataSmall$nationality, prefDataSmall$preference, correct = F)$expected
 ```
 
-```
+```{.bg-none}
 ##                          prefDataSmall$preference
 ## prefDataSmall$nationality Coffee  Tea
 ##                  English    15.4 26.6
@@ -159,7 +159,7 @@ chisq.test(prefDataSmall$nationality, prefDataSmall$preference, correct = TRUE)
 chisq.test(prefDataSmall$nationality, prefDataSmall$preference, simulate.p.value = TRUE)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Pearson's Chi-squared test with Yates' continuity correction
 ## 
@@ -186,7 +186,7 @@ prop.table(x, margin = 1) %>% #Share of each cell as part of the row
    round(2) #Round to 2 decimal places
 ```
 
-```
+```{.bg-none}
 ##      
 ##       Female Male
 ##   Con   0.24 0.76
@@ -200,7 +200,7 @@ chisq.test(constituencies$ElectionWon, constituencies$WinnerGender,
            simulate.p.value = TRUE)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Pearson's Chi-squared test with simulated p-value (based on 2000
 ## 	replicates)
@@ -219,7 +219,7 @@ pacman::p_load(chisq.posthoc.test)
 table(constituencies$ElectionWon, constituencies$WinnerGender) %>% chisq.posthoc.test(simulate.p.value = TRUE, method = "bonferroni")
 ```
 
-```
+```{.bg-none}
 ##   Dimension     Value     Female       Male
 ## 1       Con Residuals -6.4559388  6.4559388
 ## 2       Con  p values  0.0000000  0.0000000
@@ -247,7 +247,7 @@ pacman::p_load(effectsize)
 chisq_to_cramers_v(chisq = 48.5, n = 626, nrow=4, ncol=2)
 ```
 
-```
+```{.bg-none}
 ## Cramer's V |       95% CI
 ## -------------------------
 ## 0.28       | [0.19, 0.35]
@@ -256,7 +256,7 @@ chisq_to_cramers_v(chisq = 48.5, n = 626, nrow=4, ncol=2)
 While this is a helpful statistic to compare effect strengths across multiple tests, it does not have an intuitive interpretation. Here, Odds Ratios might help. They can only be calculated for 2x2 tables, for instance for the fictional example regarding tea and coffee preferences. 
 
 
-```
+```{.bg-none}
 ##           
 ##            Coffee Tea
 ##   English      45  95

@@ -48,7 +48,7 @@ Let's see how much missing data that results in.
 miss_var_summary(results)
 ```
 
-```
+```{.bg-none}
 ## # A tibble: 3 x 3
 ##   variable n_miss pct_miss
 ##   <chr>     <int>    <dbl>
@@ -73,7 +73,7 @@ resultsDel <- results %>% na.omit() %>% #Deletes all rows with missing values
 t.test(change ~ gender, resultsDel)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Welch Two Sample t-test
 ## 
@@ -102,7 +102,7 @@ resultsImp <- results %>% bind_shadow(only_miss = TRUE) %>% add_label_missings()
 head(resultsImp)
 ```
 
-```
+```{.bg-none}
 ## # A tibble: 6 x 5
 ##   gender score1 score2 score2_NA any_missing
 ##   <chr>   <dbl>  <dbl> <fct>     <chr>      
@@ -150,7 +150,7 @@ Let's test again whether there is a difference between boys and girls.
 t.test(change ~ gender, resultsImp)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Welch Two Sample t-test
 ## 

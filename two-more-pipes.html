@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Inside dplyr pipes, you do not need to use the <code>$</code> to access variables within the dataframe. However, that does not work in some base-R functions such as <code>cor.test()</code>. For them, <code>%$%</code> can expose the variables in a dataframe temporarily (until the end of that command) so that they can be accessed as if they were separate variables in your environment.</p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="two-more-pipes.html#cb162-1"></a><span class="co">#Normal code</span></span>
 <span id="cb162-2"><a href="two-more-pipes.html#cb162-2"></a><span class="kw">cor.test</span>(constituencies<span class="op">$</span>MedianAge, constituencies<span class="op">$</span>ElectionConShare)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## 	Pearson&#39;s product-moment correlation
 ## 
 ## data:  constituencies$MedianAge and constituencies$ElectionConShare
@@ -296,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 0.542836</code></pre>
 <div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="two-more-pipes.html#cb164-1"></a><span class="co">#With the exposition pipe</span></span>
 <span id="cb164-2"><a href="two-more-pipes.html#cb164-2"></a>constituencies <span class="op">%$%</span><span class="st"> </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## 	Pearson&#39;s product-moment correlation
 ## 
 ## data:  MedianAge and ElectionConShare
@@ -310,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Clearly in this case, the difference is slight but you might find it more readable as well. In other cases, this can spare you from having to save a filtered dataset or otherwise processed dataset into a new variable that you are only using once.</p>
 <div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="two-more-pipes.html#cb166-1"></a>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ContType <span class="op">==</span><span class="st"> &quot;County&quot;</span>) <span class="op">%$%</span><span class="st"> </span></span>
 <span id="cb166-2"><a href="two-more-pipes.html#cb166-2"></a><span class="st">  </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## 	Pearson&#39;s product-moment correlation
 ## 
 ## data:  MedianAge and ElectionConShare

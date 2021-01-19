@@ -54,7 +54,7 @@ sleep_data <- data.frame(day = weekend, hours = sleep_hours)
 sum(sleep_data$hours)
 ```
 
-```
+```{.bg-none}
 ## [1] 13
 ```
 
@@ -75,7 +75,7 @@ class(sleep_data$hours)
 str(sleep_data)
 ```
 
-```
+```{.bg-none}
 ## [1] "numeric"
 ## 'data.frame':	2 obs. of  2 variables:
 ##  $ day  : chr  "Saturday" "Sunday"
@@ -103,8 +103,8 @@ mean(c(1,2,3, NA), na.rm = TRUE)
 variableName <- mean(c(1,2,3, NA), na.rm = TRUE)
 ```
 
-```
-## ##------ Mon Jan 18 23:50:01 2021 ------##
+```{.bg-none}
+## ##------ Tue Jan 19 00:57:13 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2

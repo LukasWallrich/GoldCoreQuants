@@ -319,7 +319,7 @@ Show the code to simulate the data
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="interaction-terms-in-linear-models.html#cb84-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse)</span>
 <span id="cb84-2"><a href="interaction-terms-in-linear-models.html#cb84-2"></a>mod &lt;-<span class="st"> </span><span class="kw">lm</span>(errors <span class="op">~</span><span class="st"> </span>player <span class="op">+</span><span class="st"> </span>type <span class="op">+</span><span class="st"> </span>player<span class="op">:</span>type, obs)</span>
 <span id="cb84-3"><a href="interaction-terms-in-linear-models.html#cb84-3"></a><span class="kw">summary</span>(mod)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## Call:
 ## lm(formula = errors ~ player + type + player:type, data = obs)
 ## 
@@ -350,7 +350,7 @@ Figure 7.1: Simple interaction plot - note that lines are not parallel
 <p>Next we consider a third condition - chess positions that are neither quite real nor entirely fake, but positions that are mirrored. With that, we get multiple dummy interaction terms. To test whether they are collectively significant, we need to use the <code>Anova()</code> function from the <code>car</code> package.</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="interaction-terms-in-linear-models.html#cb87-1"></a>mod &lt;-<span class="st"> </span><span class="kw">lm</span>(errors <span class="op">~</span><span class="st"> </span>player <span class="op">+</span><span class="st"> </span>type <span class="op">+</span><span class="st"> </span>player<span class="op">:</span>type, obs2)</span>
 <span id="cb87-2"><a href="interaction-terms-in-linear-models.html#cb87-2"></a><span class="kw">summary</span>(mod)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## Call:
 ## lm(formula = errors ~ player + type + player:type, data = obs2)
 ## 
@@ -374,7 +374,7 @@ Figure 7.1: Simple interaction plot - note that lines are not parallel
 ## F-statistic: 91.38 on 5 and 294 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="interaction-terms-in-linear-models.html#cb89-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(car)</span>
 <span id="cb89-2"><a href="interaction-terms-in-linear-models.html#cb89-2"></a>car<span class="op">::</span><span class="kw">Anova</span>(mod, <span class="dt">type=</span><span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## Anova Table (Type III tests)
+<pre class="bg-none"><code>## Anova Table (Type III tests)
 ## 
 ## Response: errors
 ##              Sum Sq  Df  F value    Pr(&gt;F)    
@@ -427,7 +427,7 @@ Click here to see the code that loads and prepares the data
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="interaction-terms-in-linear-models.html#cb97-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(interactions)</span>
 <span id="cb97-2"><a href="interaction-terms-in-linear-models.html#cb97-2"></a>mod &lt;-<span class="st"> </span><span class="kw">lm</span>(depr <span class="op">~</span><span class="st"> </span>bmi <span class="op">+</span><span class="st"> </span>gndr <span class="op">+</span><span class="st"> </span>bmi<span class="op">:</span>gndr, essDE)</span>
 <span id="cb97-3"><a href="interaction-terms-in-linear-models.html#cb97-3"></a><span class="kw">summary</span>(mod)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## Call:
 ## lm(formula = depr ~ bmi + gndr + bmi:gndr, data = essDE)
 ## 
@@ -472,7 +472,7 @@ Figure 7.3: ggplot automatically includes interaction
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="interaction-terms-in-linear-models.html#cb102-1"></a>essUK &lt;-<span class="st"> </span><span class="kw">filter</span>(ess, cntry <span class="op">==</span><span class="st"> &quot;GB&quot;</span>)</span>
 <span id="cb102-2"><a href="interaction-terms-in-linear-models.html#cb102-2"></a>mod &lt;-<span class="st"> </span><span class="kw">lm</span>(stflife <span class="op">~</span><span class="st"> </span>wkhtot<span class="op">*</span>hinctnta, essUK) </span>
 <span id="cb102-3"><a href="interaction-terms-in-linear-models.html#cb102-3"></a><span class="kw">summary</span>(mod)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## Call:
 ## lm(formula = stflife ~ wkhtot * hinctnta, data = essUK)
 ## 
@@ -511,7 +511,7 @@ Figure 7.5: Option B: very different effects of working hours, depending on inco
 <p>Simple slopes analyses (<code>sim_slopes()</code>) offer similar information together with significance tests and thus help to decide which of the slopes should be interpreted. They contain the Johnson-Neyman interval, which is the range of values of the moderator for which the predictor has a significant effect on the outcome.</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="interaction-terms-in-linear-models.html#cb106-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(interactions)</span>
 <span id="cb106-2"><a href="interaction-terms-in-linear-models.html#cb106-2"></a><span class="kw">sim_slopes</span>(mod, <span class="dt">pred=</span><span class="st">&quot;hinctnta&quot;</span>, <span class="dt">modx =</span> <span class="st">&quot;wkhtot&quot;</span>)</span></code></pre></div>
-<pre><code>## JOHNSON-NEYMAN INTERVAL 
+<pre class="bg-none"><code>## JOHNSON-NEYMAN INTERVAL 
 ## 
 ## When wkhtot is OUTSIDE the interval [74.17, 2622.20], the slope of hinctnta
 ## is p &lt; .05.
@@ -538,7 +538,7 @@ Figure 7.5: Option B: very different effects of working hours, depending on inco
 ## ------ ------ -------- ------
 ##   0.13   0.02     5.71   0.00</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="interaction-terms-in-linear-models.html#cb108-1"></a><span class="kw">sim_slopes</span>(mod, <span class="dt">pred=</span><span class="st">&quot;wkhtot&quot;</span>, <span class="dt">modx =</span> <span class="st">&quot;hinctnta&quot;</span>)</span></code></pre></div>
-<pre><code>## JOHNSON-NEYMAN INTERVAL 
+<pre class="bg-none"><code>## JOHNSON-NEYMAN INTERVAL 
 ## 
 ## When hinctnta is OUTSIDE the interval [-43.03, 7.73], the slope of wkhtot
 ## is p &lt; .05.
@@ -566,7 +566,7 @@ Figure 7.5: Option B: very different effects of working hours, depending on inco
 ##   -0.01   0.00    -2.01   0.04</code></pre>
 <p>Finally, the <code>johnson_neyman()</code> function creates a plot showing the slope of one variable depending on the value of the other, while highlighting the regions of significance. This can help with an understanding of the relationship, but is not (yet?) widely used.</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="interaction-terms-in-linear-models.html#cb110-1"></a><span class="kw">johnson_neyman</span>(mod, <span class="dt">pred=</span><span class="st">&quot;wkhtot&quot;</span>, <span class="dt">modx =</span> <span class="st">&quot;hinctnta&quot;</span>)</span></code></pre></div>
-<pre><code>## JOHNSON-NEYMAN INTERVAL 
+<pre class="bg-none"><code>## JOHNSON-NEYMAN INTERVAL 
 ## 
 ## When hinctnta is OUTSIDE the interval [-43.03, 7.73], the slope of wkhtot
 ## is p &lt; .05.

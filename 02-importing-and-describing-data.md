@@ -60,7 +60,7 @@ pacman::p_load(dplyr) #Load the dplyr package that offers glimpse()
 glimpse(gapminder)
 ```
 
-```
+```{.bg-none}
 ## Rows: 10,545
 ## Columns: 9
 ## $ country          <fct> Albania, Algeria, Angola, Antigua and Barbuda, Argen…
@@ -78,7 +78,7 @@ glimpse(gapminder)
 head(gapminder, n=5) #n defines number of rows shown
 ```
 
-```
+```{.bg-none}
 ##               country year infant_mortality life_expectancy fertility
 ## 1             Albania 1960           115.40           62.87      6.19
 ## 2             Algeria 1960           148.20           47.50      7.65
@@ -97,7 +97,7 @@ head(gapminder, n=5) #n defines number of rows shown
 tail(gapminder, n=5)
 ```
 
-```
+```{.bg-none}
 ##                  country year infant_mortality life_expectancy fertility
 ## 10541 West Bank and Gaza 2016               NA           74.70        NA
 ## 10542            Vietnam 2016               NA           75.60        NA
@@ -123,7 +123,7 @@ Once you have imported your data into R, you might need to filter it, sort it, a
 `%>%` takes the argument on the left and places it as the first argument into the function on the right. For example:
 
 
-```
+```{.bg-none}
 ## [1] 2
 ## [1] 2
 ```
@@ -161,7 +161,7 @@ gapminder %>%
                 arrange(desc(AvgGdpPerCap_Nations))
 ```
 
-```
+```{.bg-none}
 ## # A tibble: 5 x 3
 ##   continent AvgGdpPerCap_Nations AvgGdpPerCap_People
 ##   <fct>                    <dbl>               <dbl>
@@ -190,7 +190,7 @@ gapminder2010 <- gapminder %>% filter(year==2010)
 sum(gapminder2010$population, na.rm = TRUE)
 ```
 
-```
+```{.bg-none}
 ## [1] 6778331427
 ```
 
@@ -199,7 +199,7 @@ sum(gapminder2010$population, na.rm = TRUE)
 nrow(gapminder2010)
 ```
 
-```
+```{.bg-none}
 ## [1] 185
 ```
 
@@ -208,7 +208,7 @@ nrow(gapminder2010)
 gapminder2010 %>% summarise(n_rows = n())
 ```
 
-```
+```{.bg-none}
 ##   n_rows
 ## 1    185
 ```
@@ -218,7 +218,7 @@ gapminder2010 %>% summarise(n_rows = n())
 mean(gapminder2010$fertility, na.rm = TRUE)
 ```
 
-```
+```{.bg-none}
 ## [1] 2.885297
 ```
 
@@ -227,7 +227,7 @@ mean(gapminder2010$fertility, na.rm = TRUE)
 median(gapminder2010$fertility, na.rm = TRUE)
 ```
 
-```
+```{.bg-none}
 ## [1] 2.38
 ```
 
@@ -236,7 +236,7 @@ median(gapminder2010$fertility, na.rm = TRUE)
 max(gapminder2010$fertility)
 ```
 
-```
+```{.bg-none}
 ## [1] 7.58
 ```
 
@@ -244,7 +244,7 @@ max(gapminder2010$fertility)
 min(gapminder2010$fertility)
 ```
 
-```
+```{.bg-none}
 ## [1] 1
 ```
 
@@ -259,7 +259,7 @@ gapminder2010 %>%
     select(country, fertility)
 ```
 
-```
+```{.bg-none}
 ##        country fertility
 ## 1 Macao, China      1.00
 ## 2        Niger      7.58

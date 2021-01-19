@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.1</span> Tables of frequencies and proportions</h2>
 <p>With two categorical variables, the data we observe can best be shown in a frequency table - i.e. a table that shows how many observations fall into each combination of categories of the two variables. This is created with the <code>table()</code> function. Let’s look an example of the association between political parties and their winning candidates’ gender in the 2019 UK general election. (Note that this is based on the official statistics published by the election authorities, who registered candidate gender as a binary variable.)</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb112-1"></a><span class="kw">table</span>(constituencies<span class="op">$</span>ElectionWon, constituencies<span class="op">$</span>WinnerGender)</span></code></pre></div>
-<pre><code>##      
+<pre class="bg-none"><code>##      
 ##       Female Male
 ##   Con     87  278
 ##   Lab    104   98
@@ -293,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb114-3"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb114-3"></a><span class="co">#prop.table(x, margin = 2) - share of each cell as part of the column</span></span>
 <span id="cb114-4"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb114-4"></a><span class="kw">prop.table</span>(x, <span class="dt">margin =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Share of each cell as part of the row</span></span>
 <span id="cb114-5"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb114-5"></a><span class="st">   </span><span class="kw">round</span>(<span class="dv">2</span>) <span class="co">#Round to 2 decimal places</span></span></code></pre></div>
-<pre><code>##      
+<pre class="bg-none"><code>##      
 ##       Female Male
 ##   Con   0.24 0.76
 ##   Lab   0.51 0.49
@@ -304,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.2</span> The null hypothesis and the <span class="math inline">\(\chi^2\)</span> statistic</h2>
 <p>To be able to test whether any differences between the rows or between the columns that we observe in a frequency table are statistically significant, we need to be clear on what the null hypothesis is. If two variables are statistically independent, then their distribution needs to be the same across each row and along each column. This does not mean that all cells need to have the same value, In our case, given that there are many more male than female election winners and many more Conservative MPs than MPs of any other party, we would expect the male Conservatives cell to have the highest number of observations if there was no relationship between party and winning candidates’ gender, i.e. if the null hypothesis was true.</p>
 <p>The expected number of observations in each cell under the null hypothesis can be calculated as the share of its entire row of the total observations (e.g., the total share of female candidates) * the share of its entire column of the total (e.g., the total share of Labour candidates) * the total number of observations. Based on that logic, the expected number of observations per cell would be the following.</p>
-<pre><code>##                           constituencies$WinnerGender
+<pre class="bg-none"><code>##                           constituencies$WinnerGender
 ## constituencies$ElectionWon Female Male
 ##                        Con    125  240
 ##                        Lab     69  133
@@ -318,13 +318,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.3</span> The chisq.test() function</h2>
 <p>As a simple fictional example, we might be interested in whether Scottish and British people differ in their preference for tea versus coffee. If we ask 100 people, we might observe the following distribution:</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb117-1"></a><span class="kw">table</span>(prefData<span class="op">$</span>nationality, prefData<span class="op">$</span>preference)</span></code></pre></div>
-<pre><code>##           
+<pre class="bg-none"><code>##           
 ##            Coffee Tea
 ##   English      45  95
 ##   Scottish     30  30</code></pre>
 <p>To calculate the distance from distribution expected if there was no association between nationality and tea preference, we use the chisq.test() function. That also gives us an associated <em>p</em>-value.</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb119-1"></a><span class="kw">chisq.test</span>(prefData<span class="op">$</span>nationality, prefData<span class="op">$</span>preference, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## 	Pearson&#39;s Chi-squared test
 ## 
 ## data:  prefData$nationality and prefData$preference
@@ -336,19 +336,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It is often recommended that <span class="math inline">\(\chi^2\)</span> should not be used with samples where the expected frequency in more than 20% of the cells is less than 5. In a 2x2 table (i.e when each of the two variables has only two possible categories), the Yates correction can be used to reduce the <span class="math inline">\(\chi^2\)</span>-value and therefore make the test more conservative (R does that by default in <code>chisq.test()</code>, but it can be turned off by setting <code>correct = FALSE</code>). However, this sometimes goes too far, so my recommendation is to simulate <em>p</em>-values for any samples where you have cells with low expected frequencies (say less than 20 expected cases in the smallest cell). You can do that by setting <code>simulate.p.value = TRUE</code> in the function call. Note that like any simulation, this is based on random number generation, so that <code>set.seed()</code> should be used with a fixed number of your choice to ensure that the results can be reproduced.</p>
 <p>If we were to rerun the example above with a smaller sample but more extreme differences, we can compare the three possible methods of calculating <span class="math inline">\(\chi^2\)</span>. To see how small the smallest expected value is, we can look at the <code>expected</code> element of the output of the chisq.test() function.</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb121-1"></a><span class="kw">table</span>(prefDataSmall<span class="op">$</span>nationality, prefDataSmall<span class="op">$</span>preference)</span></code></pre></div>
-<pre><code>##           
+<pre class="bg-none"><code>##           
 ##            Coffee Tea
 ##   English      12  30
 ##   Scottish     10   8</code></pre>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb123-1"></a><span class="kw">chisq.test</span>(prefDataSmall<span class="op">$</span>nationality, prefDataSmall<span class="op">$</span>preference, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## 	Pearson&#39;s Chi-squared test
 ## 
 ## data:  prefDataSmall$nationality and prefDataSmall$preference
 ## X-squared = 3.9508, df = 1, p-value = 0.04685</code></pre>
 <p>It looks like the difference is significant. However, we should consider how small the smallest expected cell count is, to decide whether we need to adjust our way of testing significance. For that, we can look at the <code>expected</code> element of the output of the chisq.test() function.</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb125-1"></a><span class="kw">chisq.test</span>(prefDataSmall<span class="op">$</span>nationality, prefDataSmall<span class="op">$</span>preference, <span class="dt">correct =</span> F)<span class="op">$</span>expected</span></code></pre></div>
-<pre><code>##                          prefDataSmall$preference
+<pre class="bg-none"><code>##                          prefDataSmall$preference
 ## prefDataSmall$nationality Coffee  Tea
 ##                  English    15.4 26.6
 ##                  Scottish    6.6 11.4</code></pre>
@@ -356,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb127-1"></a><span class="kw">set.seed</span>(<span class="dv">300688</span>)</span>
 <span id="cb127-2"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb127-2"></a><span class="kw">chisq.test</span>(prefDataSmall<span class="op">$</span>nationality, prefDataSmall<span class="op">$</span>preference, <span class="dt">correct =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb127-3"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb127-3"></a><span class="kw">chisq.test</span>(prefDataSmall<span class="op">$</span>nationality, prefDataSmall<span class="op">$</span>preference, <span class="dt">simulate.p.value =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## 	Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
 ## data:  prefDataSmall$nationality and prefDataSmall$preference
@@ -376,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(\chi^2\)</span>-tests can be used to test for an association between variables with many different levels, such as music preferences or political parties. In that case, a significant result only tells us that at least one of the cell counts is significantly different from the expectation under the null-hypothesis. To get more details, post-hoc tests would be needed. To go back to the example at the start, let’s test whether the winning candidates’ gender differed significantly between the major UK parties in the 2019 General Election. It certainly looks that way from the proportions table, and the <code>chisq.test()</code> agrees</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb129-1"></a><span class="kw">prop.table</span>(x, <span class="dt">margin =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Share of each cell as part of the row</span></span>
 <span id="cb129-2"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb129-2"></a><span class="st">   </span><span class="kw">round</span>(<span class="dv">2</span>) <span class="co">#Round to 2 decimal places</span></span></code></pre></div>
-<pre><code>##      
+<pre class="bg-none"><code>##      
 ##       Female Male
 ##   Con   0.24 0.76
 ##   Lab   0.51 0.49
@@ -384,7 +384,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   SNP   0.33 0.67</code></pre>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb131-1"></a><span class="kw">chisq.test</span>(constituencies<span class="op">$</span>ElectionWon, constituencies<span class="op">$</span>WinnerGender,</span>
 <span id="cb131-2"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb131-2"></a>           <span class="dt">simulate.p.value =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
+<pre class="bg-none"><code>## 
 ## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
 ## 	replicates)
 ## 
@@ -394,7 +394,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To compare each cell to the expected value, we can use the <code>chisq.posthoc.test</code> package. This package contains the <code>chisq.posthoc.test()</code> function that takes a table as the input and computes standardised residuals (i.e. distances) and <em>p</em>-values for each cell. To avoid an inflated error rate, it can correct for multiple comparisons; by default the Bonferroni correction is used.</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb133-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(chisq.posthoc.test)</span>
 <span id="cb133-2"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb133-2"></a><span class="kw">table</span>(constituencies<span class="op">$</span>ElectionWon, constituencies<span class="op">$</span>WinnerGender) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">chisq.posthoc.test</span>(<span class="dt">simulate.p.value =</span> <span class="ot">TRUE</span>, <span class="dt">method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
-<pre><code>##   Dimension     Value     Female       Male
+<pre class="bg-none"><code>##   Dimension     Value     Female       Male
 ## 1       Con Residuals -6.4559388  6.4559388
 ## 2       Con  p values  0.0000000  0.0000000
 ## 3       Lab Residuals  6.2985557 -6.2985557
@@ -412,11 +412,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Cramer’s V</strong> describes a full table, and is scaled from 0 (no relationship) to 1 (one variable is entirely predictable by the other). It is often recommended that one should be weary of values greater than .5, as that suggests that the two variables might be redundant. Many packages offer functions to calculate Cramer’s V, including the <code>effectsize</code> package that allows us to calculate it based on the <span class="math inline">\(\chi^2\)</span>-value, the sample size, and the number of levels of each variable.</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb135-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(effectsize)</span>
 <span id="cb135-2"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb135-2"></a><span class="kw">chisq_to_cramers_v</span>(<span class="dt">chisq =</span> <span class="fl">48.5</span>, <span class="dt">n =</span> <span class="dv">626</span>, <span class="dt">nrow=</span><span class="dv">4</span>, <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## Cramer&#39;s V |       95% CI
+<pre class="bg-none"><code>## Cramer&#39;s V |       95% CI
 ## -------------------------
 ## 0.28       | [0.19, 0.35]</code></pre>
 <p>While this is a helpful statistic to compare effect strengths across multiple tests, it does not have an intuitive interpretation. Here, Odds Ratios might help. They can only be calculated for 2x2 tables, for instance for the fictional example regarding tea and coffee preferences.</p>
-<pre><code>##           
+<pre class="bg-none"><code>##           
 ##            Coffee Tea
 ##   English      45  95
 ##   Scottish     30  30</code></pre>

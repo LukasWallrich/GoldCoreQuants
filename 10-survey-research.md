@@ -25,7 +25,7 @@ ess %>% select(imtcjob, imbleco, imwbcrm) %>% psych::alpha()
 ## Number of categories should be increased  in order to count frequencies.
 ```
 
-```
+```{.bg-none}
 ## 
 ## Reliability analysis   
 ## Call: psych::alpha(x = .)

@@ -316,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="importing-and-describing-data.html#cb9-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dslabs) <span class="co">#Load the gapminder teaching dataset</span></span>
 <span id="cb9-2"><a href="importing-and-describing-data.html#cb9-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(dplyr) <span class="co">#Load the dplyr package that offers glimpse()</span></span>
 <span id="cb9-3"><a href="importing-and-describing-data.html#cb9-3"></a><span class="kw">glimpse</span>(gapminder)</span></code></pre></div>
-<pre><code>## Rows: 10,545
+<pre class="bg-none"><code>## Rows: 10,545
 ## Columns: 9
 ## $ country          &lt;fct&gt; Albania, Algeria, Angola, Antigua and Barbuda, Argen…
 ## $ year             &lt;int&gt; 1960, 1960, 1960, 1960, 1960, 1960, 1960, 1960, 1960…
@@ -328,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ continent        &lt;fct&gt; Europe, Africa, Africa, Americas, Americas, Asia, Am…
 ## $ region           &lt;fct&gt; Southern Europe, Northern Africa, Middle Africa, Car…</code></pre>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="importing-and-describing-data.html#cb11-1"></a><span class="kw">head</span>(gapminder, <span class="dt">n=</span><span class="dv">5</span>) <span class="co">#n defines number of rows shown</span></span></code></pre></div>
-<pre><code>##               country year infant_mortality life_expectancy fertility
+<pre class="bg-none"><code>##               country year infant_mortality life_expectancy fertility
 ## 1             Albania 1960           115.40           62.87      6.19
 ## 2             Algeria 1960           148.20           47.50      7.65
 ## 3              Angola 1960           208.00           35.98      7.32
@@ -341,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      54681           NA  Americas       Caribbean
 ## 5   20619075 108322326649  Americas   South America</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="importing-and-describing-data.html#cb13-1"></a><span class="kw">tail</span>(gapminder, <span class="dt">n=</span><span class="dv">5</span>)</span></code></pre></div>
-<pre><code>##                  country year infant_mortality life_expectancy fertility
+<pre class="bg-none"><code>##                  country year infant_mortality life_expectancy fertility
 ## 10541 West Bank and Gaza 2016               NA           74.70        NA
 ## 10542            Vietnam 2016               NA           75.60        NA
 ## 10543              Yemen 2016               NA           64.92        NA
@@ -362,7 +362,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Use functions names after natural language verbs to develop code that can be easily understood.</li>
 </ul>
 <p><code>%&gt;%</code> takes the argument on the left and places it as the first argument into the function on the right. For example:</p>
-<pre><code>## [1] 2
+<pre class="bg-none"><code>## [1] 2
 ## [1] 2</code></pre>
 <p>The most important <code>dplyr</code> functions are:</p>
 <ul>
@@ -390,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-12"><a href="importing-and-describing-data.html#cb16-12"></a><span class="st">              </span><span class="co">#This rounds all numeric variables to 0 decimal places </span></span>
 <span id="cb16-13"><a href="importing-and-describing-data.html#cb16-13"></a><span class="st">              </span><span class="co">#(beyond expectations for this course)    </span></span>
 <span id="cb16-14"><a href="importing-and-describing-data.html#cb16-14"></a><span class="st">                </span><span class="kw">arrange</span>(<span class="kw">desc</span>(AvgGdpPerCap_Nations))</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 3
+<pre class="bg-none"><code>## # A tibble: 5 x 3
 ##   continent AvgGdpPerCap_Nations AvgGdpPerCap_People
 ##   &lt;fct&gt;                    &lt;dbl&gt;               &lt;dbl&gt;
 ## 1 Europe                   15214               14643
@@ -410,25 +410,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-2"><a href="importing-and-describing-data.html#cb18-2"></a></span>
 <span id="cb18-3"><a href="importing-and-describing-data.html#cb18-3"></a><span class="co">#Global population</span></span>
 <span id="cb18-4"><a href="importing-and-describing-data.html#cb18-4"></a><span class="kw">sum</span>(gapminder2010<span class="op">$</span>population, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 6778331427</code></pre>
+<pre class="bg-none"><code>## [1] 6778331427</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="importing-and-describing-data.html#cb20-1"></a><span class="co">#Number of countries included</span></span>
 <span id="cb20-2"><a href="importing-and-describing-data.html#cb20-2"></a><span class="kw">nrow</span>(gapminder2010)</span></code></pre></div>
-<pre><code>## [1] 185</code></pre>
+<pre class="bg-none"><code>## [1] 185</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="importing-and-describing-data.html#cb22-1"></a><span class="co">#To get the number inside dplyr&#39;s summarise function, it would have to be</span></span>
 <span id="cb22-2"><a href="importing-and-describing-data.html#cb22-2"></a>gapminder2010 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">n_rows =</span> <span class="kw">n</span>())</span></code></pre></div>
-<pre><code>##   n_rows
+<pre class="bg-none"><code>##   n_rows
 ## 1    185</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="importing-and-describing-data.html#cb24-1"></a><span class="co">#Average (mean) number of children per woman</span></span>
 <span id="cb24-2"><a href="importing-and-describing-data.html#cb24-2"></a><span class="kw">mean</span>(gapminder2010<span class="op">$</span>fertility, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 2.885297</code></pre>
+<pre class="bg-none"><code>## [1] 2.885297</code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="importing-and-describing-data.html#cb26-1"></a><span class="co">#Average (median) number of children per woman</span></span>
 <span id="cb26-2"><a href="importing-and-describing-data.html#cb26-2"></a><span class="kw">median</span>(gapminder2010<span class="op">$</span>fertility, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 2.38</code></pre>
+<pre class="bg-none"><code>## [1] 2.38</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="importing-and-describing-data.html#cb28-1"></a><span class="co">#Highest and lowest fertility rates</span></span>
 <span id="cb28-2"><a href="importing-and-describing-data.html#cb28-2"></a><span class="kw">max</span>(gapminder2010<span class="op">$</span>fertility)</span></code></pre></div>
-<pre><code>## [1] 7.58</code></pre>
+<pre class="bg-none"><code>## [1] 7.58</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="importing-and-describing-data.html#cb30-1"></a><span class="kw">min</span>(gapminder2010<span class="op">$</span>fertility)</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
+<pre class="bg-none"><code>## [1] 1</code></pre>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="importing-and-describing-data.html#cb32-1"></a><span class="co">#Countries with highest and lowest fertility.</span></span>
 <span id="cb32-2"><a href="importing-and-describing-data.html#cb32-2"></a><span class="co">#There are many ways to look this up - here is a simple dplyr pipe </span></span>
 <span id="cb32-3"><a href="importing-and-describing-data.html#cb32-3"></a><span class="co">## Note that | means &#39;or&#39; in the context of logical comparisons </span></span>
@@ -437,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb32-6"><a href="importing-and-describing-data.html#cb32-6"></a>gapminder2010 <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb32-7"><a href="importing-and-describing-data.html#cb32-7"></a><span class="st">  </span><span class="kw">filter</span>(fertility <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(fertility) <span class="op">|</span><span class="st"> </span>fertility <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(fertility)) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb32-8"><a href="importing-and-describing-data.html#cb32-8"></a><span class="st">    </span><span class="kw">select</span>(country, fertility)</span></code></pre></div>
-<pre><code>##        country fertility
+<pre class="bg-none"><code>##        country fertility
 ## 1 Macao, China      1.00
 ## 2        Niger      7.58</code></pre>
 

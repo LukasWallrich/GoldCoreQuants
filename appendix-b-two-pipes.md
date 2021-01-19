@@ -20,7 +20,7 @@ Inside dplyr pipes, you do not need to use the `$` to access variables within th
 cor.test(constituencies$MedianAge, constituencies$ElectionConShare)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Pearson's product-moment correlation
 ## 
@@ -39,7 +39,7 @@ cor.test(constituencies$MedianAge, constituencies$ElectionConShare)
 constituencies %$% cor.test(MedianAge, ElectionConShare)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Pearson's product-moment correlation
 ## 
@@ -61,7 +61,7 @@ constituencies %>% filter(ContType == "County") %$%
   cor.test(MedianAge, ElectionConShare)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Pearson's product-moment correlation
 ## 

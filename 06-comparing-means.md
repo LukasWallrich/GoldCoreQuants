@@ -41,7 +41,7 @@ Those means look very close. Nevertheless, we might want to know how likely we w
 t.test(soctrust ~ gndr, data=essUK, var.equal = TRUE)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Two Sample t-test
 ## 
@@ -62,7 +62,7 @@ This is just a special case of a linear model, so we could also use the `lm()` f
 lm(soctrust ~ gndr, data=essUK) %>% summary()
 ```
 
-```
+```{.bg-none}
 ## 
 ## Call:
 ## lm(formula = soctrust ~ gndr, data = essUK)
@@ -97,7 +97,7 @@ essUK %>%
   mutate(diff = weekend - weekday)
 ```
 
-```
+```{.bg-none}
 ## # A tibble: 1 x 3
 ##   weekday weekend  diff
 ##     <dbl>   <dbl> <dbl>
@@ -111,7 +111,7 @@ So there seems to be a large difference in the average amount people drink durin
 t.test(essUK$alcwknd, essUK$alcwkdy, paired = TRUE)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Paired t-test
 ## 
@@ -132,7 +132,7 @@ The paired t-test - as it says in the output - tests whether the mean of the dif
 t.test(essUK$alcwknd - essUK$alcwkdy, mu = 0)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	One Sample t-test
 ## 
@@ -156,7 +156,7 @@ essF <- ess %>% filter(cntry %in% c("FR", "ES", "IE", "BE", "NL"))
 essF %>% group_by(cntry) %>% summarise(life_satisfaction = mean(stflife, na.rm = T))
 ```
 
-```
+```{.bg-none}
 ## # A tibble: 5 x 2
 ##   cntry life_satisfaction
 ## * <fct>             <dbl>
@@ -181,7 +181,7 @@ essF$cntry <- factor(essF$cntry) %>% relevel(ref = "FR")
 lm(stflife ~ cntry, data = essF) %>% summary()
 ```
 
-```
+```{.bg-none}
 ## 
 ## Call:
 ## lm(formula = stflife ~ cntry, data = essF)
@@ -233,7 +233,7 @@ pacman::p_load(car)
 lm(stflife ~ cntry, data = essF) %>% car::Anova()
 ```
 
-```
+```{.bg-none}
 ## Anova Table (Type II tests)
 ## 
 ## Response: stflife
@@ -253,7 +253,7 @@ Now that we know that some of the countries are different, we will want to locat
 pairwise.t.test(essF$stflife, essF$cntry, p.adjust.method = "bonferroni")
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -286,7 +286,7 @@ To analyse whether there are differences between the conditions, as always, we s
 noiseData %>% group_by(condition) %>% summarise(mean(score))
 ```
 
-```
+```{.bg-none}
 ## # A tibble: 4 x 2
 ##   condition    `mean(score)`
 ## * <chr>                <dbl>
@@ -325,7 +325,7 @@ anova(model0, model1)
 ## refitting model(s) with ML (instead of REML)
 ```
 
-```
+```{.bg-none}
 ## Data: noiseData
 ## Models:
 ## model0: score ~ (1 | participantID)
@@ -348,7 +348,7 @@ Now that we know that there is a difference between some of the conditions, we w
 pairwise.t.test(noiseData$score, noiseData$condition,	p.adj = "bonferroni", paired=TRUE)
 ```
 
-```
+```{.bg-none}
 ## 
 ## 	Pairwise comparisons using paired t tests 
 ## 
