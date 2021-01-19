@@ -286,18 +286,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="two-independent-means" class="section level3">
 <h3><span class="header-section-number">6.0.2</span> Two independent means</h3>
 <p>Going back to the European Social Survey 2014 data, we might be curious whether social trust differs between men and women in the UK. For that, we should always first calculate the descriptive statistics:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="comparing-means-between-conditions-or-groups.html#cb52-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse)</span>
-<span id="cb52-2"><a href="comparing-means-between-conditions-or-groups.html#cb52-2"></a>ess &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/round7.RDS&quot;</span>))</span>
-<span id="cb52-3"><a href="comparing-means-between-conditions-or-groups.html#cb52-3"></a>ess &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">soctrust =</span> (ppltrst <span class="op">+</span><span class="st"> </span>pplfair <span class="op">+</span><span class="st"> </span>pplhlp)<span class="op">/</span><span class="dv">3</span>)</span>
-<span id="cb52-4"><a href="comparing-means-between-conditions-or-groups.html#cb52-4"></a>essUK &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(cntry<span class="op">==</span><span class="st">&quot;GB&quot;</span>)</span>
-<span id="cb52-5"><a href="comparing-means-between-conditions-or-groups.html#cb52-5"></a>essUK <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(gndr) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(soctrust, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="comparing-means-between-conditions-or-groups.html#cb51-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse)</span>
+<span id="cb51-2"><a href="comparing-means-between-conditions-or-groups.html#cb51-2"></a>ess &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/round7.RDS&quot;</span>))</span>
+<span id="cb51-3"><a href="comparing-means-between-conditions-or-groups.html#cb51-3"></a>ess &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">soctrust =</span> (ppltrst <span class="op">+</span><span class="st"> </span>pplfair <span class="op">+</span><span class="st"> </span>pplhlp)<span class="op">/</span><span class="dv">3</span>)</span>
+<span id="cb51-4"><a href="comparing-means-between-conditions-or-groups.html#cb51-4"></a>essUK &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(cntry<span class="op">==</span><span class="st">&quot;GB&quot;</span>)</span>
+<span id="cb51-5"><a href="comparing-means-between-conditions-or-groups.html#cb51-5"></a>essUK <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(gndr) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(soctrust, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre class="bg-none"><code>## # A tibble: 2 x 2
 ##   gndr   `mean(soctrust, na.rm = TRUE)`
 ## * &lt;fct&gt;                           &lt;dbl&gt;
 ## 1 Male                             5.70
 ## 2 Female                           5.72</code></pre>
 <p>Those means look very close. Nevertheless, we might want to know how likely we would have been to see a difference this large under the null-hypothesis, i.e. if social trust did not differ between men and women. For that, we can run a t-test.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="comparing-means-between-conditions-or-groups.html#cb54-1"></a><span class="kw">t.test</span>(soctrust <span class="op">~</span><span class="st"> </span>gndr, <span class="dt">data=</span>essUK, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="comparing-means-between-conditions-or-groups.html#cb53-1"></a><span class="kw">t.test</span>(soctrust <span class="op">~</span><span class="st"> </span>gndr, <span class="dt">data=</span>essUK, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre class="bg-none"><code>## 
 ## 	Two Sample t-test
 ## 
@@ -310,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   mean in group Male mean in group Female 
 ##             5.702288             5.717886</code></pre>
 <p>This is just a special case of a linear model, so we could also use the <code>lm()</code> function:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="comparing-means-between-conditions-or-groups.html#cb56-1"></a><span class="kw">lm</span>(soctrust <span class="op">~</span><span class="st"> </span>gndr, <span class="dt">data=</span>essUK) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="comparing-means-between-conditions-or-groups.html#cb55-1"></a><span class="kw">lm</span>(soctrust <span class="op">~</span><span class="st"> </span>gndr, <span class="dt">data=</span>essUK) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
 <pre class="bg-none"><code>## 
 ## Call:
 ## lm(formula = soctrust ~ gndr, data = essUK)
@@ -335,15 +335,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="two-dependent-means" class="section level3">
 <h3><span class="header-section-number">6.0.3</span> Two dependent means</h3>
 <p>In the ESS data, participants were asked how much they drank when they last drank during a weekday and during a weekend. Here the same participants provided two alcohol measures, so that these data points represent repeated measures. If we ignore that in the analysis, we violate a key assumption of linear models - namely the independence of observations. Therefore, we need to use a paired t-test. But as always, first descriptive statistics.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="comparing-means-between-conditions-or-groups.html#cb58-1"></a>essUK <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb58-2"><a href="comparing-means-between-conditions-or-groups.html#cb58-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">weekday =</span> <span class="kw">mean</span>(alcwkdy, <span class="dt">na.rm=</span>T), <span class="dt">weekend=</span><span class="kw">mean</span>(alcwknd, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span></span>
-<span id="cb58-3"><a href="comparing-means-between-conditions-or-groups.html#cb58-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diff =</span> weekend <span class="op">-</span><span class="st"> </span>weekday)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="comparing-means-between-conditions-or-groups.html#cb57-1"></a>essUK <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb57-2"><a href="comparing-means-between-conditions-or-groups.html#cb57-2"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">weekday =</span> <span class="kw">mean</span>(alcwkdy, <span class="dt">na.rm=</span>T), <span class="dt">weekend=</span><span class="kw">mean</span>(alcwknd, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span></span>
+<span id="cb57-3"><a href="comparing-means-between-conditions-or-groups.html#cb57-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">diff =</span> weekend <span class="op">-</span><span class="st"> </span>weekday)</span></code></pre></div>
 <pre class="bg-none"><code>## # A tibble: 1 x 3
 ##   weekday weekend  diff
 ##     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
 ## 1    36.3    62.4  26.1</code></pre>
 <p>So there seems to be a large difference in the average amount people drink during a single session on weekdays and weekends. Is the difference statistically significant?</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="comparing-means-between-conditions-or-groups.html#cb60-1"></a><span class="kw">t.test</span>(essUK<span class="op">$</span>alcwknd, essUK<span class="op">$</span>alcwkdy, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="comparing-means-between-conditions-or-groups.html#cb59-1"></a><span class="kw">t.test</span>(essUK<span class="op">$</span>alcwknd, essUK<span class="op">$</span>alcwkdy, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre class="bg-none"><code>## 
 ## 	Paired t-test
 ## 
@@ -356,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean of the differences 
 ##                26.14159</code></pre>
 <p>The paired t-test - as it says in the output - tests whether the mean of the differences between the two variables is significantly different from 0. We could also specify that condition directly to receive identical results :</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="comparing-means-between-conditions-or-groups.html#cb62-1"></a><span class="kw">t.test</span>(essUK<span class="op">$</span>alcwknd <span class="op">-</span><span class="st"> </span>essUK<span class="op">$</span>alcwkdy, <span class="dt">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="comparing-means-between-conditions-or-groups.html#cb61-1"></a><span class="kw">t.test</span>(essUK<span class="op">$</span>alcwknd <span class="op">-</span><span class="st"> </span>essUK<span class="op">$</span>alcwkdy, <span class="dt">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre class="bg-none"><code>## 
 ## 	One Sample t-test
 ## 
@@ -372,8 +372,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="more-than-two-independent-means" class="section level3">
 <h3><span class="header-section-number">6.0.4</span> More than two independent means</h3>
 <p>We might be interested whether levels of life satisfaction differ between the European countries we could reach by ferry from the UK. First, let’s look at the descriptive statistics.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="comparing-means-between-conditions-or-groups.html#cb64-1"></a>essF &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(cntry <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;FR&quot;</span>, <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;IE&quot;</span>, <span class="st">&quot;BE&quot;</span>, <span class="st">&quot;NL&quot;</span>))</span>
-<span id="cb64-2"><a href="comparing-means-between-conditions-or-groups.html#cb64-2"></a>essF <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cntry) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">life_satisfaction =</span> <span class="kw">mean</span>(stflife, <span class="dt">na.rm =</span> T))</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="comparing-means-between-conditions-or-groups.html#cb63-1"></a>essF &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(cntry <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;FR&quot;</span>, <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;IE&quot;</span>, <span class="st">&quot;BE&quot;</span>, <span class="st">&quot;NL&quot;</span>))</span>
+<span id="cb63-2"><a href="comparing-means-between-conditions-or-groups.html#cb63-2"></a>essF <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cntry) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">life_satisfaction =</span> <span class="kw">mean</span>(stflife, <span class="dt">na.rm =</span> T))</span></code></pre></div>
 <pre class="bg-none"><code>## # A tibble: 5 x 2
 ##   cntry life_satisfaction
 ## * &lt;fct&gt;             &lt;dbl&gt;
@@ -389,9 +389,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="omnibus-test-anova" class="section level4">
 <h4><span class="header-section-number">6.0.4.1</span> Omnibus test (ANOVA)</h4>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="comparing-means-between-conditions-or-groups.html#cb66-1"></a><span class="co">#Set the reference level, so that we know what the coefficients mean</span></span>
-<span id="cb66-2"><a href="comparing-means-between-conditions-or-groups.html#cb66-2"></a>essF<span class="op">$</span>cntry &lt;-<span class="st"> </span><span class="kw">factor</span>(essF<span class="op">$</span>cntry) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref =</span> <span class="st">&quot;FR&quot;</span>)</span>
-<span id="cb66-3"><a href="comparing-means-between-conditions-or-groups.html#cb66-3"></a><span class="kw">lm</span>(stflife <span class="op">~</span><span class="st"> </span>cntry, <span class="dt">data =</span> essF) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="comparing-means-between-conditions-or-groups.html#cb65-1"></a><span class="co">#Set the reference level, so that we know what the coefficients mean</span></span>
+<span id="cb65-2"><a href="comparing-means-between-conditions-or-groups.html#cb65-2"></a>essF<span class="op">$</span>cntry &lt;-<span class="st"> </span><span class="kw">factor</span>(essF<span class="op">$</span>cntry) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref =</span> <span class="st">&quot;FR&quot;</span>)</span>
+<span id="cb65-3"><a href="comparing-means-between-conditions-or-groups.html#cb65-3"></a><span class="kw">lm</span>(stflife <span class="op">~</span><span class="st"> </span>cntry, <span class="dt">data =</span> essF) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
 <pre class="bg-none"><code>## 
 ## Call:
 ## lm(formula = stflife ~ cntry, data = essF)
@@ -416,13 +416,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## F-statistic: 106.4 on 4 and 9896 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Here we just want to see whether the country variable explains a significant share of the variance. That is shown by the last line, so that we would report: There was an overall effects of country on life satisfaction, <em>F</em>(4, 9869) = 106.4, <em>p</em>&lt;.001.</p>
 <p>If you are so inclined, note that this is identical to a one-way ANOVA. To see that, you can replace summary() by car::Anova() - however, this is only truly essential if you are a psychologist, most other disciplines prefer the plain linear models when they suffice.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="comparing-means-between-conditions-or-groups.html#cb68-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(car)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="comparing-means-between-conditions-or-groups.html#cb67-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(car)</span></code></pre></div>
 <pre><code>## Installing package into &#39;/home/runner/work/_temp/Library&#39;
 ## (as &#39;lib&#39; is unspecified)</code></pre>
 <pre><code>## also installing the dependencies &#39;matrixStats&#39;, &#39;RcppArmadillo&#39;, &#39;zip&#39;, &#39;numDeriv&#39;, &#39;SparseM&#39;, &#39;MatrixModels&#39;, &#39;conquer&#39;, &#39;sp&#39;, &#39;data.table&#39;, &#39;openxlsx&#39;, &#39;minqa&#39;, &#39;nloptr&#39;, &#39;statmod&#39;, &#39;RcppEigen&#39;, &#39;carData&#39;, &#39;abind&#39;, &#39;pbkrtest&#39;, &#39;quantreg&#39;, &#39;maptools&#39;, &#39;rio&#39;, &#39;lme4&#39;</code></pre>
 <pre><code>## 
 ## car installed</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="comparing-means-between-conditions-or-groups.html#cb72-1"></a><span class="kw">lm</span>(stflife <span class="op">~</span><span class="st"> </span>cntry, <span class="dt">data =</span> essF) <span class="op">%&gt;%</span><span class="st"> </span>car<span class="op">::</span><span class="kw">Anova</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="comparing-means-between-conditions-or-groups.html#cb71-1"></a><span class="kw">lm</span>(stflife <span class="op">~</span><span class="st"> </span>cntry, <span class="dt">data =</span> essF) <span class="op">%&gt;%</span><span class="st"> </span>car<span class="op">::</span><span class="kw">Anova</span>()</span></code></pre></div>
 <pre class="bg-none"><code>## Anova Table (Type II tests)
 ## 
 ## Response: stflife
@@ -435,7 +435,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pairwise-comparisons" class="section level4">
 <h4><span class="header-section-number">6.0.4.2</span> Pairwise comparisons</h4>
 <p>Now that we know that some of the countries are different, we will want to locate the differences. That is where pairwise t-tests come in.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="comparing-means-between-conditions-or-groups.html#cb74-1"></a><span class="kw">pairwise.t.test</span>(essF<span class="op">$</span>stflife, essF<span class="op">$</span>cntry, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="comparing-means-between-conditions-or-groups.html#cb73-1"></a><span class="kw">pairwise.t.test</span>(essF<span class="op">$</span>stflife, essF<span class="op">$</span>cntry, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
 <pre class="bg-none"><code>## 
 ## 	Pairwise comparisons using t tests with pooled SD 
 ## 
@@ -457,7 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here I will revert to the simulated example from the video linked above. In that, the effect of four conditions during studying on participants’ test scores was assessed, namely whether participants were exposed to instrumental music, vocal music, white noise or silence.</p>
 <p>Note that the data for repeated measures analysis in R generally needs to be formatted in a way that each row shows one observation rather than multiple observations from one participant (“long” format). If you have data in a “wide” format, you can reshape it with the <code>gather()</code> or <code>pivot_longer()</code> functions.</p>
 <p>To analyse whether there are differences between the conditions, as always, we start with descriptive statistics.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="comparing-means-between-conditions-or-groups.html#cb76-1"></a>noiseData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(score))</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="comparing-means-between-conditions-or-groups.html#cb75-1"></a>noiseData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(score))</span></code></pre></div>
 <pre class="bg-none"><code>## # A tibble: 4 x 2
 ##   condition    `mean(score)`
 ## * &lt;chr&gt;                &lt;dbl&gt;
@@ -470,19 +470,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">6.0.5.1</span> Omnibus test</h4>
 <p>Testing whether the conditions make a difference is a little bit harder with repeated measures because the observations are not independent. Therefore, we need to run a model that takes into account the relationships between the observations taken from a single participant. This does not work with <code>lm()</code>; instead we need to use an additional package that allows for multi-level modeling where some observations are clustered together, <code>lme4</code> is the most frequently used such package for this purpose.</p>
 <p>In the case of independent samples, we were comparing our model with the group variable as a predictor implicitly to the model that predicts the overall mean for everyone (that is what the <code>lm()</code> F-test is doing). Here, the null model uses each participant’s own overall mean as the prediction for their performance in any one condition. We need to set up that null model explicitly and then compare it to the model that considers groups.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="comparing-means-between-conditions-or-groups.html#cb78-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(lme4)</span>
-<span id="cb78-2"><a href="comparing-means-between-conditions-or-groups.html#cb78-2"></a></span>
-<span id="cb78-3"><a href="comparing-means-between-conditions-or-groups.html#cb78-3"></a><span class="co">#Set reference level explicitly</span></span>
-<span id="cb78-4"><a href="comparing-means-between-conditions-or-groups.html#cb78-4"></a>noiseData<span class="op">$</span>condition &lt;-<span class="st"> </span>noiseData<span class="op">$</span>condition <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">factor</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="st">&quot;silence&quot;</span>)</span>
-<span id="cb78-5"><a href="comparing-means-between-conditions-or-groups.html#cb78-5"></a></span>
-<span id="cb78-6"><a href="comparing-means-between-conditions-or-groups.html#cb78-6"></a><span class="co">#Run null model - predicting only an individual intercept per participant</span></span>
-<span id="cb78-7"><a href="comparing-means-between-conditions-or-groups.html#cb78-7"></a>model0 &lt;-<span class="st"> </span><span class="kw">lmer</span>((score <span class="op">~</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>participantID)),	<span class="dt">data =</span> noiseData)</span>
-<span id="cb78-8"><a href="comparing-means-between-conditions-or-groups.html#cb78-8"></a></span>
-<span id="cb78-9"><a href="comparing-means-between-conditions-or-groups.html#cb78-9"></a><span class="co">#Run hypothesized model - adding the groups as a predictor</span></span>
-<span id="cb78-10"><a href="comparing-means-between-conditions-or-groups.html#cb78-10"></a>model1 &lt;-<span class="st"> </span><span class="kw">lmer</span>((score <span class="op">~</span><span class="st"> </span>condition <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>participantID)),	<span class="dt">data =</span> noiseData)</span>
-<span id="cb78-11"><a href="comparing-means-between-conditions-or-groups.html#cb78-11"></a></span>
-<span id="cb78-12"><a href="comparing-means-between-conditions-or-groups.html#cb78-12"></a><span class="co">#Comparing the two models</span></span>
-<span id="cb78-13"><a href="comparing-means-between-conditions-or-groups.html#cb78-13"></a><span class="kw">anova</span>(model0, model1)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="comparing-means-between-conditions-or-groups.html#cb77-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(lme4)</span>
+<span id="cb77-2"><a href="comparing-means-between-conditions-or-groups.html#cb77-2"></a></span>
+<span id="cb77-3"><a href="comparing-means-between-conditions-or-groups.html#cb77-3"></a><span class="co">#Set reference level explicitly</span></span>
+<span id="cb77-4"><a href="comparing-means-between-conditions-or-groups.html#cb77-4"></a>noiseData<span class="op">$</span>condition &lt;-<span class="st"> </span>noiseData<span class="op">$</span>condition <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">factor</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="st">&quot;silence&quot;</span>)</span>
+<span id="cb77-5"><a href="comparing-means-between-conditions-or-groups.html#cb77-5"></a></span>
+<span id="cb77-6"><a href="comparing-means-between-conditions-or-groups.html#cb77-6"></a><span class="co">#Run null model - predicting only an individual intercept per participant</span></span>
+<span id="cb77-7"><a href="comparing-means-between-conditions-or-groups.html#cb77-7"></a>model0 &lt;-<span class="st"> </span><span class="kw">lmer</span>((score <span class="op">~</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>participantID)),	<span class="dt">data =</span> noiseData)</span>
+<span id="cb77-8"><a href="comparing-means-between-conditions-or-groups.html#cb77-8"></a></span>
+<span id="cb77-9"><a href="comparing-means-between-conditions-or-groups.html#cb77-9"></a><span class="co">#Run hypothesized model - adding the groups as a predictor</span></span>
+<span id="cb77-10"><a href="comparing-means-between-conditions-or-groups.html#cb77-10"></a>model1 &lt;-<span class="st"> </span><span class="kw">lmer</span>((score <span class="op">~</span><span class="st"> </span>condition <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>participantID)),	<span class="dt">data =</span> noiseData)</span>
+<span id="cb77-11"><a href="comparing-means-between-conditions-or-groups.html#cb77-11"></a></span>
+<span id="cb77-12"><a href="comparing-means-between-conditions-or-groups.html#cb77-12"></a><span class="co">#Comparing the two models</span></span>
+<span id="cb77-13"><a href="comparing-means-between-conditions-or-groups.html#cb77-13"></a><span class="kw">anova</span>(model0, model1)</span></code></pre></div>
 <pre><code>## refitting model(s) with ML (instead of REML)</code></pre>
 <pre class="bg-none"><code>## Data: noiseData
 ## Models:
@@ -498,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pairwise-comparisons-1" class="section level4">
 <h4><span class="header-section-number">6.0.5.2</span> Pairwise comparisons</h4>
 <p>Now that we know that there is a difference between some of the conditions, we will want to know which are different. For that, we can again run pairwise t-tests; we just need to specify that they are run on paired data by setting <code>paired = TRUE</code>.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="comparing-means-between-conditions-or-groups.html#cb81-1"></a><span class="kw">pairwise.t.test</span>(noiseData<span class="op">$</span>score, noiseData<span class="op">$</span>condition,	<span class="dt">p.adj =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="dt">paired=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="comparing-means-between-conditions-or-groups.html#cb80-1"></a><span class="kw">pairwise.t.test</span>(noiseData<span class="op">$</span>score, noiseData<span class="op">$</span>condition,	<span class="dt">p.adj =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="dt">paired=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <pre class="bg-none"><code>## 
 ## 	Pairwise comparisons using paired t tests 
 ## 

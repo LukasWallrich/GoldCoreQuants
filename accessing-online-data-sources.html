@@ -278,16 +278,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.1</span> World Bank data</h2>
 <p>The World Bank offers a rich dataset with a particular focus on indicators relevant for the study of poverty, inequality and global development (in fact, much of gapminder is based on World Bank data). You can explore their data online on <a href="https://data.worldbank.com">data.worldbank.com</a>, or access it directly from R using the <code>wbstats</code> package.</p>
 <p>Here, I will explore the question whether life expectancy and literacy have increased in line with GDP in the BRICS countries (Brasil, Russia, India, China and South Africa, a group that has often been seen as representing emerging economies).</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="accessing-online-data-sources.html#cb143-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse)</span>
-<span id="cb143-2"><a href="accessing-online-data-sources.html#cb143-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(wbstats)</span>
-<span id="cb143-3"><a href="accessing-online-data-sources.html#cb143-3"></a></span>
-<span id="cb143-4"><a href="accessing-online-data-sources.html#cb143-4"></a><span class="co">#Download current list of indicators</span></span>
-<span id="cb143-5"><a href="accessing-online-data-sources.html#cb143-5"></a>new_wb_cache &lt;-<span class="st"> </span><span class="kw">wb_cache</span>()</span>
-<span id="cb143-6"><a href="accessing-online-data-sources.html#cb143-6"></a></span>
-<span id="cb143-7"><a href="accessing-online-data-sources.html#cb143-7"></a><span class="co">#Search for indicators - you can best do this on data.worldbank.com and find the IndicatorID in the URL. The wbsearch() function often returns to many hits.</span></span>
-<span id="cb143-8"><a href="accessing-online-data-sources.html#cb143-8"></a></span>
-<span id="cb143-9"><a href="accessing-online-data-sources.html#cb143-9"></a><span class="co">#GDP per capita, purchasing power adjusted (to remove effect of exchange rates)</span></span>
-<span id="cb143-10"><a href="accessing-online-data-sources.html#cb143-10"></a><span class="kw">wb_search</span>(<span class="st">&quot;gdp.*capita.*PPP&quot;</span>, <span class="dt">cache =</span> new_wb_cache)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="accessing-online-data-sources.html#cb142-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse)</span>
+<span id="cb142-2"><a href="accessing-online-data-sources.html#cb142-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(wbstats)</span>
+<span id="cb142-3"><a href="accessing-online-data-sources.html#cb142-3"></a></span>
+<span id="cb142-4"><a href="accessing-online-data-sources.html#cb142-4"></a><span class="co">#Download current list of indicators</span></span>
+<span id="cb142-5"><a href="accessing-online-data-sources.html#cb142-5"></a>new_wb_cache &lt;-<span class="st"> </span><span class="kw">wb_cache</span>()</span>
+<span id="cb142-6"><a href="accessing-online-data-sources.html#cb142-6"></a></span>
+<span id="cb142-7"><a href="accessing-online-data-sources.html#cb142-7"></a><span class="co">#Search for indicators - you can best do this on data.worldbank.com and find the IndicatorID in the URL. The wbsearch() function often returns to many hits.</span></span>
+<span id="cb142-8"><a href="accessing-online-data-sources.html#cb142-8"></a></span>
+<span id="cb142-9"><a href="accessing-online-data-sources.html#cb142-9"></a><span class="co">#GDP per capita, purchasing power adjusted (to remove effect of exchange rates)</span></span>
+<span id="cb142-10"><a href="accessing-online-data-sources.html#cb142-10"></a><span class="kw">wb_search</span>(<span class="st">&quot;gdp.*capita.*PPP&quot;</span>, <span class="dt">cache =</span> new_wb_cache)</span></code></pre></div>
 <pre class="bg-none"><code>## # A tibble: 4 x 3
 ##   indicator_id    indicator                indicator_desc                       
 ##   &lt;chr&gt;           &lt;chr&gt;                    &lt;chr&gt;                                
@@ -296,23 +296,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3 NY.GDP.PCAP.PP… GDP per capita, PPP (co… GDP per capita based on purchasing p…
 ## 4 NY.GDP.PCAP.PP… GDP per capita, PPP ann… Annual percentage growth rate of GDP…</code></pre>
 <p>Once we know the names of the indicators, we can download them.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="accessing-online-data-sources.html#cb145-1"></a><span class="co">#Note: to get the country names, you can download all countries once and then check the names</span></span>
-<span id="cb145-2"><a href="accessing-online-data-sources.html#cb145-2"></a><span class="co">#wb_dat &lt;- wb(indicator = c(&quot;NY.GDP.PCAP.PP.KD&quot;, &quot;SI.POV.GINI&quot;), country = &quot;all&quot;)</span></span>
-<span id="cb145-3"><a href="accessing-online-data-sources.html#cb145-3"></a><span class="co">#wb_dat %&gt;% count(iso2c, country) %&gt;% view()            </span></span>
-<span id="cb145-4"><a href="accessing-online-data-sources.html#cb145-4"></a>                            </span>
-<span id="cb145-5"><a href="accessing-online-data-sources.html#cb145-5"></a>wb_dat &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.PCAP.PP.KD&quot;</span>, <span class="st">&quot;SP.DYN.LE00.IN&quot;</span>, <span class="st">&quot;SE.TER.ENRR&quot;</span>), </span>
-<span id="cb145-6"><a href="accessing-online-data-sources.html#cb145-6"></a>             <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;IN&quot;</span>, <span class="st">&quot;BR&quot;</span>, <span class="st">&quot;CN&quot;</span>, <span class="st">&quot;ZA&quot;</span>, <span class="st">&quot;RU&quot;</span>), <span class="dt">return_wide =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="accessing-online-data-sources.html#cb144-1"></a><span class="co">#Note: to get the country names, you can download all countries once and then check the names</span></span>
+<span id="cb144-2"><a href="accessing-online-data-sources.html#cb144-2"></a><span class="co">#wb_dat &lt;- wb(indicator = c(&quot;NY.GDP.PCAP.PP.KD&quot;, &quot;SI.POV.GINI&quot;), country = &quot;all&quot;)</span></span>
+<span id="cb144-3"><a href="accessing-online-data-sources.html#cb144-3"></a><span class="co">#wb_dat %&gt;% count(iso2c, country) %&gt;% view()            </span></span>
+<span id="cb144-4"><a href="accessing-online-data-sources.html#cb144-4"></a>                            </span>
+<span id="cb144-5"><a href="accessing-online-data-sources.html#cb144-5"></a>wb_dat &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.PCAP.PP.KD&quot;</span>, <span class="st">&quot;SP.DYN.LE00.IN&quot;</span>, <span class="st">&quot;SE.TER.ENRR&quot;</span>), </span>
+<span id="cb144-6"><a href="accessing-online-data-sources.html#cb144-6"></a>             <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;IN&quot;</span>, <span class="st">&quot;BR&quot;</span>, <span class="st">&quot;CN&quot;</span>, <span class="st">&quot;ZA&quot;</span>, <span class="st">&quot;RU&quot;</span>), <span class="dt">return_wide =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Now we have the data in a “long” format - with one combination of countries, indicators and years per row. That is a good layout for plotting, for other analyses you would need to reshape the data into a wide format where each indicator is in its own variable - look for the spread() function if you need that.</p>
 <p>A simple way of comparing the data is plotting the indicators side-by-side. One interesting take-away is that Brazil massively improved life expectancy and expanded education, even though GDP growth was rather modest, while South Africa stagnated in comparison.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="accessing-online-data-sources.html#cb146-1"></a><span class="co">#Our GDP series only starts in 1990 - so it does not make sense to consider earlier life expectancy</span></span>
-<span id="cb146-2"><a href="accessing-online-data-sources.html#cb146-2"></a>wb_datF &lt;-<span class="st"> </span>wb_dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">as.numeric</span>(date)<span class="op">&gt;=</span><span class="dv">1990</span>)</span>
-<span id="cb146-3"><a href="accessing-online-data-sources.html#cb146-3"></a></span>
-<span id="cb146-4"><a href="accessing-online-data-sources.html#cb146-4"></a><span class="kw">ggplot</span>(wb_datF, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">as.numeric</span>(date), <span class="dt">y=</span>value, <span class="dt">col=</span>country)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb146-5"><a href="accessing-online-data-sources.html#cb146-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb146-6"><a href="accessing-online-data-sources.html#cb146-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(.<span class="op">~</span>indicator, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">labeller =</span> <span class="kw">labeller</span>(<span class="dt">indicator =</span> <span class="kw">label_wrap_gen</span>(<span class="dv">25</span>))) <span class="op">+</span></span>
-<span id="cb146-7"><a href="accessing-online-data-sources.html#cb146-7"></a><span class="st">  </span><span class="co">#scales = &quot;free&quot; means that each indicator has its own y-axis, the labeller() function is needed for line breaks in the facet titles</span></span>
-<span id="cb146-8"><a href="accessing-online-data-sources.html#cb146-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Uneven progress in BRICS countries&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;World Bank data&quot;</span>, </span>
-<span id="cb146-9"><a href="accessing-online-data-sources.html#cb146-9"></a>       <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y=</span><span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;Country&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="accessing-online-data-sources.html#cb145-1"></a><span class="co">#Our GDP series only starts in 1990 - so it does not make sense to consider earlier life expectancy</span></span>
+<span id="cb145-2"><a href="accessing-online-data-sources.html#cb145-2"></a>wb_datF &lt;-<span class="st"> </span>wb_dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">as.numeric</span>(date)<span class="op">&gt;=</span><span class="dv">1990</span>)</span>
+<span id="cb145-3"><a href="accessing-online-data-sources.html#cb145-3"></a></span>
+<span id="cb145-4"><a href="accessing-online-data-sources.html#cb145-4"></a><span class="kw">ggplot</span>(wb_datF, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">as.numeric</span>(date), <span class="dt">y=</span>value, <span class="dt">col=</span>country)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb145-5"><a href="accessing-online-data-sources.html#cb145-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb145-6"><a href="accessing-online-data-sources.html#cb145-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(.<span class="op">~</span>indicator, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">labeller =</span> <span class="kw">labeller</span>(<span class="dt">indicator =</span> <span class="kw">label_wrap_gen</span>(<span class="dv">25</span>))) <span class="op">+</span></span>
+<span id="cb145-7"><a href="accessing-online-data-sources.html#cb145-7"></a><span class="st">  </span><span class="co">#scales = &quot;free&quot; means that each indicator has its own y-axis, the labeller() function is needed for line breaks in the facet titles</span></span>
+<span id="cb145-8"><a href="accessing-online-data-sources.html#cb145-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Uneven progress in BRICS countries&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;World Bank data&quot;</span>, </span>
+<span id="cb145-9"><a href="accessing-online-data-sources.html#cb145-9"></a>       <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y=</span><span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;Country&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
 <img src="11-accessing-online-data_files/figure-html/unnamed-chunk-3-1.png" alt="Example plot from World Bank data" width="100%" />
 <p class="caption">
@@ -326,38 +326,38 @@ Figure 11.1: Example plot from World Bank data
 <p>Wikidata is where most data from Wikipedia and much else lives. So if there are Wikipedia articles on the topic you are interested in, you can likely find underlying data on Wikidata. For example, this might be used to quickly extract data on the gender of heads of government of many countries.</p>
 <p>Wikidata is based on data items that are connected by multiple relationships. So there will be an item for <em>Germany</em>, an item for <em>Angela Merkel</em> and a relationship for <em>is the head of government of.</em> Similarly, there is an item for <em>country</em> and a relationship for <em>is an instance of</em> that connects it to <em>Germany.</em> SPARQL queries are used to get the data - this <a href="https://towardsdatascience.com/a-brief-introduction-to-wikidata-bb4e66395eb1">article</a> explains the logic quite well, but unless you want to spend a couple more weeks learning how to code, you can just take <a href="https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples">examples from Wikidata</a> and adjust them as needed. For adjusting them, the online <a href="https://query.wikidata.org/">Wikidata Query Service</a> works well, as it allows you to run the query again and again, until you get the data you need.</p>
 <p>I got curious about what share of the world’s population lives in countries with a female head of government, and how that varies by region. For that, I used the following code. (<code>gt</code> is a package to make nice tables easily.) <strong>Note that a key step is missing: I did not clean the data.</strong> It contains some duplicates, for instance because countries that span two continents are included twice in the Wikidata output. Data cleaning is a crucial part of analysing online data, but not the focus of this chapter.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="accessing-online-data-sources.html#cb147-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(WikidataQueryServiceR, gt)</span>
-<span id="cb147-2"><a href="accessing-online-data-sources.html#cb147-2"></a></span>
-<span id="cb147-3"><a href="accessing-online-data-sources.html#cb147-3"></a>headsOfGov &lt;-<span class="st"> </span><span class="kw">query_wikidata</span>(<span class="st">&#39;</span></span>
-<span id="cb147-4"><a href="accessing-online-data-sources.html#cb147-4"></a><span class="st">SELECT ?country ?head ?gender ?countryLabel ?headLabel ?genderLabel  ?continentLabel ?governmentLabel ?population</span></span>
-<span id="cb147-5"><a href="accessing-online-data-sources.html#cb147-5"></a><span class="st">WHERE</span></span>
-<span id="cb147-6"><a href="accessing-online-data-sources.html#cb147-6"></a><span class="st">{</span></span>
-<span id="cb147-7"><a href="accessing-online-data-sources.html#cb147-7"></a><span class="st">    ?country wdt:P31 wd:Q6256 .</span></span>
-<span id="cb147-8"><a href="accessing-online-data-sources.html#cb147-8"></a><span class="st">    ?country wdt:P6 ?head .</span></span>
-<span id="cb147-9"><a href="accessing-online-data-sources.html#cb147-9"></a><span class="st">    ?head wdt:P21 ?gender .  </span></span>
-<span id="cb147-10"><a href="accessing-online-data-sources.html#cb147-10"></a><span class="st">    ?country wdt:P30 ?continent . </span></span>
-<span id="cb147-11"><a href="accessing-online-data-sources.html#cb147-11"></a><span class="st">    ?country wdt:P1082 ?population .</span></span>
-<span id="cb147-12"><a href="accessing-online-data-sources.html#cb147-12"></a><span class="st">    SERVICE wikibase:label { bd:serviceParam wikibase:language &quot;en&quot; }</span></span>
-<span id="cb147-13"><a href="accessing-online-data-sources.html#cb147-13"></a><span class="st">}</span></span>
-<span id="cb147-14"><a href="accessing-online-data-sources.html#cb147-14"></a><span class="st">ORDER BY ?countryLabel</span></span>
-<span id="cb147-15"><a href="accessing-online-data-sources.html#cb147-15"></a><span class="st">&#39;</span>)</span>
-<span id="cb147-16"><a href="accessing-online-data-sources.html#cb147-16"></a></span>
-<span id="cb147-17"><a href="accessing-online-data-sources.html#cb147-17"></a>regional &lt;-<span class="st"> </span>headsOfGov <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(continentLabel, genderLabel) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">pop =</span> <span class="kw">sum</span>(population), <span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>()</span>
-<span id="cb147-18"><a href="accessing-online-data-sources.html#cb147-18"></a></span>
-<span id="cb147-19"><a href="accessing-online-data-sources.html#cb147-19"></a>world &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">continentLabel =</span> <span class="st">&quot;World&quot;</span>, </span>
-<span id="cb147-20"><a href="accessing-online-data-sources.html#cb147-20"></a>               headsOfGov <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(genderLabel) <span class="op">%&gt;%</span></span>
-<span id="cb147-21"><a href="accessing-online-data-sources.html#cb147-21"></a><span class="st">                 </span><span class="kw">summarise</span>(<span class="dt">pop=</span><span class="kw">sum</span>(population), <span class="dt">n=</span><span class="kw">n</span>()), </span>
-<span id="cb147-22"><a href="accessing-online-data-sources.html#cb147-22"></a>               <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb147-23"><a href="accessing-online-data-sources.html#cb147-23"></a></span>
-<span id="cb147-24"><a href="accessing-online-data-sources.html#cb147-24"></a></span>
-<span id="cb147-25"><a href="accessing-online-data-sources.html#cb147-25"></a>world <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ShareOfCountries =</span> n<span class="op">/</span><span class="kw">sum</span>(n)<span class="op">*</span><span class="dv">100</span>, <span class="dt">ShareOfPopulation =</span> pop<span class="op">/</span><span class="kw">sum</span>(pop)<span class="op">*</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(genderLabel <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(ShareOfCountries, ShareOfPopulation) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>gt<span class="op">::</span><span class="kw">gt</span>() <span class="op">%&gt;%</span><span class="st"> </span>gt<span class="op">::</span><span class="kw">tab_header</span>(<span class="dt">title=</span>gt<span class="op">::</span><span class="kw">md</span>(<span class="st">&quot;**Women rule** (%)&quot;</span>))</span>
-<span id="cb147-26"><a href="accessing-online-data-sources.html#cb147-26"></a></span>
-<span id="cb147-27"><a href="accessing-online-data-sources.html#cb147-27"></a>regionalAndWorld &lt;-<span class="st"> </span><span class="kw">rbind</span>(regional, world)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="accessing-online-data-sources.html#cb146-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(WikidataQueryServiceR, gt)</span>
+<span id="cb146-2"><a href="accessing-online-data-sources.html#cb146-2"></a></span>
+<span id="cb146-3"><a href="accessing-online-data-sources.html#cb146-3"></a>headsOfGov &lt;-<span class="st"> </span><span class="kw">query_wikidata</span>(<span class="st">&#39;</span></span>
+<span id="cb146-4"><a href="accessing-online-data-sources.html#cb146-4"></a><span class="st">SELECT ?country ?head ?gender ?countryLabel ?headLabel ?genderLabel  ?continentLabel ?governmentLabel ?population</span></span>
+<span id="cb146-5"><a href="accessing-online-data-sources.html#cb146-5"></a><span class="st">WHERE</span></span>
+<span id="cb146-6"><a href="accessing-online-data-sources.html#cb146-6"></a><span class="st">{</span></span>
+<span id="cb146-7"><a href="accessing-online-data-sources.html#cb146-7"></a><span class="st">    ?country wdt:P31 wd:Q6256 .</span></span>
+<span id="cb146-8"><a href="accessing-online-data-sources.html#cb146-8"></a><span class="st">    ?country wdt:P6 ?head .</span></span>
+<span id="cb146-9"><a href="accessing-online-data-sources.html#cb146-9"></a><span class="st">    ?head wdt:P21 ?gender .  </span></span>
+<span id="cb146-10"><a href="accessing-online-data-sources.html#cb146-10"></a><span class="st">    ?country wdt:P30 ?continent . </span></span>
+<span id="cb146-11"><a href="accessing-online-data-sources.html#cb146-11"></a><span class="st">    ?country wdt:P1082 ?population .</span></span>
+<span id="cb146-12"><a href="accessing-online-data-sources.html#cb146-12"></a><span class="st">    SERVICE wikibase:label { bd:serviceParam wikibase:language &quot;en&quot; }</span></span>
+<span id="cb146-13"><a href="accessing-online-data-sources.html#cb146-13"></a><span class="st">}</span></span>
+<span id="cb146-14"><a href="accessing-online-data-sources.html#cb146-14"></a><span class="st">ORDER BY ?countryLabel</span></span>
+<span id="cb146-15"><a href="accessing-online-data-sources.html#cb146-15"></a><span class="st">&#39;</span>)</span>
+<span id="cb146-16"><a href="accessing-online-data-sources.html#cb146-16"></a></span>
+<span id="cb146-17"><a href="accessing-online-data-sources.html#cb146-17"></a>regional &lt;-<span class="st"> </span>headsOfGov <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(continentLabel, genderLabel) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">pop =</span> <span class="kw">sum</span>(population), <span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>()</span>
+<span id="cb146-18"><a href="accessing-online-data-sources.html#cb146-18"></a></span>
+<span id="cb146-19"><a href="accessing-online-data-sources.html#cb146-19"></a>world &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">continentLabel =</span> <span class="st">&quot;World&quot;</span>, </span>
+<span id="cb146-20"><a href="accessing-online-data-sources.html#cb146-20"></a>               headsOfGov <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(genderLabel) <span class="op">%&gt;%</span></span>
+<span id="cb146-21"><a href="accessing-online-data-sources.html#cb146-21"></a><span class="st">                 </span><span class="kw">summarise</span>(<span class="dt">pop=</span><span class="kw">sum</span>(population), <span class="dt">n=</span><span class="kw">n</span>()), </span>
+<span id="cb146-22"><a href="accessing-online-data-sources.html#cb146-22"></a>               <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb146-23"><a href="accessing-online-data-sources.html#cb146-23"></a></span>
+<span id="cb146-24"><a href="accessing-online-data-sources.html#cb146-24"></a></span>
+<span id="cb146-25"><a href="accessing-online-data-sources.html#cb146-25"></a>world <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ShareOfCountries =</span> n<span class="op">/</span><span class="kw">sum</span>(n)<span class="op">*</span><span class="dv">100</span>, <span class="dt">ShareOfPopulation =</span> pop<span class="op">/</span><span class="kw">sum</span>(pop)<span class="op">*</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(genderLabel <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(ShareOfCountries, ShareOfPopulation) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>gt<span class="op">::</span><span class="kw">gt</span>() <span class="op">%&gt;%</span><span class="st"> </span>gt<span class="op">::</span><span class="kw">tab_header</span>(<span class="dt">title=</span>gt<span class="op">::</span><span class="kw">md</span>(<span class="st">&quot;**Women rule** (%)&quot;</span>))</span>
+<span id="cb146-26"><a href="accessing-online-data-sources.html#cb146-26"></a></span>
+<span id="cb146-27"><a href="accessing-online-data-sources.html#cb146-27"></a>regionalAndWorld &lt;-<span class="st"> </span><span class="kw">rbind</span>(regional, world)</span></code></pre></div>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xchuggbyvh .gt_table {
+#rrflcvwrwe .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -382,7 +382,7 @@ Figure 11.1: Example plot from World Bank data
   border-left-color: #D3D3D3;
 }
 
-#xchuggbyvh .gt_heading {
+#rrflcvwrwe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -394,7 +394,7 @@ Figure 11.1: Example plot from World Bank data
   border-right-color: #D3D3D3;
 }
 
-#xchuggbyvh .gt_title {
+#rrflcvwrwe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -404,7 +404,7 @@ Figure 11.1: Example plot from World Bank data
   border-bottom-width: 0;
 }
 
-#xchuggbyvh .gt_subtitle {
+#rrflcvwrwe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -414,13 +414,13 @@ Figure 11.1: Example plot from World Bank data
   border-top-width: 0;
 }
 
-#xchuggbyvh .gt_bottom_border {
+#rrflcvwrwe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xchuggbyvh .gt_col_headings {
+#rrflcvwrwe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -435,7 +435,7 @@ Figure 11.1: Example plot from World Bank data
   border-right-color: #D3D3D3;
 }
 
-#xchuggbyvh .gt_col_heading {
+#rrflcvwrwe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -455,7 +455,7 @@ Figure 11.1: Example plot from World Bank data
   overflow-x: hidden;
 }
 
-#xchuggbyvh .gt_column_spanner_outer {
+#rrflcvwrwe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -467,15 +467,15 @@ Figure 11.1: Example plot from World Bank data
   padding-right: 4px;
 }
 
-#xchuggbyvh .gt_column_spanner_outer:first-child {
+#rrflcvwrwe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xchuggbyvh .gt_column_spanner_outer:last-child {
+#rrflcvwrwe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xchuggbyvh .gt_column_spanner {
+#rrflcvwrwe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -487,7 +487,7 @@ Figure 11.1: Example plot from World Bank data
   width: 100%;
 }
 
-#xchuggbyvh .gt_group_heading {
+#rrflcvwrwe .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -509,7 +509,7 @@ Figure 11.1: Example plot from World Bank data
   vertical-align: middle;
 }
 
-#xchuggbyvh .gt_empty_group_heading {
+#rrflcvwrwe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -524,15 +524,15 @@ Figure 11.1: Example plot from World Bank data
   vertical-align: middle;
 }
 
-#xchuggbyvh .gt_from_md > :first-child {
+#rrflcvwrwe .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xchuggbyvh .gt_from_md > :last-child {
+#rrflcvwrwe .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xchuggbyvh .gt_row {
+#rrflcvwrwe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -551,7 +551,7 @@ Figure 11.1: Example plot from World Bank data
   overflow-x: hidden;
 }
 
-#xchuggbyvh .gt_stub {
+#rrflcvwrwe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -563,7 +563,7 @@ Figure 11.1: Example plot from World Bank data
   padding-left: 12px;
 }
 
-#xchuggbyvh .gt_summary_row {
+#rrflcvwrwe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -573,7 +573,7 @@ Figure 11.1: Example plot from World Bank data
   padding-right: 5px;
 }
 
-#xchuggbyvh .gt_first_summary_row {
+#rrflcvwrwe .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -583,7 +583,7 @@ Figure 11.1: Example plot from World Bank data
   border-top-color: #D3D3D3;
 }
 
-#xchuggbyvh .gt_grand_summary_row {
+#rrflcvwrwe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -593,7 +593,7 @@ Figure 11.1: Example plot from World Bank data
   padding-right: 5px;
 }
 
-#xchuggbyvh .gt_first_grand_summary_row {
+#rrflcvwrwe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -603,11 +603,11 @@ Figure 11.1: Example plot from World Bank data
   border-top-color: #D3D3D3;
 }
 
-#xchuggbyvh .gt_striped {
+#rrflcvwrwe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xchuggbyvh .gt_table_body {
+#rrflcvwrwe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -616,7 +616,7 @@ Figure 11.1: Example plot from World Bank data
   border-bottom-color: #D3D3D3;
 }
 
-#xchuggbyvh .gt_footnotes {
+#rrflcvwrwe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -630,13 +630,13 @@ Figure 11.1: Example plot from World Bank data
   border-right-color: #D3D3D3;
 }
 
-#xchuggbyvh .gt_footnote {
+#rrflcvwrwe .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#xchuggbyvh .gt_sourcenotes {
+#rrflcvwrwe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -650,46 +650,46 @@ Figure 11.1: Example plot from World Bank data
   border-right-color: #D3D3D3;
 }
 
-#xchuggbyvh .gt_sourcenote {
+#rrflcvwrwe .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#xchuggbyvh .gt_left {
+#rrflcvwrwe .gt_left {
   text-align: left;
 }
 
-#xchuggbyvh .gt_center {
+#rrflcvwrwe .gt_center {
   text-align: center;
 }
 
-#xchuggbyvh .gt_right {
+#rrflcvwrwe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xchuggbyvh .gt_font_normal {
+#rrflcvwrwe .gt_font_normal {
   font-weight: normal;
 }
 
-#xchuggbyvh .gt_font_bold {
+#rrflcvwrwe .gt_font_bold {
   font-weight: bold;
 }
 
-#xchuggbyvh .gt_font_italic {
+#rrflcvwrwe .gt_font_italic {
   font-style: italic;
 }
 
-#xchuggbyvh .gt_super {
+#rrflcvwrwe .gt_super {
   font-size: 65%;
 }
 
-#xchuggbyvh .gt_footnote_marks {
+#rrflcvwrwe .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="xchuggbyvh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="rrflcvwrwe" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style><strong>Women rule</strong> (%)</th>
@@ -713,12 +713,12 @@ Figure 11.1: Example plot from World Bank data
   
   
 </table></div>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="accessing-online-data-sources.html#cb148-1"></a><span class="kw">ggplot</span>(regionalAndWorld, <span class="kw">aes</span>(<span class="dt">x=</span>continentLabel, <span class="dt">y=</span>pop, <span class="dt">fill=</span>genderLabel)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position=</span><span class="st">&quot;fill&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb148-2"><a href="accessing-online-data-sources.html#cb148-2"></a><span class="st">    </span><span class="co">#Turns chart into bars rather than columns</span></span>
-<span id="cb148-3"><a href="accessing-online-data-sources.html#cb148-3"></a><span class="st">    </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb148-4"><a href="accessing-online-data-sources.html#cb148-4"></a><span class="st">    </span><span class="co">#Show percentages rather than fractions on y-axis (now shown as x-axis)</span></span>
-<span id="cb148-5"><a href="accessing-online-data-sources.html#cb148-5"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span></span>
-<span id="cb148-6"><a href="accessing-online-data-sources.html#cb148-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Only a small fraction of the world&#39;s population is ruled by women&quot;</span>, <span class="dt">subtitle=</span><span class="st">&quot;Source: WikiData, February 2020&quot;</span>, <span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Share of population&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;Head of government&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="accessing-online-data-sources.html#cb147-1"></a><span class="kw">ggplot</span>(regionalAndWorld, <span class="kw">aes</span>(<span class="dt">x=</span>continentLabel, <span class="dt">y=</span>pop, <span class="dt">fill=</span>genderLabel)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position=</span><span class="st">&quot;fill&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb147-2"><a href="accessing-online-data-sources.html#cb147-2"></a><span class="st">    </span><span class="co">#Turns chart into bars rather than columns</span></span>
+<span id="cb147-3"><a href="accessing-online-data-sources.html#cb147-3"></a><span class="st">    </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb147-4"><a href="accessing-online-data-sources.html#cb147-4"></a><span class="st">    </span><span class="co">#Show percentages rather than fractions on y-axis (now shown as x-axis)</span></span>
+<span id="cb147-5"><a href="accessing-online-data-sources.html#cb147-5"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span></span>
+<span id="cb147-6"><a href="accessing-online-data-sources.html#cb147-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Only a small fraction of the world&#39;s population is ruled by women&quot;</span>, <span class="dt">subtitle=</span><span class="st">&quot;Source: WikiData, February 2020&quot;</span>, <span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Share of population&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;Head of government&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
 <img src="11-accessing-online-data_files/figure-html/unnamed-chunk-5-1.png" alt="Example plot from Wikidata" width="100%" />
 <p class="caption">

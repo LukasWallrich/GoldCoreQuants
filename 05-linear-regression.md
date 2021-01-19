@@ -42,10 +42,6 @@ ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) +
   geom_point() + geom_smooth(method="lm", se = FALSE) #se=FALSE hides confidence bands that are often just visual clutter
 ```
 
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
 <div class="figure" style="text-align: center">
 <img src="05-linear-regression_files/figure-html/unnamed-chunk-2-1.png" alt="Scatterplot with added regression line (&quot;line of best fit&quot;)" width="100%" />
 <p class="caption">(\#fig:unnamed-chunk-2)Scatterplot with added regression line ("line of best fit")</p>
