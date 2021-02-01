@@ -12,15 +12,20 @@ With two categorical variables, the data we observe can best be shown in a frequ
 
 ```{r echo=FALSE, warning=FALSE}
 pacman::p_load(tidyverse)
-constituencies <- read_csv(url("http://empower-training.de/Gold/ConstituencyData2019.csv"), col_types = "_cfddddfffddddfffdfdddd")
+constituencies <- 
+  read_csv(url("http://empower-training.de/Gold/ConstituencyData2019.csv"), 
+           col_types = "_cfddddfffddddfffdfdddd")
 
-#Excluding Northern Ireland due to different party landscape and creating new "nation" variable to show whether constituence is in England, Wales or Scotland
+#Excluding Northern Ireland due to different party landscape and 
+#creating new "nation" variable to show whether constituence is in 
+#England, Wales or Scotland
 constituencies <- constituencies %>% filter(RegionName != "Northern Ireland") %>%
           mutate(nation = case_when(RegionName == "Scotland" ~ "Scotland",
                                     RegionName == "Wales" ~ "Wales",
                                     T ~ "England"))
 
-#Exclude Chorley - the Speaker's constituency, which is a weird case with no Con candidate
+#Exclude Chorley - the Speaker's constituency, 
+#which is a weird case with no Con candidate
 constituencies <- constituencies %>% filter(ConstituencyName != "Chorley")
 
 #Restrict to main parties

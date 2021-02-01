@@ -47,7 +47,8 @@ from the points to the line. It can be plotted with the
 
 ```{r, fig.cap='Scatterplot with added regression line ("line of best fit")', message=FALSE}
 ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) + 
-  geom_point() + geom_smooth(method="lm", se = FALSE) #se=FALSE hides confidence bands that are often just visual clutter
+  geom_point() + geom_smooth(method="lm", se = FALSE) 
+  #se=FALSE hides confidence bands that are often just visual clutter
 ```
 
 For each value of one variable, this line now allows us to find the
@@ -152,7 +153,8 @@ to calculate the correlation coefficient.
 
 ```{r}
 cor.test(nat_avgs$nat_soctrust, nat_avgs$nat_stflife) 
-#If you have missing data, use the na.rm = TRUE argument to have it excluded before the calculation
+#If you have missing data, use the na.rm = TRUE argument 
+#to have it excluded before the calculation
 ```
 
 The estimated `cor` at the very bottom of the output is the correlation
@@ -268,7 +270,8 @@ age), significance value and $R^2$ as above. What happens when we add
 nation, to account for differences between Scotland, England and Wales?
 
 ```{r}
-#Declare nation as factor and then set the reference level for categorical predictors
+#Declare nation as factor and then set the reference level 
+#for categorical predictors
 constituencies$nation <- factor(constituencies$nation) %>% relevel(ref = "England")
 lm(ElectionConShare ~ MedianAge + nation, data = constituencies) %>% summary()
 ```

@@ -15,15 +15,21 @@ In these packages, the functions to read data are always `read_x()`, with x repl
 The functions that load data from tables need to establish the variable class for each variable. They can either guess (which you will then need to check), or you can provide the classes in the `col_types`-argument. Check `?readr::read_csv` for details. 
 
 ```{r, eval=FALSE}
-#readr is loaded with the tidyverse, but can be loaded separately as well if you don't need the other packages
+#readr is loaded with the tidyverse, but can be loaded separately 
+#as well if you don't need the other packages
 pacman::p_load(readr)
 gapminder <- read_csv("./data/gapminder.csv", col_types = "finnnnnff")
 
 pacman::p_load(readxl)
-gapminder <- read_xlsx("./data/gapminder.xlsx") #Here col_types are not defined so that R will guess and print out the results - make sure to check whether the classes are what you would expect
+gapminder <- read_xlsx("./data/gapminder.xlsx") 
+# Here col_types are not defined so that R will guess and print 
+# out the results - make sure to check whether the classes are 
+# what you would expect
 
 pacman::p_load(haven)
-gapminder <- read_sav("./data/gapminder.sav") #SPSS files contain information on the class of each variable, so that col_types do not need to be defined
+gapminder <- read_sav("./data/gapminder.sav") 
+#SPSS files contain information on the class of each variable, 
+#so that col_types do not need to be defined
 ```
 
 There are shortcuts to quickly get some data into R, which can be helpful if you just want to try something out - all of them only make sense in the Console, not in a .Rmd script. Using the `edit()` function, you can open up a simple spreadsheet to edit and input data, using `read.table(file="clipboard", sep="\t")`, you can get data you copied in Excel. As with all ways of importing data, remember to assign the result to a variable.
@@ -43,8 +49,9 @@ pasted <- read.table(file="clipboard", sep="\t")
 #If that data contains variable names in the first row:
 pasted <- read.table(file="clipboard", sep="\t", header = TRUE)
 
-#Note that reading data from the clipboard does not always work - if it doesn't, 
-#try pasting your data into the window opened with the edit() function
+#Note that reading data from the clipboard does not always work - 
+#if it doesn't, try pasting your data into the window opened 
+#with the edit() function
 
 ```
 
@@ -104,7 +111,8 @@ gapminder %>%
       filter(!is.na(gdpPerCap)) %>% 
       #This filter() removes countries where either gdp or population is missing
         group_by(continent) %>% 
-        #group_by() allows for summary statistics to be calculated for each continent separately
+        #group_by() allows for summary statistics to be calculated 
+        #for each continent separately
           summarise(AvgGdpPerCap_Nations = mean(gdpPerCap), 
                     AvgGdpPerCap_People = sum(gdp)/sum(population)) %>%
               mutate_if(is.numeric, round, 0) %>% 
