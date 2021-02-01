@@ -1,4 +1,5 @@
-book_filename: "_main"
+book_filename: "goldcorequants"
+repo: https://github.com/LukasWallrich/GoldCoreQuants
 new_session: yes
 output_dir: "_book"
 before_chapter_script: ["R/psyteachr_setup.R", "R/my_setup.R"]

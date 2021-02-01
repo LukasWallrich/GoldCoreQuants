@@ -15,7 +15,10 @@ Here, I will explore the question whether life expectancy and literacy have incr
 ```{r message=FALSE}
 pacman::p_load(tidyverse)
 pacman::p_load(wbstats)
+```
 
+
+```{r message=FALSE, cache = TRUE}
 #Download current list of indicators
 new_wb_cache <- wb_cache()
 
@@ -28,7 +31,7 @@ wb_search("gdp.*capita.*PPP", cache = new_wb_cache)
 
 Once we know the names of the indicators, we can download them.
 
-```{r message=FALSE}
+```{r message=FALSE, cache=TRUE}
 #Note: to get the country names, you can download all countries once and then check the names
 #wb_dat <- wb(indicator = c("NY.GDP.PCAP.PP.KD", "SI.POV.GINI"), country = "all")
 #wb_dat %>% count(iso2c, country) %>% view()            
@@ -90,7 +93,7 @@ world <- data.frame(continentLabel = "World",
                stringsAsFactors = FALSE)
 
 
-world %>% mutate(ShareOfCountries = n/sum(n)*100, ShareOfPopulation = pop/sum(pop)*100) %>% filter(genderLabel == "female") %>% select(ShareOfCountries, ShareOfPopulation) %>% round(1) %>% gt::gt() %>% gt::tab_header(title=gt::md("**Women rule** (%)"))
+world %>% mutate(ShareOfCountries = n/sum(n)*100, ShareOfPopulation = pop/sum(pop)*100) %>% filter(genderLabel == "female") %>% select(ShareOfCountries, ShareOfPopulation) %>% round(1) %>% gt::gt() %>% gt::tab_header(title=gt::md("**Women rule**"), subtitle = "*Percent*")
 
 regionalAndWorld <- rbind(regional, world)
 
