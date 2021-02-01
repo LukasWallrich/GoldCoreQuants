@@ -7,7 +7,8 @@ If you are clear on the pipe operator `%>%` then two more pipes can help you sav
 library(tidyverse)
 library(magrittr)
 #Example data
-constituencies <- read_csv(url("http://empower-training.de/Gold/ConstituencyData2019.csv"), col_types = "_cfddddfffddddfffdfdddd")
+constituencies <- read_csv(url("http://empower-training.de/Gold/ConstituencyData2019.csv"),
+                           col_types = "_cfddddfffddddfffdfdddd")
 ```
 
 ## Expanding the tidyverse: the exposition pipe (`%$%`)

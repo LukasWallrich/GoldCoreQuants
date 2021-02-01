@@ -213,23 +213,6 @@ If you are so inclined, note that this is identical to a one-way ANOVA. To see t
 
 ```r
 pacman::p_load(car)
-```
-
-```
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'matrixStats', 'RcppArmadillo', 'zip', 'numDeriv', 'SparseM', 'MatrixModels', 'conquer', 'sp', 'data.table', 'openxlsx', 'minqa', 'nloptr', 'statmod', 'RcppEigen', 'carData', 'abind', 'pbkrtest', 'quantreg', 'maptools', 'rio', 'lme4'
-```
-
-```
-## 
-## car installed
-```
-
-```r
 lm(stflife ~ cntry, data = essF) %>% car::Anova()
 ```
 

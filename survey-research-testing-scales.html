@@ -283,9 +283,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="testing-internal-consistency" class="section level3">
 <h3><span class="header-section-number">10.1.1</span> Testing internal consistency</h3>
 <p>We might expect that our items all measure the same construct (e.g., prejudice against foreigners). However, we should test whether that is the case. The most common measure to use is <strong>Cronbach’s <span class="math inline">\(\alpha\)</span></strong>. It ranges from 0 to 1, and can be roughly understood as the intercorrelation of all items. Here is how to calculate it in R, using some data from the European Social Survey 2014.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="survey-research-testing-scales.html#cb137-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(psych, tidyverse)</span>
-<span id="cb137-2"><a href="survey-research-testing-scales.html#cb137-2"></a>ess &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/round7b.RDS&quot;</span>))</span>
-<span id="cb137-3"><a href="survey-research-testing-scales.html#cb137-3"></a>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(imtcjob, imbleco, imwbcrm) <span class="op">%&gt;%</span><span class="st"> </span>psych<span class="op">::</span><span class="kw">alpha</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="survey-research-testing-scales.html#cb130-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(psych, tidyverse)</span>
+<span id="cb130-2"><a href="survey-research-testing-scales.html#cb130-2"></a>ess &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/round7b.RDS&quot;</span>))</span>
+<span id="cb130-3"><a href="survey-research-testing-scales.html#cb130-3"></a>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(imtcjob, imbleco, imwbcrm) <span class="op">%&gt;%</span><span class="st"> </span>psych<span class="op">::</span><span class="kw">alpha</span>()</span></code></pre></div>
 <pre><code>## Number of categories should be increased  in order to count frequencies.</code></pre>
 <pre class="bg-none"><code>## 
 ## Reliability analysis   
@@ -323,12 +323,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="calculating-scale-scores" class="section level3">
 <h3><span class="header-section-number">10.1.2</span> Calculating scale scores</h3>
 <p>The <code>alpha()</code> function from the <code>psych</code> package automatically calculates scores for each participant on the scale. To use them, you need to save the object that the function returns and then access the <code>scores</code> element.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="survey-research-testing-scales.html#cb140-1"></a>scale_data &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(imtcjob, imbleco, imwbcrm) <span class="op">%&gt;%</span><span class="st"> </span>psych<span class="op">::</span><span class="kw">alpha</span>()</span>
-<span id="cb140-2"><a href="survey-research-testing-scales.html#cb140-2"></a><span class="co">#To print the details as above, just type scale_data</span></span>
-<span id="cb140-3"><a href="survey-research-testing-scales.html#cb140-3"></a></span>
-<span id="cb140-4"><a href="survey-research-testing-scales.html#cb140-4"></a>ess<span class="op">$</span>immigrant_attitudes &lt;-<span class="st"> </span>scale_data<span class="op">$</span>scores</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="survey-research-testing-scales.html#cb133-1"></a>scale_data &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(imtcjob, imbleco, imwbcrm) <span class="op">%&gt;%</span><span class="st"> </span>psych<span class="op">::</span><span class="kw">alpha</span>()</span>
+<span id="cb133-2"><a href="survey-research-testing-scales.html#cb133-2"></a><span class="co">#To print the details as above, just type scale_data</span></span>
+<span id="cb133-3"><a href="survey-research-testing-scales.html#cb133-3"></a></span>
+<span id="cb133-4"><a href="survey-research-testing-scales.html#cb133-4"></a>ess<span class="op">$</span>immigrant_attitudes &lt;-<span class="st"> </span>scale_data<span class="op">$</span>scores</span></code></pre></div>
 <p>This calculates the mean of the items, automatically ignoring any missing values. If you prefer that participants who omitted one of the scale items have a missing value for the scale, it will be easiest to calculate the mean manually:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="survey-research-testing-scales.html#cb141-1"></a>ess &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">immigrant_attitudes =</span> (imbleco <span class="op">+</span><span class="st"> </span>imtcjob <span class="op">+</span><span class="st"> </span>imwbcrm)<span class="op">/</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="survey-research-testing-scales.html#cb134-1"></a>ess &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">immigrant_attitudes =</span> (imbleco <span class="op">+</span><span class="st"> </span>imtcjob <span class="op">+</span><span class="st"> </span>imwbcrm)<span class="op">/</span><span class="dv">3</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="further-resources" class="section level2">
@@ -508,7 +508,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": {},
+"download": ["goldcorequants.pdf"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

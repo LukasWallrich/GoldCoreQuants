@@ -1,7 +1,7 @@
 --- 
 title: "Getting started with Quantitative Research Methods and R"
 author: "Lukas Wallrich"
-date: "Last updated: 2021-01-19"
+date: "Last updated: 2021-02-01"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]

@@ -284,15 +284,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>In these packages, the functions to read data are always <code>read_x()</code>, with x replaced by the type of file you want to open. You always need to specify the name of the datafile, with its path (unless it is in the same folder as your .Rmd file), as the first argument of the <code>read_x()</code> function. For the path, it can be helpful to start with the dot (<code>.</code>), which means: start from the current folder. For example, I often have a data folder within the folder where the .Rmd file is, so that the path would then be <code>"./data/file.csv"</code>. Always remember to assign the result of the function (i.e. the data) to a variable using <code>&lt;-</code>, otherwise the data is just printed and not saved in R.</p>
 <p>The functions that load data from tables need to establish the variable class for each variable. They can either guess (which you will then need to check), or you can provide the classes in the <code>col_types</code>-argument. Check <code>?readr::read_csv</code> for details.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="importing-and-describing-data.html#cb7-1"></a><span class="co">#readr is loaded with the tidyverse, but can be loaded separately as well if you don&#39;t need the other packages</span></span>
-<span id="cb7-2"><a href="importing-and-describing-data.html#cb7-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(readr)</span>
-<span id="cb7-3"><a href="importing-and-describing-data.html#cb7-3"></a>gapminder &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/gapminder.csv&quot;</span>, <span class="dt">col_types =</span> <span class="st">&quot;finnnnnff&quot;</span>)</span>
-<span id="cb7-4"><a href="importing-and-describing-data.html#cb7-4"></a></span>
-<span id="cb7-5"><a href="importing-and-describing-data.html#cb7-5"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(readxl)</span>
-<span id="cb7-6"><a href="importing-and-describing-data.html#cb7-6"></a>gapminder &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;./data/gapminder.xlsx&quot;</span>) <span class="co">#Here col_types are not defined so that R will guess and print out the results - make sure to check whether the classes are what you would expect</span></span>
-<span id="cb7-7"><a href="importing-and-describing-data.html#cb7-7"></a></span>
-<span id="cb7-8"><a href="importing-and-describing-data.html#cb7-8"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(haven)</span>
-<span id="cb7-9"><a href="importing-and-describing-data.html#cb7-9"></a>gapminder &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;./data/gapminder.sav&quot;</span>) <span class="co">#SPSS files contain information on the class of each variable, so that col_types do not need to be defined</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="importing-and-describing-data.html#cb7-1"></a><span class="co">#readr is loaded with the tidyverse, but can be loaded separately </span></span>
+<span id="cb7-2"><a href="importing-and-describing-data.html#cb7-2"></a><span class="co">#as well if you don&#39;t need the other packages</span></span>
+<span id="cb7-3"><a href="importing-and-describing-data.html#cb7-3"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(readr)</span>
+<span id="cb7-4"><a href="importing-and-describing-data.html#cb7-4"></a>gapminder &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;./data/gapminder.csv&quot;</span>, <span class="dt">col_types =</span> <span class="st">&quot;finnnnnff&quot;</span>)</span>
+<span id="cb7-5"><a href="importing-and-describing-data.html#cb7-5"></a></span>
+<span id="cb7-6"><a href="importing-and-describing-data.html#cb7-6"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(readxl)</span>
+<span id="cb7-7"><a href="importing-and-describing-data.html#cb7-7"></a>gapminder &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;./data/gapminder.xlsx&quot;</span>) </span>
+<span id="cb7-8"><a href="importing-and-describing-data.html#cb7-8"></a><span class="co"># Here col_types are not defined so that R will guess and print </span></span>
+<span id="cb7-9"><a href="importing-and-describing-data.html#cb7-9"></a><span class="co"># out the results - make sure to check whether the classes are </span></span>
+<span id="cb7-10"><a href="importing-and-describing-data.html#cb7-10"></a><span class="co"># what you would expect</span></span>
+<span id="cb7-11"><a href="importing-and-describing-data.html#cb7-11"></a></span>
+<span id="cb7-12"><a href="importing-and-describing-data.html#cb7-12"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(haven)</span>
+<span id="cb7-13"><a href="importing-and-describing-data.html#cb7-13"></a>gapminder &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;./data/gapminder.sav&quot;</span>) </span>
+<span id="cb7-14"><a href="importing-and-describing-data.html#cb7-14"></a><span class="co">#SPSS files contain information on the class of each variable, </span></span>
+<span id="cb7-15"><a href="importing-and-describing-data.html#cb7-15"></a><span class="co">#so that col_types do not need to be defined</span></span></code></pre></div>
 <p>There are shortcuts to quickly get some data into R, which can be helpful if you just want to try something out - all of them only make sense in the Console, not in a .Rmd script. Using the <code>edit()</code> function, you can open up a simple spreadsheet to edit and input data, using <code>read.table(file="clipboard", sep="\t")</code>, you can get data you copied in Excel. As with all ways of importing data, remember to assign the result to a variable.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="importing-and-describing-data.html#cb8-1"></a><span class="co">#If you want to edit an existing dataset</span></span>
 <span id="cb8-2"><a href="importing-and-describing-data.html#cb8-2"></a>gapminder_corrected &lt;-<span class="st"> </span><span class="kw">edit</span>(gapminder)</span>
@@ -307,8 +313,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-11"><a href="importing-and-describing-data.html#cb8-11"></a><span class="co">#If that data contains variable names in the first row:</span></span>
 <span id="cb8-12"><a href="importing-and-describing-data.html#cb8-12"></a>pasted &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file=</span><span class="st">&quot;clipboard&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb8-13"><a href="importing-and-describing-data.html#cb8-13"></a></span>
-<span id="cb8-14"><a href="importing-and-describing-data.html#cb8-14"></a><span class="co">#Note that reading data from the clipboard does not always work - if it doesn&#39;t, </span></span>
-<span id="cb8-15"><a href="importing-and-describing-data.html#cb8-15"></a><span class="co">#try pasting your data into the window opened with the edit() function</span></span></code></pre></div>
+<span id="cb8-14"><a href="importing-and-describing-data.html#cb8-14"></a><span class="co">#Note that reading data from the clipboard does not always work - </span></span>
+<span id="cb8-15"><a href="importing-and-describing-data.html#cb8-15"></a><span class="co">#if it doesn&#39;t, try pasting your data into the window opened </span></span>
+<span id="cb8-16"><a href="importing-and-describing-data.html#cb8-16"></a><span class="co">#with the edit() function</span></span></code></pre></div>
 </div>
 <div id="view-data" class="section level2">
 <h2><span class="header-section-number">2.2</span> View data</h2>
@@ -383,13 +390,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-5"><a href="importing-and-describing-data.html#cb16-5"></a><span class="st">      </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(gdpPerCap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb16-6"><a href="importing-and-describing-data.html#cb16-6"></a><span class="st">      </span><span class="co">#This filter() removes countries where either gdp or population is missing</span></span>
 <span id="cb16-7"><a href="importing-and-describing-data.html#cb16-7"></a><span class="st">        </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb16-8"><a href="importing-and-describing-data.html#cb16-8"></a><span class="st">        </span><span class="co">#group_by() allows for summary statistics to be calculated for each continent separately</span></span>
-<span id="cb16-9"><a href="importing-and-describing-data.html#cb16-9"></a><span class="st">          </span><span class="kw">summarise</span>(<span class="dt">AvgGdpPerCap_Nations =</span> <span class="kw">mean</span>(gdpPerCap), </span>
-<span id="cb16-10"><a href="importing-and-describing-data.html#cb16-10"></a>                    <span class="dt">AvgGdpPerCap_People =</span> <span class="kw">sum</span>(gdp)<span class="op">/</span><span class="kw">sum</span>(population)) <span class="op">%&gt;%</span></span>
-<span id="cb16-11"><a href="importing-and-describing-data.html#cb16-11"></a><span class="st">              </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb16-12"><a href="importing-and-describing-data.html#cb16-12"></a><span class="st">              </span><span class="co">#This rounds all numeric variables to 0 decimal places </span></span>
-<span id="cb16-13"><a href="importing-and-describing-data.html#cb16-13"></a><span class="st">              </span><span class="co">#(beyond expectations for this course)    </span></span>
-<span id="cb16-14"><a href="importing-and-describing-data.html#cb16-14"></a><span class="st">                </span><span class="kw">arrange</span>(<span class="kw">desc</span>(AvgGdpPerCap_Nations))</span></code></pre></div>
+<span id="cb16-8"><a href="importing-and-describing-data.html#cb16-8"></a><span class="st">        </span><span class="co">#group_by() allows for summary statistics to be calculated </span></span>
+<span id="cb16-9"><a href="importing-and-describing-data.html#cb16-9"></a><span class="st">        </span><span class="co">#for each continent separately</span></span>
+<span id="cb16-10"><a href="importing-and-describing-data.html#cb16-10"></a><span class="st">          </span><span class="kw">summarise</span>(<span class="dt">AvgGdpPerCap_Nations =</span> <span class="kw">mean</span>(gdpPerCap), </span>
+<span id="cb16-11"><a href="importing-and-describing-data.html#cb16-11"></a>                    <span class="dt">AvgGdpPerCap_People =</span> <span class="kw">sum</span>(gdp)<span class="op">/</span><span class="kw">sum</span>(population)) <span class="op">%&gt;%</span></span>
+<span id="cb16-12"><a href="importing-and-describing-data.html#cb16-12"></a><span class="st">              </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb16-13"><a href="importing-and-describing-data.html#cb16-13"></a><span class="st">              </span><span class="co">#This rounds all numeric variables to 0 decimal places </span></span>
+<span id="cb16-14"><a href="importing-and-describing-data.html#cb16-14"></a><span class="st">              </span><span class="co">#(beyond expectations for this course)    </span></span>
+<span id="cb16-15"><a href="importing-and-describing-data.html#cb16-15"></a><span class="st">                </span><span class="kw">arrange</span>(<span class="kw">desc</span>(AvgGdpPerCap_Nations))</span></code></pre></div>
 <pre class="bg-none"><code>## # A tibble: 5 x 3
 ##   continent AvgGdpPerCap_Nations AvgGdpPerCap_People
 ##   &lt;fct&gt;                    &lt;dbl&gt;               &lt;dbl&gt;
@@ -603,7 +611,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": {},
+"download": ["goldcorequants.pdf"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

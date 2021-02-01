@@ -16,13 +16,20 @@ Here, I will explore the question whether life expectancy and literacy have incr
 ```r
 pacman::p_load(tidyverse)
 pacman::p_load(wbstats)
+```
 
+
+
+```r
 #Download current list of indicators
 new_wb_cache <- wb_cache()
 
-#Search for indicators - you can best do this on data.worldbank.com and find the IndicatorID in the URL. The wbsearch() function often returns to many hits.
+#Search for indicators - you can best do this on data.worldbank.com 
+#and find the IndicatorID in the URL. The wbsearch() function also works
+#but often returns too many hits.
 
-#GDP per capita, purchasing power adjusted (to remove effect of exchange rates)
+#GDP per capita, purchasing power adjusted 
+#(to remove effect of exchange rates)
 wb_search("gdp.*capita.*PPP", cache = new_wb_cache)
 ```
 
@@ -40,7 +47,8 @@ Once we know the names of the indicators, we can download them.
 
 
 ```r
-#Note: to get the country names, you can download all countries once and then check the names
+#Note: to get the country names, you can download all countries once 
+#and then check the names
 #wb_dat <- wb(indicator = c("NY.GDP.PCAP.PP.KD", "SI.POV.GINI"), country = "all")
 #wb_dat %>% count(iso2c, country) %>% view()            
                             
@@ -54,20 +62,22 @@ A simple way of comparing the data is plotting the indicators side-by-side. One 
 
 
 ```r
-#Our GDP series only starts in 1990 - so it does not make sense to consider earlier life expectancy
+#Our GDP series only starts in 1990 - so it does not make sense 
+#to consider earlier life expectancy
 wb_datF <- wb_dat %>% filter(as.numeric(date)>=1990)
 
 ggplot(wb_datF, aes(x=as.numeric(date), y=value, col=country)) + 
   geom_point() + geom_line() + 
   facet_wrap(.~indicator, scales = "free", labeller = labeller(indicator = label_wrap_gen(25))) +
-  #scales = "free" means that each indicator has its own y-axis, the labeller() function is needed for line breaks in the facet titles
+  #scales = "free" means that each indicator has its own y-axis, 
+  #the labeller() function is needed for line breaks in the facet titles
   labs(title = "Uneven progress in BRICS countries", subtitle = "World Bank data", 
        x = "Year", y="", col = "Country")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-3-1.png" alt="Example plot from World Bank data" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Example plot from World Bank data</p>
+<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-4-1.png" alt="Example plot from World Bank data" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-4)Example plot from World Bank data</p>
 </div>
 
 You can find a similar but slightly more detailed example for how to use the package [here](https://cengel.github.io/gearup2016/worldbank.html) and very clear instructions in the the full [README file of the package](https://github.com/nset-ornl/wbstats/blob/master/README.md).
@@ -77,7 +87,7 @@ You can find a similar but slightly more detailed example for how to use the pac
 
 Wikidata is where most data from Wikipedia and much else lives. So if there are Wikipedia articles on the topic you are interested in, you can likely find underlying data on Wikidata. For example, this might be used to quickly extract data on the gender of heads of government of many countries.
 
-Wikidata is based on data items that are connected by multiple relationships. So there will be an item for *Germany*, an item for *Angela Merkel* and a relationship for *is the head of government of.* Similarly, there is an item for *country* and a relationship for *is an instance of* that connects it to *Germany.* SPARQL queries are used to get the data - this [article](https://towardsdatascience.com/a-brief-introduction-to-wikidata-bb4e66395eb1) explains the logic quite well, but unless you want to spend a couple more weeks learning how to code, you can just take [examples from Wikidata](https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples) and adjust them as needed. For adjusting them, the online [Wikidata Query Service](https://query.wikidata.org/) works well, as it allows you to run the query again and again, until you get the data you need.
+Wikidata is based on data items that are connected by multiple relationships. So there would be an item for *Germany*, an item for *Angela Merkel* and a relationship for *is the head of government of.* Similarly, there is an item for *country* and a relationship for *is an instance of* that connects it to *Germany.* SPARQL queries are used to get the data - this [article](https://towardsdatascience.com/a-brief-introduction-to-wikidata-bb4e66395eb1) explains the logic quite well, but unless you want to spend a couple more weeks learning how to code, you can just take [examples from Wikidata](https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples) and adjust them as needed. For adjusting them, the online [Wikidata Query Service](https://query.wikidata.org/) works well, as it allows you to run the query again and again, until you get the data you need.
 
 I got curious about what share of the world's population lives in countries with a female head of government, and how that varies by region. For that, I used the following code. (`gt` is a package to make nice tables easily.) **Note that a key step is missing: I did not clean the data.** It contains some duplicates, for instance because countries that span two continents are included twice in the Wikidata output. Data cleaning is a crucial part of analysing online data, but not the focus of this chapter. 
 
@@ -107,7 +117,7 @@ world <- data.frame(continentLabel = "World",
                stringsAsFactors = FALSE)
 
 
-world %>% mutate(ShareOfCountries = n/sum(n)*100, ShareOfPopulation = pop/sum(pop)*100) %>% filter(genderLabel == "female") %>% select(ShareOfCountries, ShareOfPopulation) %>% round(1) %>% gt::gt() %>% gt::tab_header(title=gt::md("**Women rule** (%)"))
+world %>% mutate(ShareOfCountries = n/sum(n)*100, ShareOfPopulation = pop/sum(pop)*100) %>% filter(genderLabel == "female") %>% select(ShareOfCountries, ShareOfPopulation) %>% round(1) %>% gt::gt() %>% gt::tab_header(title=gt::md("**Women rule**"), subtitle = "*Percent*")
 
 regionalAndWorld <- rbind(regional, world)
 ```
@@ -117,7 +127,7 @@ regionalAndWorld <- rbind(regional, world)
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#rrflcvwrwe .gt_table {
+#mewatfifgd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -142,7 +152,7 @@ regionalAndWorld <- rbind(regional, world)
   border-left-color: #D3D3D3;
 }
 
-#rrflcvwrwe .gt_heading {
+#mewatfifgd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -154,7 +164,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#rrflcvwrwe .gt_title {
+#mewatfifgd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -164,7 +174,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-width: 0;
 }
 
-#rrflcvwrwe .gt_subtitle {
+#mewatfifgd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -174,13 +184,13 @@ regionalAndWorld <- rbind(regional, world)
   border-top-width: 0;
 }
 
-#rrflcvwrwe .gt_bottom_border {
+#mewatfifgd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rrflcvwrwe .gt_col_headings {
+#mewatfifgd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -195,7 +205,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#rrflcvwrwe .gt_col_heading {
+#mewatfifgd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -215,7 +225,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#rrflcvwrwe .gt_column_spanner_outer {
+#mewatfifgd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -227,15 +237,15 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 4px;
 }
 
-#rrflcvwrwe .gt_column_spanner_outer:first-child {
+#mewatfifgd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rrflcvwrwe .gt_column_spanner_outer:last-child {
+#mewatfifgd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rrflcvwrwe .gt_column_spanner {
+#mewatfifgd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -247,7 +257,7 @@ regionalAndWorld <- rbind(regional, world)
   width: 100%;
 }
 
-#rrflcvwrwe .gt_group_heading {
+#mewatfifgd .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -269,7 +279,7 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#rrflcvwrwe .gt_empty_group_heading {
+#mewatfifgd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -284,15 +294,15 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#rrflcvwrwe .gt_from_md > :first-child {
+#mewatfifgd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rrflcvwrwe .gt_from_md > :last-child {
+#mewatfifgd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rrflcvwrwe .gt_row {
+#mewatfifgd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -311,7 +321,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#rrflcvwrwe .gt_stub {
+#mewatfifgd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -323,7 +333,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-left: 12px;
 }
 
-#rrflcvwrwe .gt_summary_row {
+#mewatfifgd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -333,7 +343,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#rrflcvwrwe .gt_first_summary_row {
+#mewatfifgd .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -343,7 +353,7 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#rrflcvwrwe .gt_grand_summary_row {
+#mewatfifgd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -353,7 +363,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#rrflcvwrwe .gt_first_grand_summary_row {
+#mewatfifgd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -363,11 +373,11 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#rrflcvwrwe .gt_striped {
+#mewatfifgd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rrflcvwrwe .gt_table_body {
+#mewatfifgd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -376,7 +386,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-color: #D3D3D3;
 }
 
-#rrflcvwrwe .gt_footnotes {
+#mewatfifgd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -390,13 +400,13 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#rrflcvwrwe .gt_footnote {
+#mewatfifgd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#rrflcvwrwe .gt_sourcenotes {
+#mewatfifgd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -410,52 +420,52 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#rrflcvwrwe .gt_sourcenote {
+#mewatfifgd .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#rrflcvwrwe .gt_left {
+#mewatfifgd .gt_left {
   text-align: left;
 }
 
-#rrflcvwrwe .gt_center {
+#mewatfifgd .gt_center {
   text-align: center;
 }
 
-#rrflcvwrwe .gt_right {
+#mewatfifgd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rrflcvwrwe .gt_font_normal {
+#mewatfifgd .gt_font_normal {
   font-weight: normal;
 }
 
-#rrflcvwrwe .gt_font_bold {
+#mewatfifgd .gt_font_bold {
   font-weight: bold;
 }
 
-#rrflcvwrwe .gt_font_italic {
+#mewatfifgd .gt_font_italic {
   font-style: italic;
 }
 
-#rrflcvwrwe .gt_super {
+#mewatfifgd .gt_super {
   font-size: 65%;
 }
 
-#rrflcvwrwe .gt_footnote_marks {
+#mewatfifgd .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="rrflcvwrwe" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="mewatfifgd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
-      <th colspan="2" class="gt_heading gt_title gt_font_normal" style><strong>Women rule</strong> (%)</th>
+      <th colspan="2" class="gt_heading gt_title gt_font_normal" style><strong>Women rule</strong></th>
     </tr>
     <tr>
-      <th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style></th>
+      <th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style>*Percent*</th>
     </tr>
   </thead>
   <thead class="gt_col_headings">
@@ -485,8 +495,8 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
 ```
 
 <div class="figure" style="text-align: center">
-<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-5-1.png" alt="Example plot from Wikidata" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-5)Example plot from Wikidata</p>
+<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-6-1.png" alt="Example plot from Wikidata" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-6)Example plot from Wikidata</p>
 </div>
 
 ## Other data sources

@@ -308,17 +308,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Lines starting with a # are comments that are ignored by R. I use them below to explain parts of the code further.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started-with-r.html#cb1-1"></a><span class="co"># &lt;- saves a value (on the right) into an object (on the left)</span></span>
 <span id="cb1-2"><a href="getting-started-with-r.html#cb1-2"></a>score &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb1-3"><a href="getting-started-with-r.html#cb1-3"></a>month &lt;-<span class="st"> &quot;January&quot;</span> <span class="co"># &quot;&quot; need to be used around text that is not an object name</span></span>
-<span id="cb1-4"><a href="getting-started-with-r.html#cb1-4"></a></span>
-<span id="cb1-5"><a href="getting-started-with-r.html#cb1-5"></a><span class="co"># c() combines several values into one vector that can then be saved as a single object</span></span>
-<span id="cb1-6"><a href="getting-started-with-r.html#cb1-6"></a>weekend &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>) </span>
-<span id="cb1-7"><a href="getting-started-with-r.html#cb1-7"></a>sleep_hours &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">9</span>)</span>
-<span id="cb1-8"><a href="getting-started-with-r.html#cb1-8"></a></span>
-<span id="cb1-9"><a href="getting-started-with-r.html#cb1-9"></a><span class="co">#Variables can then be combined into dataframes (R&#39;s version of tables)</span></span>
-<span id="cb1-10"><a href="getting-started-with-r.html#cb1-10"></a>sleep_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">day =</span> weekend, <span class="dt">hours =</span> sleep_hours)</span>
+<span id="cb1-3"><a href="getting-started-with-r.html#cb1-3"></a></span>
+<span id="cb1-4"><a href="getting-started-with-r.html#cb1-4"></a><span class="co"># &quot;&quot; need to be used around text that is not an object name</span></span>
+<span id="cb1-5"><a href="getting-started-with-r.html#cb1-5"></a>month &lt;-<span class="st"> &quot;January&quot;</span> </span>
+<span id="cb1-6"><a href="getting-started-with-r.html#cb1-6"></a></span>
+<span id="cb1-7"><a href="getting-started-with-r.html#cb1-7"></a><span class="co"># c() combines several values into one vector that </span></span>
+<span id="cb1-8"><a href="getting-started-with-r.html#cb1-8"></a><span class="co"># can then be saved as a single object</span></span>
+<span id="cb1-9"><a href="getting-started-with-r.html#cb1-9"></a>weekend &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>) </span>
+<span id="cb1-10"><a href="getting-started-with-r.html#cb1-10"></a>sleep_hours &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">9</span>)</span>
 <span id="cb1-11"><a href="getting-started-with-r.html#cb1-11"></a></span>
-<span id="cb1-12"><a href="getting-started-with-r.html#cb1-12"></a><span class="co">#Variables within dataframes are accessed using the $ operator</span></span>
-<span id="cb1-13"><a href="getting-started-with-r.html#cb1-13"></a><span class="kw">sum</span>(sleep_data<span class="op">$</span>hours)</span></code></pre></div>
+<span id="cb1-12"><a href="getting-started-with-r.html#cb1-12"></a><span class="co">#Variables can then be combined into dataframes (R&#39;s version of tables)</span></span>
+<span id="cb1-13"><a href="getting-started-with-r.html#cb1-13"></a>sleep_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">day =</span> weekend, <span class="dt">hours =</span> sleep_hours)</span>
+<span id="cb1-14"><a href="getting-started-with-r.html#cb1-14"></a></span>
+<span id="cb1-15"><a href="getting-started-with-r.html#cb1-15"></a><span class="co">#Variables within dataframes are accessed using the $ operator</span></span>
+<span id="cb1-16"><a href="getting-started-with-r.html#cb1-16"></a><span class="kw">sum</span>(sleep_data<span class="op">$</span>hours)</span></code></pre></div>
 <pre class="bg-none"><code>## [1] 13</code></pre>
 <p><strong>Variable classes</strong> indicate what kind of data a variable contains. There are four main types</p>
 <ul>
@@ -342,17 +345,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="getting-started-with-r.html#cb5-1"></a><span class="co">#Some functions work without any additional arguments</span></span>
 <span id="cb5-2"><a href="getting-started-with-r.html#cb5-2"></a><span class="kw">timestamp</span>() <span class="co">#This shows the time this code segment was run</span></span>
 <span id="cb5-3"><a href="getting-started-with-r.html#cb5-3"></a></span>
-<span id="cb5-4"><a href="getting-started-with-r.html#cb5-4"></a><span class="co">#Functions that work with given data are more helpful - that data is given as an &#39;argument&#39; in brackets</span></span>
-<span id="cb5-5"><a href="getting-started-with-r.html#cb5-5"></a><span class="kw">print</span>(<span class="st">&quot;Hello&quot;</span>)</span>
-<span id="cb5-6"><a href="getting-started-with-r.html#cb5-6"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb5-7"><a href="getting-started-with-r.html#cb5-7"></a></span>
-<span id="cb5-8"><a href="getting-started-with-r.html#cb5-8"></a><span class="co">#Additionally, arguments can contain instructions to the function</span></span>
-<span id="cb5-9"><a href="getting-started-with-r.html#cb5-9"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb5-10"><a href="getting-started-with-r.html#cb5-10"></a><span class="co">#NA is a missing value, na.rm tells the mean function to remove it before calculating the mean</span></span>
-<span id="cb5-11"><a href="getting-started-with-r.html#cb5-11"></a></span>
-<span id="cb5-12"><a href="getting-started-with-r.html#cb5-12"></a><span class="co">#To save the results of a function into a variable, use the &lt;- operator again</span></span>
-<span id="cb5-13"><a href="getting-started-with-r.html#cb5-13"></a>variableName &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre class="bg-none"><code>## ##------ Tue Jan 19 12:52:27 2021 ------##
+<span id="cb5-4"><a href="getting-started-with-r.html#cb5-4"></a><span class="co">#Functions that work with given data are more helpful - </span></span>
+<span id="cb5-5"><a href="getting-started-with-r.html#cb5-5"></a><span class="co"># that data is given as an &#39;argument&#39; in brackets</span></span>
+<span id="cb5-6"><a href="getting-started-with-r.html#cb5-6"></a><span class="kw">print</span>(<span class="st">&quot;Hello&quot;</span>)</span>
+<span id="cb5-7"><a href="getting-started-with-r.html#cb5-7"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb5-8"><a href="getting-started-with-r.html#cb5-8"></a></span>
+<span id="cb5-9"><a href="getting-started-with-r.html#cb5-9"></a><span class="co">#Additionally, arguments can contain instructions to the function</span></span>
+<span id="cb5-10"><a href="getting-started-with-r.html#cb5-10"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb5-11"><a href="getting-started-with-r.html#cb5-11"></a><span class="co"># NA is a missing value, na.rm tells the mean function to remove it </span></span>
+<span id="cb5-12"><a href="getting-started-with-r.html#cb5-12"></a><span class="co"># before calculating the mean</span></span>
+<span id="cb5-13"><a href="getting-started-with-r.html#cb5-13"></a></span>
+<span id="cb5-14"><a href="getting-started-with-r.html#cb5-14"></a><span class="co">#To save the results of a function into a variable, use the &lt;- operator again</span></span>
+<span id="cb5-15"><a href="getting-started-with-r.html#cb5-15"></a>variableName &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre class="bg-none"><code>## ##------ Mon Feb  1 12:58:38 2021 ------##
 ## [1] &quot;Hello&quot;
 ## [1] 2
 ## [1] 2</code></pre>
@@ -568,7 +573,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": {},
+"download": ["goldcorequants.pdf"],
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

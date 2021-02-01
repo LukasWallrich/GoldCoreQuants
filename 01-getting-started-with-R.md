@@ -41,9 +41,12 @@ Lines starting with a # are comments that are ignored by R. I use them below to 
 ```r
 # <- saves a value (on the right) into an object (on the left)
 score <- 10
-month <- "January" # "" need to be used around text that is not an object name
 
-# c() combines several values into one vector that can then be saved as a single object
+# "" need to be used around text that is not an object name
+month <- "January" 
+
+# c() combines several values into one vector that 
+# can then be saved as a single object
 weekend <- c("Saturday", "Sunday") 
 sleep_hours <- c(4, 9)
 
@@ -91,20 +94,22 @@ All work in R is based on calling functions that do something. A function is cal
 #Some functions work without any additional arguments
 timestamp() #This shows the time this code segment was run
 
-#Functions that work with given data are more helpful - that data is given as an 'argument' in brackets
+#Functions that work with given data are more helpful - 
+# that data is given as an 'argument' in brackets
 print("Hello")
 mean(c(1,2,3))
 
 #Additionally, arguments can contain instructions to the function
 mean(c(1,2,3, NA), na.rm = TRUE)
-#NA is a missing value, na.rm tells the mean function to remove it before calculating the mean
+# NA is a missing value, na.rm tells the mean function to remove it 
+# before calculating the mean
 
 #To save the results of a function into a variable, use the <- operator again
 variableName <- mean(c(1,2,3, NA), na.rm = TRUE)
 ```
 
 ```{.bg-none}
-## ##------ Tue Jan 19 12:52:27 2021 ------##
+## ##------ Mon Feb  1 12:58:38 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2

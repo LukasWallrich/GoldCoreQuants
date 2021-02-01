@@ -37,7 +37,8 @@ obs <- data.frame(player = "expert", type = "real", errors = ER) %>%
   rbind(data.frame(player = "novice", type = "real", errors = NR)) %>%
   rbind(data.frame(player = "expert", type = "fake", errors = EF)) %>%
   rbind(data.frame(player = "novice", type = "fake", errors = NF)) %>% 
-  mutate(type=factor(type), player = factor(player, levels = c("novice", "expert")))
+  mutate(type=factor(type), 
+         player = factor(player, levels = c("novice", "expert")))
 
 #Adding the centrally mirrored condition
 EM <- rnorm(50, 7.8, 3.5) + rnorm(50, 0, 2)
@@ -49,7 +50,8 @@ obs2 <- data.frame(player = "expert", type = "real", errors = ER) %>%
   rbind(data.frame(player = "novice", type = "fake", errors = NF)) %>% 
   rbind(data.frame(player = "expert", type = "mirrored", errors = EM)) %>% 
   rbind(data.frame(player = "novice", type = "mirrored", errors = NM)) %>% 
-  mutate(type=factor(type), player = factor(player, levels = c("novice", "expert")))
+  mutate(type=factor(type), 
+         player = factor(player, levels = c("novice", "expert")))
 ```
 
 </div>
@@ -173,32 +175,19 @@ In this example, I considered the link between obesity and negative emotions in 
 ess <- read_rds(url("http://empower-training.de/Gold/round7.RDS"))
 
 pacman::p_load(psych) #Used to create a scale
-```
 
-```
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'tmvnsim', 'mnormt'
-```
-
-```
-## 
-## psych installed
-```
-
-```r
 a <- ess %>% select(cldgng, fltsd, enjlf, fltlnl, wrhpp, slprl, flteeff, fltdpr) %>% 
-  haven::zap_labels() %>% #This is sometimes needed when SPSS files have been imported with haven and errors related to data classes appear.
+  haven::zap_labels() %>% 
+  #This is sometimes needed when SPSS files have been imported with haven 
+  #and errors related to data classes appear.
   psych::alpha(check.keys = TRUE)
 
 ess$depr <- a$scores
 
 ess$bmi <- ess$weight/((ess$height/100)^2)
 
-#Filter for Germans with realistic BMI who are not underweight and reported their gender
+#Filter for Germans with realistic BMI who are not underweight 
+#and reported their gender
 essDE <- ess %>% filter(bmi < 60, bmi>=19, gndr != "No answer", cntry=="DE")
 
 #Data prep for example 3 - strip unnecessary labels
