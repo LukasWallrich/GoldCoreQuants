@@ -61,7 +61,7 @@ obs2 <- data.frame(player = "expert", type = "real", errors = ER) %>%
 
 The first model tests whether player level and position type interact. That is the case, based on the very small *p*-value of the interaction term. Then we use a plot to understand the nature of that interaction further - because the predictor is categorical, we use the `cat_plot()` function.
 
-```{r fig.cap='Simple interaction plot - note that lines are not parallel', message=FALSE, results='markup'}
+```{r categorical-interaction-A, fig.cap='Simple interaction plot - note that lines are not parallel', message=FALSE, results='markup'}
 pacman::p_load(tidyverse)
 mod <- lm(errors ~ player + type + player:type, obs)
 summary(mod)
@@ -80,7 +80,7 @@ car::Anova(mod, type=3)
 ```
 An interaction plot can then help again to understand what is going on. Here it shows that two of the three conditions are very similar.
 
-```{r fig.cap='Simple interaction plot - now 2 lines are parallel'}
+```{r categorical-interaction-B, fig.cap='Simple interaction plot - now 2 lines are parallel'}
 cat_plot(mod, pred="player", modx = "type", geom="line")
 ```
 
@@ -118,16 +118,21 @@ ess$stflife <- haven::zap_labels(ess$stflife)
 
 The `lm()` output below shows that there is a significant interaction between gender and BMI, with women having a stronger relationship between BMI and the frequency of experiencing negative emotions. This is again shown in an interaction plot - as the predictor variable is continuous, we now use the `interact_plot()` function.
 
-```{r fig.cap='interact_plot shows different slope for men and women', message=FALSE, results='markup'}
+```{r message=FALSE, results='markup'}
 pacman::p_load(interactions)
 mod <- lm(depr ~ bmi + gndr + bmi:gndr, essDE)
 summary(mod)
+```
+
+(ref:int plot) `interact_plot()` shows different slopes for men and women. 
+
+```{r interaction-plot-package, fig.cap='ref:int plot', message=FALSE}
 interact_plot(mod, pred="bmi", modx = "gndr")
 ```
 
 Note that `ggplot2` automatically includes an interaction when fitting regression lines as soon as a categorical variable is mapped to the `colour` (or `linetype`) aesthetic - so in simple cases, `geom_smooth(method = "lm")` can be used as an alternative to `interact_plot()`
 
-```{r fig.cap='ggplot automatically includes interaction',message=FALSE}
+```{r interaction-plot-ggplot, fig.cap='ggplot automatically includes interaction',message=FALSE}
 ggplot(essDE, aes(x=bmi, y=depr, colour=gndr)) + geom_smooth(method="lm", se=FALSE)
 ```
 
@@ -145,11 +150,11 @@ summary(mod)
 
 We can see that while income positively predicts life satisfaction, this effects appears to be weaker when both income and working hours are high. However, we need to be careful with interpretation here - technically, the coefficients for income and working hours now reflect the impact of that variable when the other variable is 0, and are thus unlikely to be meaningful. Therefore, it is better to look at the interaction plot and at simple slopes analyses. Both can now be done in two ways, depending on which variable we see as the primary predictor/variable of interest.
 
-```{r fig.cap='Option A: strong positive effect of income, tempered by working hours'}
+```{r simple-slopes-A, fig.cap='Option A: strong positive effect of income, tempered by working hours'}
 interact_plot(mod, pred="hinctnta", modx = "wkhtot")
 ```
 
-```{r fig.cap='Option B: very different effects of working hours, depending on income'}
+```{r simple-slopes-B, fig.cap='Option B: very different effects of working hours, depending on income'}
 interact_plot(mod, pred="wkhtot", modx = "hinctnta")
 ```
 
@@ -163,7 +168,7 @@ sim_slopes(mod, pred="wkhtot", modx = "hinctnta")
 
 Finally, the `johnson_neyman()` function creates a plot showing the slope of one variable depending on the value of the other, while highlighting the regions of significance. This can help with an understanding of the relationship, but is not (yet?) widely used.
 
-```{r fig.cap='Johnson-Neyman plot shows regions of significance', results='markup'}
+```{r johnson-neyman, fig.cap='Johnson-Neyman plot shows regions of significance'}
 johnson_neyman(mod, pred="wkhtot", modx = "hinctnta")
 ```
 

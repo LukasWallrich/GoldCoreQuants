@@ -51,6 +51,6 @@ ess <- ess %>% mutate(immigrant_attitudes = (imbleco + imtcjob + imwbcrm)/3)
 ```
 
 
-## Further resources
+## Further resources {#further-resources-survey}
 
 * You can check [this chapter](https://socialresearchmethods.net/kb/types-of-reliability/#internal-consistency-reliability){target="_blank"} of the Research Methods Knowledge Base for more details on various measures of internal consistency (and of other forms of reliability)

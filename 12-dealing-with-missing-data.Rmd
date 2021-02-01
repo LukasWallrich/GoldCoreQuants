@@ -103,7 +103,7 @@ t.test(change ~ gender, resultsImp)
 
 This time, we get the correct result - there is no difference between boys and girls. This shows that when data is MAR (i.e. when missingness depends on other variables we are interested in) we have to consider imputation.
 
-## Further resources
+## Further resources {#further-resources-missing-data}
 
 * The [official vignette](https://cran.r-project.org/web/packages/naniar/vignettes/getting-started-w-naniar.html) for `naniar` provides provides good step-by-step instructions for exploring and visualising missing data
 * Similarly, the [official vignette](https://cran.r-project.org/web/packages/simputation/vignettes/intro.html) for `simputation` contains details on how to use different imputation models and how to impute several variables at once
