@@ -11,8 +11,12 @@ description: "These are some of the course materials for the Goldsmiths' Core Qu
 favicon: "favicon.ico"
 ---
 
+<!--
+
+\textcolor{red}Please note that **the PDF version is a supplement with limited functionalities** (e.g., no interactive exercises) - we recommend that you use the webpage as much as possible {red}.
 
 
+-->
 
 
 
