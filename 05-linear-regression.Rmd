@@ -21,7 +21,7 @@ should always start with a scatterplot - for example, of the
 relationship between social trust and life satisfaction at the national
 level in European countries (data from the European Social Survey 2014).
 
-```{r, fig.cap="Scatterplot relating social trust to life satisfaction", message=FALSE}
+```{r scatterplot, fig.cap="Scatterplot relating social trust to life satisfaction", message=FALSE}
 pacman::p_load(tidyverse)
 #Data preparation
 ess <- read_rds(url("http://empower-training.de/Gold/round7.RDS"))
@@ -45,7 +45,7 @@ through the scatterplot, fitted in a way that minimises the distances
 from the points to the line. It can be plotted with the
 `geom_smooth(method="lm")` function.
 
-```{r, fig.cap='Scatterplot with added regression line ("line of best fit")', message=FALSE}
+```{r simple-regression, fig.cap='Scatterplot with added regression line ("line of best fit")', message=FALSE}
 ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) + 
   geom_point() + geom_smooth(method="lm", se = FALSE) 
   #se=FALSE hides confidence bands that are often just visual clutter
@@ -170,7 +170,7 @@ Just to show that this is indeed equivalent to simple linear regression
 on the standardised variables, which can be calculated using the
 `scale()`-function.
 
-```{r, fig.cap="Scatterplot with scaled variables (z-scores)", message = FALSE}
+```{r scaled-scatterplot, fig.cap="Scatterplot with scaled variables (z-scores)", message = FALSE}
 ggplot(nat_avgs, aes(x=scale(nat_soctrust), y=scale(nat_stflife))) + 
   geom_point() + geom_smooth(method="lm", se=FALSE) + labs(x="National Social Trust (standardised)", y = "National life satisfaction (standardised)")
 
@@ -287,7 +287,7 @@ an increase of the median age by 1 year to increase the Conservative
 vote share by 1.8 percentage points, *keeping the effect of nation
 constant.*
 
-```{r fig.cap='Multiple regression model to predict Tory 2019 vote share', message=FALSE}
+```{r multiple-regression, fig.cap='Multiple regression model to predict Tory 2019 vote share', message=FALSE}
 
 #The moderndive is needed to plot parallel regression lines
 pacman::p_load("moderndive")
