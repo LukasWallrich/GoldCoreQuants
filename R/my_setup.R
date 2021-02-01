@@ -10,7 +10,14 @@ video <- function(url) {
 }
 
 video_code <- function(code) {
-  video(paste0("https://www.youtube.com/embed/", code, "?rel=0&modestbranding=1&loop=1&playlist=", code))
+
+  if (knitr::is_latex_output()) {
+    knitr::asis_output(paste0("\\href{https://www.youtube.com/embed/", code, "?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}"))   
+  }
+  
+  if (knitr::is_html_output()) {
+    video(paste0("https://www.youtube.com/embed/", code, "?rel=0&modestbranding=1&loop=1&playlist=", code))
+}
 }
 
 local({r <- getOption("repos")
