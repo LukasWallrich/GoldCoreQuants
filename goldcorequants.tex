@@ -354,7 +354,7 @@ All work in R is based on calling functions that do something. A function is cal
 \end{Shaded}
 
 \begin{verbatim}
-## ##------ Mon Feb  1 12:42:41 2021 ------##
+## ##------ Mon Feb  1 14:03:58 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -829,11 +829,11 @@ It is easy to find examples of misleading charts that should never have been pub
 
 }
 
-\caption{Same data, two messages (Source: <a href="https://www.infoworld.com/article/3088166/why-how-to-lie-with-statistics-did-us-a-disservice.html">infoworld.com</a>)}\label{fig:img-dummy-coding}
+\caption{Same data, two messages (Source: <a href="https://www.infoworld.com/article/3088166/why-how-to-lie-with-statistics-did-us-a-disservice.html">infoworld.com</a>)}\label{fig:two-messages}
 \end{figure}
 
-\hypertarget{further-resources}{%
-\section{Further resources}\label{further-resources}}
+\hypertarget{further-resources-visualisation}{%
+\section{Further resources}\label{further-resources-visualisation}}
 
 \begin{itemize}
 \tightlist
@@ -1853,11 +1853,11 @@ The first model tests whether player level and position type interact. That is t
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/unnamed-chunk-4-1} 
+{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/categorical-interaction-A-1} 
 
 }
 
-\caption{Simple interaction plot - note that lines are not parallel}\label{fig:unnamed-chunk-4}
+\caption{Simple interaction plot - note that lines are not parallel}\label{fig:categorical-interaction-A}
 \end{figure}
 
 Next we consider a third condition - chess positions that are neither quite real nor entirely fake, but positions that are mirrored. With that, we get multiple dummy interaction terms. To test whether they are collectively significant, we need to use the \texttt{Anova()} function from the \texttt{car} package.
@@ -1925,11 +1925,11 @@ An interaction plot can then help again to understand what is going on. Here it 
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/unnamed-chunk-6-1} 
+{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/categorical-interaction-B-1} 
 
 }
 
-\caption{Simple interaction plot - now 2 lines are parallel}\label{fig:unnamed-chunk-6}
+\caption{Simple interaction plot - now 2 lines are parallel}\label{fig:categorical-interaction-B}
 \end{figure}
 
 \hypertarget{example-2-link-between-obesity-and-negative-emotions-in-the-european-social-survey}{%
@@ -2016,20 +2016,22 @@ The \texttt{lm()} output below shows that there is a significant interaction bet
 ## F-statistic: 36.63 on 3 and 2860 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
+(ref:int plot) \texttt{interact\_plot()} shows different slopes for men and women.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{interact_plot}\NormalTok{(mod, }\DataTypeTok{pred=}\StringTok{"bmi"}\NormalTok{, }\DataTypeTok{modx =} \StringTok{"gndr"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbackslash begin\{figure\}
+\begin{figure}
 
-\{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/unnamed-chunk-8-1}
+{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/interaction-plot-package-1} 
 
-\}
+}
 
-\textbackslash caption\{interact\_plot shows different slope for men and women\}\label{fig:unnamed-chunk-8}
-\textbackslash end\{figure\}
+\caption{ref:int plot}\label{fig:interaction-plot-package}
+\end{figure}
 
 Note that \texttt{ggplot2} automatically includes an interaction when fitting regression lines as soon as a categorical variable is mapped to the \texttt{colour} (or \texttt{linetype}) aesthetic - so in simple cases, \texttt{geom\_smooth(method\ =\ "lm")} can be used as an alternative to \texttt{interact\_plot()}
 
@@ -2045,11 +2047,11 @@ Note that \texttt{ggplot2} automatically includes an interaction when fitting re
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/unnamed-chunk-9-1} 
+{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/interaction-plot-ggplot-1} 
 
 }
 
-\caption{ggplot automatically includes interaction}\label{fig:unnamed-chunk-9}
+\caption{ggplot automatically includes interaction}\label{fig:interaction-plot-ggplot}
 \end{figure}
 
 \hypertarget{example-3-link-between-working-hours-income-and-life-satisfaction}{%
@@ -2101,11 +2103,11 @@ We can see that while income positively predicts life satisfaction, this effects
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/unnamed-chunk-11-1} 
+{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/simple-slopes-A-1} 
 
 }
 
-\caption{Option A: strong positive effect of income, tempered by working hours}\label{fig:unnamed-chunk-11}
+\caption{Option A: strong positive effect of income, tempered by working hours}\label{fig:simple-slopes-A}
 \end{figure}
 
 \begin{Shaded}
@@ -2116,11 +2118,11 @@ We can see that while income positively predicts life satisfaction, this effects
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/unnamed-chunk-12-1} 
+{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/simple-slopes-B-1} 
 
 }
 
-\caption{Option B: very different effects of working hours, depending on income}\label{fig:unnamed-chunk-12}
+\caption{Option B: very different effects of working hours, depending on income}\label{fig:simple-slopes-B}
 \end{figure}
 
 Simple slopes analyses (\texttt{sim\_slopes()}) offer similar information together with significance tests and thus help to decide which of the slopes should be interpreted. They contain the Johnson-Neyman interval, which is the range of values of the moderator for which the predictor has a significant effect on the outcome.
@@ -2204,6 +2206,15 @@ Finally, the \texttt{johnson\_neyman()} function creates a plot showing the slop
 \end{Highlighting}
 \end{Shaded}
 
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/johnson-neyman-1} 
+
+}
+
+\caption{Johnson-Neyman plot shows regions of significance}\label{fig:johnson-neyman}
+\end{figure}
+
 \begin{verbatim}
 ## JOHNSON-NEYMAN INTERVAL 
 ## 
@@ -2212,15 +2223,6 @@ Finally, the \texttt{johnson\_neyman()} function creates a plot showing the slop
 ## 
 ## Note: The range of observed values of hinctnta is [1.00, 10.00]
 \end{verbatim}
-
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{07-interaction-terms-in-linear-models_files/figure-latex/unnamed-chunk-14-1} 
-
-}
-
-\caption{Johnson-Neyman plot shows regions of significance}\label{fig:unnamed-chunk-14}
-\end{figure}
 
 \hypertarget{chi-squared-tests-for-associations-between-categorical-variables}{%
 \chapter{Chi-squared tests for associations between categorical variables}\label{chi-squared-tests-for-associations-between-categorical-variables}}
@@ -2689,8 +2691,8 @@ This calculates the mean of the items, automatically ignoring any missing values
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{further-resources}{%
-\section{Further resources}\label{further-resources}}
+\hypertarget{further-resources-survey}{%
+\section{Further resources}\label{further-resources-survey}}
 
 \begin{itemize}
 \tightlist
@@ -3058,8 +3060,8 @@ Let's test again whether there is a difference between boys and girls.
 
 This time, we get the correct result - there is no difference between boys and girls. This shows that when data is MAR (i.e.~when missingness depends on other variables we are interested in) we have to consider imputation.
 
-\hypertarget{further-resources}{%
-\section{Further resources}\label{further-resources}}
+\hypertarget{further-resources-missing-data}{%
+\section{Further resources}\label{further-resources-missing-data}}
 
 \begin{itemize}
 \tightlist
@@ -3203,8 +3205,8 @@ The key message for evaluating the results of statistical tests, as well as any 
 
 \textbf{Bayesian statistics} starts from this idea, and has developed into a whole different approach to statistical inference. Unlike frequentist statistics (which we have focused on), it does not consider hypothetical repeated experiments to test whether data is inconsistent with a specific null hypothesis. Instead, it tries to use the data we actually obtain to shift our estimates of specific parameters. A big barrier to its wide-spread adoption is that it only adds a lot of value if it uses specific prior probabilities, which can be hard to obtain and justify - why would a specific hypothesis have a prior probability of being true of 8\% rather than 1\%? (And you have seen above what a difference that makes for our belief after we have obtained new evidence.) One surprisingly powerful way around that is to survey experts \ldots{} but this is all material for your own further study or a more advanced course. As a starting point, you can have a look at the first presentation linked to under Further Resources.
 
-\hypertarget{further-resources}{%
-\section{Further resources}\label{further-resources}}
+\hypertarget{further-resources-probability}{%
+\section{Further resources}\label{further-resources-probability}}
 
 \begin{itemize}
 \tightlist

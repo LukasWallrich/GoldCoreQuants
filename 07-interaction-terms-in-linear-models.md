@@ -96,8 +96,8 @@ cat_plot(mod, pred="player", modx = "type", geom="line")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-4-1.png" alt="Simple interaction plot - note that lines are not parallel" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-4)Simple interaction plot - note that lines are not parallel</p>
+<img src="07-interaction-terms-in-linear-models_files/figure-html/categorical-interaction-A-1.png" alt="Simple interaction plot - note that lines are not parallel" width="100%" />
+<p class="caption">(\#fig:categorical-interaction-A)Simple interaction plot - note that lines are not parallel</p>
 </div>
 Next we consider a third condition - chess positions that are neither quite real nor entirely fake, but positions that are mirrored. With that, we get multiple dummy interaction terms. To test whether they are collectively significant, we need to use the `Anova()` function from the `car` package.
 
@@ -158,8 +158,8 @@ cat_plot(mod, pred="player", modx = "type", geom="line")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-6-1.png" alt="Simple interaction plot - now 2 lines are parallel" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-6)Simple interaction plot - now 2 lines are parallel</p>
+<img src="07-interaction-terms-in-linear-models_files/figure-html/categorical-interaction-B-1.png" alt="Simple interaction plot - now 2 lines are parallel" width="100%" />
+<p class="caption">(\#fig:categorical-interaction-B)Simple interaction plot - now 2 lines are parallel</p>
 </div>
 
 ## Example 2: link between obesity and negative emotions in the European Social Survey
@@ -230,13 +230,16 @@ summary(mod)
 ## F-statistic: 36.63 on 3 and 2860 DF,  p-value: < 2.2e-16
 ```
 
+(ref:int plot) `interact_plot()` shows different slopes for men and women. 
+
+
 ```r
 interact_plot(mod, pred="bmi", modx = "gndr")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-8-1.png" alt="interact_plot shows different slope for men and women" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-8)interact_plot shows different slope for men and women</p>
+<img src="07-interaction-terms-in-linear-models_files/figure-html/interaction-plot-package-1.png" alt="ref:int plot" width="100%" />
+<p class="caption">(\#fig:interaction-plot-package)ref:int plot</p>
 </div>
 
 Note that `ggplot2` automatically includes an interaction when fitting regression lines as soon as a categorical variable is mapped to the `colour` (or `linetype`) aesthetic - so in simple cases, `geom_smooth(method = "lm")` can be used as an alternative to `interact_plot()`
@@ -251,8 +254,8 @@ ggplot(essDE, aes(x=bmi, y=depr, colour=gndr)) + geom_smooth(method="lm", se=FAL
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-9-1.png" alt="ggplot automatically includes interaction" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-9)ggplot automatically includes interaction</p>
+<img src="07-interaction-terms-in-linear-models_files/figure-html/interaction-plot-ggplot-1.png" alt="ggplot automatically includes interaction" width="100%" />
+<p class="caption">(\#fig:interaction-plot-ggplot)ggplot automatically includes interaction</p>
 </div>
 
 ## Example 3: link between working hours, income and life satisfaction
@@ -300,8 +303,8 @@ interact_plot(mod, pred="hinctnta", modx = "wkhtot")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-11-1.png" alt="Option A: strong positive effect of income, tempered by working hours" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-11)Option A: strong positive effect of income, tempered by working hours</p>
+<img src="07-interaction-terms-in-linear-models_files/figure-html/simple-slopes-A-1.png" alt="Option A: strong positive effect of income, tempered by working hours" width="100%" />
+<p class="caption">(\#fig:simple-slopes-A)Option A: strong positive effect of income, tempered by working hours</p>
 </div>
 
 
@@ -310,8 +313,8 @@ interact_plot(mod, pred="wkhtot", modx = "hinctnta")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-12-1.png" alt="Option B: very different effects of working hours, depending on income" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-12)Option B: very different effects of working hours, depending on income</p>
+<img src="07-interaction-terms-in-linear-models_files/figure-html/simple-slopes-B-1.png" alt="Option B: very different effects of working hours, depending on income" width="100%" />
+<p class="caption">(\#fig:simple-slopes-B)Option B: very different effects of working hours, depending on income</p>
 </div>
 
 Simple slopes analyses (`sim_slopes()`) offer similar information together with significance tests and thus help to decide which of the slopes should be interpreted. They contain the Johnson-Neyman interval, which is the range of values of the moderator for which the predictor has a significant effect on the outcome.
@@ -391,6 +394,11 @@ Finally, the `johnson_neyman()` function creates a plot showing the slope of one
 johnson_neyman(mod, pred="wkhtot", modx = "hinctnta")
 ```
 
+<div class="figure" style="text-align: center">
+<img src="07-interaction-terms-in-linear-models_files/figure-html/johnson-neyman-1.png" alt="Johnson-Neyman plot shows regions of significance" width="100%" />
+<p class="caption">(\#fig:johnson-neyman)Johnson-Neyman plot shows regions of significance</p>
+</div>
+
 ```{.bg-none}
 ## JOHNSON-NEYMAN INTERVAL 
 ## 
@@ -399,9 +407,4 @@ johnson_neyman(mod, pred="wkhtot", modx = "hinctnta")
 ## 
 ## Note: The range of observed values of hinctnta is [1.00, 10.00]
 ```
-
-<div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-14-1.png" alt="Johnson-Neyman plot shows regions of significance" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-14)Johnson-Neyman plot shows regions of significance</p>
-</div>
 

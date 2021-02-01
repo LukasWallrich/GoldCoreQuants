@@ -52,10 +52,10 @@ It is easy to find examples of misleading charts that should never have been pub
 
 <div class="figure" style="text-align: center">
 <img src="./images/iraq-bloody-toll.png" alt="Same data, two messages (Source: &lt;a href=&quot;https://www.infoworld.com/article/3088166/why-how-to-lie-with-statistics-did-us-a-disservice.html&quot;&gt;infoworld.com&lt;/a&gt;)" width="100%" />
-<p class="caption">(\#fig:img-dummy-coding)Same data, two messages (Source: <a href="https://www.infoworld.com/article/3088166/why-how-to-lie-with-statistics-did-us-a-disservice.html">infoworld.com</a>)</p>
+<p class="caption">(\#fig:two-messages)Same data, two messages (Source: <a href="https://www.infoworld.com/article/3088166/why-how-to-lie-with-statistics-did-us-a-disservice.html">infoworld.com</a>)</p>
 </div>
 
-## Further resources
+## Further resources {#further-resources-visualisation}
 
 * The [R Graphics Cookbook](https://r-graphics.org/){target="_blank"} by Winston Chang is available online with 150 "recipes" that cover everything from basic exploratory charts to colour-coded maps.
 * The BBC graphics team has published their own [R Cookbook](https://bbc.github.io/rcookbook/){target="_blank"} with many tips for making charts that convey a clear message, as well as some custom functions for making clean publication-ready charts.
