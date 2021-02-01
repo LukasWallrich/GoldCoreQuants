@@ -13,7 +13,7 @@
   
   
   <meta property="og:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
-  
+  <meta name="github-repo" content="LukasWallrich/GoldCoreQuants" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Topic 5 Simple and multiple linear regression | Getting started with Quantitative Research Methods and R" />
@@ -292,10 +292,10 @@ level in European countries (data from the European Social Survey 2014).</p>
 <span id="cb37-7"><a href="simple-and-multiple-linear-regression.html#cb37-7"></a>            <span class="dt">nat_stflife =</span> <span class="kw">mean</span>(stflife, <span class="dt">na.rm=</span>T))</span>
 <span id="cb37-8"><a href="simple-and-multiple-linear-regression.html#cb37-8"></a></span>
 <span id="cb37-9"><a href="simple-and-multiple-linear-regression.html#cb37-9"></a><span class="kw">ggplot</span>(nat_avgs, <span class="kw">aes</span>(<span class="dt">x=</span>nat_soctrust, <span class="dt">y=</span>nat_stflife)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-1-1.png" alt="Scatterplot relating social trust to life satisfaction" width="100%" />
+<div class="figure" style="text-align: center"><span id="fig:scatterplot"></span>
+<img src="05-linear-regression_files/figure-html/scatterplot-1.png" alt="Scatterplot relating social trust to life satisfaction" width="100%" />
 <p class="caption">
-Figure 3.1: Scatterplot relating social trust to life satisfaction
+Figure 5.1: Scatterplot relating social trust to life satisfaction
 </p>
 </div>
 <p>The scatterplot can now help us to think about what kind of model would
@@ -309,10 +309,10 @@ from the points to the line. It can be plotted with the
 <code>geom_smooth(method="lm")</code> function.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="simple-and-multiple-linear-regression.html#cb38-1"></a><span class="kw">ggplot</span>(nat_avgs, <span class="kw">aes</span>(<span class="dt">x=</span>nat_soctrust, <span class="dt">y=</span>nat_stflife)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb38-2"><a href="simple-and-multiple-linear-regression.html#cb38-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) </span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-2-1.png" alt="Scatterplot with added regression line (&quot;line of best fit&quot;)" width="100%" />
+<div class="figure" style="text-align: center"><span id="fig:simple-regression"></span>
+<img src="05-linear-regression_files/figure-html/simple-regression-1.png" alt="Scatterplot with added regression line (&quot;line of best fit&quot;)" width="100%" />
 <p class="caption">
-Figure 5.1: Scatterplot with added regression line (“line of best fit”)
+Figure 5.2: Scatterplot with added regression line (“line of best fit”)
 </p>
 </div>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="simple-and-multiple-linear-regression.html#cb39-1"></a>  <span class="co">#se=FALSE hides confidence bands that are often just visual clutter</span></span></code></pre></div>
@@ -451,10 +451,10 @@ on the standardised variables, which can be calculated using the
 <code>scale()</code>-function.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="simple-and-multiple-linear-regression.html#cb44-1"></a><span class="kw">ggplot</span>(nat_avgs, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">scale</span>(nat_soctrust), <span class="dt">y=</span><span class="kw">scale</span>(nat_stflife))) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb44-2"><a href="simple-and-multiple-linear-regression.html#cb44-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;National Social Trust (standardised)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;National life satisfaction (standardised)&quot;</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-5-1.png" alt="Scatterplot with scaled variables (z-scores)" width="100%" />
+<div class="figure" style="text-align: center"><span id="fig:scaled-scatterplot"></span>
+<img src="05-linear-regression_files/figure-html/scaled-scatterplot-1.png" alt="Scatterplot with scaled variables (z-scores)" width="100%" />
 <p class="caption">
-Figure 5.2: Scatterplot with scaled variables (z-scores)
+Figure 5.3: Scatterplot with scaled variables (z-scores)
 </p>
 </div>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="simple-and-multiple-linear-regression.html#cb45-1"></a><span class="kw">lm</span>(<span class="kw">scale</span>(nat_stflife) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(nat_soctrust), <span class="dt">data =</span> nat_avgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
@@ -508,7 +508,7 @@ dummy variables.</p>
 <div class="figure" style="text-align: center"><span id="fig:img-dummy-coding"></span>
 <img src="images/W10Dummy.png" alt="Example for dummy-coding" width="100%" />
 <p class="caption">
-Figure 5.3: Example for dummy-coding
+Figure 5.4: Example for dummy-coding
 </p>
 </div>
 <p>The level that is not explicitly mentioned anymore is the <strong>reference
@@ -611,10 +611,10 @@ constant.</em></p>
 <span id="cb51-2"><a href="simple-and-multiple-linear-regression.html#cb51-2"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(<span class="st">&quot;moderndive&quot;</span>)</span>
 <span id="cb51-3"><a href="simple-and-multiple-linear-regression.html#cb51-3"></a></span>
 <span id="cb51-4"><a href="simple-and-multiple-linear-regression.html#cb51-4"></a><span class="kw">ggplot</span>(constituencies, <span class="kw">aes</span>(<span class="dt">x=</span>MedianAge, <span class="dt">y=</span>ElectionConShare, <span class="dt">color =</span> nation)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>moderndive<span class="op">::</span><span class="kw">geom_parallel_slopes</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-8-1.png" alt="Multiple regression model to predict Tory 2019 vote share" width="100%" />
+<div class="figure" style="text-align: center"><span id="fig:multiple-regression"></span>
+<img src="05-linear-regression_files/figure-html/multiple-regression-1.png" alt="Multiple regression model to predict Tory 2019 vote share" width="100%" />
 <p class="caption">
-Figure 5.4: Multiple regression model to predict Tory 2019 vote share
+Figure 5.5: Multiple regression model to predict Tory 2019 vote share
 </p>
 </div>
 <div id="significance-testing-and-reporting-in-multiple-regression-models" class="section level4">

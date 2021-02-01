@@ -35,8 +35,8 @@ ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) + geom_point()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-1-1.png" alt="Scatterplot relating social trust to life satisfaction" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-1)Scatterplot relating social trust to life satisfaction</p>
+<img src="05-linear-regression_files/figure-html/scatterplot-1.png" alt="Scatterplot relating social trust to life satisfaction" width="100%" />
+<p class="caption">(\#fig:scatterplot)Scatterplot relating social trust to life satisfaction</p>
 </div>
 
 The scatterplot can now help us to think about what kind of model would
@@ -57,8 +57,8 @@ ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-2-1.png" alt="Scatterplot with added regression line (&quot;line of best fit&quot;)" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-2)Scatterplot with added regression line ("line of best fit")</p>
+<img src="05-linear-regression_files/figure-html/simple-regression-1.png" alt="Scatterplot with added regression line (&quot;line of best fit&quot;)" width="100%" />
+<p class="caption">(\#fig:simple-regression)Scatterplot with added regression line ("line of best fit")</p>
 </div>
 
 ```r
@@ -228,8 +228,8 @@ ggplot(nat_avgs, aes(x=scale(nat_soctrust), y=scale(nat_stflife))) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-5-1.png" alt="Scatterplot with scaled variables (z-scores)" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-5)Scatterplot with scaled variables (z-scores)</p>
+<img src="05-linear-regression_files/figure-html/scaled-scatterplot-1.png" alt="Scatterplot with scaled variables (z-scores)" width="100%" />
+<p class="caption">(\#fig:scaled-scatterplot)Scatterplot with scaled variables (z-scores)</p>
 </div>
 
 ```r
@@ -419,8 +419,8 @@ ggplot(constituencies, aes(x=MedianAge, y=ElectionConShare, color = nation)) + g
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-8-1.png" alt="Multiple regression model to predict Tory 2019 vote share" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-8)Multiple regression model to predict Tory 2019 vote share</p>
+<img src="05-linear-regression_files/figure-html/multiple-regression-1.png" alt="Multiple regression model to predict Tory 2019 vote share" width="100%" />
+<p class="caption">(\#fig:multiple-regression)Multiple regression model to predict Tory 2019 vote share</p>
 </div>
 
 #### Significance testing and reporting in multiple regression models

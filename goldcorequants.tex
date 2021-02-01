@@ -158,7 +158,62 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\textcolor{red}Please note that **the PDF version is a supplement with limited functionalities** (e.g., no interactive exercises) - we recommend that you use the webpage as much as possible {red}.
+\newpage
+
+\textcolor{red}{Please note that \textbf{the PDF version is a supplement with limited functionality} (e.g., no interactive exercises) - we recommend that you use the webpage as much as possible}.
+
+\hypertarget{overview}{%
+\chapter*{Overview}\label{overview}}
+\addcontentsline{toc}{chapter}{Overview}
+
+This guide supports the Core Quantitative Methods Course offered by the Goldsmiths' Graduate School. \textbf{It is a living document and currently focuses on R at the expense of broader considerations of quantitative research, but will grow over time - \href{https://github.com/LukasWallrich/GoldCoreQuants/issues}{please raise any issues and suggestions here}.} It does not follow the order of sessions in the course; instead, it is ordered in a way that might allow you to see connections and hopefully helps to look things up more easily.
+
+\hypertarget{further-sources}{%
+\section{Further sources}\label{further-sources}}
+
+This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online resources that go further.
+
+\hypertarget{free-online-books}{%
+\subsection{Free online books}\label{free-online-books}}
+
+\begin{itemize}
+\tightlist
+\item
+  Hadley Wickham, the leading brain behind the \texttt{tidyverse} packages, has co-authored \href{https://r4ds.had.co.nz/index.html}{\emph{R for Data Science}} (with Garrett Grolemund). This book does not cover inferential statistics, but explains how to use R to process, describe and visualise data in line with the aproach taken in this course.
+\item
+  The \href{https://learningstatisticswithr.com/book/}{\emph{Learning statistics with R}} book by Danielle Navarro focuses on explaining the different statistical tests and their application in quite a lot of detail, including the underlying maths. It is written by a psychologist, and might therefore be particularly helpful for people from that discipline.
+\item
+  \href{https://statsthinking21.github.io/statsthinking21-core-site/}{Statistical thinking for the 21st century} is a great modern book on statistics, which also offers this handy \href{https://statsthinking21.github.io/statsthinking21-R-site/index.html}{R companion} that covers most of what is needed for this course (though it is still a work-in-progress document).
+\end{itemize}
+
+\hypertarget{paperlibrary-books}{%
+\subsection{Paper/library books}\label{paperlibrary-books}}
+
+\begin{itemize}
+\tightlist
+\item
+  Charles Wheelan's \emph{Naked Statistics: Stripping the Dread from the Data} is an easy-to-read and entertaining New York Times bestseller that introduces statistical thinking and some key concepts without distracting details.
+\item
+  Neil Burdess' \emph{Starting Statistics: A short clear guide} covers the basic ground with more practical and technical detail.
+\item
+  Also have a look at the \textbf{Module Guide} on the \href{https://learn.gold.ac.uk/}{learn.gold} Module Page that contains further recommendations, especially with regard to research methods.
+\end{itemize}
+
+\hypertarget{other-key-resources}{%
+\subsection{Other key resources}\label{other-key-resources}}
+
+\begin{itemize}
+\tightlist
+\item
+  The RStudio team created and collected a very helpful set of Cheat Sheets that cover the key elements of various R packages - have a look \href{https://rstudio.com/resources/cheatsheets/}{here.} For this course, the sheets on \texttt{dplyr} and \texttt{ggplot2} are the most important.
+\item
+  \href{https://stackoverflow.com/questions/tagged/r}{Stackoverflow} is an online forum with a knewledgeable and welcoming support community. However, make sure to use Google and their search function first to check that your question hasn't already been answered and show what you already understand - if the same questions keep on getting asked or if the questions are very unclear, people volunteering their time to help can get a bit testy.
+\end{itemize}
+
+\hypertarget{why-r}{%
+\section{Why R?}\label{why-r}}
+
+R is not the easiest statistical software to learn, but we are confident that it is the most useful. This \href{https://lindeloev.net/spss-is-dying/}{article} on why SPSS is dying provides some arguments for why that is the case, while Andy Fields (a leading stats teacher and textbook author) offers his case for learning R \href{https://padlet-uploads.storage.googleapis.com/290004173/0ce387ac71c38e2643953a2148c0cd81/why_r.html}{here}.
 
 \hypertarget{part-using-r-and-describing-data}{%
 \part*{Using R and describing data}\label{part-using-r-and-describing-data}}
@@ -214,6 +269,8 @@ You can think about the different parts of R in terms of a computer or smartphon
 \end{itemize}
 
 For a more comprehensive introduction to R, you can watch this video:
+
+\textcolor{blue}{\href{https://www.youtube.com/embed/kvaMhkQF0H4?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
 
 \hypertarget{data-and-variables-in-r}{%
 \subsection{Data and variables in R}\label{data-and-variables-in-r}}
@@ -303,7 +360,7 @@ All work in R is based on calling functions that do something. A function is cal
 \end{Shaded}
 
 \begin{verbatim}
-## ##------ Mon Feb  1 14:25:46 2021 ------##
+## ##------ Mon Feb  1 16:07:57 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -605,6 +662,8 @@ If we want to calculate the average income per capita in 2010 on each continent 
 
 For an introduction to \texttt{dplyr}, you can watch this video:
 
+\textcolor{blue}{\href{https://www.youtube.com/embed/QtQE-b5iMUQ?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
+
 \hypertarget{summarise-data-descriptive-statistics}{%
 \section{Summarise data (descriptive statistics)}\label{summarise-data-descriptive-statistics}}
 
@@ -715,6 +774,8 @@ Being able to look at the data is a key step in data exploration, during the ana
 
 For an introduction to the Grammar of Graphics and ggplot2, the package that we will be using for visualisation, watch this video:
 
+\textcolor{blue}{\href{https://www.youtube.com/embed/sk7TT5qM5Hw?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
+
 \href{https://drive.google.com/open?id=1UGp7own42PkPv-TLbX29sQUu2DfeaMUp}{Click here} for the code used in the video
 
 \hypertarget{ggplot2}{%
@@ -760,11 +821,11 @@ Multiple geometries can be layered on top of each other, for example to add tren
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{03-data-visualisation_files/figure-latex/unnamed-chunk-1-1} 
+{\centering \includegraphics[width=1\linewidth]{03-data-visualisation_files/figure-latex/ggplot-example-1} 
 
 }
 
-\caption{A simple ggplot example}\label{fig:unnamed-chunk-1}
+\caption{A simple ggplot example}\label{fig:ggplot-example}
 \end{figure}
 
 \hypertarget{opinionated-visualisation}{%
@@ -802,6 +863,7 @@ It is easy to find examples of misleading charts that should never have been pub
 \chapter{Introduction}\label{introduction}}
 
 For an introduction to conducting and evaluating quantitative research, you can watch this video:
+\textcolor{blue}{\href{https://www.youtube.com/embed/sM7z8YoFLDo?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
 
 \hypertarget{key-concepts}{%
 \section{Key concepts}\label{key-concepts}}
@@ -841,7 +903,7 @@ at least the outcome variable is continuous.
 \section{Simple linear regression}\label{simple-linear-regression}}
 
 For an introduction to simple linear regression and correlation, watch
-this video:
+this video: \textcolor{blue}{\href{https://www.youtube.com/embed/uoMjSFApBTY?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
 
 When considering the relationship between two continuous variables, we
 should always start with a scatterplot - for example, of the
@@ -864,11 +926,11 @@ level in European countries (data from the European Social Survey 2014).
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{05-linear-regression_files/figure-latex/unnamed-chunk-1-1} 
+{\centering \includegraphics[width=1\linewidth]{05-linear-regression_files/figure-latex/scatterplot-1} 
 
 }
 
-\caption{Scatterplot relating social trust to life satisfaction}\label{fig:unnamed-chunk-1}
+\caption{Scatterplot relating social trust to life satisfaction}\label{fig:scatterplot}
 \end{figure}
 
 The scatterplot can now help us to think about what kind of model would
@@ -892,11 +954,11 @@ from the points to the line. It can be plotted with the
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{05-linear-regression_files/figure-latex/unnamed-chunk-2-1} 
+{\centering \includegraphics[width=1\linewidth]{05-linear-regression_files/figure-latex/simple-regression-1} 
 
 }
 
-\caption{Scatterplot with added regression line ("line of best fit")}\label{fig:unnamed-chunk-2}
+\caption{Scatterplot with added regression line ("line of best fit")}\label{fig:simple-regression}
 \end{figure}
 
 \begin{Shaded}
@@ -1079,11 +1141,11 @@ on the standardised variables, which can be calculated using the
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{05-linear-regression_files/figure-latex/unnamed-chunk-5-1} 
+{\centering \includegraphics[width=1\linewidth]{05-linear-regression_files/figure-latex/scaled-scatterplot-1} 
 
 }
 
-\caption{Scatterplot with scaled variables (z-scores)}\label{fig:unnamed-chunk-5}
+\caption{Scatterplot with scaled variables (z-scores)}\label{fig:scaled-scatterplot}
 \end{figure}
 
 \begin{Shaded}
@@ -1125,6 +1187,8 @@ predictor variables.
 
 You can watch this video to take you through the process of extending
 simple linear regression to include multiple variables step-by-step:
+
+\textcolor{blue}{\href{https://www.youtube.com/embed/6lcDzTlsGVE?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
 
 \hypertarget{dummy-coding-revisited}{%
 \subsection{Dummy coding revisited}\label{dummy-coding-revisited}}
@@ -1285,11 +1349,11 @@ constant.}
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{05-linear-regression_files/figure-latex/unnamed-chunk-8-1} 
+{\centering \includegraphics[width=1\linewidth]{05-linear-regression_files/figure-latex/multiple-regression-1} 
 
 }
 
-\caption{Multiple regression model to predict Tory 2019 vote share}\label{fig:unnamed-chunk-8}
+\caption{Multiple regression model to predict Tory 2019 vote share}\label{fig:multiple-regression}
 \end{figure}
 
 \hypertarget{significance-testing-and-reporting-in-multiple-regression-models}{%
@@ -1320,7 +1384,11 @@ With more than one predictor, we have two questions:
 
 Watch this video for an introduction to testing for differences between two means and the differences between repeated measures and independent samples:
 
+\textcolor{blue}{\href{https://www.youtube.com/embed/L69HyBnvQRQ?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
+
 Watch this video for an introduction to testing for differences between \emph{more than} two means:
+
+\textcolor{blue}{\href{https://www.youtube.com/embed/r96FYPLQ1l0?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
 
 \hypertarget{repeated-measures-or-independent-samples}{%
 \subsection{Repeated measures or independent samples}\label{repeated-measures-or-independent-samples}}
@@ -1709,6 +1777,8 @@ This indicates that the scores of participants in the white noise and silence co
 \chapter{Interaction terms in linear models}\label{interaction-terms-in-linear-models}}
 
 Watch this video for an introduction to interaction terms in linear models:
+
+\textcolor{blue}{\href{https://www.youtube.com/embed/coyXicRccSg?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
 
 The section below essentially contains the code needed for the examples in the video, with some further annotations. Before that, just one note on terminology:
 
@@ -2178,6 +2248,8 @@ Finally, the \texttt{johnson\_neyman()} function creates a plot showing the slop
 
 Watch this video for an introduction to this topic:
 
+\textcolor{blue}{\href{https://www.youtube.com/embed/h1oq6HjlyjI?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
+
 When we want to see whether two categorical variables are associated with each other, typical linear models won't work. Instead, we need a new way to decide whether a difference between the data we observe and that which we expect under the null-hypothesis is unlikely to occur due to chance. But before we get to that, we should look at the data.
 
 \hypertarget{tables-of-frequencies-and-proportions}{%
@@ -2550,6 +2622,8 @@ In general, test statistics and most descriptive statistics should be rounded to
 
 A lot of social science research is done with surveys. In this video, I am talking about some examples and challenges, as well as some ways of asking good questions. I am also talking about how to create scales that use multiple items to measure one construct, and how to test their internal consistency.
 
+\textcolor{blue}{\href{https://www.youtube.com/embed/fCbgi0KfWZc?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
+
 \hypertarget{creating-scales}{%
 \section{Creating scales}\label{creating-scales}}
 
@@ -2839,6 +2913,8 @@ Beyond the examples here, there are many other datasets to access. You might wan
 \chapter{Dealing with missing data}\label{dealing-with-missing-data}}
 
 Missing data can pose serious problems for any data analysis.
+
+\textcolor{blue}{\href{https://www.youtube.com/embed/FT6oYGyWTGY?rel=0&modestbranding=1&loop=1&playlist=sk7TT5qM5Hw}{YouTube Link}}
 
 \hypertarget{example}{%
 \section{Example}\label{example}}

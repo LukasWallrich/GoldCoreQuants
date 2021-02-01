@@ -42,8 +42,8 @@ ggplot(gapminder2010, aes(x=infant_mortality, y=fertility)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="03-data-visualisation_files/figure-html/unnamed-chunk-1-1.png" alt="A simple ggplot example" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-1)A simple ggplot example</p>
+<img src="03-data-visualisation_files/figure-html/ggplot-example-1.png" alt="A simple ggplot example" width="100%" />
+<p class="caption">(\#fig:ggplot-example)A simple ggplot example</p>
 </div>
 
 ## Opinionated visualisation

@@ -9,11 +9,13 @@ biblio-style: apalike
 link-citations: yes
 description: "These are some of the course materials for the Goldsmiths' Core Quantitative Research Methods course. It is a living document that will be updated regularly."
 favicon: "favicon.ico"
+github-repo: "LukasWallrich/GoldCoreQuants"
 ---
 
 <!--
 
-\textcolor{red}Please note that **the PDF version is a supplement with limited functionalities** (e.g., no interactive exercises) - we recommend that you use the webpage as much as possible {red}.
+\newpage
+\textcolor{red}{Please note that \textbf{the PDF version is a supplement with limited functionality} (e.g., no interactive exercises) - we recommend that you use the webpage as much as possible}.
 
 
 -->
