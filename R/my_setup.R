@@ -1,5 +1,10 @@
 # book-specific code to include on every page
 
+knitr::opts_chunk$set(
+  tidy='styler', 
+  tidy.opts=list(strict=FALSE, scope = "line_breaks")
+)
+
 video <- function(url) {
   paste('<iframe src="', url, '" allowfullscreen width=80% height=350></iframe>')
 }
