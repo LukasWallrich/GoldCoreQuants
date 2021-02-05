@@ -9,7 +9,7 @@ For an introduction to the Grammar of Graphics and ggplot2, the package that we 
 [Click here](https://drive.google.com/open?id=1UGp7own42PkPv-TLbX29sQUu2DfeaMUp) for the code used in the video
 
 
-## ggplot2
+## `ggplot2`
 
 We use the `ggplot2`-package because it offers a consistent way to create anything from simple exploratory plots to complex data visualisation. Each graph command needs certain parts:
 
@@ -45,6 +45,12 @@ ggplot(gapminder2010, aes(x=infant_mortality, y=fertility)) +
 <img src="03-data-visualisation_files/figure-html/ggplot-example-1.png" alt="A simple ggplot example" width="100%" />
 <p class="caption">(\#fig:ggplot-example)A simple ggplot example</p>
 </div>
+
+## `esquisse`: using ggplot2 with your mouse
+
+The `esquisse` package provides an RStudio add-in that lets you create `ggplot2`-charts interactively, without having to know the code in advance. If that sounds You can check out the [Getting Started guide](https://dreamrs.github.io/esquisse/articles/get-started.html){target="_blank"} to see what that would look like. To try it out, run `install.packages("esquisse")`, load the data you want to use, and type `esquisse::esquisser()` into your Console.
+
+Try not to rely on `esquisse` *instead of* `ggplot2` - the aim in this module is to learn how to write code that is reproducible, not how to click boxes. However, `esquisse` shows you the code it generates (check `Export & Code` at the bottom right), so that it can be very helpful when you are getting started, or when you are not quite sure how to do something.
 
 ## Opinionated visualisation
 

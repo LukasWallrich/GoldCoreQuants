@@ -1,6 +1,7 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
 \documentclass[
 ]{book}
@@ -38,7 +39,11 @@
 \hypersetup{
   pdftitle={Getting started with Quantitative Research Methods and R},
   pdfauthor={Lukas Wallrich},
-  hidelinks,
+  colorlinks=true,
+  linkcolor=Maroon,
+  filecolor=Maroon,
+  citecolor=Blue,
+  urlcolor=blue,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
@@ -149,12 +154,13 @@
 
 \title{Getting started with Quantitative Research Methods and R}
 \author{Lukas Wallrich}
-\date{Last updated: 2021-02-01}
+\date{Last updated: 2021-02-05}
 
 \begin{document}
 \maketitle
 
 {
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
@@ -360,7 +366,7 @@ All work in R is based on calling functions that do something. A function is cal
 \end{Shaded}
 
 \begin{verbatim}
-## ##------ Mon Feb  1 16:07:57 2021 ------##
+## ##------ Fri Feb  5 15:21:16 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -779,7 +785,7 @@ For an introduction to the Grammar of Graphics and ggplot2, the package that we 
 \href{https://drive.google.com/open?id=1UGp7own42PkPv-TLbX29sQUu2DfeaMUp}{Click here} for the code used in the video
 
 \hypertarget{ggplot2}{%
-\section{ggplot2}\label{ggplot2}}
+\section{\texorpdfstring{\texttt{ggplot2}}{ggplot2}}\label{ggplot2}}
 
 We use the \texttt{ggplot2}-package because it offers a consistent way to create anything from simple exploratory plots to complex data visualisation. Each graph command needs certain parts:
 
@@ -827,6 +833,13 @@ Multiple geometries can be layered on top of each other, for example to add tren
 
 \caption{A simple ggplot example}\label{fig:ggplot-example}
 \end{figure}
+
+\hypertarget{esquisse-using-ggplot2-with-your-mouse}{%
+\section{\texorpdfstring{\texttt{esquisse}: using ggplot2 with your mouse}{esquisse: using ggplot2 with your mouse}}\label{esquisse-using-ggplot2-with-your-mouse}}
+
+The \texttt{esquisse} package provides an RStudio add-in that lets you create \texttt{ggplot2}-charts interactively, without having to know the code in advance. If that sounds You can check out the \href{https://dreamrs.github.io/esquisse/articles/get-started.html}{Getting Started guide} to see what that would look like. To try it out, run \texttt{install.packages("esquisse")}, load the data you want to use, and type \texttt{esquisse::esquisser()} into your Console.
+
+Try not to rely on \texttt{esquisse} \emph{instead of} \texttt{ggplot2} - the aim in this module is to learn how to write code that is reproducible, not how to click boxes. However, \texttt{esquisse} shows you the code it generates (check \texttt{Export\ \&\ Code} at the bottom right), so that it can be very helpful when you are getting started, or when you are not quite sure how to do something.
 
 \hypertarget{opinionated-visualisation}{%
 \section{Opinionated visualisation}\label{opinionated-visualisation}}

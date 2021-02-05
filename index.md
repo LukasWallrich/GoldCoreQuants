@@ -1,7 +1,7 @@
 --- 
 title: "Getting started with Quantitative Research Methods and R"
 author: "Lukas Wallrich"
-date: "Last updated: 2021-02-01"
+date: "Last updated: 2021-02-05"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -10,6 +10,7 @@ link-citations: yes
 description: "These are some of the course materials for the Goldsmiths' Core Quantitative Research Methods course. It is a living document that will be updated regularly."
 favicon: "favicon.ico"
 github-repo: "LukasWallrich/GoldCoreQuants"
+urlcolor: blue
 ---
 
 <!--
