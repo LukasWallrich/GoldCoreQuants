@@ -10,6 +10,7 @@ link-citations: yes
 description: "These are some of the course materials for the Goldsmiths' Core Quantitative Research Methods course. It is a living document that will be updated regularly."
 favicon: "favicon.ico"
 github-repo: "LukasWallrich/GoldCoreQuants"
+urlcolor: blue
 ---
 
 `r if(knitr::is_html_output()) '<!--'`
