@@ -154,7 +154,7 @@
 
 \title{Getting started with Quantitative Research Methods and R}
 \author{Lukas Wallrich}
-\date{Last updated: 2021-02-05}
+\date{Last updated: 2021-02-25}
 
 \begin{document}
 \maketitle
@@ -366,7 +366,7 @@ All work in R is based on calling functions that do something. A function is cal
 \end{Shaded}
 
 \begin{verbatim}
-## ##------ Fri Feb  5 15:21:16 2021 ------##
+## ##------ Thu Feb 25 09:53:40 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -438,6 +438,19 @@ Many errors occur due to \textbf{common mistakes}, that you need to pay attentio
 \item
   \textbf{Function masking} - many packages have functions of the same name, so that packages that are loaded later mask (i.e.~``over-write'') the names of functions in packages loaded earlier (for example, dplyr's \texttt{filter()} function masks the \texttt{filter()} function in base R). Often, that is exactly what we want, but if a function does not do what you expect it to do, it's worth specifying the package it comes from to make sure you are not actually calling a different function that has masked it. You can do that by adding the package name and \texttt{::}, for example, by calling \texttt{dplyr::filter()} \emph{Note}: If you only want to use a single function from a large package, this is an alternative to loading the full package.
 \end{itemize}
+
+When you are stuck, it also often helps to \textbf{Restart R} (which unloads all packages) and \textbf{Clear your workspace} (which deletes all objects) - both options are found in the \texttt{Session} menu in RStudio. I would also recommend \emph{turning off the option that RStudio saves your Environment} when you close it. While that means that you have to explicitly save data or rerun your code when you continue, it can save you a lot of hassle that comes from objects left over from earlier sessions. To turn that off:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Choose Tools \textgreater{} Global Options in RStudio
+\item
+  In the Options, look for \texttt{Save\ workspace\ to\ .RData\ on\ exit} and change it to \texttt{Never}.
+\item
+  Click OK to apply the change and close the Options window.
+\end{enumerate}
 
 As you progress in R, \textbf{do not try to remember everything} - instead, look things up as needed, in particular things like argument names:
 
@@ -536,15 +549,15 @@ When you start with a new dataset, there are some helpful functions to get a fir
 \begin{verbatim}
 ## Rows: 10,545
 ## Columns: 9
-## $ country          <fct> Albania, Algeria, Angola, Antigua and Barbuda, Arg...
-## $ year             <int> 1960, 1960, 1960, 1960, 1960, 1960, 1960, 1960, 19...
-## $ infant_mortality <dbl> 115.40, 148.20, 208.00, NA, 59.87, NA, NA, 20.30, ...
-## $ life_expectancy  <dbl> 62.87, 47.50, 35.98, 62.97, 65.39, 66.86, 65.66, 7...
-## $ fertility        <dbl> 6.19, 7.65, 7.32, 4.43, 3.11, 4.55, 4.82, 3.45, 2....
-## $ population       <dbl> 1636054, 11124892, 5270844, 54681, 20619075, 18673...
-## $ gdp              <dbl> NA, 13828152297, NA, NA, 108322326649, NA, NA, 966...
-## $ continent        <fct> Europe, Africa, Africa, Americas, Americas, Asia, ...
-## $ region           <fct> Southern Europe, Northern Africa, Middle Africa, C...
+## $ country          <fct> Albania, Algeria, Angola, Antigua and Barbuda, Argent~
+## $ year             <int> 1960, 1960, 1960, 1960, 1960, 1960, 1960, 1960, 1960,~
+## $ infant_mortality <dbl> 115.40, 148.20, 208.00, NA, 59.87, NA, NA, 20.30, 37.~
+## $ life_expectancy  <dbl> 62.87, 47.50, 35.98, 62.97, 65.39, 66.86, 65.66, 70.8~
+## $ fertility        <dbl> 6.19, 7.65, 7.32, 4.43, 3.11, 4.55, 4.82, 3.45, 2.70,~
+## $ population       <dbl> 1636054, 11124892, 5270844, 54681, 20619075, 1867396,~
+## $ gdp              <dbl> NA, 13828152297, NA, NA, 108322326649, NA, NA, 966778~
+## $ continent        <fct> Europe, Africa, Africa, Americas, Americas, Asia, Ame~
+## $ region           <fct> Southern Europe, Northern Africa, Middle Africa, Cari~
 \end{verbatim}
 
 \begin{Shaded}

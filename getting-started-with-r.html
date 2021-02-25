@@ -358,7 +358,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-13"><a href="getting-started-with-r.html#cb5-13"></a></span>
 <span id="cb5-14"><a href="getting-started-with-r.html#cb5-14"></a><span class="co">#To save the results of a function into a variable, use the &lt;- operator again</span></span>
 <span id="cb5-15"><a href="getting-started-with-r.html#cb5-15"></a>variableName &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre class="bg-none"><code>## ##------ Fri Feb  5 15:38:06 2021 ------##
+<pre class="bg-none"><code>## ##------ Thu Feb 25 10:08:44 2021 ------##
 ## [1] &quot;Hello&quot;
 ## [1] 2
 ## [1] 2</code></pre>
@@ -403,6 +403,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Missing library() calls</strong> to load packages - if a function is not found, run <code>library(packagename)</code></li>
 <li><strong>Function masking</strong> - many packages have functions of the same name, so that packages that are loaded later mask (i.e. “over-write”) the names of functions in packages loaded earlier (for example, dplyr’s <code>filter()</code> function masks the <code>filter()</code> function in base R). Often, that is exactly what we want, but if a function does not do what you expect it to do, it’s worth specifying the package it comes from to make sure you are not actually calling a different function that has masked it. You can do that by adding the package name and <code>::</code>, for example, by calling <code>dplyr::filter()</code> <em>Note</em>: If you only want to use a single function from a large package, this is an alternative to loading the full package.</li>
 </ul>
+<p>When you are stuck, it also often helps to <strong>Restart R</strong> (which unloads all packages) and <strong>Clear your workspace</strong> (which deletes all objects) - both options are found in the <code>Session</code> menu in RStudio. I would also recommend <em>turning off the option that RStudio saves your Environment</em> when you close it. While that means that you have to explicitly save data or rerun your code when you continue, it can save you a lot of hassle that comes from objects left over from earlier sessions. To turn that off:</p>
+<ol style="list-style-type: decimal">
+<li>Choose Tools &gt; Global Options in RStudio</li>
+<li>In the Options, look for <code>Save workspace to .RData on exit</code> and change it to <code>Never</code>.</li>
+<li>Click OK to apply the change and close the Options window.</li>
+</ol>
 <p>As you progress in R, <strong>do not try to remember everything</strong> - instead, look things up as needed, in particular things like argument names:</p>
 <ul>
 <li>Use <code>?functionName</code> to get help in R</li>

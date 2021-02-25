@@ -109,7 +109,7 @@ variableName <- mean(c(1,2,3, NA), na.rm = TRUE)
 ```
 
 ```{.bg-none}
-## ##------ Fri Feb  5 15:38:06 2021 ------##
+## ##------ Thu Feb 25 10:08:44 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -157,6 +157,12 @@ Many errors occur due to **common mistakes**, that you need to pay attention to:
 * **Misspellings** - variable names and functions need to be spelled correctly, which includes capitalisation, otherwise you might inadvertently create duplicates or cause other issues. Some functions are available in both American and British spelling (e.g., `summarise()`and `summarize()` in dplyr), but this is not always the case so that it might be sensible to always stick to American spelling
 * **Missing library() calls** to load packages - if a function is not found, run `library(packagename)`
 * **Function masking** - many packages have functions of the same name, so that packages that are loaded later mask (i.e. "over-write")  the names of functions in packages loaded earlier (for example, dplyr's `filter()` function masks the `filter()` function in base R). Often, that is exactly what we want, but if a function does not do what you expect it to do, it's worth specifying the package it comes from to make sure you are not actually calling a different function that has masked it. You can do that by adding the package name and `::`, for example, by calling `dplyr::filter()` *Note*: If you only want to use a single function from a large package, this is an alternative to loading the full package.
+
+When you are stuck, it also often helps to **Restart R** (which unloads all packages) and  **Clear your workspace** (which deletes all objects) - both options are found in the `Session` menu in RStudio. I would also recommend *turning off the option that RStudio saves your Environment* when you close it. While that means that you have to explicitly save data or rerun your code when you continue, it can save you a lot of hassle that comes from objects left over from earlier sessions. To turn that off:
+
+1. Choose Tools > Global Options in RStudio
+2. In the Options, look for `Save workspace to .RData on exit` and change it to `Never`.
+3. Click OK to apply the change and close the Options window.
 
 As you progress in R, **do not try to remember everything** - instead, look things up as needed, in particular things like argument names:
 
