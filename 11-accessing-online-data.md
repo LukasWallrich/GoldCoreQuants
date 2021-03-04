@@ -127,7 +127,7 @@ regionalAndWorld <- rbind(regional, world)
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#avuveunmfr .gt_table {
+#bftrwzvwiw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -152,7 +152,7 @@ regionalAndWorld <- rbind(regional, world)
   border-left-color: #D3D3D3;
 }
 
-#avuveunmfr .gt_heading {
+#bftrwzvwiw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -164,7 +164,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#avuveunmfr .gt_title {
+#bftrwzvwiw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -174,7 +174,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-width: 0;
 }
 
-#avuveunmfr .gt_subtitle {
+#bftrwzvwiw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -184,13 +184,13 @@ regionalAndWorld <- rbind(regional, world)
   border-top-width: 0;
 }
 
-#avuveunmfr .gt_bottom_border {
+#bftrwzvwiw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#avuveunmfr .gt_col_headings {
+#bftrwzvwiw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -205,7 +205,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#avuveunmfr .gt_col_heading {
+#bftrwzvwiw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -225,7 +225,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#avuveunmfr .gt_column_spanner_outer {
+#bftrwzvwiw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -237,15 +237,15 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 4px;
 }
 
-#avuveunmfr .gt_column_spanner_outer:first-child {
+#bftrwzvwiw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#avuveunmfr .gt_column_spanner_outer:last-child {
+#bftrwzvwiw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#avuveunmfr .gt_column_spanner {
+#bftrwzvwiw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -257,7 +257,7 @@ regionalAndWorld <- rbind(regional, world)
   width: 100%;
 }
 
-#avuveunmfr .gt_group_heading {
+#bftrwzvwiw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -279,7 +279,7 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#avuveunmfr .gt_empty_group_heading {
+#bftrwzvwiw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -294,15 +294,15 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#avuveunmfr .gt_from_md > :first-child {
+#bftrwzvwiw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#avuveunmfr .gt_from_md > :last-child {
+#bftrwzvwiw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#avuveunmfr .gt_row {
+#bftrwzvwiw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -321,7 +321,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#avuveunmfr .gt_stub {
+#bftrwzvwiw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -333,7 +333,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-left: 12px;
 }
 
-#avuveunmfr .gt_summary_row {
+#bftrwzvwiw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -343,7 +343,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#avuveunmfr .gt_first_summary_row {
+#bftrwzvwiw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -353,7 +353,7 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#avuveunmfr .gt_grand_summary_row {
+#bftrwzvwiw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -363,7 +363,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#avuveunmfr .gt_first_grand_summary_row {
+#bftrwzvwiw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -373,11 +373,11 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#avuveunmfr .gt_striped {
+#bftrwzvwiw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#avuveunmfr .gt_table_body {
+#bftrwzvwiw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -386,7 +386,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-color: #D3D3D3;
 }
 
-#avuveunmfr .gt_footnotes {
+#bftrwzvwiw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -400,13 +400,13 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#avuveunmfr .gt_footnote {
+#bftrwzvwiw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#avuveunmfr .gt_sourcenotes {
+#bftrwzvwiw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -420,46 +420,46 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#avuveunmfr .gt_sourcenote {
+#bftrwzvwiw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#avuveunmfr .gt_left {
+#bftrwzvwiw .gt_left {
   text-align: left;
 }
 
-#avuveunmfr .gt_center {
+#bftrwzvwiw .gt_center {
   text-align: center;
 }
 
-#avuveunmfr .gt_right {
+#bftrwzvwiw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#avuveunmfr .gt_font_normal {
+#bftrwzvwiw .gt_font_normal {
   font-weight: normal;
 }
 
-#avuveunmfr .gt_font_bold {
+#bftrwzvwiw .gt_font_bold {
   font-weight: bold;
 }
 
-#avuveunmfr .gt_font_italic {
+#bftrwzvwiw .gt_font_italic {
   font-style: italic;
 }
 
-#avuveunmfr .gt_super {
+#bftrwzvwiw .gt_super {
   font-size: 65%;
 }
 
-#avuveunmfr .gt_footnote_marks {
+#bftrwzvwiw .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="avuveunmfr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="bftrwzvwiw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style><strong>Women rule</strong></th>

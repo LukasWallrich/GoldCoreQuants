@@ -359,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-13"><a href="getting-started-with-r.html#cb5-13"></a></span>
 <span id="cb5-14"><a href="getting-started-with-r.html#cb5-14"></a><span class="co">#To save the results of a function into a variable, use the &lt;- operator again</span></span>
 <span id="cb5-15"><a href="getting-started-with-r.html#cb5-15"></a>variableName &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre class="bg-none"><code>## ##------ Thu Mar  4 08:54:13 2021 ------##
+<pre class="bg-none"><code>## ##------ Thu Mar  4 17:44:13 2021 ------##
 ## [1] &quot;Hello&quot;
 ## [1] 2
 ## [1] 2</code></pre>
@@ -392,7 +392,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">1.2.5</span> RMarkdown</h3>
 <p>A key strength of R are <strong>reproducible analyses.</strong> For that, we don’t want to type commands and just write down the results, but rather create scripts that can produce results again and again. That also makes changes much less painful, for instance if you’ve made a mistake at the start.</p>
 <p><strong>RMarkdown (.Rmd)</strong> files are such scripts that additionally allow to add text and split the code into separate chunks. Within them, <em>grey chunks</em> are code, anything else is not executed. It is just formatted (e.g., with headings and highlights) when you create the report. Markup symbols allow for easy formatting of the text, as per the instructions <a href="https://rmarkdown.rstudio.com/authoring_basics.html">here</a>. (Most of that is not required in this course, a couple of key symbols such as # to indicate headings will be introduced later.)</p>
-<p>Within <em>.Rmd</em> files, you need to <strong>Insert</strong> new code blocks for the major parts of the analysis. For that, use the insert button at the top of the File Editor window. When you want to test your code, you can also <strong>Run</strong> it there or by pressing <em>Ctrl+Enter</em> in the line you want to use (or after you have selected multiple lines to run). Finally, to create the report you need to <strong>Knit</strong> it, again using the button in the File Editor Without installing anything else, you can only knit to <em>HTML files</em>, but those can be opened in any internet browser, so are good to share with anyone.</p>
+<p>Within <em>.Rmd</em> files, you need to <strong>Insert</strong> new code blocks for the major parts of the analysis. For that, use the insert button at the top of the File Editor window. When you want to test your code, you can also <strong>Run</strong> it there or by pressing <em>Ctrl+Enter</em> in the line you want to use (or after you have selected multiple lines to run). Finally, to create the report you need to <strong>Knit</strong> it, again using the button in the File Editor. Without installing anything else, you can only knit to <em>HTML files</em>, but those can be opened in any internet browser, so are good to share with anyone.</p>
+<div id="where-is-my-output" class="section level4">
+<h4><span class="header-section-number">1.2.5.1</span> Where is my output?</h4>
+<p>When using RMarkdown files, you might sometimes run code and not see the results you expect in the console. That is because anything visual is shown in the Rmd file below the codeblock (e.g., charts, dataframes). By default, only text output is shown in the console. If you want to see all the output there, click on the gear next to Knit and select <code>Chunk Output in Console</code>.</p>
+</div>
 </div>
 <div id="help-what-to-do-when-problems-appear" class="section level3">
 <h3><span class="header-section-number">1.2.6</span> HELP! What to do when problems appear?</h3>

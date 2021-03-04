@@ -109,7 +109,7 @@ variableName <- mean(c(1,2,3, NA), na.rm = TRUE)
 ```
 
 ```{.bg-none}
-## ##------ Thu Mar  4 08:54:13 2021 ------##
+## ##------ Thu Mar  4 17:44:13 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -145,7 +145,11 @@ A key strength of R are **reproducible analyses.** For that, we don't want to ty
 
 **RMarkdown (.Rmd)** files are such scripts that additionally allow to add text  and split the code into separate chunks. Within them, *grey chunks* are code, anything else is not executed. It is just formatted (e.g., with headings and highlights) when you create the report. Markup symbols allow for easy formatting of the text, as per the instructions [here](https://rmarkdown.rstudio.com/authoring_basics.html). (Most of that is not required in this course, a couple of key symbols such as # to indicate headings will be introduced later.)
 
-Within *.Rmd* files, you need to **Insert** new code blocks for the major parts of the analysis. For that, use the insert button at the top of the File Editor window. When you want to test your code, you can also **Run** it there or by pressing *Ctrl+Enter* in the line you want to use (or after you have selected multiple lines to run). Finally, to create the report you need to **Knit** it, again using the button in the File Editor Without installing anything else, you can only knit to *HTML files*, but those can be opened in any internet browser, so are good to share with anyone.
+Within *.Rmd* files, you need to **Insert** new code blocks for the major parts of the analysis. For that, use the insert button at the top of the File Editor window. When you want to test your code, you can also **Run** it there or by pressing *Ctrl+Enter* in the line you want to use (or after you have selected multiple lines to run). Finally, to create the report you need to **Knit** it, again using the button in the File Editor. Without installing anything else, you can only knit to *HTML files*, but those can be opened in any internet browser, so are good to share with anyone.
+
+#### Where is my output?
+
+When using RMarkdown files, you might sometimes run code and not see the results you expect in the console. That is because anything visual is shown in the Rmd file below the codeblock (e.g., charts, dataframes). By default, only text output is shown in the console. If you want to see all the output there, click on the gear next to Knit and select `Chunk Output in Console`.
 
 ### HELP! What to do when problems appear?
 
