@@ -53,4 +53,5 @@ knitr::include_graphics("./images/iraq-bloody-toll.png")
 * The [R Graphics Cookbook](https://r-graphics.org/){target="_blank"} by Winston Chang is available online with 150 "recipes" that cover everything from basic exploratory charts to colour-coded maps.
 * The BBC graphics team has published their own [R Cookbook](https://bbc.github.io/rcookbook/){target="_blank"} with many tips for making charts that convey a clear message, as well as some custom functions for making clean publication-ready charts.
 * Irizarry's *Introduction to Data Science* has a good chapter on [data visualisation principles](https://rafalab.github.io/dsbook/data-visualization-principles.html){target="_blank"}
+* I am a big fan of the gapminder bubble chart. In the video (from about 5:00), I show how to create a static version, but R can also create the dynamic version that shows global development over time. For that, you can `r xfun::embed_file("./files/gapminder_animated.R", text = "check out this code")`.
   

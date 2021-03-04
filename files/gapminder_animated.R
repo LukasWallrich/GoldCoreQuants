@@ -1,0 +1,47 @@
+
+#pacman offers an easy shortcut to replace install.packages() and library()
+#Load packages, after installing them if necessary.
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, ggplot2, viridis, gganimate, wbstats, png, gifski, magick)
+
+# install.packages("tidyverse")
+# install.packages("ggplot2")
+# install.packages("viridis")
+# install.packages("gganimate")
+# install.packages("wbstats")
+# 
+# library(tidyverse)
+# library(ggplot2)
+# library(viridis)
+# library(gganimate)
+# library(wbstats)
+
+# rosling chart in one command
+
+# pull the country data down from the World Bank - three indicators
+(wbstats::wb(indicator = c("SP.DYN.LE00.IN", "NY.GDP.PCAP.CD", "SP.POP.TOTL"), 
+            country = "countries_only", startdate = 1960, enddate = 2018)  %>% 
+  # pull down mapping of countries to regions and join
+  dplyr::left_join(wbstats::wbcountries() %>% 
+                     dplyr::select(iso3c, region)) %>% 
+  # spread the three indicators
+  tidyr::pivot_wider(id_cols = c("date", "country", "region"), names_from = indicator, values_from = value) %>% 
+  # plot the data
+  ggplot2::ggplot(aes(x = log(`GDP per capita (current US$)`), y = `Life expectancy at birth, total (years)`,
+                      size = `Population, total`)) +
+  ggplot2::geom_point(alpha = 0.5, aes(color = region)) +
+  ggplot2::scale_size(range = c(.1, 16), guide = FALSE) +
+  ggplot2::scale_x_continuous(limits = c(2.5, 12.5)) +
+  ggplot2::scale_y_continuous(limits = c(30, 90)) +
+  viridis::scale_color_viridis(discrete = TRUE, name = "Region", option = "viridis") +
+  ggplot2::labs(x = "Log GDP per capita",
+                y = "Life expectancy at birth") +
+  ggplot2::theme_classic() +
+  ggplot2::geom_text(aes(x = 7.5, y = 60, label = date), size = 14, color = 'lightgrey') +
+  # animate it over years
+  gganimate::transition_states(date, transition_length = 1, state_length = 1)) %>%
+  # On my (Lukas) computer the gif does not render correctly unless this line is added
+  animate(renderer = magick_renderer())
+
+
+
