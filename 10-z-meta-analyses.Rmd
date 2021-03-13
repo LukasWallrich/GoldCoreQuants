@@ -1,0 +1,105 @@
+# Meta-analyses - a very brief introduction
+
+Quantitative research tends to ask to broad questions: (1) does a certain effect exist? (2) when and where is it stronger or weaker? Neither of them can be answered by a single study, which will always take place in a specific context and yield probabilistic results. Therefore, quantitative research needs to be synthesized. Statistical meta-analyses are one way to take the results of many studies that consider the same phenomenon to test whether there is a significant effect overall, what its size is likely to be, and whether its size is moderated by methodological or substantive variables.
+
+Meta-analyses work best (or, at least, are most straight-forward) when there is a large body of research that tested a specific phenomenon. One interesting case study was the [ManyLabs2](https://journals-sagepub-com.gold.idm.oclc.org/doi/pdf/10.1177/2515245918810225){target="_blank"} project that attempted to replicate many classic findings in the behavioural sciences. They ran a set of studies with about 65 samples for each, drawn from all continents, which once again showed that many classic studies do not replicate, but also that there are some interesting contextual differences.
+
+Below, I show how to analyse their replication data for one of the most famous papers in behavioural economics, which has accumulated more than 20,000 citations. **This is not a complete guide to running meta-analyses** - those are linked to in further resources at the bottom. Instead, it is meant to give you a first taste of why you might want to run them and how to approach it in R.
+
+## A famous finding to be replicated
+
+Back in 1981, (Tversky and Kahneman)[https://science.sciencemag.org/content/sci/211/4481/453.full.pdf?casa_token=jLVtwVMB_-4AAAAA:Q433DznZmNyEY-UFd9syhJ1imhxSPYYNoqVcNp31Fxi2hS49xP62auJu4_CIZ3gb3dda80YQ6KviU2c]{target="_blank"} provided evidence that people's decision making systematically differs from what we might expect under a rational-choice model. In the study considered here, they asked people to imagine that they were in a store, shopping for a jacket and a calculator. In each condition, one of the items was described as expensive (125 USD), and one as cheap (15 USD). Then, the participants were told that either the expensive or the cheap item was available with a 5 USD discount at another branch 20 minutes away. Rationally, we might expect that it does not matter which of the two items we could save 5 USD on, yet participants in the original study were much more likely to say that they were willing to make the trip when the cheap item was on sale (68%) than when the expensive item was on sale (29%). Their result was highly significant, *p* < .0001, OR = 4.96, 95% CI = [2.55, 9.90]).
+
+## The replications
+
+ManyLabs2 ran 57 replications of this survey experiment. Their results were not particularly consistent - one showed an effect in the opposite direction, 34 did not find a significant effect, and just 23 replicated the original paper with a significant finding. However, it needs to be noted that these replications were not designed to be considered on their own - individually, they are severely underpowered, with a median sample size of 96. Therefore, we need to aggregate them.
+
+You can download their data `r xfun::embed_file("./files/ML2_framing.RDS", text = "here (pre-processed)")` if you want to run the analyses yourself, or even get the [full ManyLabs2 dataset](https://osf.io/fanre/){target="_blank"} if you want to try this for a different study..
+
+`r hide("Show me these analyses")`
+
+```{r}
+pacman::p_load(tidyverse, magrittr, meta)
+ML2_framing <- read_rds("files/ML2_framing.RDS")
+get_OR <- function(tb, ci = .95, 
+                   success = "yes", failure = "no", 
+                   group1 = "cheaper", group2 = "expensive") {
+
+  OR <- (tb[group1, success]/tb[group1,failure])/(tb[group2,success]/tb[group2,failure])
+
+  ci_lower <- exp(log(OR) - qnorm(1-(1-ci)/2)*sqrt(sum(1/tb)))
+  ci_upper <- exp(log(OR) + qnorm(1-(1-ci)/2)*sqrt(sum(1/tb)))
+
+  p <- tb %>% chisq.test() %>% .$p.value
+  
+  tibble(OR = OR, ci_lower = ci_lower, ci_upper = ci_upper, N = sum(tb), p_value = p)
+  
+}
+
+OR <- ML2_framing %>%
+  split(.$Lab) %>%
+  map_dfr(~ .x %$% table(condition, response) %>% get_OR(), .id = "Lab")
+
+table(right_direction = OR$OR>1, significant = OR$p_value < .05)
+
+range(OR$OR)
+
+#Add Weird variable back into that summary
+weirdness <- ML2_framing %>% select(Lab, Weird) %>% distinct()
+OR <- OR %>% left_join(weirdness)
+
+
+```
+
+
+`r unhide()`
+
+
+## Meta-analysis across the replications
+
+Running a meta-analysis across the replication results allows us to test whether we have evidence of a significant effect overall, to estimate the effect size with greater precision, and to test whether the effect size is moderated (i.e. changed) by any variables. Here, I will test for moderation by the WEIRDness of the sample, i.e. whether it is located in a Western country ^[WEIRD refers to *Western, Educated, Industrialized, Rich, and Democratic*. The acronym was coined by @henrichWeirdestPeopleWorld2010 in a scathing critique of the over-reliance on behavioural scientists on such samples while claiming to study universal human traits. This has been debated much over the past decade - the jury is still out on whether things have improved.]
+Given that the finding originated among US University students, this is an important question.
+
+**All that we need for a meta-analysis is an effect size per study alongside a measure of its precision** (usually either a standard error or a confidence interval). Meta-analyses can be run based on any effect size measure - in this case, Odds Ratios. However, they need to be entered in a way that is linear, i.e. where each step-change corresponds to the same change in effect. With Odds Ratios, that is not the case - from 0.5 to 1, the odds double, while the change from 1 to 1.5 is smaller. Therefore, meta-analyses are run on log-odds. If we had a mean difference, such as Cohen's d, we could enter it straight-away.
+
+I will use the `metagen()` function from the `meta` package to show you how quick it can be to run a meta-analysis. It is probably the most versatile function for meta-analyses, and can be tuned with a lot of different parameters. Therefore, this is one of the few instances when I would not recommend that you start by reading ?metagen - if you want to explore the function further, rather have a look at the [Doing Meta-Analysis in R online book](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R){target="_blank"}.
+
+The results of the meta-analysis will be shown in a forest plot here. Each line describes on of the studies (or here, the results from one lab) - you might note how sample size relates to the width of the confidence interval, and what sample sizes are associated with the most extreme estimates. I show both the results of a **fixed-effects** and a **random-effects** meta-analysis. A fixed-effects meta-analysis is straight-forward: it calculates the average of the effect sizes, inversely weighted by their variance, so that more precise estimates gain greater weight. However, this is only appropriate if we believe that all studies come from a single homogeneous population, which is hardly ever the case. Usually, we therefore focus on random-effects models, which assumes that our studies are sampling different populations. Therefore, we no longer just estimate the weighted mean effect size, but also the variance of the effect sizes, which is denoted as &tau;^2. Here, the two models yield very similar results.
+
+```{r fig.cap='Forest plot - the meta-analysis at a glance'}
+pacman::p_load(tidyverse, meta)
+
+#See hidden code above if you want to see how I calculated the effect size per sample based on the full ManyLabs2 dataset. 
+#When doing a meta-analysis on published papers, you might just collect this kind of information from each paper in a spreadsheet
+head(OR)
+
+#Convert to log-odds and calculate standard error
+log_OR <- OR %>% mutate(across(c(OR, ci_lower, ci_upper), log), se = (ci_upper - ci_lower)/(2*qnorm(.975)))
+
+#Run meta-analysis
+meta_analysis <- metagen(OR, se, studlab = Lab, data = log_OR, byvar = Weird,
+        sm = "OR", method.tau = "SJ", n.e = N)
+
+#Create forest plot that summarises results
+forest(meta_analysis, sortvar = -TE, text.fixed = "Fixed effects: overall estimate", text.random = "Random effects: overall estimate", leftcols = c("studlab", "n.e"), leftlabs = c("Lab", "N"))
+
+
+
+```
+
+From the meta-analysis, we can conclude that ManyLabs2 provided strong evidence for the framing effect established by Tversky & Kahneman (1981). However, you should note that the effect size is much smaller than what they found (even below their confidence interval), and that there is a trend that the effect might be weaker in non-WEIRD samples (note that metagen also offers a significance test for this in the full output).
+
+`r hide("Show full metagen output")`
+
+```{r}
+meta_analysis
+```
+
+
+`r unhide()`
+
+
+## Further resources {#further-resources-meta}
+
+* This [guide to running meta-analyses in R](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/){target="_blank"} starts from the basics but then quite quickly reaches the level of detail needed to actually produce trustworthy results.
+* This [collaborative "syllabus"](http://mgto.org/metaanalysissyllabus){target="_blank"} has a wealth of material that addresses both theoretical concerns and practical know-how. 
