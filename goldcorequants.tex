@@ -154,7 +154,7 @@
 
 \title{Getting started with Quantitative Research Methods and R}
 \author{Lukas Wallrich}
-\date{Last updated: 2021-03-04}
+\date{Last updated: 2021-03-13}
 
 \begin{document}
 \maketitle
@@ -371,7 +371,7 @@ All work in R is based on calling functions that do something. A function is cal
 \end{Shaded}
 
 \begin{verbatim}
-## ##------ Thu Mar  4 17:32:22 2021 ------##
+## ##------ Sat Mar 13 19:48:08 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -559,7 +559,7 @@ When you start with a new dataset, there are some helpful functions to get a fir
 \begin{verbatim}
 ## Rows: 10,545
 ## Columns: 9
-## $ country          <fct> Albania, Algeria, Angola, Antigua and Barbuda, Argent~
+## $ country          <fct> "Albania", "Algeria", "Angola", "Antigua and Barbuda"~
 ## $ year             <int> 1960, 1960, 1960, 1960, 1960, 1960, 1960, 1960, 1960,~
 ## $ infant_mortality <dbl> 115.40, 148.20, 208.00, NA, 59.87, NA, NA, 20.30, 37.~
 ## $ life_expectancy  <dbl> 62.87, 47.50, 35.98, 62.97, 65.39, 66.86, 65.66, 70.8~
@@ -1203,7 +1203,7 @@ on the standardised variables, which can be calculated using the
 ## 
 ## Coefficients:
 ##                      Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)         1.910e-16  1.322e-01   0.000        1    
+## (Intercept)         1.524e-16  1.322e-01   0.000        1    
 ## scale(nat_soctrust) 8.070e-01  1.355e-01   5.957 9.84e-06 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -1451,7 +1451,7 @@ Going back to the European Social Survey 2014 data, we might be curious whether 
 \begin{verbatim}
 ## # A tibble: 2 x 2
 ##   gndr   `mean(soctrust, na.rm = TRUE)`
-## * <fct>                           <dbl>
+##   <fct>                           <dbl>
 ## 1 Male                             5.70
 ## 2 Female                           5.72
 \end{verbatim}
@@ -1589,7 +1589,7 @@ We might be interested whether levels of life satisfaction differ between the Eu
 \begin{verbatim}
 ## # A tibble: 5 x 2
 ##   cntry life_satisfaction
-## * <fct>             <dbl>
+##   <fct>             <dbl>
 ## 1 BE                 7.45
 ## 2 ES                 6.96
 ## 3 FR                 6.39
@@ -1732,7 +1732,7 @@ To analyse whether there are differences between the conditions, as always, we s
 \begin{verbatim}
 ## # A tibble: 4 x 2
 ##   condition    `mean(score)`
-## * <chr>                <dbl>
+##   <chr>                <dbl>
 ## 1 instrumental          11.6
 ## 2 silence               13.0
 ## 3 vocals                10.8
@@ -2759,6 +2759,276 @@ This calculates the mean of the items, automatically ignoring any missing values
 \tightlist
 \item
   You can check \href{https://socialresearchmethods.net/kb/types-of-reliability/\#internal-consistency-reliability}{this chapter} of the Research Methods Knowledge Base for more details on various measures of internal consistency (and of other forms of reliability)
+\end{itemize}
+
+\hypertarget{meta-analyses---a-very-brief-introduction}{%
+\chapter{Meta-analyses - a very brief introduction}\label{meta-analyses---a-very-brief-introduction}}
+
+Quantitative research tends to ask to broad questions: (1) does a certain effect exist? (2) when and where is it stronger or weaker? Neither of them can be answered by a single study, which will always take place in a specific context and yield probabilistic results. Therefore, quantitative research needs to be synthesized. Statistical meta-analyses are one way to take the results of many studies that consider the same phenomenon to test whether there is a significant effect overall, what its size is likely to be, and whether its size is moderated by methodological or substantive variables.
+
+Meta-analyses work best (or, at least, are most straight-forward) when there is a large body of research that tested a specific phenomenon. One interesting case study was the \href{https://journals-sagepub-com.gold.idm.oclc.org/doi/pdf/10.1177/2515245918810225}{ManyLabs2} project that attempted to replicate many classic findings in the behavioural sciences. They ran a set of studies with about 65 samples for each, drawn from all continents, which once again showed that many classic studies do not replicate, but also that there are some interesting contextual differences.
+
+Below, I show how to analyse their replication data for one of the most famous papers in behavioural economics, which has accumulated more than 20,000 citations. \textbf{This is not a complete guide to running meta-analyses} - those are linked to in further resources at the bottom. Instead, it is meant to give you a first taste of why you might want to run them and how to approach it in R.
+
+\hypertarget{a-famous-finding-to-be-replicated}{%
+\section{A famous finding to be replicated}\label{a-famous-finding-to-be-replicated}}
+
+Back in 1981, (Tversky and Kahneman){\url{https://science.sciencemag.org/content/sci/211/4481/453.full.pdf?casa_token=jLVtwVMB_-4AAAAA:Q433DznZmNyEY-UFd9syhJ1imhxSPYYNoqVcNp31Fxi2hS49xP62auJu4_CIZ3gb3dda80YQ6KviU2c}} provided evidence that people's decision making systematically differs from what we might expect under a rational-choice model. In the study considered here, they asked people to imagine that they were in a store, shopping for a jacket and a calculator. In each condition, one of the items was described as expensive (125 USD), and one as cheap (15 USD). Then, the participants were told that either the expensive or the cheap item was available with a 5 USD discount at another branch 20 minutes away. Rationally, we might expect that it does not matter which of the two items we could save 5 USD on, yet participants in the original study were much more likely to say that they were willing to make the trip when the cheap item was on sale (68\%) than when the expensive item was on sale (29\%). Their result was highly significant, \emph{p} \textless{} .0001, OR = 4.96, 95\% CI = {[}2.55, 9.90{]}).
+
+\hypertarget{the-replications}{%
+\section{The replications}\label{the-replications}}
+
+ManyLabs2 ran 57 replications of this survey experiment. Their results were not particularly consistent - one showed an effect in the opposite direction, 34 did not find a significant effect, and just 23 replicated the original paper with a significant finding. However, it needs to be noted that these replications were not designed to be considered on their own - individually, they are severely underpowered, with a median sample size of 96. Therefore, we need to aggregate them.
+
+You can download their data if you want to run the analyses yourself, or even get the \href{https://osf.io/fanre/}{full ManyLabs2 dataset} if you want to try this for a different study..
+
+Show me these analyses
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pacman}\OperatorTok{::}\KeywordTok{p_load}\NormalTok{(tidyverse, magrittr, meta)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Installing package into '/home/runner/work/_temp/Library'
+## (as 'lib' is unspecified)
+\end{verbatim}
+
+\begin{verbatim}
+## also installing the dependencies 'metafor', 'CompQuadForm'
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## meta installed
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ML2_framing <-}\StringTok{ }\KeywordTok{read_rds}\NormalTok{(}\StringTok{"files/ML2_framing.RDS"}\NormalTok{)}
+\NormalTok{get_OR <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(tb, }\DataTypeTok{ci =} \FloatTok{.95}\NormalTok{, }
+                   \DataTypeTok{success =} \StringTok{"yes"}\NormalTok{, }\DataTypeTok{failure =} \StringTok{"no"}\NormalTok{, }
+                   \DataTypeTok{group1 =} \StringTok{"cheaper"}\NormalTok{, }\DataTypeTok{group2 =} \StringTok{"expensive"}\NormalTok{) \{}
+
+\NormalTok{  OR <-}\StringTok{ }\NormalTok{(tb[group1, success]}\OperatorTok{/}\NormalTok{tb[group1,failure])}\OperatorTok{/}\NormalTok{(tb[group2,success]}\OperatorTok{/}\NormalTok{tb[group2,failure])}
+
+\NormalTok{  ci_lower <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\KeywordTok{log}\NormalTok{(OR) }\OperatorTok{-}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{ci)}\OperatorTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{tb)))}
+\NormalTok{  ci_upper <-}\StringTok{ }\KeywordTok{exp}\NormalTok{(}\KeywordTok{log}\NormalTok{(OR) }\OperatorTok{+}\StringTok{ }\KeywordTok{qnorm}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{ci)}\OperatorTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{*}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\NormalTok{tb)))}
+
+\NormalTok{  p <-}\StringTok{ }\NormalTok{tb }\OperatorTok{%>%}\StringTok{ }\KeywordTok{chisq.test}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\NormalTok{.}\OperatorTok{$}\NormalTok{p.value}
+  
+  \KeywordTok{tibble}\NormalTok{(}\DataTypeTok{OR =}\NormalTok{ OR, }\DataTypeTok{ci_lower =}\NormalTok{ ci_lower, }\DataTypeTok{ci_upper =}\NormalTok{ ci_upper, }\DataTypeTok{N =} \KeywordTok{sum}\NormalTok{(tb), }\DataTypeTok{p_value =}\NormalTok{ p)}
+  
+\NormalTok{\}}
+
+\NormalTok{OR <-}\StringTok{ }\NormalTok{ML2_framing }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{split}\NormalTok{(.}\OperatorTok{$}\NormalTok{Lab) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{map_dfr}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{.x }\OperatorTok{%$%}\StringTok{ }\KeywordTok{table}\NormalTok{(condition, response) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{get_OR}\NormalTok{(), }\DataTypeTok{.id =} \StringTok{"Lab"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in chisq.test(.): Chi-squared approximation may be incorrect
+
+## Warning in chisq.test(.): Chi-squared approximation may be incorrect
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(}\DataTypeTok{right_direction =}\NormalTok{ OR}\OperatorTok{$}\NormalTok{OR}\OperatorTok{>}\DecValTok{1}\NormalTok{, }\DataTypeTok{significant =}\NormalTok{ OR}\OperatorTok{$}\NormalTok{p_value }\OperatorTok{<}\StringTok{ }\FloatTok{.05}\NormalTok{)}
+
+\KeywordTok{range}\NormalTok{(OR}\OperatorTok{$}\NormalTok{OR)}
+
+\CommentTok{#Add Weird variable back into that summary}
+\NormalTok{weirdness <-}\StringTok{ }\NormalTok{ML2_framing }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(Lab, Weird) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{distinct}\NormalTok{()}
+\NormalTok{OR <-}\StringTok{ }\NormalTok{OR }\OperatorTok{%>%}\StringTok{ }\KeywordTok{left_join}\NormalTok{(weirdness)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "Lab"
+\end{verbatim}
+
+\begin{verbatim}
+##                significant
+## right_direction FALSE TRUE
+##           FALSE     1    0
+##           TRUE     33   23
+## [1] 0.5926724 5.4444444
+\end{verbatim}
+
+\hypertarget{meta-analysis-across-the-replications}{%
+\section{Meta-analysis across the replications}\label{meta-analysis-across-the-replications}}
+
+Running a meta-analysis across the replication results allows us to test whether we have evidence of a significant effect overall, to estimate the effect size with greater precision, and to test whether the effect size is moderated (i.e.~changed) by any variables. Here, I will test for moderation by the WEIRDness of the sample, i.e.~whether it is located in a Western country \footnote{WEIRD refers to \emph{Western, Educated, Industrialized, Rich, and Democratic}. The acronym was coined by \citet{henrichWeirdestPeopleWorld2010} in a scathing critique of the over-reliance on behavioural scientists on such samples while claiming to study universal human traits. This has been debated much over the past decade - the jury is still out on whether things have improved.}
+Given that the finding originated among US University students, this is an important question.
+
+\textbf{All that we need for a meta-analysis is an effect size per study alongside a measure of its precision} (usually either a standard error or a confidence interval). Meta-analyses can be run based on any effect size measure - in this case, Odds Ratios. However, they need to be entered in a way that is linear, i.e.~where each step-change corresponds to the same change in effect. With Odds Ratios, that is not the case - from 0.5 to 1, the odds double, while the change from 1 to 1.5 is smaller. Therefore, meta-analyses are run on log-odds. If we had a mean difference, such as Cohen's d, we could enter it straight-away.
+
+I will use the \texttt{metagen()} function from the \texttt{meta} package to show you how quick it can be to run a meta-analysis. It is probably the most versatile function for meta-analyses, and can be tuned with a lot of different parameters. Therefore, this is one of the few instances when I would not recommend that you start by reading ?metagen - if you want to explore the function further, rather have a look at the \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R}{Doing Meta-Analysis in R online book}.
+
+The results of the meta-analysis will be shown in a forest plot here. Each line describes on of the studies (or here, the results from one lab) - you might note how sample size relates to the width of the confidence interval, and what sample sizes are associated with the most extreme estimates. I show both the results of a \textbf{fixed-effects} and a \textbf{random-effects} meta-analysis. A fixed-effects meta-analysis is straight-forward: it calculates the average of the effect sizes, inversely weighted by their variance, so that more precise estimates gain greater weight. However, this is only appropriate if we believe that all studies come from a single homogeneous population, which is hardly ever the case. Usually, we therefore focus on random-effects models, which assumes that our studies are sampling different populations. Therefore, we no longer just estimate the weighted mean effect size, but also the variance of the effect sizes, which is denoted as τ\^{}2. Here, the two models yield very similar results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pacman}\OperatorTok{::}\KeywordTok{p_load}\NormalTok{(tidyverse, meta)}
+
+\CommentTok{#See hidden code above if you want to see how I calculated the effect size per sample based on the full ManyLabs2 dataset. }
+\CommentTok{#When doing a meta-analysis on published papers, you might just collect this kind of information from each paper in a spreadsheet}
+\KeywordTok{head}\NormalTok{(OR)}
+
+\CommentTok{#Convert to log-odds and calculate standard error}
+\NormalTok{log_OR <-}\StringTok{ }\NormalTok{OR }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\KeywordTok{across}\NormalTok{(}\KeywordTok{c}\NormalTok{(OR, ci_lower, ci_upper), log), }\DataTypeTok{se =}\NormalTok{ (ci_upper }\OperatorTok{-}\StringTok{ }\NormalTok{ci_lower)}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\KeywordTok{qnorm}\NormalTok{(.}\DecValTok{975}\NormalTok{)))}
+
+\CommentTok{#Run meta-analysis}
+\NormalTok{meta_analysis <-}\StringTok{ }\KeywordTok{metagen}\NormalTok{(OR, se, }\DataTypeTok{studlab =}\NormalTok{ Lab, }\DataTypeTok{data =}\NormalTok{ log_OR, }\DataTypeTok{byvar =}\NormalTok{ Weird,}
+        \DataTypeTok{sm =} \StringTok{"OR"}\NormalTok{, }\DataTypeTok{method.tau =} \StringTok{"SJ"}\NormalTok{, }\DataTypeTok{n.e =}\NormalTok{ N)}
+
+\CommentTok{#Create forest plot that summarises results}
+\KeywordTok{forest}\NormalTok{(meta_analysis, }\DataTypeTok{sortvar =} \OperatorTok{-}\NormalTok{TE, }\DataTypeTok{text.fixed =} \StringTok{"Fixed effects: overall estimate"}\NormalTok{, }\DataTypeTok{text.random =} \StringTok{"Random effects: overall estimate"}\NormalTok{, }\DataTypeTok{leftcols =} \KeywordTok{c}\NormalTok{(}\StringTok{"studlab"}\NormalTok{, }\StringTok{"n.e"}\NormalTok{), }\DataTypeTok{leftlabs =} \KeywordTok{c}\NormalTok{(}\StringTok{"Lab"}\NormalTok{, }\StringTok{"N"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{10-z-meta-analyses_files/figure-latex/unnamed-chunk-2-1} 
+
+}
+
+\caption{Forest plot - the meta-analysis at a glance}\label{fig:unnamed-chunk-2}
+\end{figure}
+
+\begin{verbatim}
+## # A tibble: 6 x 7
+##   Lab           OR ci_lower ci_upper     N p_value Weird
+##   <chr>      <dbl>    <dbl>    <dbl> <int>   <dbl> <int>
+## 1 Australia1 1.88     0.792     4.46    97 0.222       1
+## 2 Australia2 1.55     0.767     3.13   137 0.295       1
+## 3 Austria1   2.00     0.894     4.49   102 0.135       1
+## 4 Belgium1   1.51     0.684     3.33   100 0.413       1
+## 5 Canada1    3.5      1.59      7.68   121 0.00271     1
+## 6 Chile1     0.593    0.233     1.51    81 0.387       1
+\end{verbatim}
+
+From the meta-analysis, we can conclude that ManyLabs2 provided strong evidence for the framing effect established by Tversky \& Kahneman (1981). However, you should note that the effect size is much smaller than what they found (even below their confidence interval), and that there is a trend that the effect might be weaker in non-WEIRD samples (note that metagen also offers a significance test for this in the full output).
+
+Show full metagen output
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{meta_analysis}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                           OR            95%-CI %W(fixed) %W(random) Weird
+## Australia1            1.8791 [0.7917;  4.4603]       1.4        1.6     1
+## Australia2            1.5500 [0.7672;  3.1317]       2.1        2.1     1
+## Austria1              2.0024 [0.8939;  4.4855]       1.6        1.8     1
+## Belgium1              1.5080 [0.6836;  3.3266]       1.7        1.9     1
+## Canada1               3.5000 [1.5949;  7.6807]       1.7        1.9     1
+## Chile1                0.5927 [0.2325;  1.5106]       1.2        1.5     1
+## China1                3.3231 [0.9390; 11.7605]       0.7        0.9     0
+## Colombia1             2.5579 [1.1470;  5.7042]       1.6        1.8     0
+## Costa Rica1           1.9514 [1.0380;  3.6683]       2.6        2.4     0
+## Czech Republic1       2.4853 [1.0384;  5.9480]       1.4        1.6     1
+## Czech Republic2       2.1667 [0.9987;  4.7004]       1.8        1.9     1
+## France1               1.5748 [0.8531;  2.9068]       2.8        2.5     1
+## Germany1              1.6810 [0.8882;  3.1816]       2.6        2.4     1
+## Germany2              3.0702 [1.2461;  7.5647]       1.3        1.6     1
+## Germany3              1.6813 [0.7128;  3.9655]       1.4        1.7     1
+## Hong Kong, China1     1.5455 [0.5803;  4.1156]       1.1        1.4     0
+## Italy1                1.2862 [0.5183;  3.1914]       1.3        1.5     1
+## Malaysia1             5.4000 [1.8097; 16.1128]       0.9        1.2     0
+## New Zealand1          1.1591 [0.4701;  2.8578]       1.3        1.6     1
+## Nigeria1              1.3333 [0.4473;  3.9743]       0.9        1.2     0
+## Poland1               3.8750 [1.4916; 10.0666]       1.2        1.4     1
+## Poland2               4.2581 [1.5172; 11.9502]       1.0        1.3     1
+## Poland3               1.3846 [0.3994;  4.7999]       0.7        1.0     1
+## Serbia1               1.4751 [0.6669;  3.2629]       1.7        1.8     0
+## South Africa1         2.7083 [0.9634;  7.6137]       1.0        1.3     0
+## Spain1                1.5306 [0.6475;  3.6181]       1.4        1.7     1
+## Tanzania1             2.8000 [0.1957; 40.0572]       0.1        0.2     0
+## Tanzania2             1.9023 [0.6171;  5.8635]       0.8        1.1     0
+## The Netherlands1      5.4444 [1.0389; 28.5332]       0.4        0.6     1
+## The Netherlands2      3.2786 [1.4020;  7.6672]       1.5        1.7     1
+## The Netherlands3      3.5714 [1.4285;  8.9288]       1.3        1.5     1
+## The Netherlands4      3.4647 [1.3166;  9.1176]       1.1        1.4     1
+## Turkey1               1.6993 [0.7839;  3.6838]       1.8        1.9     0
+## UK1                   1.8571 [0.8078;  4.2696]       1.5        1.7     1
+## UK2                   4.5290 [1.5758; 13.0167]       0.9        1.2     1
+## UK3                   1.6897 [0.7934;  3.5984]       1.8        2.0     1
+## United Arab Emirates1 1.2535 [0.6810;  2.3073]       2.8        2.5     0
+## USA1                  1.5938 [0.7727;  3.2871]       2.0        2.1     1
+## USA10                 1.5714 [0.6522;  3.7861]       1.4        1.6     1
+## USA11                 1.8821 [0.7401;  4.7865]       1.2        1.5     1
+## USA12                 1.6994 [1.0645;  2.7129]       4.8        3.2     1
+## USA13                 3.0030 [1.5956;  5.6521]       2.6        2.4     1
+## USA14                 3.9867 [1.5891; 10.0016]       1.2        1.5     1
+## USA15                 3.3247 [1.3500;  8.1876]       1.3        1.6     1
+## USA16                 3.1000 [1.2281;  7.8248]       1.2        1.5     1
+## USA17                 1.9038 [0.7356;  4.9277]       1.2        1.4     1
+## USA18                 1.6964 [0.6984;  4.1205]       1.3        1.6     1
+## USA19                 3.1456 [1.7890;  5.5310]       3.3        2.7     1
+## USA2                  2.3032 [1.2558;  4.2244]       2.9        2.5     1
+## USA20                 3.9545 [2.2484;  6.9554]       3.3        2.7     1
+## USA3                  2.5143 [1.1927;  5.3003]       1.9        2.0     1
+## USA4                  3.9510 [1.5995;  9.7597]       1.3        1.5     1
+## USA5                  2.8148 [1.1048;  7.1718]       1.2        1.5     1
+## USA6                  2.3623 [1.7001;  3.2824]       9.7        4.0     1
+## USA7                  3.8636 [1.9960;  7.4787]       2.4        2.3     1
+## USA8                  2.0010 [1.0256;  3.9043]       2.4        2.3     1
+## USA9                  2.2414 [0.8500;  5.9104]       1.1        1.4     1
+## 
+## Number of studies combined: k = 57
+## 
+##                          OR           95%-CI     z  p-value
+## Fixed effect model   2.2088 [1.9935; 2.4473] 15.15 < 0.0001
+## Random effects model 2.2141 [1.9366; 2.5314] 11.63 < 0.0001
+## 
+## Quantifying heterogeneity:
+##  tau^2 = 0.0890 [0.0000; 0.0781]; tau = 0.2983 [0.0000; 0.2796]
+##  I^2 = 0.0% [0.0%; 29.4%]; H = 1.00 [1.00; 1.19]
+## 
+## Test of heterogeneity:
+##      Q d.f. p-value
+##  54.60   56  0.5279
+## 
+## Results for subgroups (fixed effect model):
+##             k     OR           95%-CI     Q  I^2
+## Weird = 1  45 2.2752 [2.0344; 2.5446] 44.76 1.7%
+## Weird = 0  12 1.8904 [1.4630; 2.4428]  8.16 0.0%
+## 
+## Test for subgroup differences (fixed effect model):
+##                    Q d.f. p-value
+## Between groups  1.69    1  0.1942
+## Within groups  52.92   55  0.5547
+## 
+## Results for subgroups (random effects model):
+##             k     OR           95%-CI  tau^2    tau
+## Weird = 1  45 2.2758 [1.9607; 2.6415] 0.0933 0.3055
+## Weird = 0  12 1.9417 [1.4286; 2.6392] 0.0713 0.2670
+## 
+## Test for subgroup differences (random effects model):
+##                     Q d.f. p-value
+## Between groups   0.83    1  0.3618
+## 
+## Details on meta-analytical method:
+## - Inverse variance method
+## - Sidik-Jonkman estimator for tau^2
+## - Q-profile method for confidence interval of tau^2 and tau
+\end{verbatim}
+
+\hypertarget{further-resources-meta}{%
+\section{Further resources}\label{further-resources-meta}}
+
+\begin{itemize}
+\tightlist
+\item
+  This \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/}{guide to running meta-analyses in R} starts from the basics but then quite quickly reaches the level of detail needed to actually produce trustworthy results.
+\item
+  This \href{http://mgto.org/metaanalysissyllabus}{collaborative ``syllabus''} has a wealth of material that addresses both theoretical concerns and practical know-how.
 \end{itemize}
 
 \hypertarget{part-supplementary-topics}{%

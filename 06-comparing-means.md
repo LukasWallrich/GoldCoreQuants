@@ -29,7 +29,7 @@ essUK %>% group_by(gndr) %>% summarise(mean(soctrust, na.rm = TRUE))
 ```{.bg-none}
 ## # A tibble: 2 x 2
 ##   gndr   `mean(soctrust, na.rm = TRUE)`
-## * <fct>                           <dbl>
+##   <fct>                           <dbl>
 ## 1 Male                             5.70
 ## 2 Female                           5.72
 ```
@@ -159,7 +159,7 @@ essF %>% group_by(cntry) %>% summarise(life_satisfaction = mean(stflife, na.rm =
 ```{.bg-none}
 ## # A tibble: 5 x 2
 ##   cntry life_satisfaction
-## * <fct>             <dbl>
+##   <fct>             <dbl>
 ## 1 BE                 7.45
 ## 2 ES                 6.96
 ## 3 FR                 6.39
@@ -272,7 +272,7 @@ noiseData %>% group_by(condition) %>% summarise(mean(score))
 ```{.bg-none}
 ## # A tibble: 4 x 2
 ##   condition    `mean(score)`
-## * <chr>                <dbl>
+##   <chr>                <dbl>
 ## 1 instrumental          11.6
 ## 2 silence               13.0
 ## 3 vocals                10.8

@@ -247,7 +247,7 @@ lm(scale(nat_stflife) ~ scale(nat_soctrust), data = nat_avgs) %>% summary()
 ## 
 ## Coefficients:
 ##                      Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)         1.910e-16  1.322e-01   0.000        1    
+## (Intercept)         1.524e-16  1.322e-01   0.000        1    
 ## scale(nat_soctrust) 8.070e-01  1.355e-01   5.957 9.84e-06 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
