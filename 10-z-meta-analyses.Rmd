@@ -19,7 +19,7 @@ You can download their data `r xfun::embed_file("./files/ML2_framing.RDS", text 
 `r hide("Show me these analyses")`
 
 ```{r}
-pacman::p_load(tidyverse, magrittr, meta)
+pacman::p_load(tidyverse, magrittr)
 ML2_framing <- read_rds("files/ML2_framing.RDS")
 get_OR <- function(tb, ci = .95, 
                    success = "yes", failure = "no", 
@@ -74,8 +74,7 @@ pacman::p_load(tidyverse, meta)
 head(OR)
 ```
 
-
-```{r fig.cap='Forest plot - the meta-analysis at a glance', fig.height=12, fig.width=8}
+```{r eval = FALSE, fig.cap='Forest plot - the meta-analysis at a glance', fig.height=12, fig.width=8}
 #Convert to log-odds and calculate standard error
 log_OR <- OR %>% mutate(across(c(OR, ci_lower, ci_upper), log), se = (ci_upper - ci_lower)/(2*qnorm(.975)))
 
@@ -84,7 +83,44 @@ meta_analysis <- metagen(OR, se, studlab = Lab, data = log_OR, byvar = Weird,
         sm = "OR", method.tau = "SJ", n.e = N)
 
 #Create forest plot that summarises results
+forest(meta_analysis, sortvar = -TE, text.fixed = "Fixed effects: overall estimate", 
+       text.random = "Random effects: overall estimate", leftcols = c("studlab", "n.e"), leftlabs = c("Lab", "N"))
+
+```
+
+```{r echo = FALSE, fig.cap='Forest plot - the meta-analysis at a glance', fig.height=12, fig.width=8}
+#Convert to log-odds and calculate standard error
+log_OR <- OR %>% mutate(across(c(OR, ci_lower, ci_upper), log), se = (ci_upper - ci_lower)/(2*qnorm(.975)))
+
+#Run meta-analysis
+meta_analysis <- metagen(OR, se, studlab = Lab, data = log_OR, byvar = Weird,
+        sm = "OR", method.tau = "SJ", n.e = N)
+
+#Create forest plot that summarises results
+png(file="./images/forest.png", height = 1200, width = 700)
 forest(meta_analysis, sortvar = -TE, text.fixed = "Fixed effects: overall estimate", text.random = "Random effects: overall estimate", leftcols = c("studlab", "n.e"), leftlabs = c("Lab", "N"))
+dev.off()
+
+
+```
+```{r img-forest, echo=FALSE, fig.cap="Forest plot for meta-analysis"}
+
+knitr::include_graphics("./images/forest.jpg")
+
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+pacman::p_load(tidyverse, meta, metaviz)
+#Could be good ggplot solution, but missing some key features - e.g., total & subgroup summaries
+viz_forest(x = data.frame(meta_analysis$TE, meta_analysis$seTE),
+           group = meta_analysis$byvar,
+           study_labels = meta_analysis$studlab,
+           summary_label = c("Summary WEIRD samples", "Summary other samples"),
+           study_table = data.frame(meta_analysis$studlab, meta_analysis$n.e),
+           xlab = "OR", method = "RE"
+           x_trans_function = exp,
+           annotate_CI = TRUE)
 ```
 
 From the meta-analysis, we can conclude that ManyLabs2 provided strong evidence for the framing effect established by Tversky & Kahneman (1981). However, you should note that the effect size is much smaller than what they found (even below their confidence interval), and that there is a trend that the effect might be weaker in non-WEIRD samples (note that metagen also offers a significance test for this in the full output).
