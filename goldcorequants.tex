@@ -371,7 +371,7 @@ All work in R is based on calling functions that do something. A function is cal
 \end{Shaded}
 
 \begin{verbatim}
-## ##------ Sat Mar 13 19:48:08 2021 ------##
+## ##------ Sat Mar 13 19:52:31 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -2868,7 +2868,7 @@ Given that the finding originated among US University students, this is an impor
 
 I will use the \texttt{metagen()} function from the \texttt{meta} package to show you how quick it can be to run a meta-analysis. It is probably the most versatile function for meta-analyses, and can be tuned with a lot of different parameters. Therefore, this is one of the few instances when I would not recommend that you start by reading ?metagen - if you want to explore the function further, rather have a look at the \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R}{Doing Meta-Analysis in R online book}.
 
-The results of the meta-analysis will be shown in a forest plot here. Each line describes on of the studies (or here, the results from one lab) - you might note how sample size relates to the width of the confidence interval, and what sample sizes are associated with the most extreme estimates. I show both the results of a \textbf{fixed-effects} and a \textbf{random-effects} meta-analysis. A fixed-effects meta-analysis is straight-forward: it calculates the average of the effect sizes, inversely weighted by their variance, so that more precise estimates gain greater weight. However, this is only appropriate if we believe that all studies come from a single homogeneous population, which is hardly ever the case. Usually, we therefore focus on random-effects models, which assumes that our studies are sampling different populations. Therefore, we no longer just estimate the weighted mean effect size, but also the variance of the effect sizes, which is denoted as τ\^{}2. Here, the two models yield very similar results.
+The results of the meta-analysis will be shown in a forest plot here. Each line describes on of the studies (or here, the results from one lab) - you might note how sample size relates to the width of the confidence interval, and what sample sizes are associated with the most extreme estimates. I show both the results of a \textbf{fixed-effects} and a \textbf{random-effects} meta-analysis. A fixed-effects meta-analysis is straight-forward: it calculates the average of the effect sizes, inversely weighted by their variance, so that more precise estimates gain greater weight. However, this is only appropriate if we believe that all studies come from a single homogeneous population, which is hardly ever the case. Usually, we therefore focus on random-effects models, which assumes that our studies are sampling different populations. Therefore, we no longer just estimate the weighted mean effect size, but also the variance of the effect sizes, which is denoted as τ\^{}2. Here, the two models yield very similar results.\footnote{Random-effects model have become the standard, at least in psychology. However, they give comparatively greater weight to smaller studies, as you might notice in the forest plot. Given that small studies might be the most biased - particularly when there is publication bias, so that underpowered studies can only get published with exaggerated effects, some have argued that the default should be to run fixed-effects models. You can find a slightly longer discussion and references \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/random.html}{here}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
