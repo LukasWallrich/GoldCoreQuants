@@ -8,7 +8,7 @@ Below, I show how to analyse their replication data for one of the most famous p
 
 ## A famous finding to be replicated
 
-Back in 1981, (Tversky and Kahneman)[https://science.sciencemag.org/content/sci/211/4481/453.full.pdf?casa_token=jLVtwVMB_-4AAAAA:Q433DznZmNyEY-UFd9syhJ1imhxSPYYNoqVcNp31Fxi2hS49xP62auJu4_CIZ3gb3dda80YQ6KviU2c]{target="_blank"} provided evidence that people's decision making systematically differs from what we might expect under a rational-choice model. In the study considered here, they asked people to imagine that they were in a store, shopping for a jacket and a calculator. In each condition, one of the items was described as expensive (125 USD), and one as cheap (15 USD). Then, the participants were told that either the expensive or the cheap item was available with a 5 USD discount at another branch 20 minutes away. Rationally, we might expect that it does not matter which of the two items we could save 5 USD on, yet participants in the original study were much more likely to say that they were willing to make the trip when the cheap item was on sale (68%) than when the expensive item was on sale (29%). Their result was highly significant, *p* < .0001, OR = 4.96, 95% CI = [2.55, 9.90]).
+Back in 1981, [Tversky and Kahneman](https://science.sciencemag.org/content/sci/211/4481/453.full.pdf?casa_token=jLVtwVMB_-4AAAAA:Q433DznZmNyEY-UFd9syhJ1imhxSPYYNoqVcNp31Fxi2hS49xP62auJu4_CIZ3gb3dda80YQ6KviU2c){target="_blank"} provided evidence that people's decision making systematically differs from what we might expect under a rational-choice model. In the study considered here, they asked people to imagine that they were in a store, shopping for a jacket and a calculator. In each condition, one of the items was described as expensive (125 USD), and one as cheap (15 USD). Then, the participants were told that either the expensive or the cheap item was available with a 5 USD discount at another branch 20 minutes away. Rationally, we might expect that it does not matter which of the two items we could save 5 USD on, yet participants in the original study were much more likely to say that they were willing to make the trip when the cheap item was on sale (68%) than when the expensive item was on sale (29%). Their result was highly significant, *p* < .0001, OR = 4.96, 95% CI = [2.55, 9.90]).
 
 ## The replications
 
@@ -87,7 +87,7 @@ Given that the finding originated among US University students, this is an impor
 
 I will use the `metagen()` function from the `meta` package to show you how quick it can be to run a meta-analysis. It is probably the most versatile function for meta-analyses, and can be tuned with a lot of different parameters. Therefore, this is one of the few instances when I would not recommend that you start by reading ?metagen - if you want to explore the function further, rather have a look at the [Doing Meta-Analysis in R online book](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R){target="_blank"}.
 
-The results of the meta-analysis will be shown in a forest plot here. Each line describes on of the studies (or here, the results from one lab) - you might note how sample size relates to the width of the confidence interval, and what sample sizes are associated with the most extreme estimates. I show both the results of a **fixed-effects** and a **random-effects** meta-analysis. A fixed-effects meta-analysis is straight-forward: it calculates the average of the effect sizes, inversely weighted by their variance, so that more precise estimates gain greater weight. However, this is only appropriate if we believe that all studies come from a single homogeneous population, which is hardly ever the case. Usually, we therefore focus on random-effects models, which assumes that our studies are sampling different populations. Therefore, we no longer just estimate the weighted mean effect size, but also the variance of the effect sizes, which is denoted as &tau;^2. Here, the two models yield very similar results.^[Random-effects model have become the standard, at least in psychology. However, they give comparatively greater weight to smaller studies, as you might notice in the forest plot. Given that small studies might be the most biased - particularly when there is publication bias, so that underpowered studies can only get published with exaggerated effects, some have argued that the default should be to run fixed-effects models. You can find a slightly longer discussion and references [here](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/random.html)]
+The results of the meta-analysis will be shown in a forest plot here. Each line describes on of the studies (or here, the results from one lab) - you might note how sample size relates to the width of the confidence interval, and what sample sizes are associated with the most extreme estimates. I show both the results of a **fixed-effects** and a **random-effects** meta-analysis. A fixed-effects meta-analysis is straight-forward: it calculates the average of the effect sizes, inversely weighted by their variance, so that more precise estimates gain greater weight. However, this is only appropriate if we believe that all studies come from a single homogeneous population, which is hardly ever the case. Usually, we therefore focus on random-effects models, which assumes that our studies are sampling different populations. Therefore, we no longer just estimate the weighted mean effect size, but also the variance of the effect sizes, which is denoted as &tau;<sup>2</sup>. Here, the two models yield very similar results.^[Random-effects model have become the standard, at least in psychology. However, they give comparatively greater weight to smaller studies, as you might notice in the forest plot. Given that small studies might be the most biased - particularly when there is publication bias, so that underpowered studies can only get published with exaggerated effects, some have argued that the default should be to run fixed-effects models. You can find a slightly longer discussion and references [here](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/random.html)]
 
 
 ```r
@@ -96,22 +96,7 @@ pacman::p_load(tidyverse, meta)
 #See hidden code above if you want to see how I calculated the effect size per sample based on the full ManyLabs2 dataset. 
 #When doing a meta-analysis on published papers, you might just collect this kind of information from each paper in a spreadsheet
 head(OR)
-
-#Convert to log-odds and calculate standard error
-log_OR <- OR %>% mutate(across(c(OR, ci_lower, ci_upper), log), se = (ci_upper - ci_lower)/(2*qnorm(.975)))
-
-#Run meta-analysis
-meta_analysis <- metagen(OR, se, studlab = Lab, data = log_OR, byvar = Weird,
-        sm = "OR", method.tau = "SJ", n.e = N)
-
-#Create forest plot that summarises results
-forest(meta_analysis, sortvar = -TE, text.fixed = "Fixed effects: overall estimate", text.random = "Random effects: overall estimate", leftcols = c("studlab", "n.e"), leftlabs = c("Lab", "N"))
 ```
-
-<div class="figure" style="text-align: center">
-<img src="10-z-meta-analyses_files/figure-html/unnamed-chunk-2-1.png" alt="Forest plot - the meta-analysis at a glance" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-2)Forest plot - the meta-analysis at a glance</p>
-</div>
 
 ```{.bg-none}
 ## # A tibble: 6 x 7
@@ -124,6 +109,25 @@ forest(meta_analysis, sortvar = -TE, text.fixed = "Fixed effects: overall estima
 ## 5 Canada1    3.5      1.59      7.68   121 0.00271     1
 ## 6 Chile1     0.593    0.233     1.51    81 0.387       1
 ```
+
+
+
+```r
+#Convert to log-odds and calculate standard error
+log_OR <- OR %>% mutate(across(c(OR, ci_lower, ci_upper), log), se = (ci_upper - ci_lower)/(2*qnorm(.975)))
+
+#Run meta-analysis
+meta_analysis <- metagen(OR, se, studlab = Lab, data = log_OR, byvar = Weird,
+        sm = "OR", method.tau = "SJ", n.e = N)
+
+#Create forest plot that summarises results
+forest(meta_analysis, sortvar = -TE, text.fixed = "Fixed effects: overall estimate", text.random = "Random effects: overall estimate", leftcols = c("studlab", "n.e"), leftlabs = c("Lab", "N"))
+```
+
+<div class="figure" style="text-align: center">
+<img src="10-z-meta-analyses_files/figure-html/unnamed-chunk-3-1.png" alt="Forest plot - the meta-analysis at a glance" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-3)Forest plot - the meta-analysis at a glance</p>
+</div>
 
 From the meta-analysis, we can conclude that ManyLabs2 provided strong evidence for the framing effect established by Tversky & Kahneman (1981). However, you should note that the effect size is much smaller than what they found (even below their confidence interval), and that there is a trend that the effect might be weaker in non-WEIRD samples (note that metagen also offers a significance test for this in the full output).
 

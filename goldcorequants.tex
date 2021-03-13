@@ -371,7 +371,7 @@ All work in R is based on calling functions that do something. A function is cal
 \end{Shaded}
 
 \begin{verbatim}
-## ##------ Sat Mar 13 19:52:31 2021 ------##
+## ##------ Sat Mar 13 20:56:49 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -2773,7 +2773,7 @@ Below, I show how to analyse their replication data for one of the most famous p
 \hypertarget{a-famous-finding-to-be-replicated}{%
 \section{A famous finding to be replicated}\label{a-famous-finding-to-be-replicated}}
 
-Back in 1981, (Tversky and Kahneman){\url{https://science.sciencemag.org/content/sci/211/4481/453.full.pdf?casa_token=jLVtwVMB_-4AAAAA:Q433DznZmNyEY-UFd9syhJ1imhxSPYYNoqVcNp31Fxi2hS49xP62auJu4_CIZ3gb3dda80YQ6KviU2c}} provided evidence that people's decision making systematically differs from what we might expect under a rational-choice model. In the study considered here, they asked people to imagine that they were in a store, shopping for a jacket and a calculator. In each condition, one of the items was described as expensive (125 USD), and one as cheap (15 USD). Then, the participants were told that either the expensive or the cheap item was available with a 5 USD discount at another branch 20 minutes away. Rationally, we might expect that it does not matter which of the two items we could save 5 USD on, yet participants in the original study were much more likely to say that they were willing to make the trip when the cheap item was on sale (68\%) than when the expensive item was on sale (29\%). Their result was highly significant, \emph{p} \textless{} .0001, OR = 4.96, 95\% CI = {[}2.55, 9.90{]}).
+Back in 1981, \href{https://science.sciencemag.org/content/sci/211/4481/453.full.pdf?casa_token=jLVtwVMB_-4AAAAA:Q433DznZmNyEY-UFd9syhJ1imhxSPYYNoqVcNp31Fxi2hS49xP62auJu4_CIZ3gb3dda80YQ6KviU2c}{Tversky and Kahneman} provided evidence that people's decision making systematically differs from what we might expect under a rational-choice model. In the study considered here, they asked people to imagine that they were in a store, shopping for a jacket and a calculator. In each condition, one of the items was described as expensive (125 USD), and one as cheap (15 USD). Then, the participants were told that either the expensive or the cheap item was available with a 5 USD discount at another branch 20 minutes away. Rationally, we might expect that it does not matter which of the two items we could save 5 USD on, yet participants in the original study were much more likely to say that they were willing to make the trip when the cheap item was on sale (68\%) than when the expensive item was on sale (29\%). Their result was highly significant, \emph{p} \textless{} .0001, OR = 4.96, 95\% CI = {[}2.55, 9.90{]}).
 
 \hypertarget{the-replications}{%
 \section{The replications}\label{the-replications}}
@@ -2868,7 +2868,7 @@ Given that the finding originated among US University students, this is an impor
 
 I will use the \texttt{metagen()} function from the \texttt{meta} package to show you how quick it can be to run a meta-analysis. It is probably the most versatile function for meta-analyses, and can be tuned with a lot of different parameters. Therefore, this is one of the few instances when I would not recommend that you start by reading ?metagen - if you want to explore the function further, rather have a look at the \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R}{Doing Meta-Analysis in R online book}.
 
-The results of the meta-analysis will be shown in a forest plot here. Each line describes on of the studies (or here, the results from one lab) - you might note how sample size relates to the width of the confidence interval, and what sample sizes are associated with the most extreme estimates. I show both the results of a \textbf{fixed-effects} and a \textbf{random-effects} meta-analysis. A fixed-effects meta-analysis is straight-forward: it calculates the average of the effect sizes, inversely weighted by their variance, so that more precise estimates gain greater weight. However, this is only appropriate if we believe that all studies come from a single homogeneous population, which is hardly ever the case. Usually, we therefore focus on random-effects models, which assumes that our studies are sampling different populations. Therefore, we no longer just estimate the weighted mean effect size, but also the variance of the effect sizes, which is denoted as τ\^{}2. Here, the two models yield very similar results.\footnote{Random-effects model have become the standard, at least in psychology. However, they give comparatively greater weight to smaller studies, as you might notice in the forest plot. Given that small studies might be the most biased - particularly when there is publication bias, so that underpowered studies can only get published with exaggerated effects, some have argued that the default should be to run fixed-effects models. You can find a slightly longer discussion and references \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/random.html}{here}}
+The results of the meta-analysis will be shown in a forest plot here. Each line describes on of the studies (or here, the results from one lab) - you might note how sample size relates to the width of the confidence interval, and what sample sizes are associated with the most extreme estimates. I show both the results of a \textbf{fixed-effects} and a \textbf{random-effects} meta-analysis. A fixed-effects meta-analysis is straight-forward: it calculates the average of the effect sizes, inversely weighted by their variance, so that more precise estimates gain greater weight. However, this is only appropriate if we believe that all studies come from a single homogeneous population, which is hardly ever the case. Usually, we therefore focus on random-effects models, which assumes that our studies are sampling different populations. Therefore, we no longer just estimate the weighted mean effect size, but also the variance of the effect sizes, which is denoted as τ2. Here, the two models yield very similar results.\footnote{Random-effects model have become the standard, at least in psychology. However, they give comparatively greater weight to smaller studies, as you might notice in the forest plot. Given that small studies might be the most biased - particularly when there is publication bias, so that underpowered studies can only get published with exaggerated effects, some have argued that the default should be to run fixed-effects models. You can find a slightly longer discussion and references \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/random.html}{here}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2877,7 +2877,23 @@ The results of the meta-analysis will be shown in a forest plot here. Each line 
 \CommentTok{#See hidden code above if you want to see how I calculated the effect size per sample based on the full ManyLabs2 dataset. }
 \CommentTok{#When doing a meta-analysis on published papers, you might just collect this kind of information from each paper in a spreadsheet}
 \KeywordTok{head}\NormalTok{(OR)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## # A tibble: 6 x 7
+##   Lab           OR ci_lower ci_upper     N p_value Weird
+##   <chr>      <dbl>    <dbl>    <dbl> <int>   <dbl> <int>
+## 1 Australia1 1.88     0.792     4.46    97 0.222       1
+## 2 Australia2 1.55     0.767     3.13   137 0.295       1
+## 3 Austria1   2.00     0.894     4.49   102 0.135       1
+## 4 Belgium1   1.51     0.684     3.33   100 0.413       1
+## 5 Canada1    3.5      1.59      7.68   121 0.00271     1
+## 6 Chile1     0.593    0.233     1.51    81 0.387       1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{#Convert to log-odds and calculate standard error}
 \NormalTok{log_OR <-}\StringTok{ }\NormalTok{OR }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\KeywordTok{across}\NormalTok{(}\KeywordTok{c}\NormalTok{(OR, ci_lower, ci_upper), log), }\DataTypeTok{se =}\NormalTok{ (ci_upper }\OperatorTok{-}\StringTok{ }\NormalTok{ci_lower)}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\KeywordTok{qnorm}\NormalTok{(.}\DecValTok{975}\NormalTok{)))}
 
@@ -2892,24 +2908,12 @@ The results of the meta-analysis will be shown in a forest plot here. Each line 
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{10-z-meta-analyses_files/figure-latex/unnamed-chunk-2-1} 
+{\centering \includegraphics[width=1\linewidth]{10-z-meta-analyses_files/figure-latex/unnamed-chunk-3-1} 
 
 }
 
-\caption{Forest plot - the meta-analysis at a glance}\label{fig:unnamed-chunk-2}
+\caption{Forest plot - the meta-analysis at a glance}\label{fig:unnamed-chunk-3}
 \end{figure}
-
-\begin{verbatim}
-## # A tibble: 6 x 7
-##   Lab           OR ci_lower ci_upper     N p_value Weird
-##   <chr>      <dbl>    <dbl>    <dbl> <int>   <dbl> <int>
-## 1 Australia1 1.88     0.792     4.46    97 0.222       1
-## 2 Australia2 1.55     0.767     3.13   137 0.295       1
-## 3 Austria1   2.00     0.894     4.49   102 0.135       1
-## 4 Belgium1   1.51     0.684     3.33   100 0.413       1
-## 5 Canada1    3.5      1.59      7.68   121 0.00271     1
-## 6 Chile1     0.593    0.233     1.51    81 0.387       1
-\end{verbatim}
 
 From the meta-analysis, we can conclude that ManyLabs2 provided strong evidence for the framing effect established by Tversky \& Kahneman (1981). However, you should note that the effect size is much smaller than what they found (even below their confidence interval), and that there is a trend that the effect might be weaker in non-WEIRD samples (note that metagen also offers a significance test for this in the full output).
 
