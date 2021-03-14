@@ -105,7 +105,7 @@ dev.off()
 ```
 ```{r img-forest, echo=FALSE, fig.cap="Forest plot for meta-analysis"}
 
-knitr::include_graphics("./images/forest.jpg")
+knitr::include_graphics("./images/forest.png")
 
 ```
 
