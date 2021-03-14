@@ -296,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <button>
 Show me these analyses
 </button>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="meta-analyses-a-very-brief-introduction.html#cb135-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, magrittr, meta)</span>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="meta-analyses-a-very-brief-introduction.html#cb135-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse, magrittr)</span>
 <span id="cb135-2"><a href="meta-analyses-a-very-brief-introduction.html#cb135-2"></a>ML2_framing &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="st">&quot;files/ML2_framing.RDS&quot;</span>)</span>
 <span id="cb135-3"><a href="meta-analyses-a-very-brief-introduction.html#cb135-3"></a>get_OR &lt;-<span class="st"> </span><span class="cf">function</span>(tb, <span class="dt">ci =</span> <span class="fl">.95</span>, </span>
 <span id="cb135-4"><a href="meta-analyses-a-very-brief-introduction.html#cb135-4"></a>                   <span class="dt">success =</span> <span class="st">&quot;yes&quot;</span>, <span class="dt">failure =</span> <span class="st">&quot;no&quot;</span>, </span>
@@ -363,11 +363,14 @@ Given that the finding originated among US University students, this is an impor
 <span id="cb142-6"><a href="meta-analyses-a-very-brief-introduction.html#cb142-6"></a>        <span class="dt">sm =</span> <span class="st">&quot;OR&quot;</span>, <span class="dt">method.tau =</span> <span class="st">&quot;SJ&quot;</span>, <span class="dt">n.e =</span> N)</span>
 <span id="cb142-7"><a href="meta-analyses-a-very-brief-introduction.html#cb142-7"></a></span>
 <span id="cb142-8"><a href="meta-analyses-a-very-brief-introduction.html#cb142-8"></a><span class="co">#Create forest plot that summarises results</span></span>
-<span id="cb142-9"><a href="meta-analyses-a-very-brief-introduction.html#cb142-9"></a><span class="kw">forest</span>(meta_analysis, <span class="dt">sortvar =</span> <span class="op">-</span>TE, <span class="dt">text.fixed =</span> <span class="st">&quot;Fixed effects: overall estimate&quot;</span>, <span class="dt">text.random =</span> <span class="st">&quot;Random effects: overall estimate&quot;</span>, <span class="dt">leftcols =</span> <span class="kw">c</span>(<span class="st">&quot;studlab&quot;</span>, <span class="st">&quot;n.e&quot;</span>), <span class="dt">leftlabs =</span> <span class="kw">c</span>(<span class="st">&quot;Lab&quot;</span>, <span class="st">&quot;N&quot;</span>))</span></code></pre></div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
-<img src="10-z-meta-analyses_files/figure-html/unnamed-chunk-3-1.png" alt="Forest plot - the meta-analysis at a glance" width="100%" />
+<span id="cb142-9"><a href="meta-analyses-a-very-brief-introduction.html#cb142-9"></a><span class="kw">forest</span>(meta_analysis, <span class="dt">sortvar =</span> <span class="op">-</span>TE, <span class="dt">text.fixed =</span> <span class="st">&quot;Fixed effects: overall estimate&quot;</span>, </span>
+<span id="cb142-10"><a href="meta-analyses-a-very-brief-introduction.html#cb142-10"></a>       <span class="dt">text.random =</span> <span class="st">&quot;Random effects: overall estimate&quot;</span>, <span class="dt">leftcols =</span> <span class="kw">c</span>(<span class="st">&quot;studlab&quot;</span>, <span class="st">&quot;n.e&quot;</span>), <span class="dt">leftlabs =</span> <span class="kw">c</span>(<span class="st">&quot;Lab&quot;</span>, <span class="st">&quot;N&quot;</span>))</span></code></pre></div>
+<pre class="bg-none"><code>## png 
+##   2</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:img-forest"></span>
+<img src="images/forest.png" alt="Forest plot for meta-analysis" width="100%" />
 <p class="caption">
-Figure 11.1: Forest plot - the meta-analysis at a glance
+Figure 11.1: Forest plot for meta-analysis
 </p>
 </div>
 <p>From the meta-analysis, we can conclude that ManyLabs2 provided strong evidence for the framing effect established by Tversky &amp; Kahneman (1981). However, you should note that the effect size is much smaller than what they found (even below their confidence interval), and that there is a trend that the effect might be weaker in non-WEIRD samples (note that metagen also offers a significance test for this in the full output).</p>
@@ -375,7 +378,7 @@ Figure 11.1: Forest plot - the meta-analysis at a glance
 <button>
 Show full metagen output
 </button>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="meta-analyses-a-very-brief-introduction.html#cb143-1"></a>meta_analysis</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="meta-analyses-a-very-brief-introduction.html#cb144-1"></a>meta_analysis</span></code></pre></div>
 <pre class="bg-none"><code>##                           OR            95%-CI %W(fixed) %W(random) Weird
 ## Australia1            1.8791 [0.7917;  4.4603]       1.4        1.6     1
 ## Australia2            1.5500 [0.7672;  3.1317]       2.1        2.1     1

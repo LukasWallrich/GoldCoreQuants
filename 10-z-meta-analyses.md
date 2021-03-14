@@ -22,7 +22,7 @@ You can download their data `<a href="data:application/octet-stream;base64,WAoAA
 
 
 ```r
-pacman::p_load(tidyverse, magrittr, meta)
+pacman::p_load(tidyverse, magrittr)
 ML2_framing <- read_rds("files/ML2_framing.RDS")
 get_OR <- function(tb, ci = .95, 
                    success = "yes", failure = "no", 
@@ -111,7 +111,6 @@ head(OR)
 ```
 
 
-
 ```r
 #Convert to log-odds and calculate standard error
 log_OR <- OR %>% mutate(across(c(OR, ci_lower, ci_upper), log), se = (ci_upper - ci_lower)/(2*qnorm(.975)))
@@ -121,13 +120,22 @@ meta_analysis <- metagen(OR, se, studlab = Lab, data = log_OR, byvar = Weird,
         sm = "OR", method.tau = "SJ", n.e = N)
 
 #Create forest plot that summarises results
-forest(meta_analysis, sortvar = -TE, text.fixed = "Fixed effects: overall estimate", text.random = "Random effects: overall estimate", leftcols = c("studlab", "n.e"), leftlabs = c("Lab", "N"))
+forest(meta_analysis, sortvar = -TE, text.fixed = "Fixed effects: overall estimate", 
+       text.random = "Random effects: overall estimate", leftcols = c("studlab", "n.e"), leftlabs = c("Lab", "N"))
 ```
 
+
+```{.bg-none}
+## png 
+##   2
+```
 <div class="figure" style="text-align: center">
-<img src="10-z-meta-analyses_files/figure-html/unnamed-chunk-3-1.png" alt="Forest plot - the meta-analysis at a glance" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)Forest plot - the meta-analysis at a glance</p>
+<img src="./images/forest.png" alt="Forest plot for meta-analysis" width="100%" />
+<p class="caption">(\#fig:img-forest)Forest plot for meta-analysis</p>
 </div>
+
+
+
 
 From the meta-analysis, we can conclude that ManyLabs2 provided strong evidence for the framing effect established by Tversky & Kahneman (1981). However, you should note that the effect size is much smaller than what they found (even below their confidence interval), and that there is a trend that the effect might be weaker in non-WEIRD samples (note that metagen also offers a significance test for this in the full output).
 

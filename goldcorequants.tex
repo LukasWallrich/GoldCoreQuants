@@ -154,7 +154,7 @@
 
 \title{Getting started with Quantitative Research Methods and R}
 \author{Lukas Wallrich}
-\date{Last updated: 2021-03-13}
+\date{Last updated: 2021-03-14}
 
 \begin{document}
 \maketitle
@@ -371,7 +371,7 @@ All work in R is based on calling functions that do something. A function is cal
 \end{Shaded}
 
 \begin{verbatim}
-## ##------ Sat Mar 13 20:56:49 2021 ------##
+## ##------ Sun Mar 14 08:51:12 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -2786,26 +2786,7 @@ Show me these analyses
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pacman}\OperatorTok{::}\KeywordTok{p_load}\NormalTok{(tidyverse, magrittr, meta)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-\end{verbatim}
-
-\begin{verbatim}
-## also installing the dependencies 'metafor', 'CompQuadForm'
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## meta installed
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{pacman}\OperatorTok{::}\KeywordTok{p_load}\NormalTok{(tidyverse, magrittr)}
 \NormalTok{ML2_framing <-}\StringTok{ }\KeywordTok{read_rds}\NormalTok{(}\StringTok{"files/ML2_framing.RDS"}\NormalTok{)}
 \NormalTok{get_OR <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(tb, }\DataTypeTok{ci =} \FloatTok{.95}\NormalTok{, }
                    \DataTypeTok{success =} \StringTok{"yes"}\NormalTok{, }\DataTypeTok{failure =} \StringTok{"no"}\NormalTok{, }
@@ -2873,7 +2854,25 @@ The results of the meta-analysis will be shown in a forest plot here. Each line 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{pacman}\OperatorTok{::}\KeywordTok{p_load}\NormalTok{(tidyverse, meta)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## Installing package into '/home/runner/work/_temp/Library'
+## (as 'lib' is unspecified)
+\end{verbatim}
+
+\begin{verbatim}
+## also installing the dependencies 'metafor', 'CompQuadForm'
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## meta installed
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{#See hidden code above if you want to see how I calculated the effect size per sample based on the full ManyLabs2 dataset. }
 \CommentTok{#When doing a meta-analysis on published papers, you might just collect this kind of information from each paper in a spreadsheet}
 \KeywordTok{head}\NormalTok{(OR)}
@@ -2902,17 +2901,23 @@ The results of the meta-analysis will be shown in a forest plot here. Each line 
         \DataTypeTok{sm =} \StringTok{"OR"}\NormalTok{, }\DataTypeTok{method.tau =} \StringTok{"SJ"}\NormalTok{, }\DataTypeTok{n.e =}\NormalTok{ N)}
 
 \CommentTok{#Create forest plot that summarises results}
-\KeywordTok{forest}\NormalTok{(meta_analysis, }\DataTypeTok{sortvar =} \OperatorTok{-}\NormalTok{TE, }\DataTypeTok{text.fixed =} \StringTok{"Fixed effects: overall estimate"}\NormalTok{, }\DataTypeTok{text.random =} \StringTok{"Random effects: overall estimate"}\NormalTok{, }\DataTypeTok{leftcols =} \KeywordTok{c}\NormalTok{(}\StringTok{"studlab"}\NormalTok{, }\StringTok{"n.e"}\NormalTok{), }\DataTypeTok{leftlabs =} \KeywordTok{c}\NormalTok{(}\StringTok{"Lab"}\NormalTok{, }\StringTok{"N"}\NormalTok{))}
+\KeywordTok{forest}\NormalTok{(meta_analysis, }\DataTypeTok{sortvar =} \OperatorTok{-}\NormalTok{TE, }\DataTypeTok{text.fixed =} \StringTok{"Fixed effects: overall estimate"}\NormalTok{, }
+       \DataTypeTok{text.random =} \StringTok{"Random effects: overall estimate"}\NormalTok{, }\DataTypeTok{leftcols =} \KeywordTok{c}\NormalTok{(}\StringTok{"studlab"}\NormalTok{, }\StringTok{"n.e"}\NormalTok{), }\DataTypeTok{leftlabs =} \KeywordTok{c}\NormalTok{(}\StringTok{"Lab"}\NormalTok{, }\StringTok{"N"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## pdf 
+##   2
+\end{verbatim}
+
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{10-z-meta-analyses_files/figure-latex/unnamed-chunk-3-1} 
+{\centering \includegraphics[width=1\linewidth]{./images/forest} 
 
 }
 
-\caption{Forest plot - the meta-analysis at a glance}\label{fig:unnamed-chunk-3}
+\caption{Forest plot for meta-analysis}\label{fig:img-forest}
 \end{figure}
 
 From the meta-analysis, we can conclude that ManyLabs2 provided strong evidence for the framing effect established by Tversky \& Kahneman (1981). However, you should note that the effect size is much smaller than what they found (even below their confidence interval), and that there is a trend that the effect might be weaker in non-WEIRD samples (note that metagen also offers a significance test for this in the full output).
