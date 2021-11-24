@@ -19,7 +19,7 @@ jobs:
       - name: prep for tidyverse
         run: sudo apt-get install xml2 libxml2-dev libssl-dev libcurl4-openssl-dev unixodbc-dev texlive-xetex
       - name: Install rmarkdown
-        run: Rscript -e 'options(repos = list(CRAN="http://cran.rstudio.com/")); install.packages(c("rmarkdown","webex", "tidyverse", "magrittr", "xml2", "remotes", "styler")); remotes::install_version(package = "bookdown", version = "0.20")'
+        run: Rscript -e 'options(repos = list(CRAN="repos="https://cran.microsoft.com/snapshot/2021-03-14/")); install.packages(c("rmarkdown","webex", "tidyverse", "magrittr", "xml2", "remotes", "styler")); remotes::install_version(package = "bookdown", version = "0.20")'
       - name: Build HTML book
         run: Rscript -e 'source("_render.R")'
       - name: Copy attachments
