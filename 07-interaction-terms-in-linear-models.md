@@ -335,19 +335,19 @@ sim_slopes(mod, pred="hinctnta", modx = "wkhtot")
 ## 
 ## SIMPLE SLOPES ANALYSIS 
 ## 
-## Slope of hinctnta when wkhtot = 22.73 (- 1 SD): 
+## Slope of hinctnta when wkhtot = 22.73450 (- 1 SD): 
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
 ##   0.19   0.02     8.19   0.00
 ## 
-## Slope of hinctnta when wkhtot = 37.72 (Mean): 
+## Slope of hinctnta when wkhtot = 37.72437 (Mean): 
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
 ##   0.16   0.02     9.76   0.00
 ## 
-## Slope of hinctnta when wkhtot = 52.71 (+ 1 SD): 
+## Slope of hinctnta when wkhtot = 52.71424 (+ 1 SD): 
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
@@ -368,19 +368,19 @@ sim_slopes(mod, pred="wkhtot", modx = "hinctnta")
 ## 
 ## SIMPLE SLOPES ANALYSIS 
 ## 
-## Slope of wkhtot when hinctnta = 2.07 (- 1 SD): 
+## Slope of wkhtot when hinctnta = 2.065188 (- 1 SD): 
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
 ##   0.00   0.00     0.81   0.42
 ## 
-## Slope of wkhtot when hinctnta = 5.05 (Mean): 
+## Slope of wkhtot when hinctnta = 5.053473 (Mean): 
 ## 
 ##    Est.   S.E.   t val.      p
 ## ------- ------ -------- ------
 ##   -0.00   0.00    -0.84   0.40
 ## 
-## Slope of wkhtot when hinctnta = 8.04 (+ 1 SD): 
+## Slope of wkhtot when hinctnta = 8.041758 (+ 1 SD): 
 ## 
 ##    Est.   S.E.   t val.      p
 ## ------- ------ -------- ------

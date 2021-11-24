@@ -79,7 +79,7 @@ t.test(change ~ gender, resultsDel)
 ## 
 ## data:  change by gender
 ## t = 3.3375, df = 401.71, p-value = 0.000924
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group F and group M is not equal to 0
 ## 95 percent confidence interval:
 ##  1.665645 6.440134
 ## sample estimates:
@@ -156,7 +156,7 @@ t.test(change ~ gender, resultsImp)
 ## 
 ## data:  change by gender
 ## t = -0.13676, df = 497.8, p-value = 0.8913
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group F and group M is not equal to 0
 ## 95 percent confidence interval:
 ##  -2.459884  2.139711
 ## sample estimates:

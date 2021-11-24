@@ -250,7 +250,9 @@ chisq_to_cramers_v(chisq = 48.5, n = 626, nrow=4, ncol=2)
 ```{.bg-none}
 ## Cramer's V |       95% CI
 ## -------------------------
-## 0.28       | [0.19, 0.35]
+## 0.28       | [0.21, 1.00]
+## 
+## - One-sided CIs: upper bound fixed at (1).
 ```
 
 While this is a helpful statistic to compare effect strengths across multiple tests, it does not have an intuitive interpretation. Here, Odds Ratios might help. They can only be calculated for 2x2 tables, for instance for the fictional example regarding tea and coffee preferences. 

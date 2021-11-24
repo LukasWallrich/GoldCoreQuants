@@ -123,11 +123,12 @@ regionalAndWorld <- rbind(regional, world)
 ```
 
 ```{=html}
+<div id="qdnkbcjewb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wvestuvxmh .gt_table {
+#qdnkbcjewb .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -152,7 +153,7 @@ regionalAndWorld <- rbind(regional, world)
   border-left-color: #D3D3D3;
 }
 
-#wvestuvxmh .gt_heading {
+#qdnkbcjewb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -164,7 +165,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#wvestuvxmh .gt_title {
+#qdnkbcjewb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -174,23 +175,23 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-width: 0;
 }
 
-#wvestuvxmh .gt_subtitle {
+#qdnkbcjewb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#wvestuvxmh .gt_bottom_border {
+#qdnkbcjewb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wvestuvxmh .gt_col_headings {
+#qdnkbcjewb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -205,7 +206,7 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#wvestuvxmh .gt_col_heading {
+#qdnkbcjewb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -225,7 +226,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#wvestuvxmh .gt_column_spanner_outer {
+#qdnkbcjewb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -237,27 +238,27 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 4px;
 }
 
-#wvestuvxmh .gt_column_spanner_outer:first-child {
+#qdnkbcjewb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wvestuvxmh .gt_column_spanner_outer:last-child {
+#qdnkbcjewb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wvestuvxmh .gt_column_spanner {
+#qdnkbcjewb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
   padding-top: 5px;
-  padding-bottom: 6px;
+  padding-bottom: 5px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
 
-#wvestuvxmh .gt_group_heading {
+#qdnkbcjewb .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -279,7 +280,7 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#wvestuvxmh .gt_empty_group_heading {
+#qdnkbcjewb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -294,15 +295,15 @@ regionalAndWorld <- rbind(regional, world)
   vertical-align: middle;
 }
 
-#wvestuvxmh .gt_from_md > :first-child {
+#qdnkbcjewb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wvestuvxmh .gt_from_md > :last-child {
+#qdnkbcjewb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wvestuvxmh .gt_row {
+#qdnkbcjewb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -321,7 +322,7 @@ regionalAndWorld <- rbind(regional, world)
   overflow-x: hidden;
 }
 
-#wvestuvxmh .gt_stub {
+#qdnkbcjewb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -333,7 +334,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-left: 12px;
 }
 
-#wvestuvxmh .gt_summary_row {
+#qdnkbcjewb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -343,7 +344,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#wvestuvxmh .gt_first_summary_row {
+#qdnkbcjewb .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -353,7 +354,7 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#wvestuvxmh .gt_grand_summary_row {
+#qdnkbcjewb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -363,7 +364,7 @@ regionalAndWorld <- rbind(regional, world)
   padding-right: 5px;
 }
 
-#wvestuvxmh .gt_first_grand_summary_row {
+#qdnkbcjewb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -373,11 +374,11 @@ regionalAndWorld <- rbind(regional, world)
   border-top-color: #D3D3D3;
 }
 
-#wvestuvxmh .gt_striped {
+#qdnkbcjewb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wvestuvxmh .gt_table_body {
+#qdnkbcjewb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -386,7 +387,7 @@ regionalAndWorld <- rbind(regional, world)
   border-bottom-color: #D3D3D3;
 }
 
-#wvestuvxmh .gt_footnotes {
+#qdnkbcjewb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -400,13 +401,13 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#wvestuvxmh .gt_footnote {
+#qdnkbcjewb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#wvestuvxmh .gt_sourcenotes {
+#qdnkbcjewb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -420,46 +421,47 @@ regionalAndWorld <- rbind(regional, world)
   border-right-color: #D3D3D3;
 }
 
-#wvestuvxmh .gt_sourcenote {
+#qdnkbcjewb .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#wvestuvxmh .gt_left {
+#qdnkbcjewb .gt_left {
   text-align: left;
 }
 
-#wvestuvxmh .gt_center {
+#qdnkbcjewb .gt_center {
   text-align: center;
 }
 
-#wvestuvxmh .gt_right {
+#qdnkbcjewb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wvestuvxmh .gt_font_normal {
+#qdnkbcjewb .gt_font_normal {
   font-weight: normal;
 }
 
-#wvestuvxmh .gt_font_bold {
+#qdnkbcjewb .gt_font_bold {
   font-weight: bold;
 }
 
-#wvestuvxmh .gt_font_italic {
+#qdnkbcjewb .gt_font_italic {
   font-style: italic;
 }
 
-#wvestuvxmh .gt_super {
+#qdnkbcjewb .gt_super {
   font-size: 65%;
 }
 
-#wvestuvxmh .gt_footnote_marks {
+#qdnkbcjewb .gt_footnote_marks {
   font-style: italic;
+  font-weight: normal;
   font-size: 65%;
 }
 </style>
-<div id="wvestuvxmh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style><strong>Women rule</strong></th>
@@ -475,14 +477,13 @@ regionalAndWorld <- rbind(regional, world)
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr>
-      <td class="gt_row gt_right">8.8</td>
-      <td class="gt_row gt_right">4.4</td>
-    </tr>
+    <tr><td class="gt_row gt_right">9.8</td>
+<td class="gt_row gt_right">4.5</td></tr>
   </tbody>
   
   
-</table></div>
+</table>
+</div>
 ```
 
 ```r
@@ -503,6 +504,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
 
 Beyond the examples here, there are many other datasets to access. You might want to check out some of the following:
 
+* The [awesomedata collection](https://github.com/awesomedata/awesome-public-datasets) has a huge range of links to datasets across all kinds of domains - from Museums to prostate cancer. Worth exploring.
 * The extensive [list of political datasets](https://github.com/erikgahner/PolData) compiled by Erik Gahner, with lots of current and historical data on anything from terrorism to government revenues and gender in politics. At the bottom, it also has a list of links to other lists of datasets.
 * Eurostat offers a lot of statistics on all countries in Europe. In R, it can be accesses with the `eurostat` package; there is a  good [cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/eurostat.pdf) to help you get started
 * The webpage [asdfree.com](http://asdfree.com/), with (sparse) instructions of how to access a wide range of online data sources, from very focused surveys such as the US *National Longitudinal Study of Adolescent to Adult Health* to international and very widely used datasets such as the *World Values Survey.*

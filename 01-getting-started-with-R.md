@@ -4,7 +4,7 @@
 
 ## Install R on your computer
 
-R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, follow the detailed instructions in [Section 1.4 of the R for Data Science book](https://r4ds.had.co.nz/introduction.html){target="_blank"} 
+R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, you can follow these detailed instructions for [Windows](http://derekogle.com/IFAR/supplements/installations/InstallRWin.html){target="_blank"}  and [Mac OS](http://derekogle.com/IFAR/supplements/installations/InstallRMac.html){target="_blank"}. Make sure to install both R and RStudio. 
 
 Then **start exploring** - using R is a skill that comes with practice, not with reading about it. The examples from these notes can be copy-pasted or typed into R (when you move the mouse pointer over a code box you should see a copy-button in the top-right corner).
 
@@ -109,7 +109,7 @@ variableName <- mean(c(1,2,3, NA), na.rm = TRUE)
 ```
 
 ```{.bg-none}
-## ##------ Sun Mar 14 09:09:37 2021 ------##
+## ##------ Wed Nov 24 14:47:20 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2

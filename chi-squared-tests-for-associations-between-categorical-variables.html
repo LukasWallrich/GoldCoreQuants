@@ -422,7 +422,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb127-2"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb127-2"></a><span class="kw">chisq_to_cramers_v</span>(<span class="dt">chisq =</span> <span class="fl">48.5</span>, <span class="dt">n =</span> <span class="dv">626</span>, <span class="dt">nrow=</span><span class="dv">4</span>, <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre class="bg-none"><code>## Cramer&#39;s V |       95% CI
 ## -------------------------
-## 0.28       | [0.19, 0.35]</code></pre>
+## 0.28       | [0.21, 1.00]
+## 
+## - One-sided CIs: upper bound fixed at (1).</code></pre>
 <p>While this is a helpful statistic to compare effect strengths across multiple tests, it does not have an intuitive interpretation. Here, Odds Ratios might help. They can only be calculated for 2x2 tables, for instance for the fictional example regarding tea and coffee preferences.</p>
 <pre class="bg-none"><code>##           
 ##            Coffee Tea

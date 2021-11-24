@@ -47,7 +47,7 @@ t.test(soctrust ~ gndr, data=essUK, var.equal = TRUE)
 ## 
 ## data:  soctrust by gndr
 ## t = -0.2116, df = 2248, p-value = 0.8324
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group Male and group Female is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.1601569  0.1289597
 ## sample estimates:

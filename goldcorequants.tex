@@ -154,7 +154,7 @@
 
 \title{Getting started with Quantitative Research Methods and R}
 \author{Lukas Wallrich}
-\date{Last updated: 2021-03-14}
+\date{Last updated: 2021-11-24}
 
 \begin{document}
 \maketitle
@@ -236,7 +236,7 @@ R is not the easiest statistical software to learn, but we are confident that it
 \hypertarget{install-r-on-your-computer}{%
 \section{Install R on your computer}\label{install-r-on-your-computer}}
 
-R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, follow the detailed instructions in \href{https://r4ds.had.co.nz/introduction.html}{Section 1.4 of the R for Data Science book}
+R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, you can follow these detailed instructions for \href{http://derekogle.com/IFAR/supplements/installations/InstallRWin.html}{Windows} and \href{http://derekogle.com/IFAR/supplements/installations/InstallRMac.html}{Mac OS}. Make sure to install both R and RStudio.
 
 Then \textbf{start exploring} - using R is a skill that comes with practice, not with reading about it. The examples from these notes can be copy-pasted or typed into R (when you move the mouse pointer over a code box you should see a copy-button in the top-right corner).
 
@@ -371,7 +371,7 @@ All work in R is based on calling functions that do something. A function is cal
 \end{Shaded}
 
 \begin{verbatim}
-## ##------ Sun Mar 14 08:51:12 2021 ------##
+## ##------ Wed Nov 24 14:30:44 2021 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -1470,7 +1470,7 @@ Those means look very close. Nevertheless, we might want to know how likely we w
 ## 
 ## data:  soctrust by gndr
 ## t = -0.2116, df = 2248, p-value = 0.8324
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group Male and group Female is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.1601569  0.1289597
 ## sample estimates:
@@ -1659,7 +1659,7 @@ If you are so inclined, note that this is identical to a one-way ANOVA. To see t
 \end{verbatim}
 
 \begin{verbatim}
-## also installing the dependencies 'matrixStats', 'RcppArmadillo', 'zip', 'numDeriv', 'SparseM', 'MatrixModels', 'conquer', 'sp', 'data.table', 'openxlsx', 'minqa', 'nloptr', 'statmod', 'RcppEigen', 'carData', 'abind', 'pbkrtest', 'quantreg', 'maptools', 'rio', 'lme4'
+## also installing the dependencies 'listenv', 'parallelly', 'future', 'globals', 'future.apply', 'progressr', 'SQUAREM', 'lava', 'prodlim', 'proxy', 'iterators', 'data.table', 'gower', 'ipred', 'timeDate', 'e1071', 'foreach', 'ModelMetrics', 'plyr', 'pROC', 'recipes', 'reshape2', 'matrixStats', 'caret', 'RcppArmadillo', 'numDeriv', 'SparseM', 'MatrixModels', 'conquer', 'sp', 'minqa', 'nloptr', 'RcppEigen', 'carData', 'abind', 'pbkrtest', 'quantreg', 'maptools', 'lme4'
 \end{verbatim}
 
 \begin{verbatim}
@@ -2201,19 +2201,19 @@ Simple slopes analyses (\texttt{sim\_slopes()}) offer similar information togeth
 ## 
 ## SIMPLE SLOPES ANALYSIS 
 ## 
-## Slope of hinctnta when wkhtot = 22.73 (- 1 SD): 
+## Slope of hinctnta when wkhtot = 22.73450 (- 1 SD): 
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
 ##   0.19   0.02     8.19   0.00
 ## 
-## Slope of hinctnta when wkhtot = 37.72 (Mean): 
+## Slope of hinctnta when wkhtot = 37.72437 (Mean): 
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
 ##   0.16   0.02     9.76   0.00
 ## 
-## Slope of hinctnta when wkhtot = 52.71 (+ 1 SD): 
+## Slope of hinctnta when wkhtot = 52.71424 (+ 1 SD): 
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
@@ -2236,19 +2236,19 @@ Simple slopes analyses (\texttt{sim\_slopes()}) offer similar information togeth
 ## 
 ## SIMPLE SLOPES ANALYSIS 
 ## 
-## Slope of wkhtot when hinctnta = 2.07 (- 1 SD): 
+## Slope of wkhtot when hinctnta = 2.065188 (- 1 SD): 
 ## 
 ##   Est.   S.E.   t val.      p
 ## ------ ------ -------- ------
 ##   0.00   0.00     0.81   0.42
 ## 
-## Slope of wkhtot when hinctnta = 5.05 (Mean): 
+## Slope of wkhtot when hinctnta = 5.053473 (Mean): 
 ## 
 ##    Est.   S.E.   t val.      p
 ## ------- ------ -------- ------
 ##   -0.00   0.00    -0.84   0.40
 ## 
-## Slope of wkhtot when hinctnta = 8.04 (+ 1 SD): 
+## Slope of wkhtot when hinctnta = 8.041758 (+ 1 SD): 
 ## 
 ##    Est.   S.E.   t val.      p
 ## ------- ------ -------- ------
@@ -2548,7 +2548,9 @@ As always, finding that the variables are related to a statistically significant
 \begin{verbatim}
 ## Cramer's V |       95% CI
 ## -------------------------
-## 0.28       | [0.19, 0.35]
+## 0.28       | [0.21, 1.00]
+## 
+## - One-sided CIs: upper bound fixed at (1).
 \end{verbatim}
 
 While this is a helpful statistic to compare effect strengths across multiple tests, it does not have an intuitive interpretation. Here, Odds Ratios might help. They can only be calculated for 2x2 tables, for instance for the fictional example regarding tea and coffee preferences.
@@ -2863,7 +2865,7 @@ The results of the meta-analysis will be shown in a forest plot here. Each line 
 \end{verbatim}
 
 \begin{verbatim}
-## also installing the dependencies 'metafor', 'CompQuadForm'
+## also installing the dependencies 'mathjaxr', 'pbapply', 'metafor', 'CompQuadForm'
 \end{verbatim}
 
 \begin{verbatim}
@@ -2907,6 +2909,10 @@ The results of the meta-analysis will be shown in a forest plot here. Each line 
 \end{Shaded}
 
 \begin{verbatim}
+## Warning: Use argument 'subgroup' instead of 'byvar' (deprecated).
+\end{verbatim}
+
+\begin{verbatim}
 ## pdf 
 ##   2
 \end{verbatim}
@@ -2931,85 +2937,27 @@ Show full metagen output
 \end{Shaded}
 
 \begin{verbatim}
-##                           OR            95%-CI %W(fixed) %W(random) Weird
-## Australia1            1.8791 [0.7917;  4.4603]       1.4        1.6     1
-## Australia2            1.5500 [0.7672;  3.1317]       2.1        2.1     1
-## Austria1              2.0024 [0.8939;  4.4855]       1.6        1.8     1
-## Belgium1              1.5080 [0.6836;  3.3266]       1.7        1.9     1
-## Canada1               3.5000 [1.5949;  7.6807]       1.7        1.9     1
-## Chile1                0.5927 [0.2325;  1.5106]       1.2        1.5     1
-## China1                3.3231 [0.9390; 11.7605]       0.7        0.9     0
-## Colombia1             2.5579 [1.1470;  5.7042]       1.6        1.8     0
-## Costa Rica1           1.9514 [1.0380;  3.6683]       2.6        2.4     0
-## Czech Republic1       2.4853 [1.0384;  5.9480]       1.4        1.6     1
-## Czech Republic2       2.1667 [0.9987;  4.7004]       1.8        1.9     1
-## France1               1.5748 [0.8531;  2.9068]       2.8        2.5     1
-## Germany1              1.6810 [0.8882;  3.1816]       2.6        2.4     1
-## Germany2              3.0702 [1.2461;  7.5647]       1.3        1.6     1
-## Germany3              1.6813 [0.7128;  3.9655]       1.4        1.7     1
-## Hong Kong, China1     1.5455 [0.5803;  4.1156]       1.1        1.4     0
-## Italy1                1.2862 [0.5183;  3.1914]       1.3        1.5     1
-## Malaysia1             5.4000 [1.8097; 16.1128]       0.9        1.2     0
-## New Zealand1          1.1591 [0.4701;  2.8578]       1.3        1.6     1
-## Nigeria1              1.3333 [0.4473;  3.9743]       0.9        1.2     0
-## Poland1               3.8750 [1.4916; 10.0666]       1.2        1.4     1
-## Poland2               4.2581 [1.5172; 11.9502]       1.0        1.3     1
-## Poland3               1.3846 [0.3994;  4.7999]       0.7        1.0     1
-## Serbia1               1.4751 [0.6669;  3.2629]       1.7        1.8     0
-## South Africa1         2.7083 [0.9634;  7.6137]       1.0        1.3     0
-## Spain1                1.5306 [0.6475;  3.6181]       1.4        1.7     1
-## Tanzania1             2.8000 [0.1957; 40.0572]       0.1        0.2     0
-## Tanzania2             1.9023 [0.6171;  5.8635]       0.8        1.1     0
-## The Netherlands1      5.4444 [1.0389; 28.5332]       0.4        0.6     1
-## The Netherlands2      3.2786 [1.4020;  7.6672]       1.5        1.7     1
-## The Netherlands3      3.5714 [1.4285;  8.9288]       1.3        1.5     1
-## The Netherlands4      3.4647 [1.3166;  9.1176]       1.1        1.4     1
-## Turkey1               1.6993 [0.7839;  3.6838]       1.8        1.9     0
-## UK1                   1.8571 [0.8078;  4.2696]       1.5        1.7     1
-## UK2                   4.5290 [1.5758; 13.0167]       0.9        1.2     1
-## UK3                   1.6897 [0.7934;  3.5984]       1.8        2.0     1
-## United Arab Emirates1 1.2535 [0.6810;  2.3073]       2.8        2.5     0
-## USA1                  1.5938 [0.7727;  3.2871]       2.0        2.1     1
-## USA10                 1.5714 [0.6522;  3.7861]       1.4        1.6     1
-## USA11                 1.8821 [0.7401;  4.7865]       1.2        1.5     1
-## USA12                 1.6994 [1.0645;  2.7129]       4.8        3.2     1
-## USA13                 3.0030 [1.5956;  5.6521]       2.6        2.4     1
-## USA14                 3.9867 [1.5891; 10.0016]       1.2        1.5     1
-## USA15                 3.3247 [1.3500;  8.1876]       1.3        1.6     1
-## USA16                 3.1000 [1.2281;  7.8248]       1.2        1.5     1
-## USA17                 1.9038 [0.7356;  4.9277]       1.2        1.4     1
-## USA18                 1.6964 [0.6984;  4.1205]       1.3        1.6     1
-## USA19                 3.1456 [1.7890;  5.5310]       3.3        2.7     1
-## USA2                  2.3032 [1.2558;  4.2244]       2.9        2.5     1
-## USA20                 3.9545 [2.2484;  6.9554]       3.3        2.7     1
-## USA3                  2.5143 [1.1927;  5.3003]       1.9        2.0     1
-## USA4                  3.9510 [1.5995;  9.7597]       1.3        1.5     1
-## USA5                  2.8148 [1.1048;  7.1718]       1.2        1.5     1
-## USA6                  2.3623 [1.7001;  3.2824]       9.7        4.0     1
-## USA7                  3.8636 [1.9960;  7.4787]       2.4        2.3     1
-## USA8                  2.0010 [1.0256;  3.9043]       2.4        2.3     1
-## USA9                  2.2414 [0.8500;  5.9104]       1.1        1.4     1
-## 
 ## Number of studies combined: k = 57
+## Number of observations: o = 7228
 ## 
 ##                          OR           95%-CI     z  p-value
-## Fixed effect model   2.2088 [1.9935; 2.4473] 15.15 < 0.0001
+## Common effect model  2.2088 [1.9935; 2.4473] 15.15 < 0.0001
 ## Random effects model 2.2141 [1.9366; 2.5314] 11.63 < 0.0001
 ## 
 ## Quantifying heterogeneity:
 ##  tau^2 = 0.0890 [0.0000; 0.0781]; tau = 0.2983 [0.0000; 0.2796]
-##  I^2 = 0.0% [0.0%; 29.4%]; H = 1.00 [1.00; 1.19]
+##  I^2 = 0.0% [0.0%; 31.2%]; H = 1.00 [1.00; 1.21]
 ## 
 ## Test of heterogeneity:
 ##      Q d.f. p-value
 ##  54.60   56  0.5279
 ## 
-## Results for subgroups (fixed effect model):
+## Results for subgroups (common effect model):
 ##             k     OR           95%-CI     Q  I^2
 ## Weird = 1  45 2.2752 [2.0344; 2.5446] 44.76 1.7%
 ## Weird = 0  12 1.8904 [1.4630; 2.4428]  8.16 0.0%
 ## 
-## Test for subgroup differences (fixed effect model):
+## Test for subgroup differences (common effect model):
 ##                    Q d.f. p-value
 ## Between groups  1.69    1  0.1942
 ## Within groups  52.92   55  0.5547
@@ -3177,14 +3125,14 @@ I got curious about what share of the world's population lives in countries with
 \captionsetup[table]{labelformat=empty,skip=1pt}
 \begin{longtable}{rr}
 \caption*{
-\large \textbf{Women rule}\\ 
-\small *Percent*\\ 
+{\large \textbf{Women rule}} \\ 
+{\small *Percent*}
 } \\ 
 \toprule
 ShareOfCountries & ShareOfPopulation \\ 
 \midrule
-8.8 & 4.4 \\ 
-\bottomrule
+9.8 & 4.5 \\ 
+ \bottomrule
 \end{longtable}
 
 \begin{Shaded}
@@ -3214,6 +3162,8 @@ Beyond the examples here, there are many other datasets to access. You might wan
 
 \begin{itemize}
 \tightlist
+\item
+  The \href{https://github.com/awesomedata/awesome-public-datasets}{awesomedata collection} has a huge range of links to datasets across all kinds of domains - from Museums to prostate cancer. Worth exploring.
 \item
   The extensive \href{https://github.com/erikgahner/PolData}{list of political datasets} compiled by Erik Gahner, with lots of current and historical data on anything from terrorism to government revenues and gender in politics. At the bottom, it also has a list of links to other lists of datasets.
 \item
@@ -3306,7 +3256,7 @@ Let's try case deletion, and test whether the effects on boys and girls are diff
 ## 
 ## data:  change by gender
 ## t = 3.3375, df = 401.71, p-value = 0.000924
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group F and group M is not equal to 0
 ## 95 percent confidence interval:
 ##  1.665645 6.440134
 ## sample estimates:
@@ -3392,7 +3342,7 @@ Let's test again whether there is a difference between boys and girls.
 ## 
 ## data:  change by gender
 ## t = -0.13676, df = 497.8, p-value = 0.8913
-## alternative hypothesis: true difference in means is not equal to 0
+## alternative hypothesis: true difference in means between group F and group M is not equal to 0
 ## 95 percent confidence interval:
 ##  -2.459884  2.139711
 ## sample estimates:
